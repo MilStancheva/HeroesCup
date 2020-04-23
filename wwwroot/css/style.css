@@ -123,3 +123,28 @@ header {
   border: solid .3rem #fff;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); }
 
+/* Footer */
+.custom-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+    .custom-footer > div {
+        color: white;
+    }
+
+    .custom-footer > div a {
+        text-decoration: underline;
+        color: white;
+    }
+
+    .footer-line {
+        border-top: 2px solid grey;
+        margin-top: 2%;
+        bottom: 0;
+    }
+

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500"> 
-    <link rel="stylesheet" href="~/css/style.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500">
+    <link rel="stylesheet" href="~/css/style.css">
 
     <title>@ViewBag.Title</title>
 
-    @if (Model is Piranha.Models.IMeta) {
+    @if (Model is Piranha.Models.IMeta)
+    {
         <partial name="Partial/_Meta.cshtml" />
     }
 
@@ -29,6 +30,52 @@
 
     @RenderBody()
 
+    <footer class="border-top text-muted custom-footer pt-3 pl-5 pr-5">
+        <div class="pt-3 pl-5 pr-5">
+            <div class="pt-3 pl-md-5 pr-md-5">
+                <div class="pt-3 pl-md-5 pr-md-5">
+                    @{
+                        var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
+                    }
+                    @if (currentSite != null)
+                    {
+                        <div class="row pb-3">
+                            <div class="col-6 row">
+                                @Html.Raw(currentSite.FooterContents.Text)
+                            </div>
+                            <div class="col-md-6 col-sm-12 row">
+                                <div class="col-md-4 col-sm-12">
+                                    <img src="@Url.Content(currentSite.FooterContents.LogoImages1)"/>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <img src="@Url.Content(currentSite.FooterContents.LogoImages2)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1 footer-line">
+                            <div class="col-md-8 col-sm-12 row mt-2">
+                                <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a></p>
+                            </div>
+                            <div class="col-md-4 col-sm-12 row mt-2">
+                                <div class="col-md-3 col-sm-6">
+                                    <img src="~/images/f_logo_RGB-Black_58.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <img src="~/images/f_logo_RGB-Black_58.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <img src="~/images/glyph-logo_May2016_white.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <img src="~/images/glyph-logo_May2016_white.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+</footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

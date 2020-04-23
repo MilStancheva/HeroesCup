@@ -1,7 +1,7 @@
 @model StartPage
 @inject IApi Api
 
-@{
+@*@{
     ViewBag.Title = Model.Title;
     ViewBag.HasImage = Model.Hero.PrimaryImage.HasValue;
 
@@ -11,9 +11,9 @@
         }
         return "";
     }
-}
+}*@
 
-<header class="page-header" @PrimaryImage()>
+@*<header class="page-header" @PrimaryImage()>
     <div class="container">
         <div class="row">
             <div class="col-sm-9">
@@ -24,11 +24,11 @@
             </div>
         </div>
     </div>
-</header>
+</header>*@
 
 <div class="main">
     <div class="container">
-        @if (Model.Teasers.Count > 0) {
+        @*@if (Model.Teasers.Count > 0) {
             var pos = 0;
             var size = 4;
 
@@ -67,7 +67,7 @@
                 </div>
                 pos += cols;
             }
-        }
+        }*@
 
         <div class="row justify-content-center">
             <div class="col-sm-10 page-body">
