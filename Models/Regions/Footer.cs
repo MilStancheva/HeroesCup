@@ -6,13 +6,10 @@ namespace HeroesCup.Models.Regions
 {
     public class Footer
     {
-        [Field(Title = "Footer logo 1")]
-        public ImageField LogoImages1 { get; set; }
+        [Field]
+        public HtmlField UpperContent { get; set; }
 
-        [Field(Title = "Footer logo 2")]
-        public ImageField LogoImages2 { get; set; }
-
-        [Field(Title = "Footer text")]
-        public HtmlField Text { get; set; }
+        [Field]
+        public HtmlField MiddleContent { get; set; }
     }
 }

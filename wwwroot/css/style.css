@@ -143,8 +143,8 @@ header {
     }
 
     .footer-line {
+        width: 100%;
         border-top: 2px solid grey;
-        margin-top: 2%;
         bottom: 0;
     }
 
