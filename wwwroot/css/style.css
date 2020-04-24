@@ -1,4 +1,9 @@
-﻿.header-bg {
+﻿html, body {
+    width: 100%;
+    height: 100%
+}
+
+.header-bg {
   background-size: cover;
   background-position: 50% 50%; }
 
@@ -125,7 +130,7 @@ header {
 
 /* Footer */
 .custom-footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
