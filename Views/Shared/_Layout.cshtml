@@ -40,29 +40,42 @@
                     @if (currentSite != null)
                     {
                         <div class="row">
-                            @Html.Raw(currentSite.FooterContents.UpperContent)
+                            <div class="col-md-6 col-sm-12">
+                                @Html.Raw(currentSite.FooterContents.UpperContentLeft)
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                @Html.Raw(currentSite.FooterContents.UpperContentRight)
+                            </div>
                         </div>
-                        <div class="footer-line"></div>
+                        <div class="row footer-line"></div>
                         <div class="row mt-1">
                             @Html.Raw(currentSite.FooterContents.MiddleContent)
                         </div>
-                        <div class="footer-line"></div>
+                        <div class="row footer-line"></div>
                         <div class="row mt-1">
                             <div class="col-md-8 col-sm-12 row mt-2">
-                                <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a></p>
+                                <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a> | Уеб разработка от</p>
                             </div>
-                            <div class="col-md-4 col-sm-12 row mt-2">
-                                <div class="col-md-3 col-sm-6">
-                                    <img src="~/images/f_logo_RGB-Black_58.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                            <div class="row col-md-4 col-sm-12 row mt-2">
+                                <div class="col-md-2 col-sm-2 offset-4">
+                                    <a href="https://www.facebook.com/TimeHeroes/">
+                                        <span class="icon icon-facebook"></span>
+                                    </a>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <img src="~/images/f_logo_RGB-Black_58.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                <div class="col-md-2 col-sm-2">                                    
+                                    <a class="footer_social_icon" href="https://twitter.com/timeheroesorg?lang=en">
+                                        <span class="icon icon-twitter"></span>
+                                    </a>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <img src="~/images/glyph-logo_May2016_white.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                <div class="col-md-2 col-sm-2">
+                                    <a href="https://www.youtube.com/channel/UC7l1t9MKG2uwcU1TXP7rhZQ">
+                                        <span class="icon icon-youtube"></span>
+                                    </a>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <img src="~/images/glyph-logo_May2016_white.png" width="28" class="pl-1 pr-1 pt-1 pb-1" />
+                                <div class="col-md-2 col-sm-2">
+                                    <a href="https://www.instagram.com/time.heroes/?hl=en">
+                                        <span class="icon icon-instagram"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

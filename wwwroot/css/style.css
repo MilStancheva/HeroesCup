@@ -148,3 +148,56 @@ header {
         bottom: 0;
     }
 
+.icon {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    width: 34px;
+    height: 34px;
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #37393C;
+}
+
+.icon:hover {
+    background-color: #ffff;
+}
+
+.icon-facebook {
+    background-image: url('../images/facebook-svgrepo-com_white.svg');
+}
+
+    .icon-facebook:hover,
+    .icon-facebook:focus {
+        background-image: url('../images/facebook-svgrepo-com_black.svg');
+    }
+
+.icon-twitter {
+    background-image: url('../images/twitter-svgrepo-com_white.svg');
+}
+
+    .icon-twitter:hover,
+    .icon-twitter:focus {
+        background-image: url('../images/twitter-svgrepo-com_black.svg');
+    }
+
+.icon-youtube {
+    background-image: url('../images/youtube-svgrepo-com_white.svg');
+}
+
+    .icon-youtube:hover,
+    .icon-youtube:focus {
+        background-image: url('../images/youtube-svgrepo-com_black.svg');
+    }
+
+
+.icon-instagram {
+    background-image: url('../images/instagram-logo-svgrepo-com_white.svg');
+}
+
+    .icon-instagram:hover,
+    .icon-instagram:focus {
+        background-image: url('../images/instagram-logo-svgrepo-com_black.svg');
+    }
+
