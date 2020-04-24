@@ -5,14 +5,14 @@ namespace HeroesCup.Models.Regions
 {
     public class BlogMissionStoryRegion
     {
-        [Field]
+        [Field(Title ="Заглавие")]
         public StringField StoryTitle { get; set; }
 
-        [Field]
+        [Field(Title = "Изображение")]
         public ImageField StoryImage { get; set; }
 
 
-        [Field]
+        [Field(Title = "Съдържание")]
         public HtmlField StoryContent { get; set; }
     }
 }

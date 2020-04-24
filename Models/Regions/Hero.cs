@@ -1,4 +1,4 @@
-using Piranha.Extend;
+﻿using Piranha.Extend;
 using Piranha.Extend.Fields;
 
 namespace HeroesCup.Models.Regions
@@ -8,13 +8,13 @@ namespace HeroesCup.Models.Regions
         /// <summary>
         /// Gets/sets the optional primary image.
         /// </summary>
-        [Field(Title = "Primary image")]
+        [Field(Title = "Главно изображение")]
         public ImageField PrimaryImage { get; set; }
 
         /// <summary>
         /// Gets/sets the optional ingress.
         /// </summary>
-        [Field]
+        [Field(Title ="Текст")]
         public TextField Ingress { get; set; }
     }
 }

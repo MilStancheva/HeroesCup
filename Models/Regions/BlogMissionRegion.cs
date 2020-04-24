@@ -2,9 +2,6 @@
 using Piranha.Extend.Fields;
 using Piranha.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HeroesCup.Models.Regions
 {
@@ -13,25 +10,25 @@ namespace HeroesCup.Models.Regions
         /// <summary>
         /// Gets/sets the blog mission post organizator.
         /// </summary>
-        [Field(Options = FieldOption.HalfWidth)]
+        [Field(Title = "Организатор", Options = FieldOption.HalfWidth)]
         public StringField OrganizedBy { get; set; }
 
         /// <summary>
         /// Gets/sets the blog mission post location.
         /// </summary>
-        [Field(Options = FieldOption.HalfWidth)]
+        [Field(Title = "Локация", Options = FieldOption.HalfWidth)]
         public StringField Location { get; set; }
 
         /// <summary>
         /// Gets/sets the blog mission start date.
         /// </summary>
-        [Field(Options = FieldOption.HalfWidth)]
+        [Field(Title = "Дата на стартиране на мисията", Options = FieldOption.HalfWidth)]
         public DateField StartDate { get; set; }
 
         /// <summary>
         /// Gets/sets the blog mission end date.
         /// </summary>
-        [Field(Options = FieldOption.HalfWidth)]
+        [Field(Title = "Дата на приключване на мисията", Options = FieldOption.HalfWidth)]
         public DateField EndDate { get; set; }
 
         public TimeSpan Duration
