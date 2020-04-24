@@ -11,5 +11,10 @@ namespace HeroesCup.Models
         /// Gets/sets the post archive.
         /// </summary>
         public PostArchive<LinkMissionPost> LinkMissionArchive { get; set; }
+
+        /// <summary>
+        /// Gets/sets the post archive.
+        /// </summary>
+        public PostArchive<BlogMissionPost> BlogMissionArchive { get; set; }
     }
 }

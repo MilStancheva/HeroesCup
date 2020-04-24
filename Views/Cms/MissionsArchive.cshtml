@@ -9,7 +9,7 @@
 <div class="main">
     <div class="container">
         <div class="row">
-            <div class="row">
+            <div class="row mb-3">
                 <h4>Мисии от Timeheroes</h4>
             </div>
 
@@ -23,6 +23,39 @@
                         <div class="col-sm-6 col-md-4 teaser">
                             <div class="mission-body">
                                 <a href="@mission.Details.URL.Value" target="_blank">
+                                    <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 300, 150))" />
+                                    <h4>@mission.Title</h4>
+                                    @if (mission.Tags.Count > 0)
+                                    {
+                                        @foreach (var tag in mission.Tags)
+                                        {
+                                            <p>#@tag.Title</p>
+                                        }
+                                    }
+                                    <p>от @mission.Details.OrganizedBy</p>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="row">
+            <div class="row mb-3">
+                <h4>Мисии от Купата</h4>
+            </div>
+
+
+            @if (Model.BlogMissionArchive.Posts.Count > 0)
+            {
+                var  blogMissionPosts = Model.BlogMissionArchive.Posts.OrderByDescending(m => m.Published.Value);
+                <div class="row">
+                    @foreach (var mission in blogMissionPosts)
+                    {
+                        <div class="col-sm-6 col-md-4 teaser">
+                            <div class="mission-body">
+                                <a href="@mission.Permalink" target="_blank">
                                     <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 300, 150))" />
                                     <h4>@mission.Title</h4>
                                     @if (mission.Tags.Count > 0)

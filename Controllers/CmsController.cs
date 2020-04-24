@@ -96,7 +96,20 @@ namespace HeroesCup.Controllers
         }
 
         /// <summary>
-        /// Gets the blog archive with the given id.
+        /// Gets the blog-mission with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("blog-mission")]
+        public async Task<IActionResult> BlogMissionPost(Guid id, bool draft = false)
+        {
+            var model = await _loader.GetPostAsync<BlogMissionPost>(id, HttpContext.User, draft);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Gets the missions archive with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="year">The optional year</param>
@@ -111,6 +124,7 @@ namespace HeroesCup.Controllers
         {
             var model = await _loader.GetPageAsync<MissionsArchive>(id, HttpContext.User, draft);
             model.LinkMissionArchive = await _api.Archives.GetByIdAsync<LinkMissionPost>(id, page, category, tag, year, month);
+            model.BlogMissionArchive = await _api.Archives.GetByIdAsync<BlogMissionPost>(id, page, category, tag, year, month);
 
             return View(model);
         }

@@ -6,7 +6,7 @@ using Piranha.Models;
 
 namespace HeroesCup.Models
 {
-    [PostType(Title = "Link Mission Post")]
+    [PostType(Title = "Линк мисия")]
     [PostTypeRoute(Title = "Default", Route = "/link-mission")]
     public class LinkMissionPost : Post<LinkMissionPost>
     {
