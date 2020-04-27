@@ -6,10 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="Piranha" Version="8.1.0" />
     <PackageReference Include="Piranha.AspNetCore" Version="8.1.0" />
     <PackageReference Include="Piranha.AspNetCore.Identity.MySQL" Version="8.1.0" />

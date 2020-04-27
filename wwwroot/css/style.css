@@ -1,4 +1,10 @@
-﻿.header-bg {
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #faf8f3;
+}
+
+.header-bg {
   background-size: cover;
   background-position: 50% 50%; }
 
@@ -68,35 +74,47 @@ header {
       float: right; }
 
 .nav-site li a {
-  color: #fff;
-  padding: 0;
-  margin: 1em 1em;
-  font-size: .9rem;
-  text-transform: uppercase;
-  transition: all ease-in-out .2s; }
-  .nav-site li a:hover {
-    padding: .8em 0;
-    color: #fff;
-    transition: all ease-in-out .2s; }
-    .nav-site li a:hover span {
-      padding: .2em 1em;
-      border-color: #fff;
-      transition: all ease-in-out .2s; }
-  .nav-site li a span {
-    display: block;
-    padding: 1em;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 1px 0;
-    transition: all ease-in-out .2s; }
+    padding: 0;
+    margin: 1em 1em;
+    font-size: .9rem;
+    transition: all ease-in-out .2s;
+    text-shadow: 0 0 5px #fff;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    /* Dark */
+    color: #1C1E21;
+    text-transform: capitalize;
+}
+    .nav-site li a:hover > span {
+        padding: .8em 0;
+        color: #FE5E17;
+        transition: all ease-in-out .2s;
+    }
 
-.nav-site li.active a {
-  color: #fff;
-  font-weight: 500;
-  text-shadow: 0 0 5px #fff; }
+.nav-site li.active a span {
+    color: #FE5E17;
+}
+
+/*.nav-site li.active a {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /*text-align: right;
+    color: #FE5E17;
+    text-transform: capitalize;
+}*/
 
 .header-bg.header-bg-empty a:hover span {
-  border-color: #000; }
+    border-color: #000;
+}
 
 .teasers .teaser .teaser-body {
   background: #f2f2f2;
@@ -123,9 +141,19 @@ header {
   border: solid .3rem #fff;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); }
 
+h2 {
+    margin-bottom: 18px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #1C1E21;
+}
+
 /* Footer */
 .custom-footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -143,8 +171,148 @@ header {
     }
 
     .footer-line {
+        width: 100%;
         border-top: 2px solid grey;
-        margin-top: 2%;
         bottom: 0;
     }
+
+.icon {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    width: 34px;
+    height: 34px;
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #37393C;
+}
+
+.icon:hover {
+    background-color: #ffff;
+}
+
+.icon-facebook {
+    background-image: url('../images/facebook-svgrepo-com_white.svg');
+}
+
+    .icon-facebook:hover,
+    .icon-facebook:focus {
+        background-image: url('../images/facebook-svgrepo-com_black.svg');
+    }
+
+.icon-twitter {
+    background-image: url('../images/twitter-svgrepo-com_white.svg');
+}
+
+    .icon-twitter:hover,
+    .icon-twitter:focus {
+        background-image: url('../images/twitter-svgrepo-com_black.svg');
+    }
+
+.icon-youtube {
+    background-image: url('../images/youtube-svgrepo-com_white.svg');
+}
+
+    .icon-youtube:hover,
+    .icon-youtube:focus {
+        background-image: url('../images/youtube-svgrepo-com_black.svg');
+    }
+
+
+.icon-instagram {
+    background-image: url('../images/instagram-logo-svgrepo-com_white.svg');
+}
+
+    .icon-instagram:hover,
+    .icon-instagram:focus {
+        background-image: url('../images/instagram-logo-svgrepo-com_black.svg');
+    }
+
+
+
+/* Button */
+.btn-heroes {
+    padding: 12px 24px;
+    background: #FE5E17;
+    color: white;
+    vertical-align: middle;
+    border-radius: 32px;
+    text-decoration: none;
+    text-underline-position: unset;
+    text-decoration-style: none;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+    .btn-heroes:hover {
+        color: white;
+        text-decoration: none;
+        text-underline-position: unset;
+        text-decoration-style: none;
+        background: linear-gradient(0deg, rgba(28, 30, 33, 0.08), rgba(28, 30, 33, 0.08)), #FE5E17;
+    }
+
+
+/* Missions List */
+
+.mission-body > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.mission-body:hover > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.mission-title {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.mission-title:hover {
+    color: #FE5E17;
+}
+
+.missions-block{
+    padding-bottom: 48px;
+}
+
+.container {
+    margin-top: 48px;
+}
+
+/* Modal */
+
+.modal-content {
+    width: 120%;
+    background-color: #faf8f3;
+}
+
+.modal-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 42px;
+}
+
+/* Nav icon */
+.navbar-toggler-icon {
+    color: #1C1E21;
+}
+
+/* Challenge */
+.challenge-hr {
+    margin-bottom: 48px;
+}
 

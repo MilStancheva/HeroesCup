@@ -1,0 +1,50 @@
+﻿@model BlogMissionPost
+@{
+    ViewBag.Title = Model.Title;
+
+    var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
+}
+
+<div class="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 post-header">
+                <h1>@Model.Title</h1>
+                @if (Model.Tags.Count > 0)
+                {
+                    foreach (var tag in Model.Tags)
+                    {
+                        <span class="tag"><a href="@archive.Permalink/tag/@tag.Slug">#@tag.Title</a></span>
+                    }
+                }
+            </div>
+        </div>
+        @if (Model.Hero.PrimaryImage.HasValue)
+        {
+            <div class="row mb-3">
+                <div class="col-sm post-header">
+                    <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 1100, 400))">
+                </div>
+            </div>
+        }
+
+        @if (Model.Participants.Count > 0)
+        {
+            <div class="row">
+                <h4>Участници</h4>
+            </div>
+            <div class="row">
+                @foreach (var participant in Model.Participants)
+                {
+                    <div class="col-md-3 col-sm-12">@participant.Value</div>
+                }
+            </div>
+        }
+
+        <div class="row justify-content-center">
+            <div class="col-sm-10 post-body">
+                @Html.DisplayFor(m => m.Blocks)
+            </div>
+        </div>
+    </div>
+</div>

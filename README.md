@@ -9,7 +9,7 @@ It's goal is to enable school teams to find information about various volunteer 
 
 ## Installation
 * Clone/Download repository
-* Add 'HeroesCup:ConnectionString' to your environmental variables as a key and your connection string itself as a value
+* Add 'HEROESCUP_CONNECTIONSTRING' to your environmental variables as a key and your connection string itself as a value
 * Go to the root projects directory
 * Run: 
 ```
