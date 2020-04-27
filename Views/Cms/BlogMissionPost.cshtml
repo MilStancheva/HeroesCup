@@ -21,12 +21,26 @@
         </div>
         @if (Model.Hero.PrimaryImage.HasValue)
         {
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-sm post-header">
                     <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 1100, 400))">
                 </div>
             </div>
         }
+
+        @if (Model.Participants.Count > 0)
+        {
+            <div class="row">
+                <h4>Участници</h4>
+            </div>
+            <div class="row">
+                @foreach (var participant in Model.Participants)
+                {
+                    <div class="col-md-3 col-sm-12">@participant.Value</div>
+                }
+            </div>
+        }
+
         <div class="row justify-content-center">
             <div class="col-sm-10 post-body">
                 @Html.DisplayFor(m => m.Blocks)

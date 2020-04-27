@@ -1,7 +1,9 @@
 ﻿using HeroesCup.Models.Regions;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
+using Piranha.Extend.Fields;
 using Piranha.Models;
+using System.Collections.Generic;
 
 namespace HeroesCup.Models
 {
@@ -19,11 +21,9 @@ namespace HeroesCup.Models
         public BlogMissionRegion Details { get; set; }
 
         [Region(Title = "Участници")]
-        public BlogMissionParticipantsRegion Participants { get; set; }
+        public IList<StringField> Participants { get; set; }
 
         [Region(Title = "Разказ")]
         public BlogMissionStoryRegion Story { get; set; }
-
-
     }
 }

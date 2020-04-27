@@ -20,7 +20,6 @@ namespace HeroesCup.Controllers
         {
             _api = api;
             _loader = loader;
-            App.Blocks.Register<NameBlock>();
         }
 
         /// <summary>
