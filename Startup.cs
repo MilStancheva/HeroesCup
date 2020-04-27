@@ -32,7 +32,7 @@ namespace HeroesCup
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetSection("ConnectionString").Value;
+            var connectionString = Configuration.GetSection("CONNECTIONSTRING").Value;
 
             // Service setup
             services.AddPiranha(options =>
