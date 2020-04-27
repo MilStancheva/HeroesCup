@@ -96,19 +96,21 @@ header {
         transition: all ease-in-out .2s;
     }
 
-.nav-site li.active a {
-    text-shadow: 0 0 5px #fff;
+.nav-site li.active a span {
+    color: #FE5E17;
+}
+
+/*.nav-site li.active a {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
-    text-align: right;
-    /* Dark */
-    color: #1C1E21;
+    /*text-align: right;
+    color: #FE5E17;
     text-transform: capitalize;
-}
+}*/
 
 .header-bg.header-bg-empty a:hover span {
     border-color: #000;
