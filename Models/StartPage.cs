@@ -1,6 +1,7 @@
 using HeroesCup.Models.Regions;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
+using Piranha.Extend.Fields;
 using Piranha.Models;
 using System.Collections.Generic;
 
@@ -16,17 +17,32 @@ namespace HeroesCup.Models
         [Region(Display = RegionDisplayMode.Setting)]
         public Hero Hero { get; set; }
 
+        [Region(ListTitle = "Heroes Count")]
+        public NumberField HeroesCount { get; set; }
+
+
+        [Region(ListTitle = "Teams Count")]
+        public NumberField TeamsCount { get; set; }
+
+        [Region(ListTitle = "Missions Count")]
+        public NumberField MissionsCount { get; set; }
+
+        [Region(ListTitle = "Hours Count")]
+        public NumberField HoursCount { get; set; }
+
         ///// <summary>
-        ///// Gets/sets the available teasers.
+        ///// Gets/sets the available teams.
         ///// </summary>
-        //[Region(ListTitle = "Title")]
-        //public IList<Teaser> Teasers { get; set; }
+        //[Region(ListTitle = "Teams")]
+        //public IList<TeamRegion> Teams { get; set; }
+
+        public IList<LinkMissionPost> LinkedMissions { get; set; }
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public StartPage() {
-            //Teasers = new List<Teaser>();
+            LinkedMissions = new List<LinkMissionPost>();
         }
     }
 }

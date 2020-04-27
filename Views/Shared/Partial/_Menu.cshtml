@@ -12,7 +12,11 @@
         <div class="navbar-nav">
             @foreach (var item in sitemap)
             {
-                <a class="nav-item nav-link @(item.Id == WebApp.PageId ? "active" : "")" href="@item.Permalink"><span>@item.MenuTitle</span></a>
+                @if (item.Title != "Home")
+                {
+                    <a class="nav-item nav-link @(item.Id == WebApp.PageId ? "active" : "")" href="@item.Permalink"><span>@item.MenuTitle</span></a>
+                }
+
             }
         </div>
     </div>
@@ -23,7 +27,10 @@
         @foreach (var item in sitemap)
         {
             <li class="nav-item @(item.Id == WebApp.PageId ? "active" : "")">
-                <a class="nav-link" href="@item.Permalink"><span>@item.MenuTitle</span></a>
+                @if (item.Title != "Home")
+                {
+                    <a class="nav-link" href="@item.Permalink"><span>@item.MenuTitle</span></a>
+                }
             </li>
         }
     </ul>

@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
+using Piranha.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HeroesCup.Controllers
@@ -77,6 +80,14 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+            var pages = _api.Pages.GetAllAsync().Result.ToList();
+            var missionsArchiveId = pages.First(p => p.TypeId == "MissionsArchive").Id;
+            var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+            var missionsRegions = new List<LinkMissionPost>();
+            foreach (var post in linkedMissionsPosts)
+            {
+                model.LinkedMissions.Add(post);
+            }
 
             return View(model);
         }
