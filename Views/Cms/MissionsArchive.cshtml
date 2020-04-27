@@ -49,7 +49,7 @@
 
             @if (Model.BlogMissionArchive.Posts.Count > 0)
             {
-                var  blogMissionPosts = Model.BlogMissionArchive.Posts.OrderByDescending(m => m.Published.Value);
+                var blogMissionPosts = Model.BlogMissionArchive.Posts.OrderByDescending(m => m.Published.Value);
                 <div class="row">
                     @foreach (var mission in blogMissionPosts)
                     {
@@ -73,6 +73,9 @@
                 </div>
             }
         </div>
+        <hr />
+
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
 

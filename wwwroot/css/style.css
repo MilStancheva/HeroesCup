@@ -142,7 +142,7 @@ header {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); }
 
 h2 {
-    margin-bottom: 48px;
+    margin-bottom: 18px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
@@ -248,6 +248,9 @@ h2 {
 
     .btn-heroes:hover {
         color: white;
+        text-decoration: none;
+        text-underline-position: unset;
+        text-decoration-style: none;
         background: linear-gradient(0deg, rgba(28, 30, 33, 0.08), rgba(28, 30, 33, 0.08)), #FE5E17;
     }
 
@@ -306,5 +309,10 @@ h2 {
 /* Nav icon */
 .navbar-toggler-icon {
     color: #1C1E21;
+}
+
+/* Challenge */
+.challenge-hr {
+    margin-bottom: 48px;
 }
 
