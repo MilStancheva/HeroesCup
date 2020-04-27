@@ -274,6 +274,10 @@ h2 {
     line-height: 24px;
 }
 
+.mission-title:hover {
+    color: #FE5E17;
+}
+
 .missions-block{
     padding-bottom: 48px;
 }
