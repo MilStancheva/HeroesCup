@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Start page")]
-    [PageTypeRoute(Title = "Default", Route = "/start")]
+    [PageTypeRoute(Title = "Default", Route = "/")]
     public class StartPage : Page<StartPage>
     {
         /// <summary>

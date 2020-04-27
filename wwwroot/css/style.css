@@ -1,6 +1,7 @@
 ﻿html, body {
     width: 100%;
-    height: 100%
+    height: 100%;
+    background-color: #faf8f3;
 }
 
 .header-bg {
@@ -73,35 +74,45 @@ header {
       float: right; }
 
 .nav-site li a {
-  color: #fff;
-  padding: 0;
-  margin: 1em 1em;
-  font-size: .9rem;
-  text-transform: uppercase;
-  transition: all ease-in-out .2s; }
-  .nav-site li a:hover {
-    padding: .8em 0;
-    color: #fff;
-    transition: all ease-in-out .2s; }
-    .nav-site li a:hover span {
-      padding: .2em 1em;
-      border-color: #fff;
-      transition: all ease-in-out .2s; }
-  .nav-site li a span {
-    display: block;
-    padding: 1em;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 1px 0;
-    transition: all ease-in-out .2s; }
+    padding: 0;
+    margin: 1em 1em;
+    font-size: .9rem;
+    transition: all ease-in-out .2s;
+    text-shadow: 0 0 5px #fff;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    /* Dark */
+    color: #1C1E21;
+    text-transform: capitalize;
+}
+    .nav-site li a:hover > span {
+        padding: .8em 0;
+        color: #FE5E17;
+        transition: all ease-in-out .2s;
+    }
 
 .nav-site li.active a {
-  color: #fff;
-  font-weight: 500;
-  text-shadow: 0 0 5px #fff; }
+    text-shadow: 0 0 5px #fff;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    /* Dark */
+    color: #1C1E21;
+    text-transform: capitalize;
+}
 
 .header-bg.header-bg-empty a:hover span {
-  border-color: #000; }
+    border-color: #000;
+}
 
 .teasers .teaser .teaser-body {
   background: #f2f2f2;
@@ -265,5 +276,29 @@ h2 {
 
 .missions-block{
     padding-bottom: 48px;
+}
+
+.container {
+    margin-top: 48px;
+}
+
+/* Modal */
+
+.modal-content {
+    width: 120%;
+    background-color: #faf8f3;
+}
+
+.modal-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 42px;
+}
+
+/* Nav icon */
+.navbar-toggler-icon {
+    color: #1C1E21;
 }
 

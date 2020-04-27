@@ -15,7 +15,7 @@ namespace HeroesCup
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    config.AddEnvironmentVariables(prefix: "HEROESCUP_");
+                    config.AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>()
                 .Build();
