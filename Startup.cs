@@ -78,6 +78,7 @@ namespace HeroesCup
                 options.UseTinyMCE();
                 options.UseIdentity();
             });
+            app.UsePiranhaStartPage();
         }
     }
 }

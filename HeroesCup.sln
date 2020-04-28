@@ -5,6 +5,24 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesCup", "HeroesCup.csproj", "{BC9D08AA-8268-47B5-87C5-793994A914BC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha", "..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj", "{9F8DEF72-2D98-4818-9453-3D28270F866B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.AspNetCore", "..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj", "{190A8A9B-6077-4037-84BB-68AFAF2E0657}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.AspNetCore.Identity.MySQL", "..\HeroesCup.Libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj", "{39DC9712-0876-4DDA-925E-57972545EEEA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.AttributeBuilder", "..\HeroesCup.Libs\piranha.core\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj", "{6F3877E9-CB54-4571-A53E-A7AC71546EE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Data.EF.MySql", "..\HeroesCup.Libs\piranha.core\data\Piranha.Data.EF.MySql\Piranha.Data.EF.MySql.csproj", "{E971F694-5BC0-45EA-BA1D-5F1EECF95089}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.ImageSharp", "..\HeroesCup.Libs\piranha.core\core\Piranha.ImageSharp\Piranha.ImageSharp.csproj", "{C4339E19-1C7C-4BE6-8CBE-997973650C0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Local.FileStorage", "..\HeroesCup.Libs\piranha.core\core\Piranha.Local.FileStorage\Piranha.Local.FileStorage.csproj", "{32C37E9B-40E2-4908-A494-E4E054B97096}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Manager", "..\HeroesCup.Libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj", "{D885FD74-455C-4E84-BFBD-F11252518D9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Piranha.Manager.TinyMCE", "..\HeroesCup.Libs\piranha.core\core\Piranha.Manager.TinyMCE\Piranha.Manager.TinyMCE.csproj", "{2548F951-BFB0-4985-9103-BECA90E2FD0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +33,42 @@ Global
 		{BC9D08AA-8268-47B5-87C5-793994A914BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC9D08AA-8268-47B5-87C5-793994A914BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC9D08AA-8268-47B5-87C5-793994A914BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F8DEF72-2D98-4818-9453-3D28270F866B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F8DEF72-2D98-4818-9453-3D28270F866B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F8DEF72-2D98-4818-9453-3D28270F866B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F8DEF72-2D98-4818-9453-3D28270F866B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{190A8A9B-6077-4037-84BB-68AFAF2E0657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190A8A9B-6077-4037-84BB-68AFAF2E0657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190A8A9B-6077-4037-84BB-68AFAF2E0657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190A8A9B-6077-4037-84BB-68AFAF2E0657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39DC9712-0876-4DDA-925E-57972545EEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39DC9712-0876-4DDA-925E-57972545EEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39DC9712-0876-4DDA-925E-57972545EEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39DC9712-0876-4DDA-925E-57972545EEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3877E9-CB54-4571-A53E-A7AC71546EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3877E9-CB54-4571-A53E-A7AC71546EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3877E9-CB54-4571-A53E-A7AC71546EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3877E9-CB54-4571-A53E-A7AC71546EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E971F694-5BC0-45EA-BA1D-5F1EECF95089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E971F694-5BC0-45EA-BA1D-5F1EECF95089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E971F694-5BC0-45EA-BA1D-5F1EECF95089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E971F694-5BC0-45EA-BA1D-5F1EECF95089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4339E19-1C7C-4BE6-8CBE-997973650C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4339E19-1C7C-4BE6-8CBE-997973650C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4339E19-1C7C-4BE6-8CBE-997973650C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4339E19-1C7C-4BE6-8CBE-997973650C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C37E9B-40E2-4908-A494-E4E054B97096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C37E9B-40E2-4908-A494-E4E054B97096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C37E9B-40E2-4908-A494-E4E054B97096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C37E9B-40E2-4908-A494-E4E054B97096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D885FD74-455C-4E84-BFBD-F11252518D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D885FD74-455C-4E84-BFBD-F11252518D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D885FD74-455C-4E84-BFBD-F11252518D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D885FD74-455C-4E84-BFBD-F11252518D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2548F951-BFB0-4985-9103-BECA90E2FD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2548F951-BFB0-4985-9103-BECA90E2FD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2548F951-BFB0-4985-9103-BECA90E2FD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2548F951-BFB0-4985-9103-BECA90E2FD0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

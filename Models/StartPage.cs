@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Start page")]
-    [PageTypeRoute(Title = "Default", Route = "/")]
+    [PageTypeRoute(Title = "Start", Route = "/")]
     public class StartPage : Page<StartPage>
     {
         /// <summary>
@@ -36,6 +36,9 @@ namespace HeroesCup.Models
         //[Region(ListTitle = "Teams")]
         //public IList<TeamRegion> Teams { get; set; }
 
+        /// <summary>
+        /// Gets/sets the available linked missions.
+        /// </summary>
         public IList<LinkMissionPost> LinkedMissions { get; set; }
 
         /// <summary>
