@@ -80,17 +80,11 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
-            var pages = _api.Pages.GetAllAsync().Result.ToList();
-            // var model = pages.First(p => p.IsStartPage == true);
-            
+            var pages = _api.Pages.GetAllAsync().Result.ToList();            
             var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
-            if(missionsArchive == null)
+            if(missionsArchive != null)
             {
-                model.LinkedMissions = new List<LinkMissionPost>();
-            } 
-            else
-            {
-                if(model.LinkedMissions == null)
+                if (model.LinkedMissions == null)
                 {
                     model.LinkedMissions = new List<LinkMissionPost>();
                 }
