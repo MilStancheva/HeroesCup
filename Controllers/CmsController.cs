@@ -76,17 +76,25 @@ namespace HeroesCup.Controllers
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("start")]
+        [Route("/")]
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
-            var pages = _api.Pages.GetAllAsync().Result.ToList();
-            var missionsArchiveId = pages.First(p => p.TypeId == "MissionsArchive").Id;
-            var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
-            var missionsRegions = new List<LinkMissionPost>();
-            foreach (var post in linkedMissionsPosts)
+            var pages = _api.Pages.GetAllAsync().Result.ToList();            
+            var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
+            if(missionsArchive != null)
             {
-                model.LinkedMissions.Add(post);
+                if (model.LinkedMissions == null)
+                {
+                    model.LinkedMissions = new List<LinkMissionPost>();
+                }
+
+                var missionsArchiveId = missionsArchive.Id;
+                var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+                foreach (var post in linkedMissionsPosts)
+                {
+                    model.LinkedMissions.Add(post);
+                }
             }
 
             return View(model);

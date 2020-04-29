@@ -1,0 +1,6 @@
+[submodule "libs/piranha.core"]
+	path = libs/piranha.core
+	url = https://github.com/PiranhaCMS/piranha.core
+[submodule "libs/piranha.core.mysql"]
+	path = libs/piranha.core.mysql
+	url = https://github.com/PiranhaCMS/piranha.core.mysql

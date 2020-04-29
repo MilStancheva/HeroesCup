@@ -6,17 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="libs\**" />
+    <Content Remove="libs\**" />
+    <EmbeddedResource Remove="libs\**" />
+    <None Remove="libs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-    <PackageReference Include="Piranha" Version="8.1.0" />
-    <PackageReference Include="Piranha.AspNetCore" Version="8.1.0" />
-    <PackageReference Include="Piranha.AspNetCore.Identity.MySQL" Version="8.1.0" />
-    <PackageReference Include="Piranha.AttributeBuilder" Version="8.1.0" />
-    <PackageReference Include="Piranha.Data.EF.MySql" Version="8.1.2" />
-    <PackageReference Include="Piranha.ImageSharp" Version="8.1.0-rc1" />
-    <PackageReference Include="Piranha.Local.FileStorage" Version="8.1.0" />
-    <PackageReference Include="Piranha.Manager" Version="8.1.0" />
-    <PackageReference Include="Piranha.Manager.TinyMCE" Version="8.1.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.ImageSharp\Piranha.ImageSharp.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.Local.FileStorage\Piranha.Local.FileStorage.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.Manager.Core\Piranha.Manager.Core.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.Manager.Localization\Piranha.Manager.Localization.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.Manager.TinyMCE\Piranha.Manager.TinyMCE.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
+    <ProjectReference Include="libs\piranha.core\core\Piranha\Piranha.csproj" />
+    <ProjectReference Include="libs\piranha.core\data\Piranha.Data.EF.MySql\Piranha.Data.EF.MySql.csproj" />
   </ItemGroup>
 
 </Project>
