@@ -1,7 +1,7 @@
 ﻿html, body {
     width: 100%;
     height: 100%;
-    background-color: #faf8f3;
+    background-color: #FAF8F3;
 }
 
 .header-bg {
@@ -315,4 +315,46 @@ h2 {
 .challenge-hr {
     margin-bottom: 48px;
 }
+
+/* Carousel */
+.start-carousel-capture {
+    text-align: start;
+    color: black;
+}
+
+.carousel-indicators {
+    margin: 0;
+    padding: 0;
+    align-content: start;
+    text-align: start;
+}
+
+    .carousel-indicators li {
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+    }
+
+    .carousel-indicators li {
+        display: block;
+        border: 1px solid black;
+        background-color: white;
+    }
+
+    .carousel-indicators .active {
+        background-color: black;
+    }
+
+
+/* Common */
+.vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.section-margin {
+    margin-top: 38px;
+    margin-bottom: 38px;
+}
+
 

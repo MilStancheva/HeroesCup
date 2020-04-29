@@ -17,6 +17,9 @@ namespace HeroesCup.Models
         [Region(Display = RegionDisplayMode.Setting)]
         public Hero Hero { get; set; }
 
+        [Region(ListTitle = "Carousel")]
+        public IList<Hero> Carousel { get; set; }
+
         [Region(ListTitle = "Heroes Count")]
         public NumberField HeroesCount { get; set; }
 

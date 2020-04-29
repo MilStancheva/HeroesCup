@@ -1,62 +1,112 @@
 ﻿@model StartPage
 @inject IApi Api
-@*@{
-        ViewBag.Title = Model.Title;
-        ViewBag.HasImage = Model.Hero.PrimaryImage.HasValue;
-
-        string PrimaryImage() {
-            if (Model.Hero.PrimaryImage.HasValue) {
-                return $"style=background-image:url({Url.Content(Model.Hero.PrimaryImage)})";
-            }
-            return "";
-        }
-    }*@
-
-@*<header class="page-header" @PrimaryImage()>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9">
-                    <h1>@Model.Title</h1>
-                    <p class="lead">
-                        @Html.Raw(Model.Hero.Ingress)
-                    </p>
-                </div>
-            </div>
-        </div>
-    </header>*@
+@{
+    ViewBag.Title = Model.Title;
+}
 
 <div class="main">
     <div class="container">
+
+        @* Carousel *@
+        @if (Model.Carousel.Count > 0)
+        {
+            <div class="row section-margin">
+                <div class="col-sm-12 col-md-12">
+                    <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
+                        <ol class="carousel-indicators justify-content-start">
+                            @{
+                                int indicatorIndex = 0;
+                            }
+                            @foreach (var hero in Model.Carousel)
+                            {
+                                @if (indicatorIndex == 0)
+                                {
+                                    <li data-target="#corouselStart" data-slide-to="@indicatorIndex" class="active"></li>
+                                }
+                                else
+                                {
+                                    <li data-target="#corouselStart" data-slide-to="@indicatorIndex"></li>
+                                }
+
+                                indicatorIndex += 1;
+                            }
+                            @{
+                                int imageIndex = 0;
+                            }
+                        </ol>
+                        <div class="carousel-inner">
+                            @foreach (var hero in Model.Carousel)
+                            {
+                                @if (imageIndex == 0)
+                                {
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 vertical-center">
+                                                <h2>@hero.IngressTitle</h2>
+                                                <p>@Html.Raw(hero.Ingress)</p>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 vertical-center">
+                                                <h2>@hero.IngressTitle</h2>
+                                                <p>@Html.Raw(hero.Ingress)</p>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                imageIndex += 1;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
 
 
         @* Missions *@
         @if (Model.LinkedMissions.Count > 0)
         {
             var linkMissionPosts = Model.LinkedMissions.OrderByDescending(m => m.Published.Value);
-            <h2>Мисии</h2>
-            <div class="row missions-block">
-                @foreach (var mission in linkMissionPosts)
-                {
-                    <div class="col-sm-6 col-md-4">
-                        <div class="mission-body">
-                            <a href="@mission.Details.URL.Value" target="_blank">
-                                <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
-                                <h4 class="mission-title">@mission.Title</h4>
-                                @if (mission.Tags.Count > 0)
-                                {
-                                    @foreach (var tag in mission.Tags)
+            <div class="section-margin">
+
+
+                <h2>Мисии</h2>
+                <div class="row missions-block">
+                    @foreach (var mission in linkMissionPosts)
+                    {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="mission-body">
+                                <a href="@mission.Details.URL.Value" target="_blank">
+                                    <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
+                                    <h4 class="mission-title">@mission.Title</h4>
+                                    @if (mission.Tags.Count > 0)
                                     {
-                                        <span>#@tag.Title </span>
+                                        @foreach (var tag in mission.Tags)
+                                        {
+                                            <span>#@tag.Title </span>
+                                        }
                                     }
-                                }
-                                <p>от @mission.Details.OrganizedBy</p>
-                            </a>
+                                    <p>от @mission.Details.OrganizedBy</p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                }
-            </div>
-            <div class="row mt-3 justify-content-center">
-                <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
+                    }
+                </div>
+                <div class="row mt-3 justify-content-center">
+                    <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
+                </div>
             </div>
         }
 

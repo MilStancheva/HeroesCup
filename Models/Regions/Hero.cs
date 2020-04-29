@@ -12,6 +12,12 @@ namespace HeroesCup.Models.Regions
         public ImageField PrimaryImage { get; set; }
 
         /// <summary>
+        /// Gets/sets the optional ingress title.
+        /// </summary>
+        [Field(Title = "Заглавие")]
+        public TextField IngressTitle { get; set; }
+
+        /// <summary>
         /// Gets/sets the optional ingress.
         /// </summary>
         [Field(Title ="Текст")]
