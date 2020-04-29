@@ -345,6 +345,11 @@ h2 {
         background-color: black;
     }
 
+/* Statistics */
+.stats{
+    margin-left: 100px;
+}
+
 
 /* Common */
 .vertical-center {
