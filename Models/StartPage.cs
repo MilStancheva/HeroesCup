@@ -11,18 +11,11 @@ namespace HeroesCup.Models
     [PageTypeRoute(Title = "Start", Route = "/")]
     public class StartPage : Page<StartPage>
     {
-        /// <summary>
-        /// Gets/sets the page hero.
-        /// </summary>
-        [Region(Display = RegionDisplayMode.Setting)]
-        public Hero Hero { get; set; }
-
         [Region(ListTitle = "Carousel")]
         public IList<Hero> Carousel { get; set; }
 
         [Region(ListTitle = "Heroes Count")]
         public NumberField HeroesCount { get; set; }
-
 
         [Region(ListTitle = "Teams Count")]
         public NumberField TeamsCount { get; set; }
