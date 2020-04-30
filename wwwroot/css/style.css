@@ -368,4 +368,41 @@ h2 {
     padding-bottom: 38px;
 }
 
+/* Leaderboard */
+
+.school-years-button {
+    padding: 12px 24px;
+    background: #EBE7FD;
+    border-radius: 32px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #370AEB;
+}
+
+    .school-years-button:hover {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.08), rgba(55, 10, 235, 0.08)), #EBE7FD;
+        border-radius: 32px;
+    }
+
+    .school-years-button:active {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
+        border-radius: 32px;
+        border: none;
+    }
+
+.dropdown-toggle::after {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    font-family: FontAwesome;
+    content: "\f107";
+    margin-top: auto;
+    margin-bottom: auto;
+    vertical-align: baseline;
+}
+
 

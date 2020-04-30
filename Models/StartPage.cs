@@ -3,6 +3,7 @@ using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
+using System;
 using System.Collections.Generic;
 
 namespace HeroesCup.Models
@@ -32,6 +33,8 @@ namespace HeroesCup.Models
         public IList<LinkMissionPost> LinkedMissions { get; set; }
 
         public IList<SchoolClubPost> SchoolClubs { get; set; }
+
+        public IList<String> SchoolYears { get; set; }
 
         /// <summary>
         /// Default constructor.

@@ -111,40 +111,57 @@
             </div>
         </div>
 
-
+        <hr />
         @* School clubs *@
-        @if (Model.SchoolClubs.Count > 0)
-        {
-            <h1>Класация</h1>
-            <div class="row">
-                @{
-                    var index = 0;
-                }
-
-                @foreach (var club in Model.SchoolClubs)
-                {
-                    index += 1;
-                    <a href="@club.Permalink" class="col-12">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-2">
-                                <span>@index</span>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <span>@club.SchoolClubRegion.TeamTitle</span>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <span>@club.Points точки</span>
-                            </div>
-                            <div class="col-md-2 col-sm-2">
-                                <span>@club.Participants.Count героя</span>
-                            </div>
+        <div class="section-margin section-padding">
+            @if (Model.SchoolClubs.Count > 0 && Model.SchoolYears.Count > 0)
+            {
+                <div class="row justify-content-between">
+                    <h2 class="mb-5">Класация</h2>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Model.SchoolYears.First()
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @foreach (var year in Model.SchoolYears)
+                            {
+                                <button class="btn btn-primary dropdown-item school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @year
+                                </button>
+                            }
                         </div>
-                        <hr />
-                    </a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    @{
+                        var index = 0;
+                    }
 
-                }
-            </div>
-        }
+                    @foreach (var club in Model.SchoolClubs)
+                    {
+                        index += 1;
+                        <a href="@club.Permalink" class="col-12">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2">
+                                    <span>@index</span>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <span>@club.SchoolClubRegion.TeamTitle</span>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <span>@club.Points точки</span>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <span>@club.Participants.Count героя</span>
+                                </div>
+                            </div>
+                            <hr />
+                        </a>
+                    }
+                </div>
+            }
+        </div>
 
 
         @* Missions *@

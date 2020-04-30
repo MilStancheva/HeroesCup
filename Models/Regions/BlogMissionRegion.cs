@@ -45,15 +45,15 @@ namespace HeroesCup.Models.Regions
             get
             {
                 var startYear = getStartSchoolYear(this.StartDate.Value);
-                var endYear = getEndSchoolYear(DateTime.Parse(startYear));
+                var endYear = getEndSchoolYear(int.Parse(startYear));
 
-                return $"{startYear}-{endYear}";
+                return $"{startYear} / {endYear}";
             }
         }
 
-        private String getEndSchoolYear(DateTime? value)
+        private String getEndSchoolYear(int value)
         {
-            return (value.Value.Year + 1).ToString();
+            return (value + 1).ToString();
         }
 
         private String getStartSchoolYear(DateTime? value)

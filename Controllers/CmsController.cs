@@ -127,6 +127,22 @@ namespace HeroesCup.Controllers
                 }
             }
 
+            // School years
+            if (missionsArchive != null)
+            {
+                var missionsArchiveId = missionsArchive.Id;
+                var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+                var blogMissionPosts = await _api.Posts.GetAllAsync<BlogMissionPost>(missionsArchiveId);
+
+                var schoolYears = new HashSet<String>();
+                foreach(var post in blogMissionPosts)
+                {
+                    schoolYears.Add(post.Details.SchoolYear);
+                }
+
+                model.SchoolYears = schoolYears.OrderByDescending(x => x.Contains(DateTime.Now.Year.ToString())).ToList();
+            }
+
             return View(model);
         }
 
