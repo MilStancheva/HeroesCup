@@ -84,14 +84,10 @@ namespace HeroesCup.Controllers
             var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
             if(missionsArchive != null)
             {
-                if (model.LinkedMissions == null)
-                {
-                    model.LinkedMissions = new List<LinkMissionPost>();
-                }
-
                 var missionsArchiveId = missionsArchive.Id;
                 var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
-                foreach (var post in linkedMissionsPosts)
+                var lastEnteredLinkedMissions = linkedMissionsPosts.OrderByDescending(x => x.Published).Take(3);
+                foreach (var post in lastEnteredLinkedMissions)
                 {
                     model.LinkedMissions.Add(post);
                 }
