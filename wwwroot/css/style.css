@@ -346,10 +346,11 @@ h2 {
     }
 
 /* Statistics */
-.stats{
-    margin-left: 100px;
+.stats-info {
+    color: #1C1E21;
+    font-size: 1.2em;
+    font-weight: bold;
 }
-
 
 /* Common */
 .vertical-center {
