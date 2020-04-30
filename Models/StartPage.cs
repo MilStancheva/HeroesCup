@@ -26,22 +26,19 @@ namespace HeroesCup.Models
         [Region(ListTitle = "Hours Count")]
         public NumberField HoursCount { get; set; }
 
-        ///// <summary>
-        ///// Gets/sets the available teams.
-        ///// </summary>
-        //[Region(ListTitle = "Teams")]
-        //public IList<TeamRegion> Teams { get; set; }
-
         /// <summary>
         /// Gets/sets the available linked missions.
         /// </summary>
         public IList<LinkMissionPost> LinkedMissions { get; set; }
+
+        public IList<SchoolClubPost> SchoolClubs { get; set; }
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public StartPage() {
             LinkedMissions = new List<LinkMissionPost>();
+            SchoolClubs = new List<SchoolClubPost>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Models.Regions;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
@@ -80,7 +81,40 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
-            var pages = _api.Pages.GetAllAsync().Result.ToList();            
+            var pages = _api.Pages.GetAllAsync().Result.ToList();
+
+            // Get school club regions
+            var schoolClubArchiveId = pages.First(p => p.TypeId == "SchoolClubArchive").Id;
+            var schoolClubPosts = await _api.Posts.GetAllAsync<SchoolClubPost>(schoolClubArchiveId);
+            model.SchoolClubs = schoolClubPosts.OrderByDescending(x => x.Points).ToList();
+
+            // Get Heroes count
+            var heroesCount = 0;
+            var missionsCount = 0;
+            var teamsCount = 0;
+            foreach (var post in schoolClubPosts)
+            {
+                if (post.Participants.Count > 0)
+                {
+                    heroesCount += post.Participants.Count;
+                }
+
+                if (post.Missions.Count > 0)
+                {
+                    missionsCount += post.Missions.Count;
+                }
+
+                if (post.SchoolClubRegion != null)
+                {
+                    teamsCount += 1;
+                }
+            }
+
+            model.HeroesCount = heroesCount;
+            model.MissionsCount = missionsCount;
+            model.TeamsCount = teamsCount;
+
+            // Get missions
             var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
             if(missionsArchive != null)
             {
@@ -140,6 +174,39 @@ namespace HeroesCup.Controllers
             var model = await _loader.GetPageAsync<MissionsArchive>(id, HttpContext.User, draft);
             model.LinkMissionArchive = await _api.Archives.GetByIdAsync<LinkMissionPost>(id, page, category, tag, year, month);
             model.BlogMissionArchive = await _api.Archives.GetByIdAsync<BlogMissionPost>(id, page, category, tag, year, month);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Gets the school club post with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("club")]
+        public async Task<IActionResult> SchoolClubPost(Guid id, bool draft = false)
+        {
+            var model = await _loader.GetPostAsync<SchoolClubPost>(id, HttpContext.User, draft);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Gets the missions archive with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="year">The optional year</param>
+        /// <param name="month">The optional month</param>
+        /// <param name="page">The optional page</param>
+        /// <param name="category">The optional category</param>
+        /// <param name="tag">The optional tag</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("clubs")]
+        public async Task<IActionResult> SchoolClubsArchive(Guid id, int? year = null, int? month = null, int? page = null,
+            Guid? category = null, Guid? tag = null, bool draft = false)
+        {
+            var model = await _loader.GetPageAsync<SchoolClubArchive>(id, HttpContext.User, draft);
+            model.SchoolClubsArchive = await _api.Archives.GetByIdAsync<SchoolClubPost>(id, page, category, tag, year, month);
 
             return View(model);
         }

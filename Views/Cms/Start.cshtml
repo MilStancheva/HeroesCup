@@ -76,42 +76,75 @@
 
 
         @* Statistics *@
-    <div class="row justify-content-center block section-margin">
-        <div class="col-6 row">
-            <div class="col-md-6 col-sm-6 start-icon text-center">
-                <img class="img-fluid m-1" src="~/images/User.svg" />
-                <div class="stats-info m-1">
-                    <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
-                    <div class="m-1"><span class="small">Герои</span></div>
+        <div class="row justify-content-center block section-margin">
+            <div class="col-6 row">
+                <div class="col-md-6 col-sm-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/User.svg" />
+                    <div class="stats-info m-1">
+                        <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
+                        <div class="m-1"><span class="small">Герои</span></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/School.svg">
+                    <div class="stats-info m-1">
+                        <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
+                        <div class="m-1"><span class="small">Ученически клуба</span></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 start-icon text-center">
-                <img class="img-fluid m-1" src="~/images/School.svg">
-                <div class="stats-info m-1">
-                    <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
-                    <div class="m-1"><span class="small">Ученически клуба</span></div>
+            <div class="col-6 row">
+                <div class="col-md-6 col-sm-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/Heart.svg">
+                    <div class="stats-info m-1">
+                        <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
+                        <div class="m-1"><span class="small">Реализирани мисии</span></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/Clock.svg">
+                    <div class="stats-info m-1">
+                        <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
+                        <div class="m-1"><span class="small">Дарени часа</span></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-6 row">
-            <div class="col-md-6 col-sm-6 start-icon text-center">
-                <img class="img-fluid m-1" src="~/images/Heart.svg">
-                <div class="stats-info m-1">
-                    <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
-                    <div class="m-1"><span class="small">Реализирани мисии</span></div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 start-icon text-center">
-                <img class="img-fluid m-1" src="~/images/Clock.svg">
-                <div class="stats-info m-1">
-                    <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
-                    <div class="m-1"><span class="small">Дарени часа</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
+        @* School clubs *@
+        @if (Model.SchoolClubs.Count > 0)
+        {
+            <h1>Класация</h1>
+            <div class="row">
+                @{
+                    var index = 0;
+                }
+
+                @foreach (var club in Model.SchoolClubs)
+                {
+                    index += 1;
+                    <a href="@club.Permalink" class="col-12">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <span>@index</span>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <span>@club.SchoolClubRegion.TeamTitle</span>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <span>@club.Points точки</span>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <span>@club.Participants.Count героя</span>
+                            </div>
+                        </div>
+                        <hr />
+                    </a>
+
+                }
+            </div>
+        }
 
 
         @* Missions *@
