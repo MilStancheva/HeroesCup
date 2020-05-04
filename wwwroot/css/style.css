@@ -382,7 +382,7 @@ a.leaderboard-club {
     border-bottom: 1px solid #eeece6;
 }
 
-    a.leaderboard-club:hover {
+    .leaderboard-club:hover {
         background: #FFE89E;
         border-bottom: none;
     }
