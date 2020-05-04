@@ -484,6 +484,7 @@ a.leaderboard-club {
     font-size: 16px;
     color: #370AEB;
     background: url('../images/dropdown-rectangle.svg') no-repeat right;
+    background-position: 100% 45%;
 }
 
     .custom-select::selection {
@@ -503,12 +504,14 @@ a.leaderboard-club {
         outline: none;
         box-shadow: none;
         background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
     }
 
     .custom-select:active {
         border: none;
         box-shadow: none;
         background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
     }
 
     option {
