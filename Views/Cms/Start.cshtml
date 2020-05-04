@@ -139,33 +139,41 @@
                 </form>
             </div>
 
-                <div class="row">
-                    @{
-                        var index = 0;
-                    }
+            <div class="row">
+                @{
+                    var index = 0;
+                }
 
-                    @foreach (var club in Model.SchoolClubs)
-                    {
-                        index += 1;
-                        <a href="@club.Permalink" class="col-12">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-2">
-                                    <span>@index</span>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <span>@club.SchoolClubRegion.TeamTitle</span>
-                                </div>
-                                <div class="col-md-2 col-sm-2">
-                                    <span>@club.Points точки</span>
-                                </div>
-                                <div class="col-md-2 col-sm-2">
-                                    <span>@club.Participants.Count героя</span>
-                                </div>
+                @foreach (var club in Model.SchoolClubs)
+                {
+                    index += 1;
+                    <a href="@club.Permalink" class="col-12 leaderboard-club p-3">
+                        <div class="row vertical-center leaderboard-club">
+                            <div class="col-md-1 col-sm-1">
+                                <span class="rate">@index</span>
                             </div>
-                            <hr />
-                        </a>
-                    }
-                </div>
+                            <div class="col-md-1 col-sm-1">
+                                <p data-letters="@club.SchoolClubRegion.Initials"></p>
+                            </div>
+                            <div class="col-md-7 col-sm-7">
+                                <span>@club.SchoolClubRegion.SchoolType</span>
+                                <span>"@club.SchoolClubRegion.SchoolName"</span>
+                                <span>@club.SchoolClubRegion.Location</span>
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <span>@club.Points точки</span>
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <span class="points-heroes-separator"></span>
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <span>@club.Participants.Count героя</span>
+                            </div>
+                        </div>
+                    </a>
+                    <hr />
+                }
+            </div>
             }
         </div>
 
