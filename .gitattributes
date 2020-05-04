@@ -1,2 +1,2 @@
 * linguist-vendored
-*.cshtml linguist-vendored=false
+*.cshtml linguist-language=csharp
