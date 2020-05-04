@@ -397,7 +397,6 @@ a.leaderboard-club {
     width: 8px;
     height: 8px;
     background: #EEECE6;
-    align-self: end;
 }
 
 [data-letters]:before {
