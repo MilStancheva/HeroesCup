@@ -36,6 +36,8 @@ namespace HeroesCup.Models
 
         public IList<String> SchoolYears { get; set; }
 
+        public String SelectedSchoolYear { get; set; }
+
         /// <summary>
         /// Default constructor.
         /// </summary>

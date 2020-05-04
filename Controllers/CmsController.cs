@@ -146,6 +146,99 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Gets the startpage with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [HttpPost]
+        [Route("/")]
+        public async Task<IActionResult> Start(Guid id, String selectedSchoolYear, bool draft = false)
+        {
+            var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+
+            // TODO: Filter school clubs by selected school year
+            //var pages = _api.Pages.GetAllAsync().Result.ToList();
+            //// Get school club regions
+            //var schoolClubArchiveId = pages.First(p => p.TypeId == "SchoolClubArchive").Id;
+            //var schoolClubPosts = await _api.Posts.GetAllAsync<SchoolClubPost>(schoolClubArchiveId);
+            //var schoolClubs = new HashSet<SchoolClubPost>();
+            //foreach(var post in schoolClubPosts)
+            //{
+            //    if(post.Missions == null || post.Missions.Count == 0)
+            //    {
+            //        continue;
+            //    }
+
+            //    foreach(var mission in post.Missions)
+            //    {
+            //        if(mission.Details.SchoolYear == selectedSchoolYear)
+            //        {
+            //            schoolClubs.Add(post);
+            //        }
+            //    }
+            //}
+
+            //model.SchoolClubs = schoolClubs.OrderByDescending(x => x.Points).ToList();
+
+            //// Get Heroes count
+            //var heroesCount = 0;
+            //var missionsCount = 0;
+            //var teamsCount = 0;
+            //foreach (var post in schoolClubPosts)
+            //{
+            //    if (post.Participants.Count > 0)
+            //    {
+            //        heroesCount += post.Participants.Count;
+            //    }
+
+            //    if (post.Missions.Count > 0)
+            //    {
+            //        missionsCount += post.Missions.Count;
+            //    }
+
+            //    if (post.SchoolClubRegion != null)
+            //    {
+            //        teamsCount += 1;
+            //    }
+            //}
+
+            //model.HeroesCount = heroesCount;
+            //model.MissionsCount = missionsCount;
+            //model.TeamsCount = teamsCount;
+
+            //// Get missions
+            //var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
+            //if (missionsArchive != null)
+            //{
+            //    var missionsArchiveId = missionsArchive.Id;
+            //    var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+            //    var lastEnteredLinkedMissions = linkedMissionsPosts.OrderByDescending(x => x.Published).Take(3);
+            //    foreach (var post in lastEnteredLinkedMissions)
+            //    {
+            //        model.LinkedMissions.Add(post);
+            //    }
+            //}
+
+            //// School years
+            //if (missionsArchive != null)
+            //{
+            //    var missionsArchiveId = missionsArchive.Id;
+            //    var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+            //    var blogMissionPosts = await _api.Posts.GetAllAsync<BlogMissionPost>(missionsArchiveId);
+
+            //    var schoolYears = new HashSet<String>();
+            //    foreach (var post in blogMissionPosts)
+            //    {
+            //        schoolYears.Add(post.Details.SchoolYear);
+            //    }
+
+            //    model.SchoolYears = schoolYears.OrderByDescending(x => x.Contains(DateTime.Now.Year.ToString())).ToList();
+            //}
+
+            return View(model);
+        }
+
 
         /// <summary>
         /// Gets the link-mission with the given id.

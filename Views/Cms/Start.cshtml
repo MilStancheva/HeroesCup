@@ -116,23 +116,29 @@
         <div class="section-margin section-padding">
             @if (Model.SchoolClubs.Count > 0 && Model.SchoolYears.Count > 0)
             {
-                <div class="row justify-content-between">
-                    <h2 class="mb-5">Класация</h2>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @Model.SchoolYears.First()
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            @foreach (var year in Model.SchoolYears)
-                            {
-                                <button class="btn btn-primary dropdown-item school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @year
-                                </button>
-                            }
-                        </div>
-                    </div>
-                </div>
-                
+                var selectItems = new List<SelectListItem>();
+                @foreach (var year in Model.SchoolYears)
+                {
+                    selectItems.Add(new SelectListItem(year, year));
+                }
+            <div class="row justify-content-between">
+                <h2 class="mb-5">Класация</h2>
+                <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                    <select onchange="this.form.submit()" class="btn btn-default school-years-button" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
+                    @*<div class="dropdown">
+            <button class="btn btn-default dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Model.SchoolYears.First()
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var year in selectItems)
+                {
+                    <button value="@year.Value" class="dropdown-item" href="/" onclick="this.form.submit()">@year.Value</button>
+                }
+            </div>
+        </div>*@
+                </form>
+            </div>
+
                 <div class="row">
                     @{
                         var index = 0;
@@ -178,12 +184,12 @@
                                     <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
                                     <h4 class="mission-title">@mission.Title</h4>
                                     @*@if (mission.Tags.Count > 0)
-                                    {
-                                        @foreach (var tag in mission.Tags)
                                         {
-                                            <span>#@tag.Title </span>
-                                        }
-                                    }*@
+                                            @foreach (var tag in mission.Tags)
+                                            {
+                                                <span>#@tag.Title </span>
+                                            }
+                                        }*@
                                     <p>от @mission.Details.OrganizedBy</p>
                                 </a>
                             </div>

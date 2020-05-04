@@ -393,16 +393,28 @@ h2 {
         border: none;
     }
 
-.dropdown-toggle::after {
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: none;
-    font-family: FontAwesome;
-    content: "\f107";
-    margin-top: auto;
-    margin-bottom: auto;
-    vertical-align: baseline;
+    .school-years-buttons:after {
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+        font-family: FontAwesome;
+        content: "\f107";
+        margin-top: auto;
+        margin-bottom: auto;
+        vertical-align: baseline;
+    }
+
+select {
+    -webkit-appearance: none;
 }
+ /*This is to remove the arrow of select element in IE*/ 
+select::-ms-expand {
+    display: none;
+}
+
+
+
+
 
 
