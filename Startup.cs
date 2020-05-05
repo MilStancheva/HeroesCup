@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Data;
+using HeroesCup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ namespace HeroesCup
         /// </summary>
         public IConfiguration Configuration { get; set; }
 
+        private IServiceCollection Services { get; set; }
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -35,7 +38,7 @@ namespace HeroesCup
         {
             var connectionString = Configuration.GetSection("HEROESCUP_CONNECTIONSTRING").Value;
 
-            services.AddEntityFrameworkMySql().AddDbContext<HeroesCupDbContext>(opt =>
+            services.AddDbContext<HeroesCupDbContext>(opt =>
                 opt.UseMySql(connectionString));
 
             // Service setup
@@ -51,6 +54,10 @@ namespace HeroesCup
                 options.UseIdentityWithSeed<IdentityMySQLDb>(db =>
                     db.UseMySql(connectionString));
             });
+
+            services.AddTransient<IPageInitializer, PageInitializer>();
+
+            Services = services;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +90,21 @@ namespace HeroesCup
                 options.UseIdentity();
             });
             app.UsePiranhaStartPage();
+
+            SeedDefaultPages();
+        }
+
+        private void SeedDefaultPages()
+        {
+            var dbSeed = Configuration["DbSeed"];
+            if (dbSeed == "true")
+            {
+                var serviceProvider = Services.BuildServiceProvider();
+                var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
+
+                pagesInitializer.SeedAboutPageAsync().Wait();
+                pagesInitializer.SeedStarPageAsync().Wait();
+            }
         }
     }
 }

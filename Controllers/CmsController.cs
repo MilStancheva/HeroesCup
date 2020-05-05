@@ -84,38 +84,43 @@ namespace HeroesCup.Controllers
             var pages = _api.Pages.GetAllAsync().Result.ToList();
 
             // Get school club regions
-            var schoolClubArchiveId = pages.First(p => p.TypeId == "SchoolClubArchive").Id;
-            var schoolClubPosts = await _api.Posts.GetAllAsync<SchoolClubPost>(schoolClubArchiveId);
-            model.SchoolClubs = schoolClubPosts.OrderByDescending(x => x.Points).ToList();
-
-            // Get Heroes count
-            var heroesCount = 0;
-            var missionsCount = 0;
-            var teamsCount = 0;
-            foreach (var post in schoolClubPosts)
+            var schoolClubArchive = pages.FirstOrDefault(p => p.TypeId == "SchoolClubArchive");
+            if (schoolClubArchive != null)
             {
-                if (post.Participants.Count > 0)
+                var schoolClubArchiveId = schoolClubArchive.Id;
+                var schoolClubPosts = await _api.Posts.GetAllAsync<SchoolClubPost>(schoolClubArchiveId);
+                model.SchoolClubs = schoolClubPosts.OrderByDescending(x => x.Points).ToList();
+
+                // Get Heroes count
+                var heroesCount = 0;
+                var missionsCount = 0;
+                var teamsCount = 0;
+                foreach (var post in schoolClubPosts)
                 {
-                    heroesCount += post.Participants.Count;
+                    if (post.Participants.Count > 0)
+                    {
+                        heroesCount += post.Participants.Count;
+                    }
+
+                    if (post.Missions.Count > 0)
+                    {
+                        missionsCount += post.Missions.Count;
+                    }
+
+                    if (post.SchoolClubRegion != null)
+                    {
+                        teamsCount += 1;
+                    }
                 }
 
-                if (post.Missions.Count > 0)
-                {
-                    missionsCount += post.Missions.Count;
-                }
+                model.HeroesCount = heroesCount;
+                model.MissionsCount = missionsCount;
+                model.TeamsCount = teamsCount;
 
-                if (post.SchoolClubRegion != null)
-                {
-                    teamsCount += 1;
-                }
             }
-
-            model.HeroesCount = heroesCount;
-            model.MissionsCount = missionsCount;
-            model.TeamsCount = teamsCount;
-
+            
             // Get missions
-            var missionsArchive = pages.First(p => p.TypeId == "MissionsArchive");
+            var missionsArchive = pages.FirstOrDefault(p => p.TypeId == "MissionsArchive");
             if(missionsArchive != null)
             {
                 var missionsArchiveId = missionsArchive.Id;
@@ -125,13 +130,8 @@ namespace HeroesCup.Controllers
                 {
                     model.LinkedMissions.Add(post);
                 }
-            }
 
-            // School years
-            if (missionsArchive != null)
-            {
-                var missionsArchiveId = missionsArchive.Id;
-                var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
+                // School years
                 var blogMissionPosts = await _api.Posts.GetAllAsync<BlogMissionPost>(missionsArchiveId);
 
                 var schoolYears = new HashSet<String>();
