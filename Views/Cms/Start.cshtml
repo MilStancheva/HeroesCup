@@ -76,42 +76,47 @@
 
 
         @* Statistics *@
-        <div class="row justify-content-center block section-margin">
-            <div class="col-6 row">
-                <div class="col-md-6 col-sm-6 start-icon text-center">
-                    <img class="img-fluid m-1" src="~/images/User.svg" />
-                    <div class="stats-info m-1">
-                        <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
-                        <div class="m-1"><span class="small">Герои</span></div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 start-icon text-center">
-                    <img class="img-fluid m-1" src="~/images/School.svg">
-                    <div class="stats-info m-1">
-                        <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
-                        <div class="m-1"><span class="small">Ученически клуба</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 row">
-                <div class="col-md-6 col-sm-6 start-icon text-center">
-                    <img class="img-fluid m-1" src="~/images/Heart.svg">
-                    <div class="stats-info m-1">
-                        <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
-                        <div class="m-1"><span class="small">Реализирани мисии</span></div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 start-icon text-center">
-                    <img class="img-fluid m-1" src="~/images/Clock.svg">
-                    <div class="stats-info m-1">
-                        <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
-                        <div class="m-1"><span class="small">Дарени часа</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @if (Model.SchoolClubs.Count > 0)
+        {
 
-        <hr />
+
+            <div class="row justify-content-center block section-margin">
+                <div class="col-6 row">
+                    <div class="col-md-6 col-sm-6 start-icon text-center">
+                        <img class="img-fluid m-1" src="~/images/User.svg" />
+                        <div class="stats-info m-1">
+                            <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
+                            <div class="m-1"><span class="small">Герои</span></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 start-icon text-center">
+                        <img class="img-fluid m-1" src="~/images/School.svg">
+                        <div class="stats-info m-1">
+                            <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
+                            <div class="m-1"><span class="small">Ученически клуба</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 row">
+                    <div class="col-md-6 col-sm-6 start-icon text-center">
+                        <img class="img-fluid m-1" src="~/images/Heart.svg">
+                        <div class="stats-info m-1">
+                            <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
+                            <div class="m-1"><span class="small">Реализирани мисии</span></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 start-icon text-center">
+                        <img class="img-fluid m-1" src="~/images/Clock.svg">
+                        <div class="stats-info m-1">
+                            <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
+                            <div class="m-1"><span class="small">Дарени часа</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        }
+
         @* School clubs *@
         <div class="section-margin section-padding">
             @if (Model.SchoolClubs.Count > 0 && Model.SchoolYears.Count > 0)
@@ -121,61 +126,61 @@
                 {
                     selectItems.Add(new SelectListItem(year, year));
                 }
-            <div class="row justify-content-between">
-                <h2 class="mb-5">Класация</h2>
-                <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                    <div class="btn btn-default school-years-button">
-                        <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
-                    </div>                
-    @*<div class="dropdown">
-            <button class="btn btn-default dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @Model.SchoolYears.First()
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                @foreach (var year in selectItems)
-                {
-                    <button value="@year.Value" class="dropdown-item" href="/" onclick="this.form.submit()">@year.Value</button>
-                }
-            </div>
-        </div>*@
-                </form>
-            </div>
-
-            <div class="row">
-                @{
-                    var index = 0;
-                }
-
-                @foreach (var club in Model.SchoolClubs)
-                {
-                    index += 1;
-                    <a href="@club.Permalink" class="col-12 leaderboard-club p-3">
-                        <div class="row vertical-center leaderboard-club">
-                            <div class="col-md-1 col-sm-1">
-                                <span class="rate">@index</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1">
-                                <span data-letters="@club.SchoolClubRegion.Initials"></span>
-                            </div>
-                            <div class="col-md-7 col-sm-7">
-                                <span>@club.SchoolClubRegion.SchoolType</span>
-                                <span>"@club.SchoolClubRegion.SchoolName"</span>
-                                <span>@club.SchoolClubRegion.Location</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1">
-                                <span>@club.Points точки</span>
-                            </div>
-                            <div class="col-md-1 col-sm-1 text-center">
-                                <span class="points-heroes-separator"></span>
-                            </div>
-                            <div class="col-md-1 col-sm-1">
-                                <span>@club.Participants.Count герои</span>
-                            </div>
+                <div class="row justify-content-between">
+                    <h2 class="mb-5">Класация</h2>
+                    <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                        <div class="btn btn-default school-years-button">
+                            <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
                         </div>
-                    </a>
-                    <hr />
-                }
-            </div>
+                        @*<div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @Model.SchoolYears.First()
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach (var year in selectItems)
+                                    {
+                                        <button value="@year.Value" class="dropdown-item" href="/" onclick="this.form.submit()">@year.Value</button>
+                                    }
+                                </div>
+                            </div>*@
+                    </form>
+                </div>
+
+                <div class="row">
+                    @{
+                        var index = 0;
+                    }
+
+                    @foreach (var club in Model.SchoolClubs)
+                    {
+                        index += 1;
+                        <a href="@club.Permalink" class="col-12 leaderboard-club p-3">
+                            <div class="row vertical-center leaderboard-club">
+                                <div class="col-md-1 col-sm-1">
+                                    <span class="rate">@index</span>
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <span data-letters="@club.SchoolClubRegion.Initials"></span>
+                                </div>
+                                <div class="col-md-7 col-sm-7">
+                                    <span>@club.SchoolClubRegion.SchoolType</span>
+                                    <span>"@club.SchoolClubRegion.SchoolName"</span>
+                                    <span>@club.SchoolClubRegion.Location</span>
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <span>@club.Points точки</span>
+                                </div>
+                                <div class="col-md-1 col-sm-1 text-center">
+                                    <span class="points-heroes-separator"></span>
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <span>@club.Participants.Count герои</span>
+                                </div>
+                            </div>
+                        </a>
+                        <hr />
+                    }
+                </div>
             }
         </div>
 

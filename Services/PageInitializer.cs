@@ -42,8 +42,8 @@ namespace HeroesCup.Services
         {
             var site = await _api.Sites.GetDefaultAsync();
             var pages = await _api.Pages.GetAllAsync();
-            var aboutPageRoute = this._configuration["AboutPageRoute"];
-            var aboutPage = pages.ToList().FirstOrDefault(p => p.Route == aboutPageRoute);
+            var aboutPageTitle = this._configuration["AboutPageTitle"];
+            var aboutPage = pages.ToList().FirstOrDefault(p => p.Title == aboutPageTitle);
             if (aboutPage == null)
             {
                 var newAboutPage = await StandardPage.CreateAsync(_api);
