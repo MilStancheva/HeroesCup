@@ -3,7 +3,7 @@ using Piranha.Extend.Fields;
 
 namespace HeroesCup.Models.Regions
 {
-    public class Hero
+    public class HeroRegion
     {
         /// <summary>
         /// Gets/sets the optional primary image.

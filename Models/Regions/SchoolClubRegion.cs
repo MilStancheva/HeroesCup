@@ -10,9 +10,18 @@ namespace HeroesCup.Models.Regions
         /// <summary>
         /// Gets/sets the optional logo image.
         /// </summary>
+        [Field(Options = FieldOption.HalfWidth, Title = "Име на клуба")]
+        public StringField Name { get; set; }
+
+        /// <summary>
+        /// Gets/sets the optional logo image.
+        /// </summary>
         [Field(Title = "Лого на клуба")]
         public ImageField PrimaryImage { get; set; }
 
+        /// <summary>
+        /// Gets/sets the coordinator of the school club..
+        /// </summary>
         [Field(Options = FieldOption.HalfWidth, Title = "Координатор")]
         public StringField Coordinator { get; set; }
 
@@ -23,7 +32,7 @@ namespace HeroesCup.Models.Regions
         public StringField SchoolType { get; set; }
 
         /// <summary>
-        /// Gets/sets the main team title.
+        /// Gets/sets the school name.
         /// </summary>
         [Field(Options = FieldOption.HalfWidth, Title = "Училище")]
         public StringField SchoolName { get; set; }

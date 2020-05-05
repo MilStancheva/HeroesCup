@@ -13,7 +13,7 @@ namespace HeroesCup.Models
     public class StartPage : Page<StartPage>
     {
         [Region(ListTitle = "Carousel")]
-        public IList<Hero> Carousel { get; set; }
+        public IList<HeroRegion> Carousel { get; set; }
 
         [Region(ListTitle = "Heroes Count")]
         public NumberField HeroesCount { get; set; }

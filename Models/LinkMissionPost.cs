@@ -14,7 +14,7 @@ namespace HeroesCup.Models
         /// Gets/sets the post hero.
         /// </summary>
         [Region]
-        public Hero Hero { get; set; }
+        public HeroRegion Hero { get; set; }
 
         /// <summary>
         /// Gets/sets the post details.

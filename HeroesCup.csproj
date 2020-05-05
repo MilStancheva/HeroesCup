@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HeroesCup.Data\HeroesCup.Data.csproj" />
     <ProjectReference Include="libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj" />
     <ProjectReference Include="libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
     <ProjectReference Include="libs\piranha.core\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj" />

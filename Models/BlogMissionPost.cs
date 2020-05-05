@@ -15,7 +15,7 @@ namespace HeroesCup.Models
         /// Gets/sets the post hero.
         /// </summary>
         [Region(Title="Главно изображение")]
-        public Hero Hero { get; set; }
+        public HeroRegion Hero { get; set; }
 
         [Region(Title = "Детайли")]
         public BlogMissionRegion Details { get; set; }

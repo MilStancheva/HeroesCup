@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using HeroesCup.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,9 @@ namespace HeroesCup
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetSection("HEROESCUP_CONNECTIONSTRING").Value;
+
+            services.AddEntityFrameworkMySql().AddDbContext<HeroesCupDbContext>(opt =>
+                opt.UseMySql(connectionString));
 
             // Service setup
             services.AddPiranha(options =>
