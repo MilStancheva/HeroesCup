@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>7a0e77da-6265-490a-b279-411034079aad</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.ImageSharp\Piranha.ImageSharp.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.Local.FileStorage\Piranha.Local.FileStorage.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.Manager.Core\Piranha.Manager.Core.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.Manager.Localization\Piranha.Manager.Localization.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.Manager.TinyMCE\Piranha.Manager.TinyMCE.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\core\Piranha\Piranha.csproj" />
+    <ProjectReference Include="..\libs\piranha.core\data\Piranha.Data.EF.MySql\Piranha.Data.EF.MySql.csproj" />
+  </ItemGroup>
+
+</Project>
