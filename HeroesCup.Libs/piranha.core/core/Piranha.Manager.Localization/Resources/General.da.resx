@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Tilføj</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alt</value>
+  </data>
+  <data name="An error occurred" xml:space="preserve">
+    <value>Der opstod en fejl</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annullér</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Indhold</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortsæt</value>
+  </data>
+  <data name="Content type" xml:space="preserve">
+    <value>Indholdstype</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopiér</value>
+  </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Sprog og område</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaljer</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Dimensioner</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Kladde</value>
+  </data>
+  <data name="Drafts" xml:space="preserve">
+    <value>Kladder</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Emailadresse</value>
+  </data>
+  <data name="Email address is mandatory." xml:space="preserve">
+    <value>Indtast venligst en e-mailadresse.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Filnavn</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Højde</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigér</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Intet indhold</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="General information" xml:space="preserve">
+    <value>Generel information</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historik</value>
+  </data>
+  <data name="Internal id" xml:space="preserve">
+    <value>Internt ID</value>
+  </data>
+  <data name="Is default" xml:space="preserve">
+    <value>Er standard</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log på</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log af</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button above to get started!" xml:space="preserve">
+    <value>Her ser tomt ud. Tryk på knappen ovenfor for at komme i gang!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button below to get started!" xml:space="preserve">
+    <value>Her ser tomt ud. Tryk på knappen herunder for at komme i gang!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button to the left to get started!" xml:space="preserve">
+    <value>Her ser tomt ud. Tryk på knappen til venstre for at komme i gang!</value>
+  </data>
+  <data name="Main content" xml:space="preserve">
+    <value>Primært sideindhold</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Ændret</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Navn er obligatorisk.</value>
+  </data>
+  <data name="Open public URL in new tab" xml:space="preserve">
+    <value>Åbn offentlig URL i et nyt faneblad</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Adgangskode</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Tilladelser</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Pixels</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Forhåndsvisning</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Udgiv</value>
+  </data>
+  <data name="Publish date" xml:space="preserve">
+    <value>Udgivelsesdato</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>Omdiriger</value>
+  </data>
+  <data name="Redirect Type" xml:space="preserve">
+    <value>Type af omdirigering</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Gendan</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roller</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Sti</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Planlagt</value>
+  </data>
+  <data name="Search..." xml:space="preserve">
+    <value>Søg...</value>
+  </data>
+  <data name="Select block" xml:space="preserve">
+    <value>Vælg blok</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Størrelse</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>URL-segment</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Midlertidig</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Opdatér</value>
+  </data>
+  <data name="Update password" xml:space="preserve">
+    <value>Opdatér adgangskode</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Brugernavn</value>
+  </data>
+  <data name="Username is mandatory." xml:space="preserve">
+    <value>Brugernavn er obligatorisk.</value>
+  </data>
+  <data name="Title is mandatory." xml:space="preserve">
+    <value>Titel er obligatorisk.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Afpublicer</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Ikke Udgivet</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Brugere</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Bredde</value>
+  </data>
+  <data name="Archives and Comments" xml:space="preserve">
+    <value>Arkiver og Kommentarer</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Forfatter</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Kommentarer</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Oprettet</value>
+  </data>
+  <data name="Username and/or password are incorrect." xml:space="preserve">
+    <value>Der findes ingen bruger med det indtastede brugernavn og password.</value>
+  </data>
+</root>

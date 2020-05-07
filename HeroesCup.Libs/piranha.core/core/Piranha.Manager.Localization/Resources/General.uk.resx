@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="An error occurred" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Контент</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Продовжити</value>
+  </data>
+  <data name="Content type" xml:space="preserve">
+    <value>Тип вмісту</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Копіювати</value>
+  </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Культура</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробиці</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Розміри</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Завантажити</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Чернетка</value>
+  </data>
+  <data name="Drafts" xml:space="preserve">
+    <value>Чернетки</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Адреса електронної пошти</value>
+  </data>
+  <data name="Email address is mandatory." xml:space="preserve">
+    <value>Адреса електронної пошти є обов'язковою.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Назва файлу</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Висота</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Пусто</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Загальне</value>
+  </data>
+  <data name="General information" xml:space="preserve">
+    <value>Загальна інформація</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Історія</value>
+  </data>
+  <data name="Internal id" xml:space="preserve">
+    <value>Внутрішній ID</value>
+  </data>
+  <data name="Is default" xml:space="preserve">
+    <value>За замовчуванням</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логін</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Вихід</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button above to get started!" xml:space="preserve">
+    <value>Тут немає елементів. Натисніть на кнопку вище, щоб почати!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button below to get started!" xml:space="preserve">
+    <value>Здається, тут немає записів. Натисніть на кнопку нижче, щоб почати!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button to the left to get started!" xml:space="preserve">
+    <value>Здається, тут немає записів. Натисніть на кнопку ліворуч, щоб почати!</value>
+  </data>
+  <data name="Main content" xml:space="preserve">
+    <value>Основний зміст</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Змінено</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Назва обов'язкова.</value>
+  </data>
+  <data name="Open public URL in new tab" xml:space="preserve">
+    <value>Відкрити публічний URL у новій вкладці</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Назавжди</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Права</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Пікселі</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Попередній перегляд</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Опублікувати</value>
+  </data>
+  <data name="Publish date" xml:space="preserve">
+    <value>Дата публікації</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>Перенаправлення</value>
+  </data>
+  <data name="Redirect Type" xml:space="preserve">
+    <value>Тип перенаправлення</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Повернути</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Ролі</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Маршрут</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Заплановано</value>
+  </data>
+  <data name="Search..." xml:space="preserve">
+    <value>Пошук...</value>
+  </data>
+  <data name="Select block" xml:space="preserve">
+    <value>Оберіть блок</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Розмір</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Проста, коротка назва</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Системні</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Тимчасово</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Оновити</value>
+  </data>
+  <data name="Update password" xml:space="preserve">
+    <value>Оновити пароль</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Ім'я користувача</value>
+  </data>
+  <data name="Username is mandatory." xml:space="preserve">
+    <value>Ім'я користувача є обов'язковим.</value>
+  </data>
+  <data name="Title is mandatory." xml:space="preserve">
+    <value>Заголовок є обов'язковим.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Зняти з публікації</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Неопубліковано</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Користувачі</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версія</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="Archives and Comments" xml:space="preserve">
+    <value>Archives and Comments</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Username and/or password are incorrect." xml:space="preserve">
+    <value>Username and/or password are incorrect.</value>
+  </data>
+</root>

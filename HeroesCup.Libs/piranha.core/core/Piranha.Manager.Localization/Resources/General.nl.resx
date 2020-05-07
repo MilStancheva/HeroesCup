@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="An error occurred" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Inhoud</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Content type" xml:space="preserve">
+    <value>Inhoudstype</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Culture</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Omschrijving</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Afmetingen</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Downloaden</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="Drafts" xml:space="preserve">
+    <value>Concepten</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="Email address is mandatory." xml:space="preserve">
+    <value>Email address is mandatory.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Bestandsnaam</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Hoogte</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bewerken</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Leeg</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="General information" xml:space="preserve">
+    <value>General information</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Geschiedenis</value>
+  </data>
+  <data name="Internal id" xml:space="preserve">
+    <value>Interne ID</value>
+  </data>
+  <data name="Is default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Uitloggen</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button above to get started!" xml:space="preserve">
+    <value>Het lijkt erop dat er hier geen items zijn. Klik op de knop hierboven om aan de slag te gaan!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button below to get started!" xml:space="preserve">
+    <value>Het lijkt erop dat er hier geen items zijn. Klik op de knop hieronder om aan de slag te gaan!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button to the left to get started!" xml:space="preserve">
+    <value>Het lijkt erop dat er hier geen items zijn. Klik op de knop links om aan de slag te gaan!</value>
+  </data>
+  <data name="Main content" xml:space="preserve">
+    <value>Hoofdinhoud</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Gewijzigd</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Name is mandatory.</value>
+  </data>
+  <data name="Open public URL in new tab" xml:space="preserve">
+    <value>Open publieke URL in een nieuw tabblad</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Pixels</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Voorbeeld</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publiceren</value>
+  </data>
+  <data name="Publish date" xml:space="preserve">
+    <value>Publicatiedatum</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>Redirect</value>
+  </data>
+  <data name="Redirect Type" xml:space="preserve">
+    <value>Redirect Type</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Ongedaan maken</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Gepland</value>
+  </data>
+  <data name="Search..." xml:space="preserve">
+    <value>Zoeken...</value>
+  </data>
+  <data name="Select block" xml:space="preserve">
+    <value>Blok selecteren</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Grootte</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Korte naam</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Systeem</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Temporary</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Update password" xml:space="preserve">
+    <value>Update password</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Username is mandatory." xml:space="preserve">
+    <value>Username is mandatory.</value>
+  </data>
+  <data name="Title is mandatory." xml:space="preserve">
+    <value>Title is mandatory.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Soort</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Publicatie ongedaan maken</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Ongepubliceerd</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Breedte</value>
+  </data>
+  <data name="Archives and Comments" xml:space="preserve">
+    <value>Archives and Comments</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Username and/or password are incorrect." xml:space="preserve">
+    <value>Username and/or password are incorrect.</value>
+  </data>
+</root>
