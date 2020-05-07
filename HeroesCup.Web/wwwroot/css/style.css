@@ -1,0 +1,557 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #FAF8F3;
+}
+
+.header-bg {
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+header {
+    padding: 1rem 0;
+}
+
+    header h1 + .lead {
+        margin: 2rem 0;
+    }
+
+    header.site-header.site-header-dark {
+        position: initial;
+    }
+
+        header.site-header.site-header-dark .nav-site a {
+            color: #000;
+        }
+
+            header.site-header.site-header-dark .nav-site a:hover {
+                color: #000;
+            }
+
+        header.site-header.site-header-dark .nav-site .active a {
+            color: #000;
+        }
+
+    header.page-header {
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+.main {
+    margin: 3rem 0;
+}
+
+    .main img {
+        max-width: 100%;
+    }
+
+.teasers {
+    margin-bottom: 1rem;
+}
+
+    .teasers .teaser {
+        margin-bottom: 2rem;
+    }
+
+.archive-item {
+    padding-top: 3rem;
+}
+
+    .archive-item:first-child {
+        padding-top: 0;
+    }
+
+    .archive-item a {
+        font-weight: 500;
+    }
+
+.tag {
+    white-space: nowrap;
+}
+
+.post-header img {
+    margin-top: 2rem;
+}
+
+.post-header .tag {
+    margin-right: 1rem;
+}
+
+.post-body {
+    margin-top: 3rem;
+}
+
+.page-body h1 {
+    margin-bottom: 3rem;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    color: #fff;
+}
+
+    header.site-header {
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    header.page-header {
+        padding-top: 6rem;
+    }
+
+        header.page-header img {
+            border-radius: 80px;
+            float: right;
+        }
+
+.nav-site li a {
+    padding: 0;
+    margin: 1em 1em;
+    font-size: .9rem;
+    transition: all ease-in-out .2s;
+    text-shadow: 0 0 5px #fff;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    /* Dark */
+    color: #1C1E21;
+    text-transform: capitalize;
+}
+
+    .nav-site li a:hover > span {
+        padding: .8em 0;
+        color: #FE5E17;
+        transition: all ease-in-out .2s;
+    }
+
+.nav-site li.active a span {
+    color: #FE5E17;
+}
+
+/*.nav-site li.active a {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+/*text-align: right;
+    color: #FE5E17;
+    text-transform: capitalize;
+}*/
+
+.header-bg.header-bg-empty a:hover span {
+    border-color: #000;
+}
+
+.teasers .teaser .teaser-body {
+    background: #f2f2f2;
+    height: 100%;
+    padding: 2rem;
+}
+
+    .teasers .teaser .teaser-body .teaser-subtitle {
+        font-size: 0.75rem;
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+
+    .teasers .teaser .teaser-body h3 {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+    }
+
+    .teasers .teaser .teaser-body p {
+        font-size: 0.9rem;
+    }
+
+.archive-item h2 a {
+    color: #000;
+    transition: color ease-in-out .15s;
+}
+
+    .archive-item h2 a:hover {
+        transition: color ease-in-out .15s;
+    }
+
+.post-header img {
+    border: solid .3rem #fff;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    margin-bottom: 18px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    color: #1C1E21;
+}
+
+/* Footer */
+.custom-footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+    .custom-footer > div {
+        color: white;
+    }
+
+        .custom-footer > div a {
+            text-decoration: underline;
+            color: white;
+        }
+
+.footer-line {
+    width: 100%;
+    border-top: 2px solid grey;
+    bottom: 0;
+}
+
+.icon {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+    width: 34px;
+    height: 34px;
+    background-size: 24px 24px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #37393C;
+}
+
+    .icon:hover {
+        background-color: #ffff;
+    }
+
+.icon-facebook {
+    background-image: url('../images/facebook-svgrepo-com_white.svg');
+}
+
+    .icon-facebook:hover,
+    .icon-facebook:focus {
+        background-image: url('../images/facebook-svgrepo-com_black.svg');
+    }
+
+.icon-twitter {
+    background-image: url('../images/twitter-svgrepo-com_white.svg');
+}
+
+    .icon-twitter:hover,
+    .icon-twitter:focus {
+        background-image: url('../images/twitter-svgrepo-com_black.svg');
+    }
+
+.icon-youtube {
+    background-image: url('../images/youtube-svgrepo-com_white.svg');
+}
+
+    .icon-youtube:hover,
+    .icon-youtube:focus {
+        background-image: url('../images/youtube-svgrepo-com_black.svg');
+    }
+
+
+.icon-instagram {
+    background-image: url('../images/instagram-logo-svgrepo-com_white.svg');
+}
+
+    .icon-instagram:hover,
+    .icon-instagram:focus {
+        background-image: url('../images/instagram-logo-svgrepo-com_black.svg');
+    }
+
+
+
+/* Button */
+.btn-heroes {
+    padding: 12px 24px;
+    background: #FE5E17;
+    color: white;
+    vertical-align: middle;
+    border-radius: 32px;
+    text-decoration: none;
+    text-underline-position: unset;
+    text-decoration-style: none;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+    .btn-heroes:hover {
+        color: white;
+        text-decoration: none;
+        text-underline-position: unset;
+        text-decoration-style: none;
+        background: linear-gradient(0deg, rgba(28, 30, 33, 0.08), rgba(28, 30, 33, 0.08)), #FE5E17;
+    }
+
+
+/* Missions List */
+
+.mission-body > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.mission-body:hover > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.mission-title {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+    .mission-title:hover {
+        color: #FE5E17;
+    }
+
+.missions-block {
+    padding-bottom: 48px;
+}
+
+.container {
+    margin-top: 48px;
+}
+
+/* Modal */
+
+.modal-content {
+    width: 120%;
+    background-color: #faf8f3;
+}
+
+.modal-title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 42px;
+}
+
+.modal-content > .modal-header  {
+    border-bottom: none;
+}
+
+.modal-content > .modal-footer {
+    border-top: none;
+}
+
+/* Nav icon */
+.navbar-toggler-icon {
+    color: #1C1E21;
+}
+
+/* Challenge */
+.challenge-hr {
+    margin-bottom: 48px;
+}
+
+/* Carousel */
+.start-carousel-capture {
+    text-align: start;
+    color: black;
+}
+
+.carousel-indicators {
+    margin: 0;
+    padding: 0;
+    align-content: start;
+    text-align: start;
+}
+
+    .carousel-indicators li {
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+    }
+
+    .carousel-indicators li {
+        display: block;
+        border: 1px solid black;
+        background-color: white;
+    }
+
+    .carousel-indicators .active {
+        background-color: black;
+    }
+
+/* Statistics */
+.stats-info {
+    color: #1C1E21;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Common */
+.vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+    .vertical-center > div {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+.section-margin {
+    margin-top: 38px;
+    margin-bottom: 38px;
+}
+
+.section-padding {
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+
+/* Leaderboard */
+
+a.leaderboard-club {
+    text-decoration: none;
+    text-underline-position: unset;
+    color: #1C1E21;
+    border-bottom: 1px solid #eeece6;
+}
+
+.leaderboard-club:hover {
+    background: #FFE89E;
+    border-bottom: none;
+}
+
+    .leaderboard-club:hover [data-letters]:before {
+        background: #FE5E17;
+        color: #FFFFFF;
+    }
+
+.points-heroes-separator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #EEECE6;
+}
+
+[data-letters]:before {
+    content: attr(data-letters);
+    display: inline-block;
+    font-size: 1em;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+    border-radius: 50%;
+    background: #EBE7FD;
+    vertical-align: middle;
+    margin-right: 1em;
+    color: #370AEB;
+    font-weight: bold;
+}
+
+.rate {
+    font-weight: bold;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+
+
+.custom-select {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #370AEB;
+    background: url('../images/dropdown-rectangle.svg') no-repeat right;
+    background-position: 100% 45%;
+}
+
+    .custom-select::selection {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .custom-select:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .custom-select:hover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
+    }
+
+    .custom-select:active {
+        border: none;
+        box-shadow: none;
+        background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
+    }
+
+    option {
+        box-shadow: none;
+        border: none;
+        padding: 2%;
+        margin: 2%;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        color: #370AEB;
+        background-color: #EBE7FD;
+        border-radius: 25%;
+    }
+
+
+.school-years-button {
+    background-color: #EBE7FD;
+    border-radius: 32px;
+}
+
+    .school-years-button:hover {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.08), rgba(55, 10, 235, 0.08)), #EBE7FD;
+        border-radius: 32px;
+    }
+
+    .school-years-button:active {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
+        border-radius: 32px;
+    }
