@@ -28,6 +28,7 @@
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\data\Piranha.Data.EF.MySql\Piranha.Data.EF.MySql.csproj" />
+    <ProjectReference Include="..\HeroesCup.Modules\ClubsModule\ClubsModule.csproj" />
   </ItemGroup>
 
 </Project>
