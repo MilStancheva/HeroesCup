@@ -22,15 +22,15 @@ header {
     }
 
         header.site-header.site-header-dark .nav-site a {
-            color: #000;
+            /*color: #000;*/
         }
 
             header.site-header.site-header-dark .nav-site a:hover {
-                color: #000;
+                /*color: #000;*/
             }
 
         header.site-header.site-header-dark .nav-site .active a {
-            color: #000;
+            /*color: #000;*/
         }
 
     header.page-header {

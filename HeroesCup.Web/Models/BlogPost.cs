@@ -1,6 +1,7 @@
-using HeroesCup.Models.Regions;
+﻿using HeroesCup.Models.Regions;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
+using Piranha.Extend.Fields;
 using Piranha.Models;
 
 namespace HeroesCup.Models
@@ -11,7 +12,7 @@ namespace HeroesCup.Models
         /// <summary>
         /// Gets/sets the post hero.
         /// </summary>
-        [Region(Display = RegionDisplayMode.Setting)]
+        [Region]
         public HeroRegion Hero { get; set; }
     }
 }

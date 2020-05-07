@@ -1,57 +1,75 @@
-@model BlogArchive
+﻿@model BlogArchive
 
 @{
     ViewBag.Title = Model.Title;
     ViewBag.HasImage = Model.Hero.PrimaryImage.HasValue;
 
-    string PrimaryImage() {
-        if (Model.Hero.PrimaryImage.HasValue) {
-            return $"style=background-image:url({Url.Content(Model.Hero.PrimaryImage)})";
-        } 
-        return "";
-    }
+    //string PrimaryImage() {
+    //    if (Model.Hero.PrimaryImage.HasValue) {
+    //        return $"style=background-image:url({Url.Content(Model.Hero.PrimaryImage)})";
+    //    } 
+    //    return "";
 }
-
-<header class="page-header" @PrimaryImage()>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9">
-                @if (Model.Archive.Category == null) {
-                    <h1>@Model.Title</h1>
-                } else {
-                    <h1>@Model.Archive.Category.Title</h1>
-                }
-                <p class="lead">
-                    @Html.Raw(Model.Hero.Ingress.Value)
-                </p>
-            </div>
-        </div>
-    </div>
-</header>
+}
 
 <div class="main">
     <div class="container">
-        @foreach (var post in Model.Archive.Posts) {
+        <div class="row">
+            <div class="col-md-6 col-sm-12 vertical-center">
+                <h2>От къде да започна?</h2>
+                <p>Тук може да намериш всички необходими ресурси.</p>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <img src="~/images/Resourses.svg" />
+            </div>
+        </div>
+        <hr />
+
+        @* Posts *@
+        @if (Model.Archive.Posts.Count > 0)
+        {
+            <div class="row">
+                @foreach (var post in Model.Archive.Posts)
+                {
+                    <div class="col-sm-6 col-md-4">
+                        <div class="mission-body justify-content-center">
+                            <a href="@post.Permalink" target="_blank">
+                                <img class="img-fluid" src="@Url.Content(post.Regions.Hero.PrimaryImage)" />
+                                <h4 class="mission-title">@post.Title</h4>
+                                <p>@post.Regions.Hero.IngressTitle.Value</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        @foreach (var post in Model.Archive.Posts)
+        {
             <div class="row archive-item">
                 <div class="col-sm-12">
                     <h2><a href="@post.Permalink">@post.Title</a></h2>
                     <p>
-                        <strong>@post.Published.Value.ToString("yyyy-MM-dd")</strong> in 
+                        <strong>@post.Published.Value.ToString("yyyy-MM-dd")</strong> in
                         <a href="@Model.Permalink/category/@post.Category.Slug">@post.Category.Title</a>
                     </p>
                 </div>
                 <div class="col-sm-9">
                     <p>
-                        @post.Regions.Hero.Ingress.Value 
+                        @post.Regions.Hero.Ingress.Value
                     </p>
                     <p><a href="@post.Permalink">Read more...</a></p>
                 </div>
                 <div class="col-sm-3 d-xs-none d-md-block">
-                    @foreach (var tag in post.Tags) {
+                    @foreach (var tag in post.Tags)
+                    {
                         <span class="tag"># @tag.Title</span>
                     }
                 </div>
             </div>
         }
+
+        <hr />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
