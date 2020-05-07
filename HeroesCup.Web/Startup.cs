@@ -11,7 +11,7 @@ using Piranha.AspNetCore.Identity.MySQL;
 using Piranha.AttributeBuilder;
 using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
-
+using HeroesCup.Modules.ClubsModule;
 namespace HeroesCup
 {
     public class Startup
@@ -92,7 +92,7 @@ namespace HeroesCup
                 options.UseIdentity();
             });
             app.UsePiranhaStartPage();
-
+            app.UseClubsModule();            
             SeedDefaultPages();
         }
 

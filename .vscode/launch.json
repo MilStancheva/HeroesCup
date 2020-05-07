@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Web/bin/Debug/netcoreapp3.1/HeroesCup.dll",
+            "program": "${workspaceFolder}/HeroesCup.Web/bin/Debug/netcoreapp3.1/HeroesCup.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Web/",
+            "cwd": "${workspaceFolder}/HeroesCup.Web/",
             "stopAtEntry": false,
             "console": "internalConsole",
             "launchBrowser": {

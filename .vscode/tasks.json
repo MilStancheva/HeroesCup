@@ -21,7 +21,7 @@
             },
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceRoot}/Web"
+                "cwd": "${workspaceRoot}/HeroesCup.Web"
             }
         }
     ]
