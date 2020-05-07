@@ -1,0 +1,45 @@
+.badge {
+    font-weight: normal;
+}
+
+.breadcrumb {
+    .badge-item {
+        position: relative;
+        margin-left: .5rem;
+    }
+
+    .badge {
+        padding: .5rem 1rem;
+        position: absolute;
+        top: -.175rem;
+        text-transform: uppercase;
+
+        i {
+            margin-right: .5rem;
+        }
+    }
+}
+
+.btn-badge {
+    .badge {
+        position: absolute;
+        top: -6px;
+        right: -4px;
+        border: solid 1px #fff;
+        border-radius: 50%;
+    }
+}
+
+.nav-link {
+    .badge {
+        float: right;
+        height: 27px;
+        width: 27px;
+        font-weight: bold;
+        margin: -3px 0 0 6px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 17px;
+        border: solid 2px #fff;
+    }
+}

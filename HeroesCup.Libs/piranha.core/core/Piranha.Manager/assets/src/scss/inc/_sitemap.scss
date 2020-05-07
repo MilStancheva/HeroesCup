@@ -1,0 +1,97 @@
+@import "variables";
+
+.sitemap {
+    ol {
+        padding: 0;
+    }
+
+    li {
+        list-style-type: none;
+
+        ol {
+            padding-left: 2.4rem;
+        }
+    }
+
+    &:not(.sitemap-container) {
+        >ol>li {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.sitemap-item {
+    background: $white;
+    display: flex;
+    margin-bottom: 2px;
+
+    >div:not(.handle) {
+        padding: .75rem 1rem;
+    }
+
+    .handle {
+        color: $gray-500;
+        width: 2.4rem;
+        padding: .75rem 0;
+        text-align: center;
+        border-right: solid 2px $gray-100;
+        flex-shrink: 0;
+    }
+    .actions {
+        width: 7rem;
+        flex-shrink: 0;
+
+        .expand {
+            background: $primary;
+            color: $white;
+            font-size: .65rem;
+            width: 1rem;
+            height: 1rem;
+            line-height: 1rem;
+            float: left;
+            margin: .25rem .5rem 0 0;
+        }
+    }
+    .type {
+        width: 9rem;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .date {
+        width: 7.5rem;
+        flex-shrink: 0;
+    }
+
+    .badge {
+        padding: .25rem .5rem;
+        margin-top: .2rem;
+        margin-left: .5rem;
+        font-size: .65rem;
+        text-transform: uppercase;
+        float: right;
+    }
+
+    .link {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+
+        .actions {
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        a, span.title {
+            font-family: "Open Sans", sans-serif;
+            font-size: 1rem;
+            flex-grow: 1;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
