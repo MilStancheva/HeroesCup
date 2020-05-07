@@ -41,7 +41,7 @@ namespace HeroesCup
 
             services.AddDbContext<HeroesCupDbContext>(opt =>
                 opt.UseMySql(connectionString));
-
+            
             // Service setup
             services.AddPiranha(options =>
             {
@@ -55,7 +55,7 @@ namespace HeroesCup
                 options.UseIdentityWithSeed<IdentityMySQLDb>(db =>
                     db.UseMySql(connectionString));
             });
-
+            services.AddClubsModule();
             services.AddTransient<IPageInitializer, PageInitializer>();
 
             services.AddControllersWithViews();
