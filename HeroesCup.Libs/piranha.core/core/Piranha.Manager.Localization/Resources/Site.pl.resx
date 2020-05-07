@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add site" xml:space="preserve">
+    <value>Dodaj witrynę</value>
+  </data>
+  <data name="Are you really sure?" xml:space="preserve">
+    <value>Czy jesteś pewien?</value>
+  </data>
+  <data name="Edit site" xml:space="preserve">
+    <value>Edytuj portal</value>
+  </data>
+  <data name="Hostnames" xml:space="preserve">
+    <value>Nazwy hosta</value>
+  </data>
+  <data name="If this should be the default site of the installation." xml:space="preserve">
+    <value>Czy to powinien być domyślny portal instalacji.</value>
+  </data>
+  <data name="Please type in the name of the site to confirm." xml:space="preserve">
+    <value>Przepisz nazwę portalu aby potwierdzić.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>To działanie &lt;strong>nie może&lt;/strong> być cofnięte. To działanie na stałe usunie portal {{ title }} i wszystkie jego &lt;strong>strony&lt;/strong>,&lt;strong>archiwa&lt;/strong> oraz &lt;strong>posty&lt;/strong>.</value>
+  </data>
+</root>
