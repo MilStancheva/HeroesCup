@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add site" xml:space="preserve">
+    <value>Přidat web</value>
+  </data>
+  <data name="Are you really sure?" xml:space="preserve">
+    <value>Jste si opravdu jisti?</value>
+  </data>
+  <data name="Edit site" xml:space="preserve">
+    <value>Upravit web</value>
+  </data>
+  <data name="Hostnames" xml:space="preserve">
+    <value>Názvy hostitelů</value>
+  </data>
+  <data name="If this should be the default site of the installation." xml:space="preserve">
+    <value>Pokud má být výchozím webem instalace.</value>
+  </data>
+  <data name="Please type in the name of the site to confirm." xml:space="preserve">
+    <value>Prosím zadejte název webu pro potvrzení.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Tuto akci &lt;strong>nelze&lt;/strong> vrátit zpět. Trvale se odstraní web {{ title }} a všechny jeho &lt;strong>stránky&lt;/strong>, &lt;strong>archivy&lt;/strong> a &lt;strong>příspěvky&lt;/strong>.</value>
+  </data>
+</root>

@@ -1,0 +1,67 @@
+@import "variables";
+
+.form-group:not(.form-check) {
+    &.title {
+        max-width: 960px;
+        margin: 0 auto;
+        position: relative;
+
+        .form-control-lg {
+            font-family: Bitter, serif;
+            font-size: 2.25rem;
+            border-color: $gray-400;
+
+            &:hover, &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    >label {
+        font-weight: bold;
+    }
+}
+
+.form-switch {
+    padding: .45rem 0;
+
+    .switch {
+        float: left;
+        margin-right: .5rem;
+    }
+    >label {
+        font-weight: 400;
+    }
+}
+
+.input-group {
+    .form-control {
+        border-right: 0;
+    }
+    .input-group-text {
+        background: #fff;
+        font-size: 87.5%;
+    }
+    textarea {
+        resize: none;
+
+        +.input-group-append {
+            .input-group-text {
+                align-items: end;
+            }
+        }
+    }
+}
+
+.list-group {
+    .checkbox {
+        input[type="checkbox"] {
+            margin-right: .25rem;
+        }
+    }
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}

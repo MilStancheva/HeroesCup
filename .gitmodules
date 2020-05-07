@@ -1,0 +1,6 @@
+[submodule "HeroesCup.Libs/piranha.core.mysql"]
+	path = HeroesCup.Libs/piranha.core.mysql
+	url = https://github.com/PiranhaCMS/piranha.core.mysql
+[submodule "HeroesCup.Libs/piranha.core"]
+	path = HeroesCup.Libs/piranha.core
+	url = https://github.com/PiranhaCMS/piranha.core

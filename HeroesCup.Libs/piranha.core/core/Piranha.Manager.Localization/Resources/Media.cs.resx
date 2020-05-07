@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add folder" xml:space="preserve">
+    <value>Přidat složku</value>
+  </data>
+  <data name="Drop files here or click to upload." xml:space="preserve">
+    <value>Sem přetáhněte soubory nebo klikněte pro výběr.</value>
+  </data>
+  <data name="Download media" xml:space="preserve">
+    <value>Stáhnout média</value>
+  </data>
+  <data name="Folder name" xml:space="preserve">
+    <value>Název složky</value>
+  </data>
+  <data name="Folder name is mandatory." xml:space="preserve">
+    <value>Název složky je povinný.</value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Galerie</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Média</value>
+  </data>
+  <data name="Media preview is not available" xml:space="preserve">
+    <value>Náhled souboru není k dispozici</value>
+  </data>
+  <data name="Open media in new tab" xml:space="preserve">
+    <value>Otevřete soubor v nové kartě</value>
+  </data>
+  <data name="Select media" xml:space="preserve">
+    <value>Vyberte soubor</value>
+  </data>
+  <data name="Your browser does not support the video tag." xml:space="preserve">
+    <value>Váš prohlížeč nepodporuje značku videa.</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Seznam</value>
+  </data>
+</root>
