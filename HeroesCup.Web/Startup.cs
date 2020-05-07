@@ -2,6 +2,7 @@
 using HeroesCup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -104,6 +105,7 @@ namespace HeroesCup
                 var serviceProvider = Services.BuildServiceProvider();
                 var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
 
+                pagesInitializer.SeedResourcesPageAsync().Wait();
                 pagesInitializer.SeedAboutPageAsync().Wait();
                 pagesInitializer.SeedStarPageAsync().Wait();
             }

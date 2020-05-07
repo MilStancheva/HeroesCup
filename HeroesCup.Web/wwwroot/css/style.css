@@ -555,3 +555,37 @@ a.leaderboard-club {
         background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
         border-radius: 32px;
     }
+
+/* Resources List */
+.resource-block {
+    padding-bottom: 48px;
+    text-align: center;
+}
+
+/* List items */
+.item-body > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+    text-align: center;
+}
+
+.item-body:hover > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.item-title {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+    .item-title:hover {
+        color: #FE5E17;
+    }
