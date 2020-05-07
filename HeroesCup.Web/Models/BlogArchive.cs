@@ -12,7 +12,7 @@ namespace HeroesCup.Models
         /// Gets/sets the archive hero.
         /// </summary>
         [Region(Display = RegionDisplayMode.Setting)]
-        public Hero Hero { get; set; }
+        public HeroRegion Hero { get; set; }
 
         /// <summary>
         /// Gets/sets the post archive.
