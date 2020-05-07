@@ -57,6 +57,8 @@ namespace HeroesCup
 
             services.AddTransient<IPageInitializer, PageInitializer>();
 
+            services.AddControllersWithViews();
+
             Services = services;
         }
 
