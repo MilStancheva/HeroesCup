@@ -2,6 +2,7 @@
 using HeroesCup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -65,14 +66,11 @@ namespace HeroesCup
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            
 
             // Initialize Piranha
             App.Init(api);
-
+            
             // Configure cache level
             App.CacheLevel = Piranha.Cache.CacheLevel.Basic;
 
@@ -84,7 +82,11 @@ namespace HeroesCup
 
             // Configure Tiny MCE
             EditorConfig.FromFile("editorconfig.json");
-
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                SeedDefaultPages();
+            }
             // Middleware setup
             app.UsePiranha(options => {
                 options.UseManager();
@@ -93,7 +95,7 @@ namespace HeroesCup
             });
             app.UsePiranhaStartPage();
             app.UseClubsModule();            
-            SeedDefaultPages();
+            
         }
 
         private void SeedDefaultPages()
@@ -104,6 +106,7 @@ namespace HeroesCup
                 var serviceProvider = Services.BuildServiceProvider();
                 var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
 
+                pagesInitializer.SeedResourcesPageAsync().Wait();
                 pagesInitializer.SeedAboutPageAsync().Wait();
                 pagesInitializer.SeedStarPageAsync().Wait();
             }
