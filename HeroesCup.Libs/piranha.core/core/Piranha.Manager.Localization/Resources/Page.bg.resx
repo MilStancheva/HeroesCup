@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add page" xml:space="preserve">
+    <value>Добави страница</value>
+  </data>
+  <data name="An error occured while deleting the page" xml:space="preserve">
+    <value>Възникна грешка при изтриване на страницата</value>
+  </data>
+  <data name="Detach page" xml:space="preserve">
+    <value>Откачи страница</value>
+  </data>
+  <data name="Edit original" xml:space="preserve">
+    <value>Редактирай оригиналът</value>
+  </data>
+  <data name="Edit page" xml:space="preserve">
+    <value>Редактирай страницата</value>
+  </data>
+  <data name="Hidden" xml:space="preserve">
+    <value>Скрий</value>
+  </data>
+  <data name="If the page should be hidden in the sitemap" xml:space="preserve">
+    <value>Да се скрие страницата в картата на сайта</value>
+  </data>
+  <data name="Meta keywords" xml:space="preserve">
+    <value>Мета ключови думи</value>
+  </data>
+  <data name="Meta description" xml:space="preserve">
+    <value>Мета описание</value>
+  </data>
+  <data name="Navigation title" xml:space="preserve">
+    <value>Заглавие (навигация)</value>
+  </data>
+  <data name="Are you sure you want to delete this page?" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете тази страница?</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Страници</value>
+  </data>
+  <data name="The page was successfully deleted" xml:space="preserve">
+    <value>Страницата е успешно изтрита</value>
+  </data>
+  <data name="The page was successfully detached from the original" xml:space="preserve">
+    <value>Страницата беше успешно откачена от оригиналът</value>
+  </data>
+  <data name="The page was successfully published" xml:space="preserve">
+    <value>Страницата е успешно публикувана</value>
+  </data>
+  <data name="The page was successfully unpublished" xml:space="preserve">
+    <value>Страницата вече не е публикувана</value>
+  </data>
+  <data name="The page was successfully saved" xml:space="preserve">
+    <value>Страницата е успешно запазена</value>
+  </data>
+  <data name="The page was successfully reverted to its previous state" xml:space="preserve">
+    <value>Страницата бе възвърната до предишното ѝ състояние</value>
+  </data>
+  <data name="This is a copy. In order to edit the content of the page you first need to detach it from the original. If you want to keep the page as a copy you should edit the content of the original page." xml:space="preserve">
+    <value>Това е копие. За да редактирате съдържанието на страницата, първо трябва да я откачите от оригиналът. Ако искате да запазите страницата като копие трябва да редактирате съдържанието на оригиналната страница.</value>
+  </data>
+  <data name="Welcome to your new page. Click on the button above to add your first block of content!" xml:space="preserve">
+    <value>Добре дошли в новата си страница. Щракнете върху бутонът отгоре, за да добавите ново съдържание!</value>
+  </data>
+  <data name="Your page title" xml:space="preserve">
+    <value>Заглавието на вашата страница</value>
+  </data>
+  <data name="If comments should be enabled for this page" xml:space="preserve">
+    <value>If comments should be enabled for this page</value>
+  </data>
+</root>

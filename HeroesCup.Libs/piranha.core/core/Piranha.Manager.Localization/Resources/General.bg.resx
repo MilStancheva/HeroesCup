@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Добави</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="An error occurred" xml:space="preserve">
+    <value>Възникна грешка</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмени</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Продължи</value>
+  </data>
+  <data name="Content type" xml:space="preserve">
+    <value>Тип на съдържанието</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Копирай</value>
+  </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Култура</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Размери</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Изтегли</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Чернова</value>
+  </data>
+  <data name="Drafts" xml:space="preserve">
+    <value>Чернови</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Имейл адрес</value>
+  </data>
+  <data name="Email address is mandatory." xml:space="preserve">
+    <value>Имейл адресът е задължителен.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Име на файл</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Височина</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактирай</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Празно</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Общи</value>
+  </data>
+  <data name="General information" xml:space="preserve">
+    <value>Основна информация</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Internal id" xml:space="preserve">
+    <value>Вътрешен идентифициращ номер</value>
+  </data>
+  <data name="Is default" xml:space="preserve">
+    <value>По подразбиране</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button above to get started!" xml:space="preserve">
+    <value>Тук няма нищо. Щракнете върху бутонът отгоре, за да започнете!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button below to get started!" xml:space="preserve">
+    <value>Тук няма нищо. Щракнете върху бутонът отдолу, за да започнете!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button to the left to get started!" xml:space="preserve">
+    <value>Тук няма нищо. Щракнете върху бутонът вляво, за да започнете!</value>
+  </data>
+  <data name="Main content" xml:space="preserve">
+    <value>Основно съдържание</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Променен</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Името е задължително.</value>
+  </data>
+  <data name="Open public URL in new tab" xml:space="preserve">
+    <value>Отвори публичният линк в нов раздел</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Постоянен</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Права</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Пиксели</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Прегледай</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Публикувай</value>
+  </data>
+  <data name="Publish date" xml:space="preserve">
+    <value>Дата на публикуване</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>Препратка</value>
+  </data>
+  <data name="Redirect Type" xml:space="preserve">
+    <value>Вид на препратката</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Към предишно състояние</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Маршрут</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Запази</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Планирано</value>
+  </data>
+  <data name="Search..." xml:space="preserve">
+    <value>Търси...</value>
+  </data>
+  <data name="Select block" xml:space="preserve">
+    <value>Избери блок</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Ник</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Временен</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заглавие</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Обнови</value>
+  </data>
+  <data name="Update password" xml:space="preserve">
+    <value>Обнови на паролата</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Потребителско име</value>
+  </data>
+  <data name="Username is mandatory." xml:space="preserve">
+    <value>Потребителското име е задължително.</value>
+  </data>
+  <data name="Title is mandatory." xml:space="preserve">
+    <value>Заглавието е задължително.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Премахване на публикацията</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Непубликуван</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Потребители</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="Archives and Comments" xml:space="preserve">
+    <value>Archives and Comments</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Username and/or password are incorrect." xml:space="preserve">
+    <value>Потребителското име и/или паролата са невалидни.</value>
+  </data>
+</root>

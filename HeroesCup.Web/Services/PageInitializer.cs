@@ -58,5 +58,25 @@ namespace HeroesCup.Services
                 await _api.Pages.SaveAsync<StandardPage>(newAboutPage);
             }
         }
+
+        public async Task SeedResourcesPageAsync()
+        {
+            var site = await _api.Sites.GetDefaultAsync();
+            var pages = await _api.Pages.GetAllAsync();
+            var resourcesPage = pages.ToList().FirstOrDefault(p => p.TypeId == "ResourcesArchive");
+            if (resourcesPage == null)
+            {
+                var newResourcesPage = await HeroesCup.Web.Models.ResourcesArchive.CreateAsync(_api);
+                newResourcesPage.Id = Guid.NewGuid();
+                newResourcesPage.SiteId = site.Id;
+                newResourcesPage.Title = "Resources";
+                newResourcesPage.Slug = "resources";
+                newResourcesPage.MetaKeywords = "За купата, resources";
+                newResourcesPage.MetaDescription = "За купата Resources ресурси";
+                newResourcesPage.NavigationTitle = "Ресурси";
+                newResourcesPage.Published = DateTime.Now;
+                await _api.Pages.SaveAsync<HeroesCup.Web.Models.ResourcesArchive>(newResourcesPage);
+            }
+        }
     }
 }
