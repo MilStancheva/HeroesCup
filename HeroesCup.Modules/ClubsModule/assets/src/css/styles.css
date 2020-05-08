@@ -1,0 +1,18 @@
+.block.clubs .empty:not(:focus-within) {
+    background: gray url("../img/empty-text.png") no-repeat 50% 50%;
+    height: 8rem;
+}
+
+.block.clubs pre {
+    min-height: 1.3rem;
+    height: 100%;
+    font-size: .875rem;
+    margin-bottom: 0;
+    white-space: normal;
+}
+
+.block.clubs p {
+    min-height: 1.3rem;
+    height: 100%;
+    padding: 0 1rem;
+}

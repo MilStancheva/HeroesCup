@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add site" xml:space="preserve">
+    <value>Tilføj websted</value>
+  </data>
+  <data name="Are you really sure?" xml:space="preserve">
+    <value>Er du helt sikker?</value>
+  </data>
+  <data name="Edit site" xml:space="preserve">
+    <value>Redigér websted</value>
+  </data>
+  <data name="Hostnames" xml:space="preserve">
+    <value>Værtsnavne</value>
+  </data>
+  <data name="If this should be the default site of the installation." xml:space="preserve">
+    <value>Markér, hvis dette er standard webstedet.</value>
+  </data>
+  <data name="Please type in the name of the site to confirm." xml:space="preserve">
+    <value>Indtast navnet på webstedet for at bekræfte.</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Denne handling kan &lt;strong>ikke&lt;/strong> fortrydes. Dette vil slette webstedet {{ title }} of alle dets &lt;strong>sider&lt;/strong>, &lt;strong>samlinger&lt;/strong> og &lt;strong>opslag&lt;/strong>.</value>
+  </data>
+</root>

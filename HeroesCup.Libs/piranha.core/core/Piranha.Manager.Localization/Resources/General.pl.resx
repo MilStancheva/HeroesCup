@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Wszystkie</value>
+  </data>
+  <data name="An error occurred" xml:space="preserve">
+    <value>Wystąpił błąd</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Zawartość</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Kontynuuj</value>
+  </data>
+  <data name="Content type" xml:space="preserve">
+    <value>Typ zawartości</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopiuj</value>
+  </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Kultura</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Szczegóły</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Wymiary</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Pobierz</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>Wersja robocza</value>
+  </data>
+  <data name="Drafts" xml:space="preserve">
+    <value>Wersje robocze</value>
+  </data>
+  <data name="Email address" xml:space="preserve">
+    <value>Adres email</value>
+  </data>
+  <data name="Email address is mandatory." xml:space="preserve">
+    <value>Adres e-mail jest obowiązkowy.</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Nazwa pliku</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Wysokość</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edycja</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Pusty</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Ogólne</value>
+  </data>
+  <data name="General information" xml:space="preserve">
+    <value>Informacje ogólne</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historia</value>
+  </data>
+  <data name="Internal id" xml:space="preserve">
+    <value>Wewnętrzne Id</value>
+  </data>
+  <data name="Is default" xml:space="preserve">
+    <value>Jest domyślny</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Wyloguj</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button above to get started!" xml:space="preserve">
+    <value>Pusto tutaj. Kliknij na przycisk powyżej aby zacząć!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button below to get started!" xml:space="preserve">
+    <value>Pusto tutaj. Kliknij na przycisk poniżej aby zacząć!</value>
+  </data>
+  <data name="Looks like there's no items here. Click on the button to the left to get started!" xml:space="preserve">
+    <value>Pusto tutaj. Kliknij na przycisk po lewej aby zacząć!</value>
+  </data>
+  <data name="Main content" xml:space="preserve">
+    <value>Główna zawartość</value>
+  </data>
+  <data name="Modified" xml:space="preserve">
+    <value>Zmodyfikowany</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Nazwa jest obowiązkowa.</value>
+  </data>
+  <data name="Open public URL in new tab" xml:space="preserve">
+    <value>Otwórz adres URL w nowej zakładce</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Stałe</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Uprawnienia</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Piksele</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Podgląd</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publikuj</value>
+  </data>
+  <data name="Publish date" xml:space="preserve">
+    <value>Data publikacji</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>Przekierowanie</value>
+  </data>
+  <data name="Redirect Type" xml:space="preserve">
+    <value>Typ przekierowania</value>
+  </data>
+  <data name="Revert" xml:space="preserve">
+    <value>Przywróć</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Ścieżka</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="Scheduled" xml:space="preserve">
+    <value>Zaplanowane</value>
+  </data>
+  <data name="Search..." xml:space="preserve">
+    <value>Wyszukiwanie...</value>
+  </data>
+  <data name="Select block" xml:space="preserve">
+    <value>Wybierz typ bloku</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Wielkość</value>
+  </data>
+  <data name="Slug" xml:space="preserve">
+    <value>Fragment URL</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Tymczasowe</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tytuł</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualizacja</value>
+  </data>
+  <data name="Update password" xml:space="preserve">
+    <value>Zaktualizuj hasło</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nazwa użytkownika</value>
+  </data>
+  <data name="Username is mandatory." xml:space="preserve">
+    <value>Nazwa użytkownika jest obowiązkowa.</value>
+  </data>
+  <data name="Title is mandatory." xml:space="preserve">
+    <value>Tytuł jest obowiązkowy.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Cofnij publikację</value>
+  </data>
+  <data name="Unpublished" xml:space="preserve">
+    <value>Nieopublikowany</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Użytkownicy</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Wersja</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Szerokość</value>
+  </data>
+  <data name="Archives and Comments" xml:space="preserve">
+    <value>Archiwa i komentarze</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Komentarze</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Utworzono</value>
+  </data>
+  <data name="Username and/or password are incorrect." xml:space="preserve">
+    <value>Nazwa użytkownika i/lub hasło są nieprawidłowe.</value>
+  </data>
+</root>
