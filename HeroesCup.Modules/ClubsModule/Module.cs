@@ -44,7 +44,7 @@ namespace HeroesCup.Modules.ClubsModule
         /// </summary>
         public void Init()
         {
-            App.Blocks.Register<HeaderBlock>();
+            App.Blocks.Register<Clubs>();
         }
     }
 }
