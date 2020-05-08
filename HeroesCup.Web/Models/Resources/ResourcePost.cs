@@ -4,6 +4,7 @@ using Piranha.Data;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
+using System.Collections.Generic;
 
 namespace HeroesCup.Web.Models.Resources
 {
@@ -19,6 +20,13 @@ namespace HeroesCup.Web.Models.Resources
 
         [Region(Title="Type of resource")]
         public SelectField<ResourcePostType> Type { get; set; }
+
+        public IEnumerable<ResourcePost> OtherResources { get; set; }
+
+        public ResourcePost()
+        {
+            OtherResources = new List<ResourcePost>();
+        }
     }
 
     public enum ResourcePostType

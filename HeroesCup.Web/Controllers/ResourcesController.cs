@@ -1,21 +1,22 @@
-﻿using HeroesCup.Web.Models;
+﻿using HeroesCup.Controllers;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Resources;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HeroesCup.Web.Controllers
 {
-    public class CmsResourcesController : Controller
+    public class ResourcesController : Controller
     {
         private readonly IApi _api;
         private readonly IModelLoader _loader;
 
-        public CmsResourcesController(IApi api, IModelLoader loader)
+        public ResourcesController(IApi api, IModelLoader loader) 
         {
             _api = api;
             _loader = loader;
@@ -50,6 +51,14 @@ namespace HeroesCup.Web.Controllers
         public async Task<IActionResult> ResourcePost(Guid id, bool draft = false)
         {
             var model = await _loader.GetPostAsync<ResourcePost>(id, HttpContext.User, draft);
+            var pages = await _api.Pages.GetAllAsync();
+            var resourcesArchive = pages.FirstOrDefault(p => p.TypeId == "ResourcesArchive");
+            if (resourcesArchive != null)
+            {
+                var resourcesArchiveId = resourcesArchive.Id;
+                var resourcesPosts = await _api.Posts.GetAllAsync<ResourcePost>(resourcesArchiveId);
+                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(3).ToList();
+            }
 
             return View(model);
         }
