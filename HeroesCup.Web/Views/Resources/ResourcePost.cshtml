@@ -59,19 +59,18 @@
                 </div>
             </div>
         </div>
-
+        <hr />
         @* Other Resource Posts *@
-    <div class="row section-margin">
-        @if (Model.OtherResources.Count() > 0)
-        {
-            <hr />
-            <div class=" col-12 row">
-                <h2>Други ресурси</h2>
-            </div>
-            <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
-        }
+        <div class="row section-margin">
+            @if (Model.OtherResources.Count() > 0)
+            {
+                <div class=" col-12 row">
+                    <h2>Други ресурси</h2>
+                </div>
+                <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
+            }
 
-    </div>
+        </div>
 
     </div>
 </div>
