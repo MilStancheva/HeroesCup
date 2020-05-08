@@ -1,7 +1,7 @@
 ﻿html, body {
     width: 100%;
     height: 100%;
-    background-color: #FAF8F3;
+    background-color: #faf8f3;
 }
 
 .header-bg {
@@ -356,14 +356,6 @@ h2 {
     line-height: 42px;
 }
 
-.modal-content > .modal-header  {
-    border-bottom: none;
-}
-
-.modal-content > .modal-footer {
-    border-top: none;
-}
-
 /* Nav icon */
 .navbar-toggler-icon {
     color: #1C1E21;
@@ -374,184 +366,68 @@ h2 {
     margin-bottom: 48px;
 }
 
-/* Carousel */
-.start-carousel-capture {
-    text-align: start;
-    color: black;
-}
+/* Items List */
 
-.carousel-indicators {
-    margin: 0;
-    padding: 0;
-    align-content: start;
-    text-align: start;
-}
-
-    .carousel-indicators li {
-        width: 8px;
-        height: 8px;
-        border-radius: 100%;
-    }
-
-    .carousel-indicators li {
-        display: block;
-        border: 1px solid black;
-        background-color: white;
-    }
-
-    .carousel-indicators .active {
-        background-color: black;
-    }
-
-/* Statistics */
-.stats-info {
+.item-body > a {
     color: #1C1E21;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-/* Common */
-.vertical-center {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-    .vertical-center > div {
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-.section-margin {
-    margin-top: 38px;
-    margin-bottom: 38px;
-}
-
-.section-padding {
-    padding-top: 38px;
-    padding-bottom: 38px;
-}
-
-/* Leaderboard */
-
-a.leaderboard-club {
     text-decoration: none;
-    text-underline-position: unset;
+    text-decoration-style: none;
+}
+
+.item-body:hover > a {
     color: #1C1E21;
-    border-bottom: 1px solid #eeece6;
+    text-decoration: none;
+    text-decoration-style: none;
 }
 
-.leaderboard-club:hover {
-    background: #FFE89E;
-    border-bottom: none;
-}
-
-    .leaderboard-club:hover [data-letters]:before {
-        background: #FE5E17;
-        color: #FFFFFF;
-    }
-
-.points-heroes-separator {
+.item-title {
     display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #EEECE6;
-}
-
-[data-letters]:before {
-    content: attr(data-letters);
-    display: inline-block;
-    font-size: 1em;
-    width: 3em;
-    height: 3em;
-    line-height: 3em;
-    text-align: center;
-    border-radius: 50%;
-    background: #EBE7FD;
-    vertical-align: middle;
-    margin-right: 1em;
-    color: #370AEB;
-    font-weight: bold;
-}
-
-.rate {
-    font-weight: bold;
-}
-
-.custom-select select {
-    display: none; /*hide original SELECT element: */
-}
-
-
-.custom-select {
-    border: none;
-    outline: none;
-    box-shadow: none;
+    margin-top: 24px;
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
-    color: #370AEB;
-    background: url('../images/dropdown-rectangle.svg') no-repeat right;
-    background-position: 100% 45%;
+    font-size: 18px;
+    line-height: 24px;
 }
 
-    .custom-select::selection {
-        border: none;
-        outline: none;
-        box-shadow: none;
-    }
-
-    .custom-select:focus {
-        outline: none;
-        border: none;
-        box-shadow: none;
-    }
-
-    .custom-select:hover {
-        border: none;
-        outline: none;
-        box-shadow: none;
-        background: url('../images/dropdown-rectangle.svg') no-repeat right;
-        background-position: 100% 45%;
-    }
-
-    .custom-select:active {
-        border: none;
-        box-shadow: none;
-        background: url('../images/dropdown-rectangle.svg') no-repeat right;
-        background-position: 100% 45%;
-    }
-
-    option {
-        box-shadow: none;
-        border: none;
-        padding: 2%;
-        margin: 2%;
-        border: none;
-        outline: none;
-        box-shadow: none;
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 24px;
-        color: #370AEB;
-        background-color: #EBE7FD;
-        border-radius: 25%;
-    }
-
-
-.school-years-button {
-    background-color: #EBE7FD;
-    border-radius: 32px;
+.items-block {
+    padding-top: 48px;
+    padding-bottom: 48px;
 }
 
-    .school-years-button:hover {
-        background: linear-gradient(0deg, rgba(55, 10, 235, 0.08), rgba(55, 10, 235, 0.08)), #EBE7FD;
-        border-radius: 32px;
-    }
+/* Resources */
 
-    .school-years-button:active {
-        background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
-        border-radius: 32px;
-    }
+a:hover .resource-title {
+    color: #FE5E17;
+}
+
+.resource-icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+}
+
+.resource-icon-pdf {
+    background-image: url('../images/pdf.svg');
+}
+
+a:hover .resource-icon-pdf {
+    background-image: url('../images/pdf_hovered.svg');
+}
+
+.resource-icon-video {
+    background-image: url('../images/video.svg');
+}
+
+a:hover .resource-icon-video {
+    background-image: url('../images/video_hovered.svg');
+}
+
+.resource-icon-common {
+    background-image: url('../images/union.svg');
+}
+
+a:hover .resource-icon-common {
+    background-image: url('../images/union_hovered.svg');
+}

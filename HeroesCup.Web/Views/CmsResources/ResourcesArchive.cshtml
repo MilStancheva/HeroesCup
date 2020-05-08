@@ -27,48 +27,36 @@
         @* Posts *@
         @if (Model.Archive.Posts.Count > 0)
         {
-            <div class="row">
+            <div class="row items-block">
                 @foreach (var post in Model.Archive.Posts)
                 {
                     <div class="col-sm-6 col-md-4">
                         <div class="item-body">
                             <a href="@post.Permalink" target="_blank">
                                 <div class="row justify-content-center">
-                                    <img class="img-fluid" src="@Url.Content(post.Regions.Hero.PrimaryImage)" />
+                                    @if (post.Type.Value == HeroesCup.Web.Models.Resources.ResourcePostType.PDF)
+                                    {
+                                        <span class="resource-icon resource-icon-pdf" />
+                                    }
+
+                                    @if (post.Type.Value == HeroesCup.Web.Models.Resources.ResourcePostType.VIDEO)
+                                    {
+                                        <span class="resource-icon resource-icon-video" />
+                                    }
+
+                                    @if (post.Type.Value == HeroesCup.Web.Models.Resources.ResourcePostType.COMMON)
+                                    {
+                                        <span class="resource-icon resource-icon-common" />
+                                    }
                                 </div>
                                 <div class="row justify-content-center">
-                                    <h4 class="item-title">@post.Title</h4>
-                                    <p>@post.Regions.Hero.IngressTitle.Value</p>
+                                    <h4 class="item-title resource-title">@post.Title</h4>
+                                    <p>@post.Hero.IngressTitle.Value</p>
                                 </div>
                             </a>
                         </div>
                     </div>
                 }
-            </div>
-        }
-
-        @foreach (var post in Model.Archive.Posts)
-        {
-            <div class="row archive-item">
-                <div class="col-sm-12">
-                    <h2><a href="@post.Permalink">@post.Title</a></h2>
-                    <p>
-                        <strong>@post.Published.Value.ToString("yyyy-MM-dd")</strong> in
-                        <a href="@Model.Permalink/category/@post.Category.Slug">@post.Category.Title</a>
-                    </p>
-                </div>
-                <div class="col-sm-9">
-                    <p>
-                        @post.Regions.Hero.Ingress.Value
-                    </p>
-                    <p><a href="@post.Permalink">Read more...</a></p>
-                </div>
-                <div class="col-sm-3 d-xs-none d-md-block">
-                    @foreach (var tag in post.Tags)
-                    {
-                        <span class="tag"># @tag.Title</span>
-                    }
-                </div>
             </div>
         }
 

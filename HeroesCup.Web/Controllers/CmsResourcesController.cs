@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Web.Models;
+using HeroesCup.Web.Models.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
@@ -35,10 +36,22 @@ namespace HeroesCup.Web.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             var model = await _loader.GetPageAsync<ResourcesArchive>(id, HttpContext.User, draft);
-            model.Archive = await _api.Archives.GetByIdAsync(id, page, category, tag, year, month);
+            model.Archive = await _api.Archives.GetByIdAsync<ResourcePost>(id, page, category, tag, year, month);
 
             return View(model);
         }
 
+        /// <summary>
+        /// Gets the resource with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("resource")]
+        public async Task<IActionResult> ResourcePost(Guid id, bool draft = false)
+        {
+            var model = await _loader.GetPostAsync<ResourcePost>(id, HttpContext.User, draft);
+
+            return View(model);
+        }
     }
 }
