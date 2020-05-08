@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Models;
 using Microsoft.Extensions.Configuration;
 using Piranha;
 using System;
@@ -28,11 +29,11 @@ namespace HeroesCup.Services
                 var newStartPage = await StartPage.CreateAsync(_api);
                 newStartPage.Id = Guid.NewGuid();
                 newStartPage.SiteId = site.Id;
-                newStartPage.Title = "Home";
-                newStartPage.Slug = "";
-                newStartPage.MetaKeywords = "За купата, home";
-                newStartPage.MetaDescription = "За купата начална страница HeroesCu home page";
-                newStartPage.NavigationTitle = "Home";
+                newStartPage.Title = this._configuration["StartPagePageSettings:Title"];
+                newStartPage.Slug = this._configuration["StartPagePageSettings:Slug"];
+                newStartPage.MetaKeywords = this._configuration["StartPagePageSettings:MetaKeywords"];
+                newStartPage.MetaDescription = this._configuration["StartPagePageSettings:MetaDescription"];
+                newStartPage.NavigationTitle = this._configuration["StartPagePageSettings:NavigationTitle"];
                 newStartPage.Published = DateTime.Now;
                 await _api.Pages.SaveAsync<StartPage>(newStartPage);
             }
@@ -42,18 +43,18 @@ namespace HeroesCup.Services
         {
             var site = await _api.Sites.GetDefaultAsync();
             var pages = await _api.Pages.GetAllAsync();
-            var aboutPageTitle = this._configuration["AboutPageTitle"];
+            var aboutPageTitle = this._configuration["AboutPageSettings:Title"];
             var aboutPage = pages.ToList().FirstOrDefault(p => p.Title == aboutPageTitle);
             if (aboutPage == null)
             {
                 var newAboutPage = await StandardPage.CreateAsync(_api);
                 newAboutPage.Id = Guid.NewGuid();
                 newAboutPage.SiteId = site.Id;
-                newAboutPage.Title = "About";
-                newAboutPage.Slug = "about";
-                newAboutPage.MetaKeywords = "За купата, about";
-                newAboutPage.MetaDescription = "За купата";
-                newAboutPage.NavigationTitle = "За купата";
+                newAboutPage.Title = aboutPageTitle;
+                newAboutPage.Slug = this._configuration["AboutPageSettings:Slug"];
+                newAboutPage.MetaKeywords = this._configuration["AboutPageSettings:MetaKeywords"];
+                newAboutPage.MetaDescription = this._configuration["AboutPageSettings:MetaDescription"];
+                newAboutPage.NavigationTitle = this._configuration["AboutPageSettings:NavigationTitle"]; ;
                 newAboutPage.Published = DateTime.Now;
                 await _api.Pages.SaveAsync<StandardPage>(newAboutPage);
             }
@@ -66,16 +67,16 @@ namespace HeroesCup.Services
             var resourcesPage = pages.ToList().FirstOrDefault(p => p.TypeId == "ResourcesArchive");
             if (resourcesPage == null)
             {
-                var newResourcesPage = await HeroesCup.Web.Models.ResourcesArchive.CreateAsync(_api);
+                var newResourcesPage = await ResourcesArchive.CreateAsync(_api);
                 newResourcesPage.Id = Guid.NewGuid();
                 newResourcesPage.SiteId = site.Id;
-                newResourcesPage.Title = "Resources";
-                newResourcesPage.Slug = "resources";
-                newResourcesPage.MetaKeywords = "За купата, resources";
-                newResourcesPage.MetaDescription = "За купата Resources ресурси";
-                newResourcesPage.NavigationTitle = "Ресурси";
+                newResourcesPage.Title = this._configuration["ResourcesPageSettings:Title"];
+                newResourcesPage.Slug = this._configuration["ResourcesPageSettings:Slug"];
+                newResourcesPage.MetaKeywords = this._configuration["ResourcesPageSettings:MetaKeywords"];
+                newResourcesPage.MetaDescription = this._configuration["ResourcesPageSettings:MetaKeywords"];
+                newResourcesPage.NavigationTitle = this._configuration["ResourcesPageSettings:NavigationTitle"];
                 newResourcesPage.Published = DateTime.Now;
-                await _api.Pages.SaveAsync<HeroesCup.Web.Models.ResourcesArchive>(newResourcesPage);
+                await _api.Pages.SaveAsync<ResourcesArchive>(newResourcesPage);
             }
         }
     }
