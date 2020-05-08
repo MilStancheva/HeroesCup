@@ -25,6 +25,6 @@ namespace HeroesCup.Web.Models.Resources
     {
         PDF,
         VIDEO,
-        COMMON
+        ARTICLE
     }
 }

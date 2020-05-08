@@ -424,10 +424,10 @@ a:hover .resource-icon-video {
     background-image: url('../images/video_hovered.svg');
 }
 
-.resource-icon-common {
-    background-image: url('../images/union.svg');
+.resource-icon-article {
+    background-image: url('../images/article.svg');
 }
 
-a:hover .resource-icon-common {
-    background-image: url('../images/union_hovered.svg');
+a:hover .resource-icon-article {
+    background-image: url('../images/article_hovered.svg');
 }
