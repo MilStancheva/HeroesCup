@@ -30,7 +30,7 @@ namespace HeroesCup.Web.Controllers
         /// <param name="category">The optional category</param>
         /// <param name="tag">The optional tag</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("resources-archive")]
+        [Route("resources")]
         public async Task<IActionResult> ResourcesArchive(Guid id, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
