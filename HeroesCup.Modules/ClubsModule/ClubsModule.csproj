@@ -2,15 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
+    <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.Manager.Localization\Piranha.Manager.Localization.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="assets\dist\**\*" />
+    <EmbeddedResource Include="assets\**\*" />
   </ItemGroup>
 
 </Project>

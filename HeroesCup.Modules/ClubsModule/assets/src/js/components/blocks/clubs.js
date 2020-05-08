@@ -1,8 +1,7 @@
 /*global
-    piranha
+    heroescup
 */
-
-Vue.component("header-block", {
+Vue.component("clubs", {
     props: ["uid", "model"],
     methods: {
         onBlur: function (e) {
@@ -20,8 +19,11 @@ Vue.component("header-block", {
             });
         }
     },
-    template:
-        "<div class='block-body'>" +
-        "  <h1 contenteditable='true' v-model='model.body.value' v-on:blur='onBlur'>Header</h1>" +
-        "</div>"
+    computed: {
+        isEmpty: function () {
+            return piranha.utils.isEmptyText(this.model.body.value);
+        }
+    },
+    template: "\n<div class=\"block-body\" :class=\"{ empty: isEmpty }\">\n    <pre contenteditable=\"true\" spellcheck=\"false\" v-html=\"model.body.value\" v-on:blur=\"onBlur\"></pre>\n</div>\n"
+   
 });
