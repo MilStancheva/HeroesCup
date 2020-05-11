@@ -660,14 +660,3 @@ a:hover .resource-icon-article {
     align-self: center;
     margin: 8px 0px;
 }
-
-.relative-on-scroll {
-    position: relative;
-    z-index: 99;
-    top: 12%;
-}
-
-.fixed-on-scroll {
-    position: fixed;
-    z-index: 999;
-}
