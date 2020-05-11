@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models.Regions;
+using HeroesCup.Web.Models.Resources;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Models;
@@ -16,8 +17,8 @@ namespace HeroesCup.Web.Models
         public HeroRegion Hero { get; set; }
 
         /// <summary>
-        /// Gets/sets the post archive.
+        /// Gets/sets the resource post archive.
         /// </summary>
-        public PostArchive<DynamicPost> Archive { get; set; }
+        public PostArchive<ResourcePost> Archive { get; set; }
     }
 }

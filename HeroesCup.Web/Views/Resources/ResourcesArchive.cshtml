@@ -1,0 +1,29 @@
+﻿@model HeroesCup.Web.Models.ResourcesArchive
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 vertical-center">
+                <h2>От къде да започна?</h2>
+                <p>Тук може да намериш всички необходими ресурси.</p>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <img src="~/images/Resourses.svg" />
+            </div>
+        </div>
+        <hr />
+
+        @* Resource Posts *@
+        @if (Model.Archive.Posts.Count > 0)
+        {
+            <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.Archive.Posts" />
+        }
+
+        <hr />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+    </div>
+</div>
