@@ -13,6 +13,8 @@ using Piranha.AttributeBuilder;
 using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
 using HeroesCup.Modules.ClubsModule;
+using System;
+
 namespace HeroesCup
 {
     public class Startup
@@ -37,6 +39,12 @@ namespace HeroesCup
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             var connectionString = Configuration.GetSection("HEROESCUP_CONNECTIONSTRING").Value;
 
             services.AddDbContext<HeroesCupDbContext>(opt =>
@@ -66,8 +74,8 @@ namespace HeroesCup
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api)
         {
-            
 
+            app.UseSession();
             // Initialize Piranha
             App.Init(api);
             

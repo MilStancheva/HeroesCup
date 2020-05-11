@@ -13,7 +13,7 @@
             <div class="item-body">
                 <a href="@post.Permalink" target="_blank">
                     <div class="row justify-content-start">
-                        <img src="@Url.Content(post.Hero.PrimaryImage.Resize(WebApp.Api, 496, 256))"/>
+                        <img src="@Url.Content(post.Hero.PrimaryImage.Resize(WebApp.Api, 496, 256))" />
                     </div>
                     <div class="row justify-content-start text-start">
                         <h4 class="item-title resource-title">@post.Title</h4>
@@ -23,5 +23,10 @@
             </div>
         </div>
     }
+</div>
+<div class="row justify-content-center">
+    <form asp-controller="Events" asp-action="EventsArchive" method="post">
+        <button id="load-events" type="submit" class="btn btn-default btn-heroes">Покажи още</button>
+    </form>
 </div>
 

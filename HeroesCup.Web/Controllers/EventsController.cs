@@ -1,5 +1,7 @@
 ﻿using HeroesCup.Web.Models.Events;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
@@ -11,13 +13,16 @@ namespace HeroesCup.Web.Controllers
 {
     public class EventsController : Controller
     {
+        private const string PageCountKey = "pageCount";
         private readonly IApi _api;
         private readonly IModelLoader _loader;
+        private readonly IConfiguration _configuration;
 
-        public EventsController(IApi api, IModelLoader loader)
+        public EventsController(IApi api, IModelLoader loader, IConfiguration configuration)
         {
             _api = api;
             _loader = loader;
+            _configuration = configuration;
         }
 
         // <summary>
@@ -35,7 +40,25 @@ namespace HeroesCup.Web.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             var model = await _loader.GetPageAsync<EventsArchive>(id, HttpContext.User, draft);
-            model.Archive = await _api.Archives.GetByIdAsync<EventPost>(id, page, category, tag, year, month);
+            int eventsCount;
+            int.TryParse(_configuration["EventsCount"], out eventsCount);
+
+            var currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
+            if (currentPageCount == null)
+            {
+                currentPageCount = 1;
+                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+            }
+            else
+            {
+                HttpContext.Session.SetInt32(PageCountKey, (int) (currentPageCount += 1));
+            }
+
+            var eventsArchive = await _api.Archives.GetByIdAsync<EventPost>(id, page, category, tag, year, month);
+            var posts = eventsArchive.Posts.OrderByDescending(p => p.Published.Value).Take((int)currentPageCount * eventsCount).ToList();
+
+            model.Archive = eventsArchive;
+            model.Archive.Posts = posts;
 
             return View(model);
         }
