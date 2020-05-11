@@ -9,5 +9,7 @@ namespace HeroesCup.Services
         Task SeedAboutPageAsync();
 
         Task SeedResourcesPageAsync();
+
+        Task SeedEventsPageAsync();
     }
 }

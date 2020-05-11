@@ -1,0 +1,18 @@
+﻿@model HeroesCup.Web.Models.Events.EventsArchive
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="main">
+    <div class="container">
+        @* Events Posts *@
+        @if (Model.Archive.Posts.Count > 0)
+        {
+            <partial name="~/Views/Shared/Partial/_EventsList.cshtml" for="@Model.Archive.Posts" />
+        }
+
+        <hr />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+    </div>
+</div>

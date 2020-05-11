@@ -107,6 +107,7 @@ namespace HeroesCup
                 var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
 
                 pagesInitializer.SeedResourcesPageAsync().Wait();
+                pagesInitializer.SeedEventsPageAsync().Wait();
                 pagesInitializer.SeedAboutPageAsync().Wait();
                 pagesInitializer.SeedStarPageAsync().Wait();
             }
