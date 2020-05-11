@@ -1,0 +1,76 @@
+﻿@model HeroesCup.Web.Models.Resources.ResourcePost
+@{
+    ViewBag.Title = Model.Title;
+
+    var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
+    var site = await WebApp.Api.Sites.GetDefaultAsync();
+    var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
+}
+
+<div class="main">
+    <div class="container">
+        <div class="row section-margin">
+            <div class="row justify-content-center">
+                <div class="col-12 section-margin">
+                    <h2>@Model.Title</h2>
+                    <span class="tag">@archive.Published.Value.ToString("dd MMMM yyyy", culture) </span>
+                    @if (Model.Tags.Count > 0)
+                    {
+                        foreach (var tag in Model.Tags)
+                        {
+                            <span class="tag"><a href="@archive.Permalink/tag/@tag.Slug">#@tag.Title</a></span>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-9 no-padding-left">
+                @if (Model.Hero.PrimaryImage.HasValue)
+                {
+                    <div class="row">
+                        <div class="col-sm">
+                            <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
+                        </div>
+                    </div>
+                }
+                <div class="row justify-content-center">
+                    <div class="post-body">
+                        @Html.DisplayFor(m => m.Blocks)
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 justify-content-start">
+                <div class="row sticky-top">
+                    <span class="text-regular">Сподели тази статия:</span>
+
+                    <div class="col-md-6 col-sm-12">
+                        <a class="btn btn-share" href="/">
+                            <span class="m-1">Share</span>
+                            <i class="fa fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <a class="btn btn-share" href="/">
+                            <span class="m-1">Tweet</span>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr />
+        @* Other Resource Posts *@
+        <div class="row section-margin">
+            @if (Model.OtherResources.Count() > 0)
+            {
+                <div class=" col-12 row">
+                    <h2>Други ресурси</h2>
+                </div>
+                <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
+            }
+
+        </div>
+
+    </div>
+</div>

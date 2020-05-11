@@ -1,5 +1,7 @@
 ﻿using HeroesCup.Models;
 using HeroesCup.Models.Regions;
+using HeroesCup.Web.Models;
+using HeroesCup.Web.Models.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
