@@ -87,7 +87,9 @@ namespace HeroesCup.Web.Controllers
             {
                 var eventsArchiveId = eventsArchive.Id;
                 var eventsPosts = await _api.Posts.GetAllAsync<EventPost>(eventsArchiveId);
-                model.OtherEvents = eventsPosts.Where(r => r.Id != model.Id).Take(3).ToList();
+                int othersCount = 0;
+                int.TryParse(_configuration["EventsDetailsOthersCount"], out othersCount);
+                model.OtherEvents = eventsPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
             }
 
             return View(model);
