@@ -49,7 +49,7 @@ namespace HeroesCup.Web.Controllers
                 currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
                 if (currentPageCount == null)
                 {
-                    currentPageCount = 1;
+                    currentPageCount = 2;
                     HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
                 }
                 else
