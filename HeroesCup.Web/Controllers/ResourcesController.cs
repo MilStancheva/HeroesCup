@@ -3,6 +3,7 @@ using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Resources;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
@@ -15,11 +16,13 @@ namespace HeroesCup.Web.Controllers
     {
         private readonly IApi _api;
         private readonly IModelLoader _loader;
+        private readonly IConfiguration _configuration;
 
-        public ResourcesController(IApi api, IModelLoader loader) 
+        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration) 
         {
             _api = api;
             _loader = loader;
+            _configuration = configuration;
         }
 
         // <summary>
@@ -57,7 +60,9 @@ namespace HeroesCup.Web.Controllers
             {
                 var resourcesArchiveId = resourcesArchive.Id;
                 var resourcesPosts = await _api.Posts.GetAllAsync<ResourcePost>(resourcesArchiveId);
-                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(3).ToList();
+                int othersCount = 0;
+                int.TryParse(_configuration["ResourcesDetailsOthersCount"], out othersCount);
+                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
             }
 
             return View(model);

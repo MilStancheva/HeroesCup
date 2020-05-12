@@ -1,0 +1,27 @@
+﻿@model HeroesCup.Web.Models.Events.EventsArchive
+
+@{
+    ViewBag.Title = Model.Title;
+    var eventsParams = new Dictionary<string, string>()
+    {
+        {"loadRequest", "true" }
+    };
+}
+
+<div class="main">
+    <div class="container">
+        @* Events Posts *@
+        @if (Model.Archive.Posts.Count > 0)
+        {
+            <partial name="~/Views/Shared/Partial/_EventsList.cshtml" for="@Model.Archive.Posts" />
+            <div class="row justify-content-center margin-bottom">
+                <form asp-controller="Events" class="margin-bottom" asp-action="EventsArchive" method="post">
+                    <button id="load-events" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@eventsParams">Покажи още</button>
+                </form>
+            </div>
+        }
+
+        <hr />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+    </div>
+</div>

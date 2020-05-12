@@ -1,0 +1,26 @@
+﻿@model IEnumerable<HeroesCup.Web.Models.Events.EventPost>
+@{
+    var events = Model;
+    var site = await WebApp.Api.Sites.GetDefaultAsync();
+    var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
+    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
+}
+
+<div class="row col-12 items-block">
+    @foreach (var post in events)
+    {
+        <div class="col-md-6 margin-bottom p-2">
+            <div class="item-body">
+                <a href="@post.Permalink" target="_blank">
+                    <div class="row justify-content-start">
+                        <img src="@Url.Content(post.Hero.PrimaryImage.Resize(WebApp.Api, 496, 256))" />
+                    </div>
+                    <div class="row justify-content-start text-start">
+                        <h4 class="item-title resource-title col-12">@post.Title</h4>
+                        <div class="col-12"> <span class="tag">@post.Published.Value.ToString("dd MMMM yyyy", culture) </span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>

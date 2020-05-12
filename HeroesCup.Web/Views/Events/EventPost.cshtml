@@ -1,4 +1,4 @@
-﻿@model HeroesCup.Web.Models.Resources.ResourcePost
+﻿@model HeroesCup.Web.Models.Events.EventPost
 @{
     ViewBag.Title = Model.Title;
 
@@ -60,17 +60,16 @@
             </div>
         </div>
         <hr />
-        @* Other Resource Posts *@
+        @* Other Events Posts *@
         <div class="row section-margin">
-            @if (Model.OtherResources.Count() > 0)
+            @if (Model.OtherEvents.Count() > 0)
             {
                 <div class=" col-12 row">
-                    <h2>Други ресурси</h2>
+                    <h2>Други събития</h2>
                 </div>
-                <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                <partial name="~/Views/Shared/Partial/_EventsList.cshtml" for="@Model.OtherEvents" />
             }
 
         </div>
-
     </div>
 </div>
