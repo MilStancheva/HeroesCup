@@ -1,14 +1,13 @@
 ﻿using HeroesCup.Models.Regions;
-using HeroesCup.Web.Models.Resources;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Models;
 
-namespace HeroesCup.Web.Models.Resources
+namespace HeroesCup.Web.Models.Events
 {
-    [PageType(Title = "Resources archive", UseBlocks = false, IsArchive = true)]
-    [PageTypeRoute(Title = "Default", Route = "/resources")]
-    public class ResourcesArchive: Page<ResourcesArchive>
+    [PageType(Title = "Events archive", UseBlocks = false, IsArchive = true)]
+    [PageTypeRoute(Title = "Default", Route = "/events")]
+    public class EventsArchive : Page<EventsArchive>
     {
         /// <summary>
         /// Gets/sets the archive hero.
@@ -19,6 +18,6 @@ namespace HeroesCup.Web.Models.Resources
         /// <summary>
         /// Gets/sets the resource post archive.
         /// </summary>
-        public PostArchive<ResourcePost> Archive { get; set; }
+        public PostArchive<EventPost> Archive { get; set; }
     }
 }

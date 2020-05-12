@@ -1,5 +1,6 @@
 ﻿using HeroesCup.Models;
-using HeroesCup.Web.Models;
+using HeroesCup.Web.Models.Events;
+using HeroesCup.Web.Models.Resources;
 using Microsoft.Extensions.Configuration;
 using Piranha;
 using System;
@@ -77,6 +78,26 @@ namespace HeroesCup.Services
                 newResourcesPage.NavigationTitle = this._configuration["ResourcesPageSettings:NavigationTitle"];
                 newResourcesPage.Published = DateTime.Now;
                 await _api.Pages.SaveAsync<ResourcesArchive>(newResourcesPage);
+            }
+        }
+
+        public async Task SeedEventsPageAsync()
+        {
+            var site = await _api.Sites.GetDefaultAsync();
+            var pages = await _api.Pages.GetAllAsync();
+            var eventsPage = pages.ToList().FirstOrDefault(p => p.TypeId == "EventsArchive");
+            if (eventsPage == null)
+            {
+                var newEventsPage = await EventsArchive.CreateAsync(_api);
+                newEventsPage.Id = Guid.NewGuid();
+                newEventsPage.SiteId = site.Id;
+                newEventsPage.Title = this._configuration["EventsPageSettings:Title"];
+                newEventsPage.Slug = this._configuration["EventsPageSettings:Slug"];
+                newEventsPage.MetaKeywords = this._configuration["EventsPageSettings:MetaKeywords"];
+                newEventsPage.MetaDescription = this._configuration["EventsPageSettings:MetaKeywords"];
+                newEventsPage.NavigationTitle = this._configuration["EventsPageSettings:NavigationTitle"];
+                newEventsPage.Published = DateTime.Now;
+                await _api.Pages.SaveAsync<EventsArchive>(newEventsPage);
             }
         }
     }
