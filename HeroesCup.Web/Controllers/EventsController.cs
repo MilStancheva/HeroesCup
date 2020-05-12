@@ -17,12 +17,14 @@ namespace HeroesCup.Web.Controllers
         private readonly IApi _api;
         private readonly IModelLoader _loader;
         private readonly IConfiguration _configuration;
+        private int _eventsCount;
 
         public EventsController(IApi api, IModelLoader loader, IConfiguration configuration)
         {
             _api = api;
             _loader = loader;
             _configuration = configuration;
+            int.TryParse(_configuration["EventsCount"], out _eventsCount);
         }
 
         // <summary>
@@ -36,26 +38,33 @@ namespace HeroesCup.Web.Controllers
         /// <param name="tag">The optional tag</param>
         /// <param name="draft">If a draft is requested</param>
         [Route("events")]
-        public async Task<IActionResult> EventsArchive(Guid id, int? year = null, int? month = null, int? page = null,
+        public async Task<IActionResult> EventsArchive(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             var model = await _loader.GetPageAsync<EventsArchive>(id, HttpContext.User, draft);
-            int eventsCount;
-            int.TryParse(_configuration["EventsCount"], out eventsCount);
+            int? currentPageCount = null;
 
-            var currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
-            if (currentPageCount == null)
+            if (loadRequest == true)
+            {
+                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
+                if (currentPageCount == null)
+                {
+                    currentPageCount = 1;
+                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
+                }
+            }
+            else
             {
                 currentPageCount = 1;
                 HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
             }
-            else
-            {
-                HttpContext.Session.SetInt32(PageCountKey, (int) (currentPageCount += 1));
-            }
 
             var eventsArchive = await _api.Archives.GetByIdAsync<EventPost>(id, page, category, tag, year, month);
-            var posts = eventsArchive.Posts.OrderByDescending(p => p.Published.Value).Take((int)currentPageCount * eventsCount).ToList();
+            var posts = eventsArchive.Posts.OrderByDescending(p => p.Published.Value).Take((int)currentPageCount * _eventsCount).ToList();
 
             model.Archive = eventsArchive;
             model.Archive.Posts = posts;

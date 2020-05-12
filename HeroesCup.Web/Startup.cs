@@ -41,9 +41,7 @@ namespace HeroesCup
         {
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(30);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromSeconds(5);
             });
             var connectionString = Configuration.GetSection("HEROESCUP_CONNECTIONSTRING").Value;
 
