@@ -1,3 +1,5 @@
+using ClubsModule.Services;
+using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +14,8 @@ namespace HeroesCup.Modules.ClubsModule
         public static IServiceCollection AddClubsModule(this IServiceCollection services)
         {
             App.Modules.Register<Module>();
-                        
+            services.AddTransient<IHeroesService, HeroesService>();
+            
             return services;
         }
         public static void MapClubsModule(this IEndpointRouteBuilder builder)

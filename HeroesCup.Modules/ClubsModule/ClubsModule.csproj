@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HeroesCup.Data\HeroesCup.Data.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
@@ -14,6 +15,10 @@
 
   <ItemGroup>
     <EmbeddedResource Include="assets\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
