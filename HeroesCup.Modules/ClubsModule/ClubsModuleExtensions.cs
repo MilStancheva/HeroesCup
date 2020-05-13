@@ -1,3 +1,4 @@
+using ClubsModule;
 using ClubsModule.Services;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +16,45 @@ namespace HeroesCup.Modules.ClubsModule
         {
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
-            
+
+            services.AddAuthorization(options =>
+            {
+                // Heroes policies
+                options.AddPolicy(Permissions.Heroes, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                });
+
+                options.AddPolicy(Permissions.HeroesAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.HeroesAdd, Permissions.HeroesAdd);
+                });
+
+                options.AddPolicy(Permissions.HeroesDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.HeroesDelete, Permissions.HeroesDelete);
+                });
+
+                options.AddPolicy(Permissions.HeroesEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.HeroesEdit, Permissions.HeroesEdit);
+                });
+
+                options.AddPolicy(Permissions.HeroesSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.HeroesSave, Permissions.HeroesSave);
+                });
+            });
+
             return services;
         }
         public static void MapClubsModule(this IEndpointRouteBuilder builder)
@@ -24,20 +63,6 @@ namespace HeroesCup.Modules.ClubsModule
         }
         public static IApplicationBuilder UseClubsModule(this IApplicationBuilder builder)
         {
-            Menu.Items.Insert(2, new MenuItem
-            {
-                InternalId = "ClubsModule",
-                Name = "Clubs",
-                Css = "fas fa-fish"
-            });
-            Menu.Items["ClubsModule"].Items.Add(new MenuItem
-            {
-                InternalId = "Clubs",
-                Name = "List",
-                Route = "~/manager/clubs",
-                Css = "fas fa-brain",
-                // Policy = "MyCustomPolicy"
-            });
             // Manager resources
             builder.UseEndpoints(endpoints =>
             {
