@@ -1,0 +1,71 @@
+@model ClubsModule.Models.HeroEditModel
+@inject IAuthorizationService Auth
+@inject ManagerLocalizer Localizer
+@{
+    ViewBag.Title = "Edit hero";
+    ViewBag.MenuItem = "Heroes";
+}
+
+@using (var form = Html.BeginForm("Save", "Heroes", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
+{
+    @Html.HiddenFor(m => m.Hero.Id)
+
+    <div class="top">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Heroes"]</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
+            </ol>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="top-nav">
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesSave)).Succeeded)
+                {
+                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                        <span class="btn-label">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        @Localizer.General["Save"]
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <span class="title">@Localizer.General["General"]</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Name"]</label>
+                            @Html.TextBoxFor(m => m.Hero.Name, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Name is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @*<label>@Localizer.General["Normalized name"]</label>
+                            @if (Model.Role.NormalizedName == "SYSADMIN")
+                            {
+                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128, disabled = true })
+                                @Html.HiddenFor(m => m.Role.NormalizedName)
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128 })
+                            }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

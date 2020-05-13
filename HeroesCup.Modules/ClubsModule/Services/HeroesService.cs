@@ -43,6 +43,11 @@ namespace ClubsModule.Services
         public async Task<HeroListModel> GetHeroListModelAsync()
         {
             var heroes = await GetAll();
+            if (heroes == null)
+            {
+                heroes = new List<Hero>();
+            }
+
             var model = new HeroListModel()
             {
                 Heroes = heroes.OrderBy(h => h.Name)
@@ -100,22 +105,25 @@ namespace ClubsModule.Services
             if (hero == null)
             {
                 hero = new Hero();
+                hero.Id = model.Hero.Id != Guid.Empty ? model.Hero.Id : Guid.NewGuid();
                 this.dbContext.Heroes.Add(hero);
             }
 
-            hero.Id = model.Hero.Id != Guid.Empty ? model.Hero.Id : Guid.NewGuid();
             hero.Name = model.Hero.Name;
             hero.SchoolClub = model.Hero.SchoolClub;
             hero.IsCoordinator = model.Hero.IsCoordinator;
-            hero.HeroMissions = model.Missions.Select(m => new HeroMission()
-            {
-                Mission = m,
-                MissionId = m.Id,
-                Hero = hero,
-                HeroId = hero.Id
-            }).ToList();
 
-            dbContext.Heroes.Update(hero);
+            if (model.Missions != null && model.Missions.Any())
+            {
+                hero.HeroMissions = model.Missions.Select(m => new HeroMission()
+                {
+                    Mission = m,
+                    MissionId = m.Id,
+                    Hero = hero,
+                    HeroId = hero.Id
+                }).ToList();
+            }
+            
             await dbContext.SaveChangesAsync();
             return true;
         }
