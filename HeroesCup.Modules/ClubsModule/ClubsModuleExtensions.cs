@@ -89,6 +89,13 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
                     policy.RequireClaim(Permissions.HeroesSave, Permissions.HeroesSave);
                 });
+
+                options.AddPolicy(Permissions.HeroesAddCoordinator, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.HeroesAddCoordinator, Permissions.HeroesAddCoordinator);
+                });
             });
 
             return services;

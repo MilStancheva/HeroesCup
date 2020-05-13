@@ -59,6 +59,22 @@
                         </div>
                     </div>
                 </div>
+
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAddCoordinator)).Succeeded)
+                {
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@Localizer.General["Is Coordinator"]</label>
+                                @Html.CheckBoxFor(m => m.Hero.IsCoordinator)
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

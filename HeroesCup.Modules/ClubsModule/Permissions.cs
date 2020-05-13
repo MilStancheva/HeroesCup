@@ -10,6 +10,7 @@
         public const string HeroesDelete = "HeroesCupHeroesDelete";
         public const string HeroesEdit = "HeroesCupHeroesEdit";
         public const string HeroesSave = "HeroesCupHeroesSave";
+        public const string HeroesAddCoordinator = "HeroesCupHeroesAddCoordinator";
 
         public const string Clubs = "HeroesCupClubs";
         public const string ClubsAdd = "HeroesCupClubsAdd";
@@ -30,7 +31,8 @@
                 HeroesAdd,
                 HeroesDelete,
                 HeroesEdit,
-                HeroesSave
+                HeroesSave,
+                HeroesAddCoordinator
             };
         }
     }

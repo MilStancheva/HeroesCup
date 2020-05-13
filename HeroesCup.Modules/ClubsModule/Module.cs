@@ -26,6 +26,7 @@ namespace HeroesCup.Modules.ClubsModule
             new PermissionItem { Name = Permissions.HeroesDelete, Title = "Delete Heroes", Category = "Heroes", IsInternal = true },
             new PermissionItem { Name = Permissions.HeroesEdit, Title = "Edit Heroes", Category = "Heroes", IsInternal = true },
             new PermissionItem { Name = Permissions.HeroesSave, Title = "Save Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesAddCoordinator, Title = "Add Coordinator Heroes", Category = "Heroes", IsInternal = true },
         };
 
         /// <summary>
