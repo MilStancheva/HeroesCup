@@ -1,29 +1,27 @@
-@model ClubsModule.Models.HeroEditModel
+@model ClubsModule.Models.ClubEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
 @{
-    ViewBag.Title = "Edit hero";
-    ViewBag.MenuItem = "Heroes";
-    var clubs = Model.Clubs;
-    var clubsSelectList = new SelectList(clubs, "Id", "Name");
+    ViewBag.Title = "Edit club";
+    ViewBag.MenuItem = "Clubs";
 }
 
-@using (var form = Html.BeginForm("Save", "Heroes", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
+@using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
 {
-    @Html.HiddenFor(m => m.Hero.Id)
+    @Html.HiddenFor(m => m.Club.Id)
 
     <div class="top">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Heroes"]</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Clubs"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>
 
         <div class="container-fluid">
             <div class="top-nav">
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesSave)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsSave)).Succeeded)
                 {
                     <button type="submit" class="btn btn-labeled btn-success pull-right">
                         <span class="btn-label">
@@ -46,7 +44,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Name"]</label>
-                            @Html.TextBoxFor(m => m.Hero.Name, new { @class = "form-control small", maxlength = 128, required = "" })
+                            @Html.TextBoxFor(m => m.Club.Name, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
                                 @Localizer.General["Name is mandatory."]
                             </div>
@@ -54,8 +52,16 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Club"]</label>
-                            @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", maxlength = 128, required = "" })
+                            @*<label>@Localizer.General["Normalized name"]</label>
+                            @if (Model.Role.NormalizedName == "SYSADMIN")
+                            {
+                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128, disabled = true })
+                                @Html.HiddenFor(m => m.Role.NormalizedName)
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128 })
+                            }*@
                         </div>
                     </div>
                 </div>

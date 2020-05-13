@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200513125126_UpdateClubHeroRelation")]
+    partial class UpdateClubHeroRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,7 @@ namespace HeroesCup.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ClubId")
+                    b.Property<Guid?>("ClubId")
                         .HasColumnType("char(36)");
 
                     b.Property<bool>("IsCoordinator")
@@ -71,9 +73,6 @@ namespace HeroesCup.Data.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("MissionId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid>("Id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("HeroId", "MissionId");
@@ -133,9 +132,7 @@ namespace HeroesCup.Data.Migrations
                 {
                     b.HasOne("HeroesCup.Data.Models.Club", "Club")
                         .WithMany("Heroes")
-                        .HasForeignKey("ClubId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClubId");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.HeroMission", b =>

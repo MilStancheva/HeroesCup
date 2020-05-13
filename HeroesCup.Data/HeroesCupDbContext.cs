@@ -20,17 +20,26 @@ namespace HeroesCup.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Club>()
+                .HasMany(c => c.Heroes)
+                .WithOne(c => c.Club)
+                .HasForeignKey(h => h.ClubId);
+
+            modelBuilder.Entity<Club>()
+               .HasMany(c => c.Missions)
+               .WithOne(c => c.Club)
+               .HasForeignKey(m => m.ClubId);
+
             modelBuilder.Entity<Hero>()
                 .HasOne(h => h.Club)
                 .WithMany(c => c.Heroes)
-                .HasForeignKey(h => h.ClubId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(c => c.ClubId);
 
             modelBuilder.Entity<Mission>()
                 .HasOne(h => h.Club)
                 .WithMany(c => c.Missions)
-                .HasForeignKey(h => h.ClubId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(m => m.ClubId);
 
             modelBuilder.Entity<HeroMission>()
             .HasKey(h => new { h.HeroId, h.MissionId });

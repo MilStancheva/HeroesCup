@@ -79,7 +79,7 @@ namespace HeroesCup.Modules.ClubsModule
                 InternalId = "Clubs",
                 Name = "Clubs",
                 Route = "~/manager/clubs",
-                //Policy = Permissions.Clubs,
+                Policy = Permissions.Clubs,
                 Css = "fas fa-brain"
             });
 

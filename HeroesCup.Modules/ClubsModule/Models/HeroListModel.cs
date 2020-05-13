@@ -17,6 +17,6 @@ namespace ClubsModule.Models
 
         public string Name { get; set; }
 
-        public string SchoolClubName { get; set; }
+        public string OrganizationName { get; set; }
     }
 }

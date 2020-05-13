@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HeroesCup.Data.Models
 {
     public class Club
     {
+        [Key]
         public Guid Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public string OrganizationName { get; set; }

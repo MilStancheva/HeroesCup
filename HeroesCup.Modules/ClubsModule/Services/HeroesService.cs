@@ -42,7 +42,10 @@ namespace ClubsModule.Services
         }
         public async Task<HeroListModel> GetHeroListModelAsync()
         {
-            var heroes = await GetAll();
+            var heroes = await this.dbContext.Heroes
+                .Include(h => h.Club)
+                .ToListAsync();
+
             if (heroes == null)
             {
                 heroes = new List<Hero>();
@@ -55,7 +58,7 @@ namespace ClubsModule.Services
                                 {
                                     Id = m.Id,
                                     Name = m.Name,
-                                    SchoolClubName = m.Club.Name
+                                    OrganizationName = m.Club.Name
                                 })
 
             };
@@ -63,12 +66,14 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public HeroEditModel CreateHeroEditModel()
+        public async Task<HeroEditModel> CreateHeroEditModel()
         {
+            var clubs = await this.dbContext.Clubs.ToListAsync();
             return new HeroEditModel()
             {
                 Hero = new Hero(),
-                Missions = new List<Mission>()
+                Missions = new List<Mission>(),
+                Clubs = clubs
             };
         }
 
@@ -88,14 +93,21 @@ namespace ClubsModule.Services
                 .Where(h => h.HeroId == id)
                 .Select(x => x.Mission);
 
-            var model = CreateHeroEditModel();
+            var clubs = await this.dbContext.Clubs.ToListAsync();
+            if (clubs == null)
+            {
+                clubs = new List<Club>();
+            }
+
+            var model = await CreateHeroEditModel();
             model.Hero = hero;
             model.Missions = missions;
+            model.Clubs = clubs;
 
             return model;
         }
 
-        public async Task<bool> SaveHeroEditModel(HeroEditModel model)
+        public async Task<Guid> SaveHeroEditModel(HeroEditModel model)
         {
             var hero = await this.dbContext.Heroes
                 .Include(x => x.HeroMissions)
@@ -110,7 +122,7 @@ namespace ClubsModule.Services
             }
 
             hero.Name = model.Hero.Name;
-            hero.Club = model.Hero.Club;
+            hero.ClubId = model.ClubId;
             hero.IsCoordinator = model.Hero.IsCoordinator;
 
             if (model.Missions != null && model.Missions.Any())
@@ -125,7 +137,7 @@ namespace ClubsModule.Services
             }
             
             await dbContext.SaveChangesAsync();
-            return true;
+            return hero.Id;
         }
     }
 }

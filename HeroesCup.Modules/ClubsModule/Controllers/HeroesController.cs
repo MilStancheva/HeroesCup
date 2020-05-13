@@ -1,5 +1,6 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
@@ -29,9 +30,9 @@ namespace ClubsModule.Controllers
         [HttpGet]
         [Route("/manager/hero")]
         [Authorize(Policy = Permissions.HeroesAdd)]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            var model = this.heroesService.CreateHeroEditModel();
+            var model = await this.heroesService.CreateHeroEditModel();
             return View("Edit", model);
         }
 
@@ -49,11 +50,11 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.HeroesSave)]
         public async Task<IActionResult> SaveAsync(HeroEditModel model)
         {
-            var result = await this.heroesService.SaveHeroEditModel(model);
-            if (result == true)
+            var heroId = await this.heroesService.SaveHeroEditModel(model);
+            if (heroId != null)
             {
                 SuccessMessage("The hero has been saved.");
-                return RedirectToAction("Edit", new { id = model.Hero.Id });
+                return RedirectToAction("Edit", new { id = heroId });
             }
 
             ErrorMessage("The hero could not be saved.", false);

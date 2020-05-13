@@ -1,5 +1,5 @@
 ﻿using HeroesCup.Data.Models;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 
 namespace ClubsModule.Models
@@ -8,6 +8,10 @@ namespace ClubsModule.Models
     {
         public Hero Hero { get; set; }
 
+        public Guid ClubId { get; set; }
+
         public IEnumerable<Mission> Missions { get; set; }
+
+        public IEnumerable<Club> Clubs { get; set; }
     }
 }

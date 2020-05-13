@@ -94,7 +94,6 @@ namespace ClubsModule.Services
                 club.Heroes = model.Heroes.Select(m => new Hero()
                 {
                     Id = m.Id != Guid.Empty ? m.Id : Guid.NewGuid(),
-                    ClubId = club.Id,
                     Club = club,
                     Name = m.Name,
                     IsCoordinator = m.IsCoordinator

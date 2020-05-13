@@ -18,10 +18,10 @@ namespace ClubsModule.Services.Contracts
 
         Task<HeroListModel> GetHeroListModelAsync();
 
-        HeroEditModel CreateHeroEditModel();
+        Task<HeroEditModel> CreateHeroEditModel();
 
         Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id);
 
-        Task<bool> SaveHeroEditModel(HeroEditModel model); 
+        Task<Guid> SaveHeroEditModel(HeroEditModel model); 
     }
 }
