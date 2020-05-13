@@ -16,9 +16,45 @@ namespace HeroesCup.Modules.ClubsModule
         {
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
+            services.AddTransient<IClubsService, ClubsService>();
 
             services.AddAuthorization(options =>
             {
+                // Clubs policies
+                options.AddPolicy(Permissions.Clubs, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Clubs, Permissions.Clubs);
+                });
+
+                options.AddPolicy(Permissions.ClubsAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Clubs, Permissions.Clubs);
+                    policy.RequireClaim(Permissions.ClubsAdd, Permissions.ClubsAdd);
+                });
+
+                options.AddPolicy(Permissions.ClubsDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Clubs, Permissions.Clubs);
+                    policy.RequireClaim(Permissions.ClubsDelete, Permissions.ClubsDelete);
+                });
+
+                options.AddPolicy(Permissions.ClubsEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Clubs, Permissions.Clubs);
+                    policy.RequireClaim(Permissions.ClubsEdit, Permissions.ClubsEdit);
+                });
+
+                options.AddPolicy(Permissions.ClubsSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Clubs, Permissions.Clubs);
+                    policy.RequireClaim(Permissions.ClubsSave, Permissions.ClubsSave);
+                });
+
                 // Heroes policies
                 options.AddPolicy(Permissions.Heroes, policy =>
                 {

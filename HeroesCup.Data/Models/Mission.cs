@@ -23,8 +23,8 @@ namespace HeroesCup.Data.Models
 
         public int Stars { get; set; }
 
-        public Guid SchoolClubId { get; set; }
-        public SchoolClub SchoolClub { get; set; }
+        public Guid ClubId { get; set; }
+        public Club Club { get; set; }
 
         public ICollection<HeroMission> HeroMissions { get; set; }
 

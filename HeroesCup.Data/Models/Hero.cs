@@ -9,8 +9,8 @@ namespace HeroesCup.Data.Models
 
         public string Name { get; set; }
 
-        public Guid SchoolClubId { get; set; }
-        public SchoolClub SchoolClub { get; set; }
+        public Guid ClubId { get; set; }
+        public Club Club { get; set; }
 
         public bool IsCoordinator { get; set; }
 

@@ -55,7 +55,7 @@ namespace ClubsModule.Services
                                 {
                                     Id = m.Id,
                                     Name = m.Name,
-                                    SchoolClubName = m.SchoolClub.Name
+                                    SchoolClubName = m.Club.Name
                                 })
 
             };
@@ -110,7 +110,7 @@ namespace ClubsModule.Services
             }
 
             hero.Name = model.Hero.Name;
-            hero.SchoolClub = model.Hero.SchoolClub;
+            hero.Club = model.Hero.Club;
             hero.IsCoordinator = model.Hero.IsCoordinator;
 
             if (model.Missions != null && model.Missions.Any())

@@ -15,6 +15,12 @@ namespace HeroesCup.Modules.ClubsModule
     {
         private readonly List<PermissionItem> _permissions = new List<PermissionItem>
         {
+            new PermissionItem { Name = Permissions.Clubs, Title = "List Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsAdd, Title = "Add Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsDelete, Title = "Delete Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsEdit, Title = "Edit Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsSave, Title = "Save Clubs", Category = "Clubs", IsInternal = true },
+
             new PermissionItem { Name = Permissions.Heroes, Title = "List Heroes", Category = "Heroes", IsInternal = true },
             new PermissionItem { Name = Permissions.HeroesAdd, Title = "Add Heroes", Category = "Heroes", IsInternal = true },
             new PermissionItem { Name = Permissions.HeroesDelete, Title = "Delete Heroes", Category = "Heroes", IsInternal = true },
@@ -71,10 +77,10 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "Clubs",
-                Name = "List",
+                Name = "Clubs",
                 Route = "~/manager/clubs",
-                Css = "fas fa-brain",
-                // Policy = "MyCustomPolicy"
+                //Policy = Permissions.Clubs,
+                Css = "fas fa-brain"
             });
 
             Menu.Items["ClubsModule"].Items.Add(new MenuItem

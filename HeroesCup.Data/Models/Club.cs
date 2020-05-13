@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace HeroesCup.Data.Models
 {
-    public class SchoolClub
+    public class Club
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
-        public string SchoolName { get; set; }
+        public string OrganizationName { get; set; }
 
-        public string SchoolType { get; set; }
+        public string OrganizationType { get; set; }
 
         public string Location { get; set; }
 

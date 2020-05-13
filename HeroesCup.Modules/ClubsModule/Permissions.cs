@@ -11,10 +11,21 @@
         public const string HeroesEdit = "HeroesCupHeroesEdit";
         public const string HeroesSave = "HeroesCupHeroesSave";
 
+        public const string Clubs = "HeroesCupClubs";
+        public const string ClubsAdd = "HeroesCupClubsAdd";
+        public const string ClubsDelete = "HeroesCupClubsDelete";
+        public const string ClubsEdit = "HeroesCupClubsEdit";
+        public const string ClubsSave = "HeroesCupClubsSave";
+
         public static string[] All()
         {
             return new[]
             {
+                Clubs,
+                ClubsAdd,
+                ClubsDelete,
+                ClubsEdit,
+                ClubsSave,
                 Heroes,
                 HeroesAdd,
                 HeroesDelete,

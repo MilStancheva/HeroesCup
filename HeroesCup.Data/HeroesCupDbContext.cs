@@ -13,7 +13,7 @@ namespace HeroesCup.Data
 
         public DbSet<Hero> Heroes { get; set; }
 
-        public DbSet<SchoolClub> SchoolClubs { get; set; }
+        public DbSet<Club> Clubs { get; set; }
 
         public DbSet<Mission> Missions { get; set; }
 
@@ -21,15 +21,15 @@ namespace HeroesCup.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Hero>()
-                .HasOne(h => h.SchoolClub)
+                .HasOne(h => h.Club)
                 .WithMany(c => c.Heroes)
-                .HasForeignKey(h => h.SchoolClubId)
+                .HasForeignKey(h => h.ClubId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Mission>()
-                .HasOne(h => h.SchoolClub)
+                .HasOne(h => h.Club)
                 .WithMany(c => c.Missions)
-                .HasForeignKey(h => h.SchoolClubId)
+                .HasForeignKey(h => h.ClubId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<HeroMission>()

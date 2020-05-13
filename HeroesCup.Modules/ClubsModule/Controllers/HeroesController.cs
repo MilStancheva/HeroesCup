@@ -1,12 +1,9 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
-using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
