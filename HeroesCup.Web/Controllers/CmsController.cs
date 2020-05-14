@@ -120,10 +120,10 @@ namespace HeroesCup.Controllers
                 model.TeamsCount = teamsCount;
 
             }
-            
+
             // Get missions
             var missionsArchive = pages.FirstOrDefault(p => p.TypeId == "MissionsArchive");
-            if(missionsArchive != null)
+            if (missionsArchive != null)
             {
                 var missionsArchiveId = missionsArchive.Id;
                 var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
@@ -137,7 +137,7 @@ namespace HeroesCup.Controllers
                 var blogMissionPosts = await _api.Posts.GetAllAsync<BlogMissionPost>(missionsArchiveId);
 
                 var schoolYears = new HashSet<String>();
-                foreach(var post in blogMissionPosts)
+                foreach (var post in blogMissionPosts)
                 {
                     schoolYears.Add(post.Details.SchoolYear);
                 }

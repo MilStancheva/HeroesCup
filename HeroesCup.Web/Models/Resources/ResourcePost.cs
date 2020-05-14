@@ -18,7 +18,7 @@ namespace HeroesCup.Web.Models.Resources
         [Region]
         public HeroRegion Hero { get; set; }
 
-        [Region(Title="Type of resource")]
+        [Region(Title = "Type of resource")]
         public SelectField<ResourcePostType> Type { get; set; }
 
         public IEnumerable<ResourcePost> OtherResources { get; set; }

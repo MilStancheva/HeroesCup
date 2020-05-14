@@ -6,7 +6,7 @@ using Piranha.Models;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Blog archive", UseBlocks = false, IsArchive = true)]
-    public class BlogArchive  : Page<BlogArchive>
+    public class BlogArchive : Page<BlogArchive>
     {
         /// <summary>
         /// Gets/sets the archive hero.

@@ -19,7 +19,7 @@ namespace HeroesCup.Models
         /// <summary>
         /// Gets/sets the post details.
         /// </summary>
-        [Region(Title="Детайли")]
+        [Region(Title = "Детайли")]
         public LinkMissionRegion Details { get; set; }
     }
 }

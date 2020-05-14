@@ -41,7 +41,8 @@ namespace HeroesCup.Models
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public StartPage() {
+        public StartPage()
+        {
             LinkedMissions = new List<LinkMissionPost>();
             SchoolClubs = new List<SchoolClubPost>();
         }
