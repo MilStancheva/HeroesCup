@@ -90,7 +90,6 @@ namespace HeroesCup
             EditorConfig.FromFile("editorconfig.json");
             if (env.IsDevelopment())
 
-
             {
                 app.UseDeveloperExceptionPage();
                 SeedDefaultPages();
