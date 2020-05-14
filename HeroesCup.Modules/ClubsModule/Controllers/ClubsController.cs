@@ -2,11 +2,9 @@
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
@@ -57,7 +55,7 @@ namespace ClubsModule.Controllers
         public async Task<IActionResult> SaveAsync(ClubEditModel model)
         {
             var clubId = await this.clubsService.SaveClubEditModel(model);
-            if (clubId != Guid.Empty)
+            if (clubId != null && clubId != Guid.Empty)
             {
                 SuccessMessage("The club has been saved.");
                 return RedirectToAction("Edit", new { id = clubId });
