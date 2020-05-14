@@ -9,6 +9,7 @@
 @using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
 {
     @Html.HiddenFor(m => m.Club.Id)
+    @Html.HiddenFor(m => m.Club.OwnerId)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -53,15 +54,15 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             @*<label>@Localizer.General["Normalized name"]</label>
-                            @if (Model.Role.NormalizedName == "SYSADMIN")
-                            {
-                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128, disabled = true })
-                                @Html.HiddenFor(m => m.Role.NormalizedName)
-                            }
-                            else
-                            {
-                                @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128 })
-                            }*@
+                                @if (Model.Role.NormalizedName == "SYSADMIN")
+                                {
+                                    @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128, disabled = true })
+                                    @Html.HiddenFor(m => m.Role.NormalizedName)
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128 })
+                                }*@
                         </div>
                     </div>
                 </div>

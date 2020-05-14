@@ -23,5 +23,7 @@ namespace HeroesCup.Data.Models
         public ICollection<Hero> Heroes { get; set; }
 
         public ICollection<Mission> Missions { get; set; }
+
+        public Guid OwnerId { get; set; }
     }
 }

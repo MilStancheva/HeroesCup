@@ -31,6 +31,8 @@ namespace HeroesCup.Data.Models
         public string Content { get; set; }
 
         public string TimeheroesUrl { get; set; }
+
+        public Guid OwnerId { get; set; }
     }
 
     public enum MissionType

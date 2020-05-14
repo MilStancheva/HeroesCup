@@ -1,7 +1,9 @@
 ﻿using ClubsModule.Models;
 using HeroesCup.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
@@ -16,11 +18,11 @@ namespace ClubsModule.Services.Contracts
 
         Task<Hero> GetById(Guid id);
 
-        Task<HeroListModel> GetHeroListModelAsync();
+        Task<HeroListModel> GetHeroListModelAsync(Guid ownerId);
 
-        Task<HeroEditModel> CreateHeroEditModel();
+        Task<HeroEditModel> CreateHeroEditModel(Guid ownerId);
 
-        Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id);
+        Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id, Guid ownerId);
 
         Task<Guid> SaveHeroEditModel(HeroEditModel model); 
     }

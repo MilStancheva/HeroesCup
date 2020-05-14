@@ -1,10 +1,11 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
-using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
@@ -12,10 +13,14 @@ namespace ClubsModule.Controllers
     public class HeroesController : ManagerController
     {
         private readonly IHeroesService heroesService;
+        private HttpContext context;
+        private Guid loggedInUserId;
 
-        public HeroesController(IHeroesService heroesService)
+        public HeroesController(IHeroesService heroesService, IHttpContextAccessor httpAccess)
         {
             this.heroesService = heroesService;
+            this.context = httpAccess.HttpContext;
+            this.loggedInUserId = new Guid(context.User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
 
         [HttpGet]
@@ -23,7 +28,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.Heroes)]
         public async Task<IActionResult> ListAsync()
         {
-            var model = await this.heroesService.GetHeroListModelAsync();
+            var model = await this.heroesService.GetHeroListModelAsync(this.loggedInUserId);
             return View(model);
         }
 
@@ -32,7 +37,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.HeroesAdd)]
         public async Task<IActionResult> Add()
         {
-            var model = await this.heroesService.CreateHeroEditModel();
+            var model = await this.heroesService.CreateHeroEditModel(this.loggedInUserId);
             return View("Edit", model);
         }
 
@@ -41,7 +46,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.HeroesEdit)]
         public async Task<IActionResult> EditAsync(Guid id)
         {
-            var model = await this.heroesService.GetHeroEditModelByIdAsync(id);
+            var model = await this.heroesService.GetHeroEditModelByIdAsync(id, this.loggedInUserId);
             return View(model);
         }
 

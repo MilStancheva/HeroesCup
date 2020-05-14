@@ -6,12 +6,12 @@ namespace ClubsModule.Services.Contracts
 {
     public interface IClubsService
     {
-        Task<ClubListModel> GetClubListModelAsync();
+        Task<ClubListModel> GetClubListModelAsync(Guid ownerId);
 
-        ClubEditModel CreateClubEditModel();
+        Task<ClubEditModel> CreateClubEditModel(Guid ownerId);
 
-        Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id);
+        Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid ownerId);
 
-        Task<bool> SaveClubEditModel(ClubEditModel model);
+        Task<Guid> SaveClubEditModel(ClubEditModel model);
     }
 }

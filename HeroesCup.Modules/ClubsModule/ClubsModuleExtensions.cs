@@ -14,6 +14,7 @@ namespace HeroesCup.Modules.ClubsModule
     {
         public static IServiceCollection AddClubsModule(this IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
             services.AddTransient<IClubsService, ClubsService>();

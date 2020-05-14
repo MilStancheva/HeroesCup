@@ -21,19 +21,26 @@ namespace ClubsModule.Services
             this.dbContext = dbContext;
         }
 
-        public ClubEditModel CreateClubEditModel()
+        public async Task<ClubEditModel> CreateClubEditModel(Guid ownerId)
         {
-            return new ClubEditModel()
+            var missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId).ToListAsync();
+            var heroes = await this.dbContext.Heroes.Where(h => h.Club.OwnerId == ownerId).ToListAsync();
+            var model = new ClubEditModel()
             {
                 Club = new Club(),
-                Missions = new List<Mission>(),
-                Heroes = new List<Hero>()
+                Missions = missions != null ? missions : new List<Mission>(),
+                Heroes = heroes != null ? heroes : new List<Hero>()
             };
+
+            model.Club.OwnerId = ownerId;
+            return model;
         }
 
-        public async Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id)
+        public async Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid ownerId)
         {
-            var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == id);
+            var club = await this.dbContext.Clubs
+                .Where(c => c.OwnerId == ownerId)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if (club == null)
             {
@@ -42,7 +49,7 @@ namespace ClubsModule.Services
 
             var missions = club.Missions;
 
-            var model = CreateClubEditModel();
+            var model = await CreateClubEditModel(ownerId);
             model.Club = club;
             model.Missions = club.Missions;
             model.Heroes = club.Heroes;
@@ -50,9 +57,11 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<ClubListModel> GetClubListModelAsync()
+        public async Task<ClubListModel> GetClubListModelAsync(Guid ownerId)
         {
-            var clubs = await this.dbContext.Clubs.ToListAsync();
+            var clubs = await this.dbContext.Clubs
+                .Where(c => c.OwnerId == ownerId)
+                .ToListAsync();
             if (clubs == null)
             {
                 clubs = new List<Club>();
@@ -74,20 +83,20 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<bool> SaveClubEditModel(ClubEditModel model)
+        public async Task<Guid> SaveClubEditModel(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
-                .FirstOrDefaultAsync(h => h.Id == model.Club.Id);
+                .FirstOrDefaultAsync(h => h.Id == model.Club.Id && h.OwnerId == model.Club.OwnerId);
 
             if (club == null)
             {
                 club = new Club();
                 club.Id = model.Club.Id != Guid.Empty ? model.Club.Id : Guid.NewGuid();
+                club.OwnerId = model.Club.OwnerId;
                 this.dbContext.Clubs.Add(club);
             }
 
-            club.Name = model.Club.Name;
-
+            club.Name = model.Club.Name;            
 
             if (model.Heroes != null && model.Heroes.Any())
             {
@@ -120,7 +129,7 @@ namespace ClubsModule.Services
             }
 
             await dbContext.SaveChangesAsync();
-            return true;
+            return club.Id;
         }
 
         private int getSchoolYear(long startDate)

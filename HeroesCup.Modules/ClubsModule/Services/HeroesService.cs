@@ -1,4 +1,5 @@
 ﻿using ClubsModule.Models;
+using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services
@@ -40,9 +42,10 @@ namespace ClubsModule.Services
             this.dbContext.Heroes.Update(hero);
             await dbContext.SaveChangesAsync();
         }
-        public async Task<HeroListModel> GetHeroListModelAsync()
+        public async Task<HeroListModel> GetHeroListModelAsync(Guid ownerId)
         {
             var heroes = await this.dbContext.Heroes
+                .Where(h => h.Club.OwnerId == ownerId)
                 .Include(h => h.Club)
                 .ToListAsync();
 
@@ -66,20 +69,22 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<HeroEditModel> CreateHeroEditModel()
+        public async Task<HeroEditModel> CreateHeroEditModel(Guid ownerId)
         {
-            var clubs = await this.dbContext.Clubs.ToListAsync();
+            var clubs = await this.dbContext.Clubs.Where(c => c.OwnerId == ownerId).ToListAsync();
+            var missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId).ToListAsync();
             return new HeroEditModel()
             {
                 Hero = new Hero(),
-                Missions = new List<Mission>(),
+                Missions = missions,
                 Clubs = clubs
             };
         }
 
-        public async Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id)
+        public async Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id, Guid ownerId)
         {
             var hero = await this.dbContext.Heroes
+                .Where(h => h.Club.OwnerId == ownerId)
                 .Include(x => x.HeroMissions)
                 .ThenInclude(x => x.Mission)
                 .FirstOrDefaultAsync(h => h.Id == id);
@@ -99,7 +104,7 @@ namespace ClubsModule.Services
                 clubs = new List<Club>();
             }
 
-            var model = await CreateHeroEditModel();
+            var model = await CreateHeroEditModel(ownerId);
             model.Hero = hero;
             model.Missions = missions;
             model.Clubs = clubs;
