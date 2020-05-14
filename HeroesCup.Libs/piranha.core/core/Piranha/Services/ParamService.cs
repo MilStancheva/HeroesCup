@@ -69,7 +69,8 @@ namespace Piranha.Services
         /// </summary>
         /// <param name="key">The unique key</param>
         /// <returns>The model</returns>
-        public async Task<Param> GetByKeyAsync(string key) {
+        public async Task<Param> GetByKeyAsync(string key)
+        {
             var id = _cache?.Get<Guid?>($"ParamKey_{key}");
             Param model = null;
 
@@ -170,7 +171,8 @@ namespace Piranha.Services
         /// Removes the given model from cache.
         /// </summary>
         /// <param name="model">The model</param>
-        private void RemoveFromCache(Param model) {
+        private void RemoveFromCache(Param model)
+        {
             if (_cache != null)
             {
                 _cache.Remove(model.Id.ToString());

@@ -81,7 +81,8 @@ namespace Piranha.Repositories
                 .FirstOrDefaultAsync(t => t.Id == model.Id)
                 .ConfigureAwait(false);
 
-            if (type == null) {
+            if (type == null)
+            {
                 type = new Data.PageType
                 {
                     Id = model.Id,

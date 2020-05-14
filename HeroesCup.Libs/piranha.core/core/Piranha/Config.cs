@@ -47,14 +47,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets the currently configured archive page size.
         /// </summary>
-        public int ArchivePageSize {
-            get {
+        public int ArchivePageSize
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(ARCHIVE_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(ARCHIVE_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -72,14 +75,17 @@ namespace Piranha
         /// Gets/sets the currently configured cache expiration
         /// in minutes for pages.
         /// </summary>
-        public int CacheExpiresPages {
-            get {
+        public int CacheExpiresPages
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(CACHE_EXPIRES_PAGES).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(CACHE_EXPIRES_PAGES).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -97,14 +103,17 @@ namespace Piranha
         /// Gets/sets the currently configured cache expiration
         /// in minutes for posts.
         /// </summary>
-        public int CacheExpiresPosts {
-            get {
+        public int CacheExpiresPosts
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(CACHE_EXPIRES_POSTS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(CACHE_EXPIRES_POSTS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -121,14 +130,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets if comments should be approved by default.
         /// </summary>
-        public bool CommentsApprove {
-            get {
+        public bool CommentsApprove
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_APPROVE).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return true;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_APPROVE).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -146,14 +158,17 @@ namespace Piranha
         /// Gets/sets the number of days commenting should be open after publish
         /// date. A value of 0 means forever.
         /// </summary>
-        public int CommentsCloseAfterDays {
-            get {
+        public int CommentsCloseAfterDays
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_CLOSE_AFTER_DAYS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_CLOSE_AFTER_DAYS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -171,14 +186,17 @@ namespace Piranha
         /// Gets/sets if comments should be enabled by default for posts. The
         /// default value is true.
         /// </summary>
-        public bool CommentsEnabledForPosts {
-            get {
+        public bool CommentsEnabledForPosts
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_POSTS_ENABLED).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return true;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_POSTS_ENABLED).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -196,14 +214,17 @@ namespace Piranha
         /// Gets/sets if comments should be enabled by default for pages. The
         /// default value is true.
         /// </summary>
-        public bool CommentsEnabledForPages {
-            get {
+        public bool CommentsEnabledForPages
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_PAGES_ENABLED).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return false;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_PAGES_ENABLED).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -220,14 +241,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets the currently configured page size for comments.
         /// </summary>
-        public int CommentsPageSize {
-            get {
+        public int CommentsPageSize
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(COMMENTS_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -245,14 +269,17 @@ namespace Piranha
         /// Gets/sets if hierarchical slugs should be generated when
         /// creating new pages.
         /// </summary>
-        public bool HierarchicalPageSlugs {
-            get {
+        public bool HierarchicalPageSlugs
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(PAGES_HIERARCHICAL_SLUGS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return true;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(PAGES_HIERARCHICAL_SLUGS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -270,14 +297,17 @@ namespace Piranha
         /// Gets/sets the default number of expanded sitemap levels
         /// in the manager interface.
         /// </summary>
-        public int ManagerExpandedSitemapLevels {
-            get {
+        public int ManagerExpandedSitemapLevels
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(MANAGER_EXPANDED_SITEMAP_LEVELS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 0;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(MANAGER_EXPANDED_SITEMAP_LEVELS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -294,14 +324,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets the page size that should be used for paged lists in the manager.
         /// </summary>
-        public int ManagerPageSize {
-            get {
+        public int ManagerPageSize
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(MANAGER_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 15;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(MANAGER_PAGE_SIZE).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -319,14 +352,17 @@ namespace Piranha
         /// Gets/sets if blocks should be collapsed by default in the
         /// manager interface. Default value is false.
         /// </summary>
-        public bool ManagerDefaultCollapsedBlocks {
-            get {
+        public bool ManagerDefaultCollapsedBlocks
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(MANAGER_DEFAULT_COLLAPSED_BLOCKS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return false;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(MANAGER_DEFAULT_COLLAPSED_BLOCKS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -344,14 +380,17 @@ namespace Piranha
         /// Gets/sets if block group headers should be collapsed by default in the
         /// manager interface. Default value is false.
         /// </summary>
-        public bool ManagerDefaultCollapsedBlockGroupHeaders {
-            get {
+        public bool ManagerDefaultCollapsedBlockGroupHeaders
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(MANAGER_DEFAULT_COLLAPSED_BLOCKGROUPHEADERS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToBoolean(param.Value);
                 return false;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(MANAGER_DEFAULT_COLLAPSED_BLOCKGROUPHEADERS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -369,14 +408,17 @@ namespace Piranha
         /// Gets/sets the optional URL for the CDN used. If this param isn't
         /// null it will be used when generating the PublicUrl for media.
         /// </summary>
-        public string MediaCDN {
-            get {
+        public string MediaCDN
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(MEDIA_CDN_URL).GetAwaiter().GetResult();
                 if (param != null)
                     return param.Value;
                 return null;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(MEDIA_CDN_URL).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -398,14 +440,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets the currently configured page revisions that should be saved.
         /// </summary>
-        public int PageRevisions {
-            get {
+        public int PageRevisions
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(PAGE_REVISIONS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 10;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(PAGE_REVISIONS).GetAwaiter().GetResult();
                 if (param == null)
                 {
@@ -422,14 +467,17 @@ namespace Piranha
         /// <summary>
         /// Gets/sets the currently configured post revisions that should be saved.
         /// </summary>
-        public int PostRevisions {
-            get {
+        public int PostRevisions
+        {
+            get
+            {
                 var param = _service.GetByKeyAsync(POST_REVISIONS).GetAwaiter().GetResult();
                 if (param != null)
                     return Convert.ToInt32(param.Value);
                 return 10;
             }
-            set {
+            set
+            {
                 var param = _service.GetByKeyAsync(POST_REVISIONS).GetAwaiter().GetResult();
                 if (param == null)
                 {
