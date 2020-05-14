@@ -32,8 +32,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
   dotnet-format:
     runs-on: ubuntu-latest
-    steps:
-      steps:
+    steps:      
       - name: Checkout repo
         uses: actions/checkout@v2
 
