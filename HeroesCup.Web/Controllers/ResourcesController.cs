@@ -18,7 +18,7 @@ namespace HeroesCup.Web.Controllers
         private readonly IModelLoader _loader;
         private readonly IConfiguration _configuration;
 
-        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration) 
+        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration)
         {
             _api = api;
             _loader = loader;
