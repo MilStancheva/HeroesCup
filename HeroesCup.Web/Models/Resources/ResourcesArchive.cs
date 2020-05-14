@@ -8,7 +8,7 @@ namespace HeroesCup.Web.Models.Resources
 {
     [PageType(Title = "Resources archive", UseBlocks = false, IsArchive = true)]
     [PageTypeRoute(Title = "Default", Route = "/resources")]
-    public class ResourcesArchive: Page<ResourcesArchive>
+    public class ResourcesArchive : Page<ResourcesArchive>
     {
         /// <summary>
         /// Gets/sets the archive hero.
