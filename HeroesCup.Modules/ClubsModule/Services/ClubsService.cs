@@ -44,7 +44,7 @@ namespace ClubsModule.Services
                 Heroes = heroes != null ? heroes : new List<Hero>()
             };
 
-            model.Club.OwnerId = ownerId.Value;
+            model.Club.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
             return model;
         }
 
