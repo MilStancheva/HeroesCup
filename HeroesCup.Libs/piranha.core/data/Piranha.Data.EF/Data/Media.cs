@@ -35,7 +35,7 @@ namespace Piranha.Data
 
         public static implicit operator Models.Media(Data.Media m)
         {
-            return m == null? null : new Models.Media
+            return m == null ? null : new Models.Media
             {
                 Id = m.Id,
                 FolderId = m.FolderId,

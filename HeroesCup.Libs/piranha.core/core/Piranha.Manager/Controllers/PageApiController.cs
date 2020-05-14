@@ -295,7 +295,8 @@ namespace Piranha.Manager.Controllers
                 };
                 return list;
             }
-            return new PageListModel {
+            return new PageListModel
+            {
                 Status = new StatusMessage
                 {
                     Type = StatusMessage.Warning,

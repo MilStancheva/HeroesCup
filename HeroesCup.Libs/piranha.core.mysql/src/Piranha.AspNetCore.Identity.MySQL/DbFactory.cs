@@ -26,7 +26,7 @@ namespace Piranha.AspNetCore.Identity.MySQL
         /// </summary>
         /// <param name="args">The arguments</param>
         /// <returns>The db context</returns>
-        public IdentityMySQLDb CreateDbContext(string[] args) 
+        public IdentityMySQLDb CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<IdentityMySQLDb>();
             builder.UseMySql("server=localhost;port=3306;database=piranha;uid=root;password=password");

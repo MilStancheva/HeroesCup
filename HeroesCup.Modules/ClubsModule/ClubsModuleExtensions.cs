@@ -12,7 +12,7 @@ namespace HeroesCup.Modules.ClubsModule
         public static IServiceCollection AddClubsModule(this IServiceCollection services)
         {
             App.Modules.Register<Module>();
-                        
+
             return services;
         }
         public static void MapClubsModule(this IEndpointRouteBuilder builder)
@@ -44,8 +44,8 @@ namespace HeroesCup.Modules.ClubsModule
 
                 endpoints.MapClubsModule();
             });
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");            
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");            
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

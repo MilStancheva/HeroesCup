@@ -35,6 +35,6 @@ namespace Piranha.Manager.Editor
         /// </summary>
         public string Classes { get; set; }
 
-        public bool HasClasses { get { return !string.IsNullOrWhiteSpace(Classes); }}
+        public bool HasClasses { get { return !string.IsNullOrWhiteSpace(Classes); } }
     }
 }

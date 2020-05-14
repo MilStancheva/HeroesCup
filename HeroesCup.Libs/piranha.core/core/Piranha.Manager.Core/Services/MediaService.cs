@@ -106,7 +106,10 @@ namespace Piranha.Manager.Services
                 holdMedia = holdMedia
                     .Where(m => m.Type == filter.Value);
             }
-            var pairMedia = holdMedia.Select(m => new { media = m, mediaItem = new MediaListModel.MediaItem
+            var pairMedia = holdMedia.Select(m => new
+            {
+                media = m,
+                mediaItem = new MediaListModel.MediaItem
                 {
                     Id = m.Id,
                     FolderId = m.FolderId,
@@ -122,7 +125,8 @@ namespace Piranha.Manager.Services
                     Width = m.Width,
                     Height = m.Height,
                     LastModified = m.LastModified.ToString("yyyy-MM-dd")
-                }}).ToArray();
+                }
+            }).ToArray();
 
             model.Folders = model.Structure.GetPartial(folderId)
                 .Select(f => new MediaListModel.FolderItem

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HeroesCup.Data.Models
 {
-    public class Hero 
+    public class Hero
     {
         public Guid Id { get; set; }
 

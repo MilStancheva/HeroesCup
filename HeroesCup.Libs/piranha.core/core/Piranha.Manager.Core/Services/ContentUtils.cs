@@ -46,7 +46,7 @@ namespace Piranha.Manager.Services
                     // Check if this is a select field
                     if (typeof(Extend.Fields.SelectFieldBase).IsAssignableFrom(fieldType.Type))
                     {
-                        foreach(var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(fieldType.Type)).Items)
+                        foreach (var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(fieldType.Type)).Items)
                         {
                             field.Meta.Options.Add(Convert.ToInt32(item.Value), item.Title);
                         }

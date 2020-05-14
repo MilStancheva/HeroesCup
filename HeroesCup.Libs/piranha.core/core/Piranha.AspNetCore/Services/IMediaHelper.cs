@@ -16,22 +16,22 @@ namespace Piranha.AspNetCore.Services
 {
     public interface IMediaHelper
     {
-            /// <summary>
-            /// Resizes the given image to the given dimensions.
-            /// </summary>
-            /// <param name="image"></param>
-            /// <param name="width"></param>
-            /// <param name="height"></param>
-            /// <returns></returns>
-            string ResizeImage(ImageField image, int width, int? height = null);
+        /// <summary>
+        /// Resizes the given image to the given dimensions.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        string ResizeImage(ImageField image, int width, int? height = null);
 
-            /// <summary>
-            /// Resizes the given image to the given dimensions.
-            /// </summary>
-            /// <param name="image"></param>
-            /// <param name="width"></param>
-            /// <param name="height"></param>
-            /// <returns></returns>
-            string ResizeImage(Media image, int width, int? height = null);
+        /// <summary>
+        /// Resizes the given image to the given dimensions.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        string ResizeImage(Media image, int width, int? height = null);
     }
 }

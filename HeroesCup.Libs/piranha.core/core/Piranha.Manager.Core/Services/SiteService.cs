@@ -286,7 +286,7 @@ namespace Piranha.Manager.Services
 
                         if (typeof(Extend.Fields.SelectFieldBase).IsAssignableFrom(appFieldType.Type))
                         {
-                            foreach(var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(appFieldType.Type)).Items)
+                            foreach (var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(appFieldType.Type)).Items)
                             {
                                 field.Meta.Options.Add(Convert.ToInt32(item.Value), item.Title);
                             }

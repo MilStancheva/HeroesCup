@@ -80,7 +80,8 @@ namespace Piranha.Manager.Services
                     items = items.Where(i => !i.IsUnlisted).ToList();
                 }
 
-                foreach (var block in items) {
+                foreach (var block in items)
+                {
                     listCategory.Items.Add(new BlockListModel.ListItem
                     {
                         Name = block.Name,
@@ -92,7 +93,7 @@ namespace Piranha.Manager.Services
             }
 
             // Remove empty categories
-            var empty = model.Categories.Where(c =>  c.Items.Count() == 0).ToList();
+            var empty = model.Categories.Where(c => c.Items.Count() == 0).ToList();
             foreach (var remove in empty)
             {
                 model.Categories.Remove(remove);
