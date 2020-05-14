@@ -88,8 +88,7 @@ namespace HeroesCup
 
             // Configure Tiny MCE
             EditorConfig.FromFile("editorconfig.json");
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment())            {
                 app.UseDeveloperExceptionPage();
                 SeedDefaultPages();
             }
@@ -98,7 +97,7 @@ namespace HeroesCup
                 options.UseManager();
                 options.UseTinyMCE();
                 options.UseIdentity();
-                
+
             });
             app.UsePiranhaStartPage();
             app.UseClubsModule();
