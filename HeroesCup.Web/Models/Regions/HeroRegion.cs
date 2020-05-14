@@ -20,7 +20,7 @@ namespace HeroesCup.Models.Regions
         /// <summary>
         /// Gets/sets the optional ingress.
         /// </summary>
-        [Field(Title ="Текст")]
+        [Field(Title = "Текст")]
         public TextField Ingress { get; set; }
     }
 }

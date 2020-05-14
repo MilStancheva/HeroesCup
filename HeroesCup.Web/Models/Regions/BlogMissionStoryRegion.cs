@@ -5,7 +5,7 @@ namespace HeroesCup.Models.Regions
 {
     public class BlogMissionStoryRegion
     {
-        [Field(Title ="Заглавие")]
+        [Field(Title = "Заглавие")]
         public StringField StoryTitle { get; set; }
 
         [Field(Title = "Изображение")]

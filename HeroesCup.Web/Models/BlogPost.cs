@@ -7,7 +7,7 @@ using Piranha.Models;
 namespace HeroesCup.Models
 {
     [PostType(Title = "Blog post")]
-    public class BlogPost  : Post<BlogPost>
+    public class BlogPost : Post<BlogPost>
     {
         /// <summary>
         /// Gets/sets the post hero.

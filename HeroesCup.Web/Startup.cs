@@ -47,7 +47,7 @@ namespace HeroesCup
 
             services.AddDbContext<HeroesCupDbContext>(opt =>
                 opt.UseMySql(connectionString));
-            
+
             // Service setup
             services.AddPiranha(options =>
             {
@@ -76,7 +76,7 @@ namespace HeroesCup
             app.UseSession();
             // Initialize Piranha
             App.Init(api);
-            
+
             // Configure cache level
             App.CacheLevel = Piranha.Cache.CacheLevel.Basic;
 
@@ -94,14 +94,15 @@ namespace HeroesCup
                 SeedDefaultPages();
             }
             // Middleware setup
-            app.UsePiranha(options => {
+            app.UsePiranha(options =>
+            {
                 options.UseManager();
                 options.UseTinyMCE();
                 options.UseIdentity();
             });
             app.UsePiranhaStartPage();
-            app.UseClubsModule();            
-            
+            app.UseClubsModule();
+
         }
 
         private void SeedDefaultPages()
