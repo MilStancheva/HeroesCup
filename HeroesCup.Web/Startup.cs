@@ -91,7 +91,6 @@ namespace HeroesCup
             if (env.IsDevelopment())
 
 
-            
             {
                 app.UseDeveloperExceptionPage();
                 SeedDefaultPages();
