@@ -3,6 +3,7 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,21 @@ namespace ClubsModule.Services
             this.dbContext = dbContext;
         }
 
-        public async Task<ClubEditModel> CreateClubEditModel(Guid ownerId)
+        public async Task<ClubEditModel> CreateClubEditModel(Guid? ownerId)
         {
-            var missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId).ToListAsync();
-            var heroes = await this.dbContext.Heroes.Where(h => h.Club.OwnerId == ownerId).ToListAsync();
+            var missions = new List<Mission>();
+            var heroes = new List<Hero>();
+            if (ownerId.HasValue)
+            {
+                missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId.Value).ToListAsync();
+                heroes = await this.dbContext.Heroes.Where(h => h.Club.OwnerId == ownerId.Value).ToListAsync();
+            }
+            else
+            {
+                missions = await this.dbContext.Missions.ToListAsync();
+                heroes = await this.dbContext.Heroes.ToListAsync();
+            }
+
             var model = new ClubEditModel()
             {
                 Club = new Club(),
@@ -32,15 +44,24 @@ namespace ClubsModule.Services
                 Heroes = heroes != null ? heroes : new List<Hero>()
             };
 
-            model.Club.OwnerId = ownerId;
+            model.Club.OwnerId = ownerId.Value;
             return model;
         }
 
-        public async Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid ownerId)
+        public async Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid? ownerId)
         {
-            var club = await this.dbContext.Clubs
-                .Where(c => c.OwnerId == ownerId)
-                .FirstOrDefaultAsync(c => c.Id == id);
+            Club club = null;
+            if (ownerId.HasValue)
+            {
+                club = await this.dbContext.Clubs
+                 .Where(c => c.OwnerId == ownerId.Value)
+                 .FirstOrDefaultAsync(c => c.Id == id);
+            }
+            else
+            {
+                club = await this.dbContext.Clubs
+                    .FirstOrDefaultAsync(c => c.Id == id);
+            }
 
             if (club == null)
             {
@@ -57,11 +78,20 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<ClubListModel> GetClubListModelAsync(Guid ownerId)
+        public async Task<ClubListModel> GetClubListModelAsync(Guid? ownerId)
         {
-            var clubs = await this.dbContext.Clubs
-                .Where(c => c.OwnerId == ownerId)
-                .ToListAsync();
+            var clubs = new List<Club>();
+            if (ownerId.HasValue)
+            {
+                clubs = await this.dbContext.Clubs
+                     .Where(c => c.OwnerId == ownerId.Value)
+                     .ToListAsync();
+            }
+            else
+            {
+                clubs = await this.dbContext.Clubs.ToListAsync();
+            }
+
             if (clubs == null)
             {
                 clubs = new List<Club>();
@@ -96,7 +126,7 @@ namespace ClubsModule.Services
                 this.dbContext.Clubs.Add(club);
             }
 
-            club.Name = model.Club.Name;            
+            club.Name = model.Club.Name;
 
             if (model.Heroes != null && model.Heroes.Any())
             {

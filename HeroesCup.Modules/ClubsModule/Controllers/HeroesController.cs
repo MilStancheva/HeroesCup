@@ -1,4 +1,5 @@
 ﻿using ClubsModule.Models;
+using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,14 +14,14 @@ namespace ClubsModule.Controllers
     public class HeroesController : ManagerController
     {
         private readonly IHeroesService heroesService;
-        private HttpContext context;
-        private Guid loggedInUserId;
+        private readonly IUserManager userManager;
+        private Guid? loggedInUserId;
 
-        public HeroesController(IHeroesService heroesService, IHttpContextAccessor httpAccess)
+        public HeroesController(IHeroesService heroesService, IUserManager userManager)
         {
             this.heroesService = heroesService;
-            this.context = httpAccess.HttpContext;
-            this.loggedInUserId = new Guid(context.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            this.userManager = userManager;
+            this.loggedInUserId = this.userManager.GetCurrentUserId();
         }
 
         [HttpGet]

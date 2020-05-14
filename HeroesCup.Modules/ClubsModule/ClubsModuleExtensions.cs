@@ -1,4 +1,5 @@
 using ClubsModule;
+using ClubsModule.Security;
 using ClubsModule.Services;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +19,7 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
             services.AddTransient<IClubsService, ClubsService>();
+            services.AddTransient<IUserManager, UserManager>();
 
             services.AddAuthorization(options =>
             {
