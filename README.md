@@ -20,6 +20,8 @@ dotnet restore
 dotnet build
 cd HeroesCup.Data
 dotnet ef database update
+cd ..
+cd HeroesCup.Web
 dotnet run
 ```  
 
