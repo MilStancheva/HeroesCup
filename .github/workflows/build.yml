@@ -20,30 +20,49 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
-        
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-        
     - name: Install dependencies
       run: dotnet restore
-
     - name: Build
       run: dotnet build --configuration Release --no-restore
-
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    
-    - name: Add dotnet-format problem matcher
-      uses: xt0rted/dotnet-format-problem-matcher@v1
+  dotnet-format:
+    runs-on: ubuntu-latest
+    uses: xt0rted/dotnet-format@v1.0.1
+    steps:      
+      - name: Install dotnet-format
+        run: |
+          echo "::set-env name=PATH::${PATH}:${HOME}/.dotnet/tools"
+          dotnet tool install -g dotnet-format
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
-    - name: Restore dotnet tools
-      uses: xt0rted/dotnet-tool-restore@v1
+      - name: Run dotnet format
+        id: format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          action: "fix"
+          only-changed-files: true
 
-    - name: Run dotnet format
-      uses: xt0rted/dotnet-format@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        only-changed-files: "true"
-        action: fix      
+      - name: Commit files
+        if: steps.format.outputs.has-changes == 'true'
+        run: |
+          git config --local user.name "heroescup-ci[bot]"
+          git config --local user.email "heroescup-ci[bot]@users.noreply.github.com"
+          git commit -a -m 'Automated dotnet-format update
+
+          Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.id }}+${{ github.event.pull_request.user.login }}@users.noreply.github.com>'
+
+      - name: Push changes
+        if: steps.format.outputs.has-changes == 'true'
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}  
