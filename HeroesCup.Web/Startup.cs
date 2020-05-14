@@ -96,11 +96,12 @@ namespace HeroesCup
                 SeedDefaultPages();
             }
             // Middleware setup
-            app.UsePiranha(options =>{  
+            app.UsePiranha(options =>
+            {
                 options.UseManager();
                 options.UseTinyMCE();
                 options.UseIdentity();
-                
+
             });
             app.UsePiranhaStartPage();
             app.UseClubsModule();
