@@ -4,6 +4,9 @@
 @{
     ViewBag.Title = "Edit club";
     ViewBag.MenuItem = "Clubs";
+
+    var heroes = Model.Heroes;
+    var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
 }
 
 @using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
@@ -53,16 +56,49 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            @*<label>@Localizer.General["Normalized name"]</label>
-                                @if (Model.Role.NormalizedName == "SYSADMIN")
-                                {
-                                    @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128, disabled = true })
-                                    @Html.HiddenFor(m => m.Role.NormalizedName)
-                                }
-                                else
-                                {
-                                    @Html.TextBoxFor(m => m.Role.NormalizedName, new { @class = "form-control small", maxlength = 128 })
-                                }*@
+                            <label>@Localizer.General["Location"]</label>
+                            @Html.TextBoxFor(m => m.Club.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Location is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Organization Type"]</label>
+                            @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Organization Type is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Organization Name"]</label>
+                            @Html.TextBoxFor(m => m.Club.OrganizationName, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Organization Name is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Description"]</label>
+                            @Html.TextAreaFor(m => m.Club.Description, new { @class = "form-control small", maxlength = 500, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Description is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Heroes"]</label>
+                            @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
                         </div>
                     </div>
                 </div>

@@ -116,6 +116,8 @@ namespace ClubsModule.Services
         public async Task<Guid> SaveClubEditModel(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
+                .Include(c => c.Heroes)
+                .Include(c => c.Missions)
                 .FirstOrDefaultAsync(h => h.Id == model.Club.Id && h.OwnerId == model.Club.OwnerId);
 
             if (club == null)
@@ -127,16 +129,19 @@ namespace ClubsModule.Services
             }
 
             club.Name = model.Club.Name;
+            club.Location = model.Club.Location;
+            club.OrganizationType = model.Club.OrganizationType;
+            club.OrganizationName = model.Club.OrganizationName;
+            club.Description = model.Club.Description;
 
-            if (model.Heroes != null && model.Heroes.Any())
+            if (model.HeroesIds != null && model.HeroesIds.Any())
             {
-                club.Heroes = model.Heroes.Select(m => new Hero()
+                club.Heroes = new List<Hero>();
+                foreach (var heroId in model.HeroesIds)
                 {
-                    Id = m.Id != Guid.Empty ? m.Id : Guid.NewGuid(),
-                    Club = club,
-                    Name = m.Name,
-                    IsCoordinator = m.IsCoordinator
-                }).ToList();
+                    var hero = this.dbContext.Heroes.FirstOrDefault(h => h.Id == heroId);
+                    club.Heroes.Add(hero);
+                }
             }
 
             if (model.Missions != null && model.Missions.Any())

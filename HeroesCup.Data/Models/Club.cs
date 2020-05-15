@@ -18,6 +18,8 @@ namespace HeroesCup.Data.Models
 
         public string Location { get; set; }
 
+        public string Description { get; set; }
+
         public int Points { get; set; }
 
         public ICollection<Hero> Heroes { get; set; }

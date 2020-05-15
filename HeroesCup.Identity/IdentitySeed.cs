@@ -129,6 +129,7 @@ namespace HeroesCup.Identity
                     permission.Name == ClubsModule.Permissions.HeroesDelete ||
                     permission.Name == ClubsModule.Permissions.HeroesEdit ||
                     permission.Name == ClubsModule.Permissions.HeroesSave ||
+                    permission.Name == ClubsModule.Permissions.HeroesAddCoordinator ||
                     permission.Name == Piranha.Manager.Permission.Admin;
 
                 if (isCoordinatorPermission)

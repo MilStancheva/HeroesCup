@@ -23,4 +23,8 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Manager\Views\Shared\" />
+  </ItemGroup>
+
 </Project>

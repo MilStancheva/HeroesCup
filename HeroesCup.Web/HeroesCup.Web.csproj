@@ -28,4 +28,8 @@
     <ProjectReference Include="..\HeroesCup.Modules\ClubsModule\ClubsModule.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>
