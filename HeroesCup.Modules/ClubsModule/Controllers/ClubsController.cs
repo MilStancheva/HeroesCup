@@ -2,9 +2,13 @@
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
@@ -51,8 +55,8 @@ namespace ClubsModule.Controllers
 
         [HttpPost]
         [Route("/manager/club/save")]
-        [Authorize(Policy = Permissions.HeroesSave)]
-        public async Task<IActionResult> SaveAsync(ClubEditModel model)
+        [Authorize(Policy = Permissions.ClubsSave)]
+        public async Task<IActionResult> SaveAsync(ClubEditModel model, IFormFile logo)
         {
             var clubId = await this.clubsService.SaveClubEditModel(model);
             if (clubId != null && clubId != Guid.Empty)

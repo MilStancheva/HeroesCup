@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200515151904_ClubImageAdded")]
+    partial class ClubImageAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +51,8 @@ namespace HeroesCup.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LogoId");
 
                     b.ToTable("Clubs");
                 });
@@ -103,9 +107,6 @@ namespace HeroesCup.Data.Migrations
                     b.Property<byte[]>("Bytes")
                         .HasColumnType("longblob");
 
-                    b.Property<Guid?>("ClubId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("ContentType")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -113,9 +114,6 @@ namespace HeroesCup.Data.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClubId")
-                        .IsUnique();
 
                     b.ToTable("Images");
                 });
@@ -169,6 +167,13 @@ namespace HeroesCup.Data.Migrations
                     b.ToTable("Missions");
                 });
 
+            modelBuilder.Entity("HeroesCup.Data.Models.Club", b =>
+                {
+                    b.HasOne("HeroesCup.Data.Models.Image", "Logo")
+                        .WithMany()
+                        .HasForeignKey("LogoId");
+                });
+
             modelBuilder.Entity("HeroesCup.Data.Models.Hero", b =>
                 {
                     b.HasOne("HeroesCup.Data.Models.Club", "Club")
@@ -191,13 +196,6 @@ namespace HeroesCup.Data.Migrations
                         .HasForeignKey("MissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
-                {
-                    b.HasOne("HeroesCup.Data.Models.Club", "Club")
-                        .WithOne("Logo")
-                        .HasForeignKey("HeroesCup.Data.Models.Image", "ClubId");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Mission", b =>

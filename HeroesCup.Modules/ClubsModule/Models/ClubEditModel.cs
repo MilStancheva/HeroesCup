@@ -1,6 +1,5 @@
 ﻿using HeroesCup.Data.Models;
-using Piranha.Extend;
-using Piranha.Extend.Fields;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 
@@ -14,8 +13,8 @@ namespace ClubsModule.Models
 
         public Guid CoordinatorId { get; set; }
 
-        [Region]
-        public MediaField Logo { get; set; }
+        public IFormFile UploadedLogo { get; set; }
+        public string LogoUrl { get; set; }
 
         public IEnumerable<Hero> Heroes { get; set;}
 

@@ -5,12 +5,12 @@
     ViewBag.Title = "Edit club";
     ViewBag.MenuItem = "Clubs";
 
-    var heroes = Model.Heroes;
+    var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes : new List<HeroesCup.Data.Models.Hero>();
     var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
 }
 
-@using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
+@using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.Club.Id)
     @Html.HiddenFor(m => m.Club.OwnerId)
@@ -96,12 +96,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Logo"]</label>
+                            <div class="col-12">
+                                <img src="@Model.LogoUrl" alt="User Logo" asp-append-version="true" />
+                                <input type="file" asp-for="UploadedLogo" class="form-group" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Coordinator"]</label>
-                            @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small", required = "" })
+                            @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
                         </div>
                     </div>
                     <div class="col-sm-6">

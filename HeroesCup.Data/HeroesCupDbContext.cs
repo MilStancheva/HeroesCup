@@ -17,6 +17,8 @@ namespace HeroesCup.Data
 
         public DbSet<Mission> Missions { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,6 +32,11 @@ namespace HeroesCup.Data
                .HasMany(c => c.Missions)
                .WithOne(c => c.Club)
                .HasForeignKey(m => m.ClubId);
+
+            modelBuilder.Entity<Club>()
+                .HasOne(c => c.Logo)
+                .WithOne(c => c.Club)
+                .HasForeignKey<Image>(c => c.ClubId);
 
             modelBuilder.Entity<Hero>()
                 .HasOne(h => h.Club)

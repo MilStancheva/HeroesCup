@@ -2,9 +2,11 @@
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -70,8 +72,13 @@ namespace ClubsModule.Services
 
             var model = await CreateClubEditModel(ownerId);
             model.Club = club;
-            model.Coordinator = await this.GetClubCoordinatorAsync(club.Id);
-            model.CoordinatorId = model.Coordinator.Id;
+            var coordinator = await this.GetClubCoordinatorAsync(club.Id);
+            if (coordinator != null)
+            {
+                model.Coordinator = coordinator;
+                model.CoordinatorId = model.Coordinator.Id;
+            }
+
             model.Missions = club.Missions;
             model.Heroes = club.Heroes;
 
@@ -147,7 +154,7 @@ namespace ClubsModule.Services
             }
 
             // set clubs coordinator
-            if (model.CoordinatorId != null || model.CoordinatorId != Guid.Empty)
+            if (model.CoordinatorId != null && model.CoordinatorId != Guid.Empty)
             {
                 var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == model.CoordinatorId);
                 foreach (var hero in club.Heroes)
@@ -169,6 +176,13 @@ namespace ClubsModule.Services
                 }
             }
 
+            if (model.UploadedLogo != null)
+            {
+                //club.Logo = GetByteArrayFromImage(img);
+                //model.ImageSourceFileName = System.IO.Path.GetFileName(img.FileName);
+                //model.ImageContentType = img.ContentType;
+            }
+
             await dbContext.SaveChangesAsync();
             return club.Id;
         }
@@ -182,8 +196,21 @@ namespace ClubsModule.Services
                 return null;
             }
 
-            coordinator = club.Heroes.FirstOrDefault(c => c.IsCoordinator);
+            if (club.Heroes != null && club.Heroes.Count > 0)
+            {
+                coordinator = club.Heroes.FirstOrDefault(c => c.IsCoordinator);
+            }
+            
             return coordinator;
+        }
+
+        private byte[] GetByteArrayFromImage(IFormFile file)
+        {
+            using (var target = new MemoryStream())
+            {
+                file.CopyTo(target);
+                return target.ToArray();
+            }
         }
     }
 }
