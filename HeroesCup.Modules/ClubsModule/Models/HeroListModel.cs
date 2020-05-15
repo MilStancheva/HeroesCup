@@ -1,8 +1,6 @@
-﻿using ClubsModule.Services.Contracts;
-using HeroesCup.Data.Models;
+﻿using HeroesCup.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ClubsModule.Models
 {
@@ -17,6 +15,8 @@ namespace ClubsModule.Models
 
         public string Name { get; set; }
 
-        public string OrganizationName { get; set; }
+        public Guid ClubId { get; set; }
+
+        public string ClubName { get; set; }
     }
 }

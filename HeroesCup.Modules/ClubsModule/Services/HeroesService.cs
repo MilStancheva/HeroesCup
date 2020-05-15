@@ -1,5 +1,4 @@
 ﻿using ClubsModule.Models;
-using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
@@ -7,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services
@@ -21,27 +19,6 @@ namespace ClubsModule.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(Hero hero)
-        {
-            this.dbContext.Heroes.Add(hero);
-            await dbContext.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Hero>> GetAll()
-        {
-            return await dbContext.Heroes.ToListAsync();
-        }
-
-        public async Task<Hero> GetById(Guid id)
-        {
-            return await dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
-        }
-
-        public async Task Update(Hero hero)
-        {
-            this.dbContext.Heroes.Update(hero);
-            await dbContext.SaveChangesAsync();
-        }
         public async Task<HeroListModel> GetHeroListModelAsync(Guid? ownerId)
         {
             var heroes = new List<Hero>();
@@ -71,7 +48,8 @@ namespace ClubsModule.Services
                                 {
                                     Id = m.Id,
                                     Name = m.Name,
-                                    OrganizationName = m.Club.Name
+                                    ClubId = m.ClubId,
+                                    ClubName = m.Club.Name
                                 })
 
             };
@@ -130,7 +108,18 @@ namespace ClubsModule.Services
                 .Where(h => h.HeroId == id)
                 .Select(x => x.Mission);
 
-            var clubs = await this.dbContext.Clubs.ToListAsync();
+            IEnumerable<Club> clubs = null;
+            if (ownerId.HasValue)
+            {
+                clubs = await this.dbContext.Clubs
+                    .Where(c => c.OwnerId == ownerId.Value)
+                    .ToListAsync();
+            }
+            else
+            {
+                clubs = await this.dbContext.Clubs.ToListAsync();
+            }
+
             if (clubs == null)
             {
                 clubs = new List<Club>();

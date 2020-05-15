@@ -31,32 +31,43 @@
         <thead>
             <tr>
                 <th>@Localizer.General["Name"]</th>
+                <th>@Localizer.General["Club"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var hero in Model.Heroes)
             {
-                <tr>
-                    <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesEdit)).Succeeded)
-                        {
-                            <a href="@Url.Action("Edit", new {id = hero.Id})">@hero.Name</a>
-                        }
-                        else
-                        {
-                            <span class="title">@hero.Name</span>
-                        }
-                    </td>
-                    <td class="actions one">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesDelete)).Succeeded)
-                        {
-                            <a class="danger" href="@Url.Action("Delete", new {id = hero.Id})">
-                                <span class="fas fa-trash"></span>
-                            </a>
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", new {id = hero.Id})">@hero.Name</a>
+                    }
+                    else
+                    {
+                        <span class="title">@hero.Name</span>
+                    }
+                </td>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", "Clubs", new {id = hero.ClubId })">@hero.ClubName</a>
+                    }
+                    else
+                    {
+                        <span class="title">@hero.ClubName</span>
+                    }
+                </td>
+                <td class="actions one">
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesDelete)).Succeeded)
+                    {
+                        <a class="danger" href="@Url.Action("Delete", new {id = hero.Id})">
+                            <span class="fas fa-trash"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>
