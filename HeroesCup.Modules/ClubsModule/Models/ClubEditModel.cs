@@ -1,7 +1,6 @@
 ﻿using HeroesCup.Data.Models;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
-using Piranha.Manager.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +10,10 @@ namespace ClubsModule.Models
     {
         public Club Club { get; set; }
 
+        public Hero Coordinator { get; set; }
+
+        public Guid CoordinatorId { get; set; }
+
         [Region]
         public MediaField Logo { get; set; }
 
@@ -19,5 +22,7 @@ namespace ClubsModule.Models
         public IEnumerable<Guid> HeroesIds { get; set; }
 
         public IEnumerable<Mission> Missions { get; set; }
+
+        public IEnumerable<Guid> MissionsIds { get; set; }
     }
 }

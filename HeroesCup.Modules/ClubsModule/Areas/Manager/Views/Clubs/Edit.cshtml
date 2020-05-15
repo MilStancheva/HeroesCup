@@ -7,6 +7,7 @@
 
     var heroes = Model.Heroes;
     var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
+    var heroesSelectList = new SelectList(heroes, "Id", "Name");
 }
 
 @using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
@@ -93,6 +94,14 @@
                             <div class="invalid-feedback">
                                 @Localizer.General["Description is mandatory."]
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Coordinator"]</label>
+                            @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small", required = "" })
                         </div>
                     </div>
                     <div class="col-sm-6">

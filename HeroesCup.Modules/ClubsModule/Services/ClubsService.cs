@@ -3,11 +3,9 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services
@@ -72,6 +70,8 @@ namespace ClubsModule.Services
 
             var model = await CreateClubEditModel(ownerId);
             model.Club = club;
+            model.Coordinator = await this.GetClubCoordinatorAsync(club.Id);
+            model.CoordinatorId = model.Coordinator.Id;
             model.Missions = club.Missions;
             model.Heroes = club.Heroes;
 
@@ -134,6 +134,8 @@ namespace ClubsModule.Services
             club.OrganizationName = model.Club.OrganizationName;
             club.Description = model.Club.Description;
 
+           
+            // set club's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
             {
                 club.Heroes = new List<Hero>();
@@ -144,32 +146,44 @@ namespace ClubsModule.Services
                 }
             }
 
-            if (model.Missions != null && model.Missions.Any())
+            // set clubs coordinator
+            if (model.CoordinatorId != null || model.CoordinatorId != Guid.Empty)
             {
-                club.Missions = model.Missions.Select(m => new Mission()
+                var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == model.CoordinatorId);
+                foreach (var hero in club.Heroes)
                 {
-                    Id = m.Id != Guid.Empty ? m.Id : Guid.NewGuid(),
-                    ClubId = club.Id,
-                    Club = club,
-                    Content = m.Content,
-                    Image = m.Image,
-                    Location = m.Location,
-                    Stars = m.Stars,
-                    Title = m.Title,
-                    Type = MissionType.HeroesCup,
-                    StartDate = m.StartDate,
-                    EndDate = m.EndDate,
-                    SchoolYear = this.getSchoolYear(m.StartDate)
-                }).ToList();
+                    hero.IsCoordinator = false;
+                }
+
+                newCoordinator.IsCoordinator = true;
+            }
+
+            // set club's missions
+            if (model.MissionsIds != null && model.MissionsIds.Any())
+            {
+                club.Missions = new List<Mission>();
+                foreach (var missionId in model.MissionsIds)
+                {
+                    var mission = this.dbContext.Missions.FirstOrDefault(h => h.Id == missionId);
+                    club.Missions.Add(mission);
+                }
             }
 
             await dbContext.SaveChangesAsync();
             return club.Id;
         }
 
-        private int getSchoolYear(long startDate)
+        public async Task<Hero> GetClubCoordinatorAsync(Guid clubId)
         {
-            throw new NotImplementedException();
+            Hero coordinator = null;
+            var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == clubId);
+            if (club == null)
+            {
+                return null;
+            }
+
+            coordinator = club.Heroes.FirstOrDefault(c => c.IsCoordinator);
+            return coordinator;
         }
     }
 }
