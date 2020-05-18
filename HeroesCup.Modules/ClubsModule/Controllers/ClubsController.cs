@@ -77,7 +77,7 @@ namespace ClubsModule.Controllers
         [HttpGet]
         [Route("/manager/club/delete")]
         [Authorize(Policy = Permissions.ClubsDelete)]
-        public  async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var result = await this.clubsService.DeleteAsync(id);
             if (!result)

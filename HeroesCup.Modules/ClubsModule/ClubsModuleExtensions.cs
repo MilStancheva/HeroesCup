@@ -120,8 +120,8 @@ namespace HeroesCup.Modules.ClubsModule
 
                 endpoints.MapClubsModule();
             });
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");            
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");            
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

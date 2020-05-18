@@ -20,7 +20,7 @@ namespace ClubsModule.Models
 
         public string LogoSrc { get; set; }
 
-        public IEnumerable<Hero> Heroes { get; set;}
+        public IEnumerable<Hero> Heroes { get; set; }
 
         public IEnumerable<Guid> HeroesIds { get; set; }
 

@@ -35,7 +35,7 @@ namespace ClubsModule.Services
                     .Include(h => h.Club)
                     .ToListAsync();
             }
-           
+
             if (heroes == null)
             {
                 heroes = new List<Hero>();
@@ -85,18 +85,18 @@ namespace ClubsModule.Services
             Hero hero = null;
             if (ownerId.HasValue)
             {
-               hero = await this.dbContext.Heroes
-                    .Where(h => h.Club.OwnerId == ownerId.Value)
-                    .Include(x => x.HeroMissions)
-                    .ThenInclude(x => x.Mission)
-                    .FirstOrDefaultAsync(h => h.Id == id);
+                hero = await this.dbContext.Heroes
+                     .Where(h => h.Club.OwnerId == ownerId.Value)
+                     .Include(x => x.HeroMissions)
+                     .ThenInclude(x => x.Mission)
+                     .FirstOrDefaultAsync(h => h.Id == id);
             }
             else
             {
-               hero = await this.dbContext.Heroes
-                    .Include(x => x.HeroMissions)
-                    .ThenInclude(x => x.Mission)
-                    .FirstOrDefaultAsync(h => h.Id == id);
+                hero = await this.dbContext.Heroes
+                     .Include(x => x.HeroMissions)
+                     .ThenInclude(x => x.Mission)
+                     .FirstOrDefaultAsync(h => h.Id == id);
             }
 
             if (hero == null)
@@ -171,7 +171,7 @@ namespace ClubsModule.Services
                     HeroId = hero.Id
                 }).ToList();
             }
-            
+
             await dbContext.SaveChangesAsync();
             return hero.Id;
         }

@@ -16,7 +16,7 @@ namespace HeroesCup.Identity
         private readonly IDb db;
         private readonly UserManager<User> userManager;
         private readonly IConfiguration configuration;
-       
+
 
         public IdentitySeed(IDb db, UserManager<User> userManager, IConfiguration configuration)
         {
@@ -116,7 +116,7 @@ namespace HeroesCup.Identity
         private IEnumerable<PermissionItem> GetCoordinatorPermissions()
         {
             var coordinatorPermissions = new HashSet<PermissionItem>();
-            
+
             foreach (var permission in App.Permissions.GetPermissions())
             {
                 var isCoordinatorPermission = permission.Name == ClubsModule.Permissions.Clubs ||

@@ -24,7 +24,7 @@ namespace ClubsModule.Attributes
 
                 if (!this.extensions.Contains(extension.ToLower()))
                 {
-                    return new ValidationResult(string.Format(this.ErrorMessage, string.Join( ", ", this.extensions)));
+                    return new ValidationResult(string.Format(this.ErrorMessage, string.Join(", ", this.extensions)));
                 }
             }
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HeroesCup.Data.Models
 {
-    public class Hero 
+    public class Hero
     {
         [Key]
         public Guid Id { get; set; }
