@@ -100,12 +100,15 @@ namespace ClubsModule.Services
             if (ownerId.HasValue)
             {
                 clubs = await this.dbContext.Clubs
+                     .Include(c => c.Heroes)
                      .Where(c => c.OwnerId == ownerId.Value)
                      .ToListAsync();
             }
             else
             {
-                clubs = await this.dbContext.Clubs.ToListAsync();
+                clubs = await this.dbContext.Clubs
+                    .Include(c => c.Heroes)
+                    .ToListAsync();
             }
 
             if (clubs == null)
@@ -121,7 +124,8 @@ namespace ClubsModule.Services
                                     Id = c.Id,
                                     Name = c.Name,
                                     OrganizationType = c.OrganizationType,
-                                    OrganizationName = c.OrganizationName
+                                    OrganizationName = c.OrganizationName,
+                                    HeroesCount = c.Heroes != null ? c.Heroes.Count() : 0
                                 })
 
             };
@@ -151,7 +155,7 @@ namespace ClubsModule.Services
             club.OrganizationName = model.Club.OrganizationName;
             club.Description = model.Club.Description;
 
-           
+
             // set club's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
             {
@@ -218,7 +222,7 @@ namespace ClubsModule.Services
             {
                 coordinator = club.Heroes.FirstOrDefault(c => c.IsCoordinator);
             }
-            
+
             return coordinator;
         }
 

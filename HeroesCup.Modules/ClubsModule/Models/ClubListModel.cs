@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ClubsModule.Models
 {
@@ -18,5 +17,7 @@ namespace ClubsModule.Models
         public string OrganizationType { get; set; }
 
         public string OrganizationName { get; set; }
+
+        public int HeroesCount { get; set; }
     }
 }
