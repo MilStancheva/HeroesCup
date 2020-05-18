@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Shared\Partial\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace ClubsModule.Attributes
 {
@@ -24,23 +23,11 @@ namespace ClubsModule.Attributes
             {
                 if (!this.extensions.Contains(extension.ToLower()))
                 {
-                    return new ValidationResult(GetErrorMessage());
+                    return new ValidationResult(string.Format(this.ErrorMessage, string.Join( ", ", this.extensions)));
                 }
             }
 
             return ValidationResult.Success;
-        }
-
-        public string GetErrorMessage()
-        {
-            var message = new StringBuilder();
-            message.Append("Allowed file exensions: ");
-            foreach (var extension in this.extensions)
-            {
-                message.Append($"{extension} ");
-            }
-
-            return message.ToString();
         }
     }
 }
