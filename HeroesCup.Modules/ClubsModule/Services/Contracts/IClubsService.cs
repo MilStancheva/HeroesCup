@@ -9,14 +9,14 @@ namespace ClubsModule.Services.Contracts
     {
         Task<ClubListModel> GetClubListModelAsync(Guid? ownerId);
 
-        Task<ClubEditModel> CreateClubEditModel(Guid? ownerId);
+        Task<ClubEditModel> CreateClubEditModelAsync(Guid? ownerId);
 
         Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid? ownerId);
 
-        Task<Guid> SaveClubEditModel(ClubEditModel model);
+        Task<Guid> SaveClubEditModelAsync(ClubEditModel model);
 
         Task<Hero> GetClubCoordinatorAsync(Guid clubId);
 
-        Task<bool> DeleteClub(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

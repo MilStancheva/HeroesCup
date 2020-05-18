@@ -24,7 +24,7 @@ namespace ClubsModule.Services
             this.imagesService = imagesService;
         }
 
-        public async Task<ClubEditModel> CreateClubEditModel(Guid? ownerId)
+        public async Task<ClubEditModel> CreateClubEditModelAsync(Guid? ownerId)
         {
             var missions = new List<Mission>();
             var heroes = new List<Hero>();
@@ -74,7 +74,7 @@ namespace ClubsModule.Services
 
             var missions = club.Missions;
 
-            var model = await CreateClubEditModel(ownerId);
+            var model = await CreateClubEditModelAsync(ownerId);
             model.Club = club;
             var coordinator = await this.GetClubCoordinatorAsync(club.Id);
             if (coordinator != null)
@@ -129,7 +129,7 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<Guid> SaveClubEditModel(ClubEditModel model)
+        public async Task<Guid> SaveClubEditModelAsync(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
                 .Include(c => c.Logo)
@@ -231,7 +231,7 @@ namespace ClubsModule.Services
             }
         }
 
-        public async Task<bool> DeleteClub(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var club = this.dbContext.Clubs.FirstOrDefault(c => c.Id == id);
             if (club == null)

@@ -40,7 +40,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.ClubsAdd)]
         public async Task<IActionResult> Add()
         {
-            var model = await this.clubsService.CreateClubEditModel(this.loggedInUserId);
+            var model = await this.clubsService.CreateClubEditModelAsync(this.loggedInUserId);
             return View("Edit", model);
         }
 
@@ -63,7 +63,7 @@ namespace ClubsModule.Controllers
                 return View("Edit", model);
             }
 
-            var clubId = await this.clubsService.SaveClubEditModel(model);
+            var clubId = await this.clubsService.SaveClubEditModelAsync(model);
             if (clubId != null && clubId != Guid.Empty)
             {
                 SuccessMessage("The club has been saved.");
@@ -79,7 +79,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.ClubsDelete)]
         public  async Task<IActionResult> Delete(Guid id)
         {
-            var result = await this.clubsService.DeleteClub(id);
+            var result = await this.clubsService.DeleteAsync(id);
             if (!result)
             {
                 ErrorMessage("The club could not be deleted.", false);

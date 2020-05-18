@@ -57,7 +57,7 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<HeroEditModel> CreateHeroEditModel(Guid? ownerId)
+        public async Task<HeroEditModel> CreateHeroEditModelAsync(Guid? ownerId)
         {
             var clubs = new List<Club>();
             var missions = new List<Mission>();
@@ -125,7 +125,7 @@ namespace ClubsModule.Services
                 clubs = new List<Club>();
             }
 
-            var model = await CreateHeroEditModel(ownerId);
+            var model = await CreateHeroEditModelAsync(ownerId);
             model.Hero = hero;
             model.Missions = missions;
             model.Clubs = clubs;
@@ -133,7 +133,7 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public async Task<Guid> SaveHeroEditModel(HeroEditModel model)
+        public async Task<Guid> SaveHeroEditModelAsync(HeroEditModel model)
         {
             var hero = await this.dbContext.Heroes
                 .Include(x => x.HeroMissions)
@@ -174,6 +174,19 @@ namespace ClubsModule.Services
             
             await dbContext.SaveChangesAsync();
             return hero.Id;
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var hero = this.dbContext.Heroes.FirstOrDefault(c => c.Id == id);
+            if (hero == null)
+            {
+                return false;
+            }
+
+            this.dbContext.Heroes.Remove(hero);
+            await this.dbContext.SaveChangesAsync();
+            return true;
         }
     }
 }

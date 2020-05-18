@@ -36,7 +36,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.HeroesAdd)]
         public async Task<IActionResult> Add()
         {
-            var model = await this.heroesService.CreateHeroEditModel(this.loggedInUserId);
+            var model = await this.heroesService.CreateHeroEditModelAsync(this.loggedInUserId);
             return View("Edit", model);
         }
 
@@ -54,7 +54,7 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.HeroesSave)]
         public async Task<IActionResult> SaveAsync(HeroEditModel model)
         {
-            var heroId = await this.heroesService.SaveHeroEditModel(model);
+            var heroId = await this.heroesService.SaveHeroEditModelAsync(model);
             if (heroId != null && heroId != Guid.Empty)
             {
                 SuccessMessage("The hero has been saved.");
@@ -63,6 +63,22 @@ namespace ClubsModule.Controllers
 
             ErrorMessage("The hero could not be saved.", false);
             return View("Edit", model);
+        }
+
+        [HttpGet]
+        [Route("/manager/hero/delete")]
+        [Authorize(Policy = Permissions.ClubsDelete)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await this.heroesService.DeleteAsync(id);
+            if (!result)
+            {
+                ErrorMessage("The hero could not be deleted.", false);
+                return RedirectToAction("List");
+            }
+
+            SuccessMessage("The hero has been deleted.");
+            return RedirectToAction("List");
         }
 
     }
