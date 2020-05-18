@@ -186,6 +186,7 @@ namespace ClubsModule.Services
                 }
             }
 
+            // set club logo
             if (model.UploadedLogo != null)
             {
                 var image = new Image();
@@ -228,6 +229,19 @@ namespace ClubsModule.Services
                 file.CopyTo(target);
                 return target.ToArray();
             }
+        }
+
+        public async Task<bool> DeleteClub(Guid id)
+        {
+            var club = this.dbContext.Clubs.FirstOrDefault(c => c.Id == id);
+            if (club == null)
+            {
+                return false;
+            }
+
+            this.dbContext.Clubs.Remove(club);
+            await this.dbContext.SaveChangesAsync();
+            return true;
         }
     }
 }

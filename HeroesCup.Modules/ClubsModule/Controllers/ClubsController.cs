@@ -73,5 +73,21 @@ namespace ClubsModule.Controllers
             ErrorMessage("The club could not be saved.", false);
             return View("Edit", model);
         }
+
+        [HttpGet]
+        [Route("/manager/club/delete")]
+        [Authorize(Policy = Permissions.ClubsDelete)]
+        public  async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await this.clubsService.DeleteClub(id);
+            if (!result)
+            {
+                ErrorMessage("The club could not be deleted.", false);
+                return RedirectToAction("List");
+            }
+
+            SuccessMessage("The club has been deleted.");
+            return RedirectToAction("List");
+        }
     }
 }
