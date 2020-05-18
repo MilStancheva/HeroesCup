@@ -58,6 +58,11 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.ClubsSave)]
         public async Task<IActionResult> SaveAsync(ClubEditModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
             var clubId = await this.clubsService.SaveClubEditModel(model);
             if (clubId != null && clubId != Guid.Empty)
             {

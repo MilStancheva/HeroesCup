@@ -101,12 +101,14 @@
                             <label>@Localizer.General["Logo"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
-                                    <img src="@Model.LogoSrc" alt="User Logo">
+                                    <img src="@Model.LogoSrc" alt="Club Logo">
                                 </div>
                                 <div class="col-6">
                                     <input type="file" asp-for="UploadedLogo" class="form-control" contextmenu="Избери файл" />
+                                    @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger" })                                    
                                 </div>
                             </div>
+                         
                         </div>
                     </div>
                 </div>

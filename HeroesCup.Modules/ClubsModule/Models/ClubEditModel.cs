@@ -1,4 +1,5 @@
-﻿using HeroesCup.Data.Models;
+﻿using ClubsModule.Attributes;
+using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace ClubsModule.Models
 
         public Guid CoordinatorId { get; set; }
 
+        [MaxSizeFile(2 * 1024 * 1024)]
+        [AllowedExtensions(new string[] { ".jpg", ".png" })]
         public IFormFile UploadedLogo { get; set; }
 
         public string LogoSrc { get; set; }
