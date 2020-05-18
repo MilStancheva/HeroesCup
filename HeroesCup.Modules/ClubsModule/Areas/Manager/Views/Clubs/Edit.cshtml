@@ -124,6 +124,14 @@
                             <label>@Localizer.General["Heroes"]</label>
                             @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
                         </div>
+                        <div class="text-right">
+                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded)
+                            {
+                                <a href="@Url.Action("Add", "Heroes")" class="btn btn-labeled btn-primary pull-right">
+                                    <i class="fas fa-plus"></i>@Localizer.General["Add Hero"]
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
