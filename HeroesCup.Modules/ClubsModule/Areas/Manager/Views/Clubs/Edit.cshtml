@@ -104,7 +104,7 @@
                                     <img src="@Model.LogoSrc" alt="Club Logo">
                                 </div>
                                 <div class="col-6">
-                                    <input type="file" asp-for="UploadedLogo" class="form-control" contextmenu="Избери файл" />
+                                    <input type="file" asp-for="UploadedLogo" class="form-control-file" contextmenu="Избери файл" />
                                     @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger" })                                    
                                 </div>
                             </div>
