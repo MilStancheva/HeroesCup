@@ -22,7 +22,7 @@ namespace Piranha.Web
         /// <param name="url">The requested url</param>
         /// <param name="siteId">The requested site id</param>
         /// <returns>The piranha response, null if no matching page was found</returns>
-        public static async Task <IRouteResponse> InvokeAsync(IApi api, string url, Guid siteId)
+        public static async Task<IRouteResponse> InvokeAsync(IApi api, string url, Guid siteId)
         {
             if (!String.IsNullOrWhiteSpace(url) && url.Length > 1)
             {

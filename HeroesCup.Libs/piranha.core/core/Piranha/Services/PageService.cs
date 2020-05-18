@@ -971,7 +971,7 @@ namespace Piranha.Services
         /// </summary>
         /// <param name="model">The page model</param>
         /// <returns>If the page is published</returns>
-        private bool IsPublished (PageBase model)
+        private bool IsPublished(PageBase model)
         {
             return model != null && model.Published.HasValue && model.Published.Value <= DateTime.Now;
         }

@@ -38,7 +38,8 @@ namespace Piranha.Models
         /// <summary>
         /// Validates that the page type is correctly defined.
         /// </summary>
-        public void Ensure() {
+        public void Ensure()
+        {
             if (Regions.Select(r => r.Id).Distinct().Count() != Regions.Count)
             {
                 throw new InvalidOperationException($"Region Id not unique for page type {Id}");

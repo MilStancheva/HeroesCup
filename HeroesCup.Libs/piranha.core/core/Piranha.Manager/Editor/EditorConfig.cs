@@ -55,13 +55,18 @@ namespace Piranha.Manager.Editor
         /// <param name="path">The path to the file.</param>
         public static void FromFile(string path)
         {
-            if (File.Exists(path)) {
-                using (var json = File.OpenRead(path)) {
-                    using (var reader = new StreamReader(json)) {
+            if (File.Exists(path))
+            {
+                using (var json = File.OpenRead(path))
+                {
+                    using (var reader = new StreamReader(json))
+                    {
                         Current = JsonConvert.DeserializeObject<EditorConfig>(reader.ReadToEnd());
                     }
                 }
-            } else {
+            }
+            else
+            {
                 throw new FileNotFoundException($"Editor config { path } not found!");
             }
         }

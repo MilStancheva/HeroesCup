@@ -91,7 +91,8 @@ namespace Piranha.AspNetCore
                         {
                             context.Request.QueryString = new QueryString(context.Request.QueryString.Value + "&" + response.QueryString);
                         }
-                        else {
+                        else
+                        {
                             context.Request.QueryString = new QueryString("?" + response.QueryString);
                         }
                     }

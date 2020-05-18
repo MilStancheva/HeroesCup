@@ -138,7 +138,7 @@ namespace Piranha.Extend.Fields
         /// <returns>True if the fields are equal</returns>
         public static bool operator ==(PageField field1, PageField field2)
         {
-            if ((object) field1 != null && (object) field2 != null)
+            if ((object)field1 != null && (object)field2 != null)
             {
                 return field1.Equals(field2);
             }

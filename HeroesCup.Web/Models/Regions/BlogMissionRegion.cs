@@ -35,7 +35,7 @@ namespace HeroesCup.Models.Regions
         {
             get
             {
-                return DateTime.Parse(this.EndDate.Value.ToString()).ToUniversalTime() - 
+                return DateTime.Parse(this.EndDate.Value.ToString()).ToUniversalTime() -
                     DateTime.Parse(this.EndDate.Value.ToString()).ToUniversalTime();
             }
         }
@@ -64,7 +64,7 @@ namespace HeroesCup.Models.Regions
                 var startYear = value.Value.Year;
                 return startYear.ToString();
             }
-            
+
             if (month >= 1 && month <= 7)
             {
                 var startYear = value.Value.Year - 1;

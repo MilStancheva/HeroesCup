@@ -39,7 +39,8 @@ namespace HeroesCup.Models.Regions
         [Field]
         public HtmlField Body { get; set; }
 
-        public Teaser() {
+        public Teaser()
+        {
             PageLink = new PageField();
             PostLink = new PostField();
         }

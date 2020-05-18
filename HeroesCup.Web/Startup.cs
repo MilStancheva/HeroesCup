@@ -1,4 +1,4 @@
-﻿using HeroesCup.Data;
+﻿﻿using HeroesCup.Data;
 using HeroesCup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

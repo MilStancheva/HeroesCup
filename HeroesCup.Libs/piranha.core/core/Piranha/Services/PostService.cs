@@ -985,7 +985,7 @@ namespace Piranha.Services
         /// </summary>
         /// <param name="model">The posts model</param>
         /// <returns>If the post is published</returns>
-        private bool IsPublished (PostBase model)
+        private bool IsPublished(PostBase model)
         {
             return model != null && model.Published.HasValue && model.Published.Value <= DateTime.Now;
         }
