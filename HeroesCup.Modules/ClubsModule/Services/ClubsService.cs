@@ -16,10 +16,12 @@ namespace ClubsModule.Services
     {
 
         private readonly HeroesCupDbContext dbContext;
+        private readonly IImagesService imagesService;
 
-        public ClubsService(HeroesCupDbContext dbContext)
+        public ClubsService(HeroesCupDbContext dbContext, IImagesService imagesService)
         {
             this.dbContext = dbContext;
+            this.imagesService = imagesService;
         }
 
         public async Task<ClubEditModel> CreateClubEditModel(Guid? ownerId)
@@ -55,11 +57,13 @@ namespace ClubsModule.Services
             {
                 club = await this.dbContext.Clubs
                  .Where(c => c.OwnerId == ownerId.Value)
+                 .Include(c => c.Logo)
                  .FirstOrDefaultAsync(c => c.Id == id);
             }
             else
             {
                 club = await this.dbContext.Clubs
+                    .Include(c => c.Logo)
                     .FirstOrDefaultAsync(c => c.Id == id);
             }
 
@@ -77,6 +81,11 @@ namespace ClubsModule.Services
             {
                 model.Coordinator = coordinator;
                 model.CoordinatorId = model.Coordinator.Id;
+            }
+
+            if (club.Logo != null)
+            {
+                model.LogoSrc = this.imagesService.GetImageSource(club.Logo.ContentType, club.Logo.Bytes);
             }
 
             model.Missions = club.Missions;
@@ -123,6 +132,7 @@ namespace ClubsModule.Services
         public async Task<Guid> SaveClubEditModel(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
+                .Include(c => c.Logo)
                 .Include(c => c.Heroes)
                 .Include(c => c.Missions)
                 .FirstOrDefaultAsync(h => h.Id == model.Club.Id && h.OwnerId == model.Club.OwnerId);
@@ -178,9 +188,16 @@ namespace ClubsModule.Services
 
             if (model.UploadedLogo != null)
             {
-                //club.Logo = GetByteArrayFromImage(img);
-                //model.ImageSourceFileName = System.IO.Path.GetFileName(img.FileName);
-                //model.ImageContentType = img.ContentType;
+                var image = new Image();
+                var bytes = GetByteArrayFromImage(model.UploadedLogo);
+                var filename = Path.GetFileName(model.UploadedLogo.FileName);
+                var contentType = model.UploadedLogo.ContentType;
+                image.Bytes = bytes;
+                image.Filename = filename;
+                image.ContentType = contentType;
+                image.Club = club;
+
+                await this.imagesService.Create(image);
             }
 
             await dbContext.SaveChangesAsync();

@@ -2,6 +2,7 @@ using ClubsModule;
 using ClubsModule.Security;
 using ClubsModule.Services;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
             services.AddTransient<IClubsService, ClubsService>();
+            services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUserManager, UserManager>();
 
             services.AddAuthorization(options =>

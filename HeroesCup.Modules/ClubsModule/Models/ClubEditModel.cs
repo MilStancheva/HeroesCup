@@ -14,7 +14,8 @@ namespace ClubsModule.Models
         public Guid CoordinatorId { get; set; }
 
         public IFormFile UploadedLogo { get; set; }
-        public string LogoUrl { get; set; }
+
+        public string LogoSrc { get; set; }
 
         public IEnumerable<Hero> Heroes { get; set;}
 

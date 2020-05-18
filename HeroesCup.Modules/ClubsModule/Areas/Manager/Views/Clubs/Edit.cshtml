@@ -1,4 +1,4 @@
-@model ClubsModule.Models.ClubEditModel
+﻿@model ClubsModule.Models.ClubEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
 @{
@@ -99,9 +99,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Logo"]</label>
-                            <div class="col-12">
-                                <img src="@Model.LogoUrl" alt="User Logo" asp-append-version="true" />
-                                <input type="file" asp-for="UploadedLogo" class="form-group" />
+                            <div class="row col-12">
+                                <div class="col-6">
+                                    <img src="@Model.LogoSrc" alt="User Logo">
+                                </div>
+                                <div class="col-6">
+                                    <input type="file" asp-for="UploadedLogo" class="form-control" contextmenu="Избери файл" />
+                                </div>
                             </div>
                         </div>
                     </div>

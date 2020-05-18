@@ -56,7 +56,7 @@ namespace ClubsModule.Controllers
         [HttpPost]
         [Route("/manager/club/save")]
         [Authorize(Policy = Permissions.ClubsSave)]
-        public async Task<IActionResult> SaveAsync(ClubEditModel model, IFormFile logo)
+        public async Task<IActionResult> SaveAsync(ClubEditModel model)
         {
             var clubId = await this.clubsService.SaveClubEditModel(model);
             if (clubId != null && clubId != Guid.Empty)
