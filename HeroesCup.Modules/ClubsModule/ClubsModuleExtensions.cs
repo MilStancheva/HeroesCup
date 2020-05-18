@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Piranha;
 using Piranha.Manager;
+using System.Linq;
 
 namespace HeroesCup.Modules.ClubsModule
 {
@@ -137,6 +138,13 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permissions.Missions, Permissions.Missions);
                     policy.RequireClaim(Permissions.MissionsSave, Permissions.MissionsSave);
                 });
+
+                options.AddPolicy(Permissions.MissionsStars, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                    policy.RequireClaim(Permissions.MissionsStars, Permissions.MissionsStars);
+                });
             });
 
             return services;
@@ -156,8 +164,13 @@ namespace HeroesCup.Modules.ClubsModule
 
                 endpoints.MapClubsModule();
             });
+
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js");
+            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/locales/bootstrap-datepicker.bg.min.js");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

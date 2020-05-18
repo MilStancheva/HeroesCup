@@ -29,5 +29,14 @@ namespace ClubsModule.Controllers
             var model = await this.missionsService.GetMissionListModelAsync(this.loggedInUserId);
             return View(model);
         }
+
+        [HttpGet]
+        [Route("/manager/mission")]
+        [Authorize(Policy = Permissions.MissionsAdd)]
+        public async Task<IActionResult> Add()
+        {
+            var model = await this.missionsService.CreateMissionEditModelAsync(this.loggedInUserId);
+            return View("Edit", model);
+        }
     }
 }

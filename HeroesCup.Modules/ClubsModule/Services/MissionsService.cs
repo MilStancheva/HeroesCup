@@ -57,5 +57,29 @@ namespace ClubsModule.Services
 
             return model;
         }
+
+        public async Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId)
+        {
+            var clubs = new List<Club>();
+            if (ownerId.HasValue)
+            {
+                clubs = await this.dbContext.Clubs
+                    .Where(c => c.OwnerId == ownerId.Value).ToListAsync();
+            }
+            else
+            {
+                clubs = await this.dbContext.Clubs.ToListAsync();
+            }
+
+            var model = new MissionEditModel()
+            {
+                Mission = new Mission(),
+                Heroes = new List<Hero>(),
+                Clubs = clubs
+        };
+
+            model.Mission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
+            return model;
+        }
     }
 }
