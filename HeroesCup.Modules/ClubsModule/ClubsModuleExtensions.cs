@@ -22,6 +22,7 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IClubsService, ClubsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IMissionsService, MissionsService>();
 
             services.AddAuthorization(options =>
             {
@@ -100,6 +101,41 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permission.Admin, Permission.Admin);
                     policy.RequireClaim(Permissions.Heroes, Permissions.Heroes);
                     policy.RequireClaim(Permissions.HeroesAddCoordinator, Permissions.HeroesAddCoordinator);
+                });
+
+                // Missions policies
+                options.AddPolicy(Permissions.Missions, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                });
+
+                options.AddPolicy(Permissions.MissionsAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                    policy.RequireClaim(Permissions.MissionsAdd, Permissions.MissionsAdd);
+                });
+
+                options.AddPolicy(Permissions.MissionsDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.MissionsDelete, Permissions.MissionsDelete);
+                });
+
+                options.AddPolicy(Permissions.MissionsEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                    policy.RequireClaim(Permissions.MissionsEdit, Permissions.MissionsEdit);
+                });
+
+                options.AddPolicy(Permissions.MissionsSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                    policy.RequireClaim(Permissions.MissionsSave, Permissions.MissionsSave);
                 });
             });
 

@@ -18,6 +18,12 @@
         public const string ClubsEdit = "HeroesCupClubsEdit";
         public const string ClubsSave = "HeroesCupClubsSave";
 
+        public const string Missions = "HeroesCupMissions";
+        public const string MissionsAdd = "HeroesCupMissionsAdd";
+        public const string MissionsDelete = "HeroesCupMissionsDelete";
+        public const string MissionsEdit = "HeroesCupMissionsEdit";
+        public const string MissionsSave = "HeroesCupMissionsSave";
+
         public static string[] All()
         {
             return new[]
@@ -32,7 +38,12 @@
                 HeroesDelete,
                 HeroesEdit,
                 HeroesSave,
-                HeroesAddCoordinator
+                HeroesAddCoordinator,
+                Missions,
+                MissionsAdd,
+                MissionsDelete,
+                MissionsEdit,
+                MissionsSave
             };
         }
     }

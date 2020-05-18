@@ -19,6 +19,8 @@ namespace HeroesCup.Data
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<HeroMission> HeroMissions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
