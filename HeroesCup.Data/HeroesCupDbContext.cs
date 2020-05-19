@@ -19,7 +19,9 @@ namespace HeroesCup.Data
 
         public DbSet<Image> Images { get; set; }
 
-        public DbSet<HeroMission> HeroMissions { get; set; }
+        public DbSet<ClubImage> ClubImages { get; set; }
+
+        public DbSet<MissionImage> MissionImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,10 +37,31 @@ namespace HeroesCup.Data
                .WithOne(c => c.Club)
                .HasForeignKey(m => m.ClubId);
 
-            modelBuilder.Entity<Club>()
-                .HasOne(c => c.Logo)
-                .WithOne(c => c.Club)
-                .HasForeignKey<Image>(c => c.ClubId);
+            modelBuilder.Entity<ClubImage>()
+            .HasKey(h => new { h.ClubId, h.ImageId });
+
+            modelBuilder.Entity<ClubImage>()
+                .HasOne(hm => hm.Club)
+                .WithMany(h => h.ClubImages)
+                .HasForeignKey(hm => hm.ClubId);
+
+            modelBuilder.Entity<ClubImage>()
+                .HasOne(hm => hm.Image)
+                .WithMany(m => m.ClubImages)
+                .HasForeignKey(hm => hm.ImageId);
+
+            modelBuilder.Entity<MissionImage>()
+           .HasKey(h => new { h.MissionId, h.ImageId });
+
+            modelBuilder.Entity<MissionImage>()
+                .HasOne(hm => hm.Mission)
+                .WithMany(h => h.MissionImages)
+                .HasForeignKey(hm => hm.MissionId);
+
+            modelBuilder.Entity<MissionImage>()
+                .HasOne(hm => hm.Image)
+                .WithMany(m => m.MissionImages)
+                .HasForeignKey(hm => hm.ImageId);
 
             modelBuilder.Entity<Hero>()
                 .HasOne(h => h.Club)

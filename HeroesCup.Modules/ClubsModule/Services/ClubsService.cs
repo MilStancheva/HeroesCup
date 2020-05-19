@@ -57,13 +57,15 @@ namespace ClubsModule.Services
             {
                 club = await this.dbContext.Clubs
                  .Where(c => c.OwnerId == ownerId.Value)
-                 .Include(c => c.Logo)
+                 .Include(c => c.ClubImages)
+                 .ThenInclude(ci => ci.Image)
                  .FirstOrDefaultAsync(c => c.Id == id);
             }
             else
             {
                 club = await this.dbContext.Clubs
-                    .Include(c => c.Logo)
+                    .Include(c => c.ClubImages)
+                    .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
             }
 
@@ -83,9 +85,10 @@ namespace ClubsModule.Services
                 model.CoordinatorId = model.Coordinator.Id;
             }
 
-            if (club.Logo != null)
+            if (club.ClubImages != null && club.ClubImages.Count > 0)
             {
-                model.LogoSrc = this.imagesService.GetImageSource(club.Logo.ContentType, club.Logo.Bytes);
+                var clubImage = await this.imagesService.GetClubImage(club.Id);
+                model.LogoSrc = this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
             }
 
             model.Missions = club.Missions;
@@ -136,7 +139,7 @@ namespace ClubsModule.Services
         public async Task<Guid> SaveClubEditModelAsync(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
-                .Include(c => c.Logo)
+                .Include(c => c.ClubImages)
                 .Include(c => c.Heroes)
                 .Include(c => c.Missions)
                 .FirstOrDefaultAsync(h => h.Id == model.Club.Id && h.OwnerId == model.Club.OwnerId);
@@ -194,15 +197,14 @@ namespace ClubsModule.Services
             if (model.UploadedLogo != null)
             {
                 var image = new Image();
-                var bytes = GetByteArrayFromImage(model.UploadedLogo);
-                var filename = Path.GetFileName(model.UploadedLogo.FileName);
-                var contentType = model.UploadedLogo.ContentType;
+                var bytes = this.imagesService.GetByteArrayFromImage(model.UploadedLogo);
+                var filename = this.imagesService.GetFilename(model.UploadedLogo);
+                var contentType = this.imagesService.GetFileContentType(model.UploadedLogo);
                 image.Bytes = bytes;
                 image.Filename = filename;
                 image.ContentType = contentType;
-                image.Club = club;
 
-                await this.imagesService.Create(image);
+                await this.imagesService.CreateClubImageAsync(image, club);
             }
 
             await dbContext.SaveChangesAsync();
@@ -224,15 +226,6 @@ namespace ClubsModule.Services
             }
 
             return coordinator;
-        }
-
-        private byte[] GetByteArrayFromImage(IFormFile file)
-        {
-            using (var target = new MemoryStream())
-            {
-                file.CopyTo(target);
-                return target.ToArray();
-            }
         }
 
         public async Task<bool> DeleteAsync(Guid id)

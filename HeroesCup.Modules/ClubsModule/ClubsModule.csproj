@@ -20,7 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="assets\src\js\mission-datetimepicker.js" />
+    <Compile Remove="Resources\**" />
+    <Content Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Manager\Views\Shared\Partial\" />
+    <Folder Include="Areas\Manager\Views\" />
   </ItemGroup>
 
 </Project>

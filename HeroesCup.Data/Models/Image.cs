@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
 
 namespace HeroesCup.Data.Models
 {
@@ -12,7 +14,9 @@ namespace HeroesCup.Data.Models
 
         public string ContentType { get; set; }
 
-        public Guid? ClubId { get; set; }
-        public Club Club { get; set; }
+        public ICollection<ClubImage> ClubImages { get; set; }
+
+        public ICollection<MissionImage> MissionImages { get; set; }
+
     }
 }
