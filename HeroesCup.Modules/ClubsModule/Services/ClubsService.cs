@@ -87,7 +87,7 @@ namespace ClubsModule.Services
 
             if (club.ClubImages != null && club.ClubImages.Count > 0)
             {
-                var clubImage = await this.dbContext.ClubImages.Where(ci => ci.ClubId == club.Id).FirstOrDefaultAsync();
+                var clubImage = await this.imagesService.GetClubImage(club.Id);
                 model.LogoSrc = this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
             }
 
@@ -197,18 +197,13 @@ namespace ClubsModule.Services
             if (model.UploadedLogo != null)
             {
                 var image = new Image();
-                var bytes = GetByteArrayFromImage(model.UploadedLogo);
-                var filename = Path.GetFileName(model.UploadedLogo.FileName);
-                var contentType = model.UploadedLogo.ContentType;
+                var bytes = this.imagesService.GetByteArrayFromImage(model.UploadedLogo);
+                var filename = this.imagesService.GetFilename(model.UploadedLogo);
+                var contentType = this.imagesService.GetFileContentType(model.UploadedLogo);
                 image.Bytes = bytes;
                 image.Filename = filename;
                 image.ContentType = contentType;
-                this.dbContext.ClubImages.Add(new ClubImage()
-                {
-                    Club = club,
-                    Image = image
-                });
-
+                
                 await this.imagesService.CreateClubImageAsync(image, club);
             }
 
@@ -231,15 +226,6 @@ namespace ClubsModule.Services
             }
 
             return coordinator;
-        }
-
-        private byte[] GetByteArrayFromImage(IFormFile file)
-        {
-            using (var target = new MemoryStream())
-            {
-                file.CopyTo(target);
-                return target.ToArray();
-            }
         }
 
         public async Task<bool> DeleteAsync(Guid id)
