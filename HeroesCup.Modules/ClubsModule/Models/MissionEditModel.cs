@@ -16,12 +16,12 @@ namespace ClubsModule.Models
         public IFormFile Image { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime UploadedStartDate { get; set; } = DateTime.Now;
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime UploadedStartDate { get; set; } = DateTime.UtcNow;
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime UploadedEndDate { get; set; } = DateTime.Now;
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime UploadedEndDate { get; set; } = DateTime.UtcNow;
 
         public string ImageSrc { get; set; }
 

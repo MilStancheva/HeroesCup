@@ -167,9 +167,10 @@ namespace HeroesCup.Modules.ClubsModule
 
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js");
-            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/locales/bootstrap-datepicker.bg.min.js");
+
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
 
             return builder.UseStaticFiles(new StaticFileOptions

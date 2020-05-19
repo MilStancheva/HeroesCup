@@ -73,12 +73,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Start Date"]</label>
-                            <div class='input-group date' id='start_date'>
-                                <input asp-for="UploadedStartDate" type="text" class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="input-group-text"><span class="fa fa-calendar"></span></span>
-                                </span>
-                            </div>
+                            <input asp-for="UploadedStartDate" type="text" id='start_date' />
                             <div class="invalid-feedback">
                                 @Localizer.General["Start date is mandatory."]
                             </div>
@@ -87,12 +82,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["End Date"]</label>
-                            <div class='input-group date' id='end_date'>
-                                <input asp-for="UploadedEndDate" type="text" class="form-control" />
-                                <span class="input-group-addon">
-                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                </span>
-                            </div>
+                            <input asp-for="UploadedEndDate" type="text" id='end_date' />
                             <div class="invalid-feedback">
                                 @Localizer.General["End date is mandatory."]
                             </div>
