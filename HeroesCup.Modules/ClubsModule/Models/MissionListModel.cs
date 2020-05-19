@@ -19,5 +19,7 @@ namespace ClubsModule.Models
         public string ClubName { get; set; }
 
         public int HeroesCount { get; set; }
+
+        public bool IsPublished { get; set; }
     }
 }

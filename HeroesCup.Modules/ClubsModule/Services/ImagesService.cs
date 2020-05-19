@@ -119,5 +119,10 @@ namespace ClubsModule.Services
                 await this.dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task<MissionImage> GetMissionImage(Guid missionId)
+        {
+            return await this.dbContext.MissionImages.Where(mi => mi.MissionId == missionId).FirstOrDefaultAsync();
+        }
     }
 }

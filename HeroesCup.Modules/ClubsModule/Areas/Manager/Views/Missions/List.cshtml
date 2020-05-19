@@ -33,6 +33,7 @@
                 <th>@Localizer.General["Title"]</th>
                 <th>@Localizer.General["Club"]</th>
                 <th>@Localizer.General["Heroes"]</th>
+                <th>@Localizer.General["Published"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
@@ -62,6 +63,9 @@
                 </td>
                 <td>
                     <span class="title">@mission.HeroesCount</span>
+                </td>
+                <td>
+                    <span class="title">@mission.IsPublished</span>
                 </td>
                 <td class="actions one">
                     @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsDelete)).Succeeded)

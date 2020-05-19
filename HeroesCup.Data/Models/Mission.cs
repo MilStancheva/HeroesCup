@@ -35,7 +35,7 @@ namespace HeroesCup.Data.Models
 
         public Guid OwnerId { get; set; }
 
-        public bool isPublished { get; set; }
+        public bool IsPublished { get; set; }
     }
 
     public enum MissionType

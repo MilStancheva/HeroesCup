@@ -54,7 +54,8 @@ namespace ClubsModule.Services
                                     Title = m.Title,
                                     ClubId = m.ClubId,
                                     ClubName = m.Club.Name,
-                                    HeroesCount = m.HeroMissions != null ? m.HeroMissions.Where(hm => hm.MissionId == m.Id).Count() : 0
+                                    HeroesCount = m.HeroMissions != null ? m.HeroMissions.Where(hm => hm.MissionId == m.Id).Count() : 0,
+                                    IsPublished = m.IsPublished
                                 })
 
             };
@@ -118,7 +119,7 @@ namespace ClubsModule.Services
             mission.Content = model.Mission.Content;
             mission.TimeheroesUrl = model.Mission.TimeheroesUrl;
             mission.Type = model.Mission.Type;
-            mission.isPublished = false;
+            mission.IsPublished = false;
 
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
@@ -199,10 +200,61 @@ namespace ClubsModule.Services
                 return false;
             }
 
-            mission.isPublished = true;
+            mission.IsPublished = true;
             await this.dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId)
+        {
+            Mission mission = null;
+            if (ownerId.HasValue)
+            {
+                mission = await this.dbContext.Missions
+                 .Where(c => c.OwnerId == ownerId.Value)
+                 .Include(c => c.HeroMissions)
+                 .ThenInclude(m => m.Hero)
+                 .Include(c => c.MissionImages)
+                 .ThenInclude(ci => ci.Image)
+                 .FirstOrDefaultAsync(c => c.Id == id);
+            }
+            else
+            {
+                mission = await this.dbContext.Missions
+                    .Include(c => c.MissionImages)
+                    .ThenInclude(ci => ci.Image)
+                    .FirstOrDefaultAsync(c => c.Id == id);
+            }
+
+            if (mission == null)
+            {
+                return null;
+            }
+
+            var model = await CreateMissionEditModelAsync(ownerId);
+            model.Mission = mission;
+
+            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
+            {
+                var missionImage = await this.imagesService.GetMissionImage(mission.Id);
+                model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+            }
+
+            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToString();
+            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToString();
+
+            if (mission.HeroMissions != null && mission.HeroMissions.Count > 0)
+            {
+                foreach (var heroMission in mission.HeroMissions)
+                {
+                    var hero = await this.dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == heroMission.HeroId);
+                    model.Heroes.Add(hero);
+                }
+            }
+            
+
+            return model;
         }
     }
 }

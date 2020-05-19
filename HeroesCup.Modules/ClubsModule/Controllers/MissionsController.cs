@@ -81,5 +81,14 @@ namespace ClubsModule.Controllers
             ErrorMessage("The mission could not be published.", false);
             return View("Edit", model);
         }
+
+        [HttpGet]
+        [Route("/manager/mission/{id:Guid}")]
+        [Authorize(Policy = Permissions.ClubsEdit)]
+        public async Task<IActionResult> EditAsync(Guid id)
+        {
+            var model = await this.missionsService.GetMissionEditModelByIdAsync(id, this.loggedInUserId);
+            return View(model);
+        }
     }
 }
