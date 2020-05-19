@@ -57,13 +57,15 @@ namespace ClubsModule.Services
             {
                 club = await this.dbContext.Clubs
                  .Where(c => c.OwnerId == ownerId.Value)
-                 .Include(c => c.Logo)
+                 .Include(c => c.ClubImages)
+                 .ThenInclude(ci => ci.Image)
                  .FirstOrDefaultAsync(c => c.Id == id);
             }
             else
             {
                 club = await this.dbContext.Clubs
-                    .Include(c => c.Logo)
+                    .Include(c => c.ClubImages)
+                    .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
             }
 
@@ -83,9 +85,10 @@ namespace ClubsModule.Services
                 model.CoordinatorId = model.Coordinator.Id;
             }
 
-            if (club.Logo != null)
+            if (club.ClubImages != null && club.ClubImages.Count > 0)
             {
-                model.LogoSrc = this.imagesService.GetImageSource(club.Logo.ContentType, club.Logo.Bytes);
+                var clubImage = await this.dbContext.ClubImages.Where(ci => ci.ClubId == club.Id).FirstOrDefaultAsync();
+                model.LogoSrc = this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
             }
 
             model.Missions = club.Missions;
@@ -136,7 +139,7 @@ namespace ClubsModule.Services
         public async Task<Guid> SaveClubEditModelAsync(ClubEditModel model)
         {
             var club = await this.dbContext.Clubs
-                .Include(c => c.Logo)
+                .Include(c => c.ClubImages)
                 .Include(c => c.Heroes)
                 .Include(c => c.Missions)
                 .FirstOrDefaultAsync(h => h.Id == model.Club.Id && h.OwnerId == model.Club.OwnerId);
@@ -200,9 +203,13 @@ namespace ClubsModule.Services
                 image.Bytes = bytes;
                 image.Filename = filename;
                 image.ContentType = contentType;
-                image.Club = club;
+                this.dbContext.ClubImages.Add(new ClubImage()
+                {
+                    Club = club,
+                    Image = image
+                });
 
-                await this.imagesService.Create(image);
+                await this.imagesService.CreateClubImageAsync(image, club);
             }
 
             await dbContext.SaveChangesAsync();

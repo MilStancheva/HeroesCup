@@ -17,19 +17,22 @@ namespace ClubsModule.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(Image image)
+        public async Task CreateClubImageAsync(Image image, Club club)
         {
-            var oldImage = this.dbContext.Images.FirstOrDefault(i => i.ClubId == image.ClubId);
-            if (oldImage != null)
+            var oldClubImages = this.dbContext.ClubImages.Where(ci => ci.ClubId == club.Id);
+            if (oldClubImages != null)
             {
-                await this.DeleteImage(oldImage.Id);
+                foreach (var clubImage in oldClubImages)
+                {
+                    await this.DeleteClubImageAsync(clubImage.Image.Id);
+                }
             }
 
             this.dbContext.Images.Add(image);
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteImage(Guid id)
+        public async Task DeleteClubImageAsync(Guid id)
         {
             var image = this.dbContext.Images.FirstOrDefault(i => i.Id == id);
             this.dbContext.Images.Remove(image);

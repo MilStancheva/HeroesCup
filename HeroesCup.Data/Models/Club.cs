@@ -12,10 +12,6 @@ namespace HeroesCup.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public Guid? LogoId { get; set; }
-
-        public Image Logo { get; set; }
-
         public string OrganizationName { get; set; }
 
         public string OrganizationType { get; set; }
@@ -29,6 +25,8 @@ namespace HeroesCup.Data.Models
         public ICollection<Hero> Heroes { get; set; }
 
         public ICollection<Mission> Missions { get; set; }
+
+        public ICollection<ClubImage> ClubImages { get; set; }
 
         public Guid OwnerId { get; set; }
     }

@@ -9,8 +9,6 @@ namespace HeroesCup.Data.Models
 
         public string Title { get; set; }
 
-        public byte[] Image { get; set; }
-
         public MissionType Type { get; set; }
 
         public string Location { get; set; }
@@ -27,6 +25,8 @@ namespace HeroesCup.Data.Models
         public Club Club { get; set; }
 
         public ICollection<HeroMission> HeroMissions { get; set; }
+
+        public ICollection<MissionImage> MissionImages { get; set; }
 
         public string Content { get; set; }
 
