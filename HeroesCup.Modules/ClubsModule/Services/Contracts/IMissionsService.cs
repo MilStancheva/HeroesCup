@@ -9,5 +9,7 @@ namespace ClubsModule.Services.Contracts
         Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId);
 
         Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId);
+
+        Task<Guid> SaveMissionEditModelAsync(MissionEditModel model);
     }
 }

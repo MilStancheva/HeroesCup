@@ -17,11 +17,11 @@ namespace ClubsModule.Models
 
         [DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime UploadedStartDate { get; set; } = DateTime.UtcNow;
+        public DateTime UploadedStartDate { get; set; }
 
         [DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime UploadedEndDate { get; set; } = DateTime.UtcNow;
+        public DateTime UploadedEndDate { get; set; }
 
         public string ImageSrc { get; set; }
 
@@ -31,6 +31,6 @@ namespace ClubsModule.Models
 
         public IEnumerable<Club> Clubs { get; set; }
 
-        public IEnumerable<Guid> ClubsIds { get; set; }
+        public Guid ClubId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ClubsModule.Security;
+﻿using ClubsModule.Models;
+using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,27 @@ namespace ClubsModule.Controllers
         public async Task<IActionResult> Add()
         {
             var model = await this.missionsService.CreateMissionEditModelAsync(this.loggedInUserId);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [Route("/manager/mission/save")]
+        [Authorize(Policy = Permissions.MissionsSave)]
+        public async Task<IActionResult> SaveAsync(MissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var clubId = await this.missionsService.SaveMissionEditModelAsync(model);
+            if (clubId != null && clubId != Guid.Empty)
+            {
+                SuccessMessage("The mission has been saved.");
+                return RedirectToAction("Edit", new { id = clubId });
+            }
+
+            ErrorMessage("The mission could not be saved.", false);
             return View("Edit", model);
         }
     }

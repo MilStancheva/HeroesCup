@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="assets\src\js\libs\bootstrap-datepicker.js" />
-    <None Remove="assets\src\js\libs\bootstrap-datepicker.min.js" />
-    <None Remove="assets\src\locales\bootstrap-datepicker.bg.min.js" />
+    <None Remove="assets\src\js\mission-datetimepicker.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Manager\Views\Shared\Partial\" />
-    <Folder Include="assets\src\css\libs\" />
   </ItemGroup>
 
 </Project>
