@@ -256,5 +256,18 @@ namespace ClubsModule.Services
 
             return model;
         }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var mission = this.dbContext.Missions.FirstOrDefault(c => c.Id == id);
+            if (mission == null)
+            {
+                return false;
+            }
+
+            this.dbContext.Missions.Remove(mission);
+            await this.dbContext.SaveChangesAsync();
+            return true;
+        }
     }
 }

@@ -121,7 +121,7 @@ namespace HeroesCup.Modules.ClubsModule
                 options.AddPolicy(Permissions.MissionsDelete, policy =>
                 {
                     policy.RequireClaim(Permission.Admin, Permission.Admin);
-                    policy.RequireClaim(Permissions.Missions, Permissions.Heroes);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
                     policy.RequireClaim(Permissions.MissionsDelete, Permissions.MissionsDelete);
                 });
 

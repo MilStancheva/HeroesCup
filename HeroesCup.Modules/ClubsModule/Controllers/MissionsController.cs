@@ -84,11 +84,27 @@ namespace ClubsModule.Controllers
 
         [HttpGet]
         [Route("/manager/mission/{id:Guid}")]
-        [Authorize(Policy = Permissions.ClubsEdit)]
+        [Authorize(Policy = Permissions.MissionsEdit)]
         public async Task<IActionResult> EditAsync(Guid id)
         {
             var model = await this.missionsService.GetMissionEditModelByIdAsync(id, this.loggedInUserId);
             return View(model);
+        }
+
+        [HttpGet]
+        [Route("/manager/mission/delete")]
+        [Authorize(Policy = Permissions.MissionsDelete)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await this.missionsService.DeleteAsync(id);
+            if (!result)
+            {
+                ErrorMessage("The mission could not be deleted.", false);
+                return RedirectToAction("List");
+            }
+
+            SuccessMessage("The mission has been deleted.");
+            return RedirectToAction("List");
         }
     }
 }
