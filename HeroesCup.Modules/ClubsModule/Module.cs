@@ -33,7 +33,8 @@ namespace HeroesCup.Modules.ClubsModule
             new PermissionItem { Name = Permissions.MissionsDelete, Title = "Delete Missions", Category = "Missions", IsInternal = true },
             new PermissionItem { Name = Permissions.MissionsEdit, Title = "Edit Missions", Category = "Missions", IsInternal = true },
             new PermissionItem { Name = Permissions.MissionsSave, Title = "Save Missions", Category = "Missions", IsInternal = true },
-              new PermissionItem { Name = Permissions.MissionsStars, Title = "Stars Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsStars, Title = "Stars Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsPublish, Title = "Publish Missions", Category = "Missions", IsInternal = true },
         };
 
         /// <summary>

@@ -145,6 +145,13 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permissions.Missions, Permissions.Missions);
                     policy.RequireClaim(Permissions.MissionsStars, Permissions.MissionsStars);
                 });
+
+                options.AddPolicy(Permissions.MissionsPublish, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Missions, Permissions.Missions);
+                    policy.RequireClaim(Permissions.MissionsPublish, Permissions.MissionsPublish);
+                });
             });
 
             return services;

@@ -50,14 +50,35 @@ namespace ClubsModule.Controllers
                 return View("Edit", model);
             }
 
-            var clubId = await this.missionsService.SaveMissionEditModelAsync(model);
-            if (clubId != null && clubId != Guid.Empty)
+            var missionId = await this.missionsService.SaveMissionEditModelAsync(model);
+            if (missionId != null && missionId != Guid.Empty)
             {
                 SuccessMessage("The mission has been saved.");
-                return RedirectToAction("Edit", new { id = clubId });
+                return RedirectToAction("Edit", new { id = missionId });
             }
 
             ErrorMessage("The mission could not be saved.", false);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [Route("/manager/mission/publish")]
+        [Authorize(Policy = Permissions.MissionsSave)]
+        public async Task<IActionResult> PublishAsync(MissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionsService.PublishMissionEditModelAsync(model.Mission.Id);
+            if (result)
+            {
+                SuccessMessage("The mission has been published.");
+                return RedirectToAction("Edit", new { id = model.Mission.Id });
+            }
+
+            ErrorMessage("The mission could not be published.", false);
             return View("Edit", model);
         }
     }

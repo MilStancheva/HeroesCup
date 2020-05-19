@@ -1,10 +1,12 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Common;
+using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,10 +15,12 @@ namespace ClubsModule.Services
     public class MissionsService : IMissionsService
     {
         private readonly HeroesCupDbContext dbContext;
+        private readonly IImagesService imagesService;
 
-        public MissionsService(HeroesCupDbContext dbContext)
+        public MissionsService(HeroesCupDbContext dbContext, IImagesService imagesService)
         {
             this.dbContext = dbContext;
+            this.imagesService = imagesService;
         }
 
         public async Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId)
@@ -75,7 +79,12 @@ namespace ClubsModule.Services
             {
                 Mission = new Mission(),
                 Heroes = new List<Hero>(),
-                Clubs = clubs
+                Clubs = clubs,
+                MissionTypes = new MissionType[]
+                {
+                    MissionType.TimeheroesMission,
+                    MissionType.HeroesCupMission
+                }
         };
 
             model.Mission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
@@ -85,7 +94,8 @@ namespace ClubsModule.Services
         public async Task<Guid> SaveMissionEditModelAsync(MissionEditModel model)
         {
             var mission = await this.dbContext.Missions
-                .Include(c => c.Image)
+                .Include(c => c.MissionImages)
+                .ThenInclude(m => m.Image)
                 .Include(m => m.Club)               
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
@@ -100,11 +110,15 @@ namespace ClubsModule.Services
             mission.Title = model.Mission.Title;
             mission.Location = model.Mission.Location;
             mission.Stars = model.Mission.Stars;
-            //mission.StartDate = model.UploadedStartDate
-            //mission.EndDate = model.UploadedEndDate
+            var startDate = DateTime.ParseExact(model.UploadedStartDate, "dd/mm/yyyy", CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact(model.UploadedEndDate, "dd/mm/yyyy", CultureInfo.InvariantCulture);
+            mission.StartDate = startDate.ToUnixMilliseconds();
+            mission.EndDate = endDate.ToUnixMilliseconds();
+            mission.SchoolYear = CalculateSchoolYear(startDate);
             mission.Content = model.Mission.Content;
-            mission.Club = model.Mission.Club;
-            mission.SchoolYear = this.CalculateSchoolYear(mission.StartDate);
+            mission.TimeheroesUrl = model.Mission.TimeheroesUrl;
+            mission.Type = model.Mission.Type;
+            mission.isPublished = false;
 
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
@@ -128,28 +142,67 @@ namespace ClubsModule.Services
                 mission.Club = newOrganizator;
             }
 
-            // set club logo
-            //if (model.Image != null)
-            //{
-            //    var image = new Image();
-            //    var bytes = GetByteArrayFromImage(model.UploadedLogo);
-            //    var filename = Path.GetFileName(model.Image.FileName);
-            //    var contentType = model.Image.ContentType;
-            //    image.Bytes = bytes;
-            //    image.Filename = filename;
-            //    image.ContentType = contentType;
-            //    image.Club = club;
+            // set mission image
+            if (model.Image != null)
+            {
+                var image = new Image();
+                var bytes = this.imagesService.GetByteArrayFromImage(model.Image);
+                var filename = this.imagesService.GetFilename(model.Image);
+                var contentType = this.imagesService.GetFileContentType(model.Image);
+                image.Bytes = bytes;
+                image.Filename = filename;
+                image.ContentType = contentType;
 
-            //    await this.imagesService.Create(image);
-            //}
+                await this.imagesService.CreateMissionImageAsync(image, mission);
+            }
 
             await dbContext.SaveChangesAsync();
             return mission.Id;
         }
 
-        private int CalculateSchoolYear(long startDate)
+        private string CalculateSchoolYear(DateTime startDate)
         {
-            throw new NotImplementedException();
+            var startYear = getStartSchoolYear(startDate);
+            var endYear = getEndSchoolYear(int.Parse(startYear));
+
+            return $"{startYear} / {endYear}";
+        }
+
+        private String getEndSchoolYear(int value)
+        {
+            return (value + 1).ToString();
+        }
+
+        private String getStartSchoolYear(DateTime? value)
+        {
+            var month = value.Value.Month;
+            if (month >= 8 && month <= 12)
+            {
+                var startYear = value.Value.Year;
+                return startYear.ToString();
+            }
+
+            if (month >= 1 && month <= 7)
+            {
+                var startYear = value.Value.Year - 1;
+                return startYear.ToString();
+            }
+
+            return value.Value.Year.ToString();
+        }
+
+        public async Task<bool> PublishMissionEditModelAsync(Guid missionId)
+        {
+            var mission = await this.dbContext.Missions.FirstOrDefaultAsync(m => m.Id == missionId);
+            if (mission == null)
+            {
+                return false;
+            }
+
+            mission.isPublished = true;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }

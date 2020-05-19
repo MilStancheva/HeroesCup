@@ -11,5 +11,7 @@ namespace ClubsModule.Services.Contracts
         Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId);
 
         Task<Guid> SaveMissionEditModelAsync(MissionEditModel model);
+
+        Task<bool> PublishMissionEditModelAsync(Guid missionId);
     }
 }

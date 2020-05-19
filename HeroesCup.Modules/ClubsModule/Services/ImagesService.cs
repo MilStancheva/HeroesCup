@@ -86,5 +86,38 @@ namespace ClubsModule.Services
         {
             return file.ContentType;
         }
+
+        public async Task CreateMissionImageAsync(Image image, Mission mission)
+        {
+            var oldMissionImages = this.dbContext.MissionImages.Where(mi => mi.MissionId == mission.Id)
+                .Include(mi => mi.Image);
+
+            if (oldMissionImages != null)
+            {
+                foreach (var missionImage in oldMissionImages)
+                {
+                    await this.DeleteMissionImageAsync(missionImage);
+                }
+            }
+
+            this.dbContext.Images.Add(image);
+            this.dbContext.MissionImages.Add(new MissionImage()
+            {
+                Mission = mission,
+                Image = image
+            });
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteMissionImageAsync(MissionImage missionImage, bool commit = false)
+        {
+            this.dbContext.Images.Remove(missionImage.Image);
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

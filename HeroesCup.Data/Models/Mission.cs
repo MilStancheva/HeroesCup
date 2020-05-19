@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HeroesCup.Data.Models
 {
@@ -17,7 +18,7 @@ namespace HeroesCup.Data.Models
 
         public long EndDate { get; set; }
 
-        public int SchoolYear { get; set; }
+        public string SchoolYear { get; set; }
 
         public int Stars { get; set; }
 
@@ -33,11 +34,16 @@ namespace HeroesCup.Data.Models
         public string TimeheroesUrl { get; set; }
 
         public Guid OwnerId { get; set; }
+
+        public bool isPublished { get; set; }
     }
 
     public enum MissionType
     {
-        TimeheroesLink = 0,
-        HeroesCup = 1
+        [Display(Name = "Timeheroes Mission")]
+        TimeheroesMission = 0,
+
+        [Display(Name = "HeroesCup Mission")]
+        HeroesCupMission = 1
     }
 }

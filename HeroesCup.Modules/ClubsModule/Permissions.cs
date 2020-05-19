@@ -24,6 +24,7 @@
         public const string MissionsEdit = "HeroesCupMissionsEdit";
         public const string MissionsSave = "HeroesCupMissionsSave";
         public const string MissionsStars = "HeroesCupMissionsStars";
+        public const string MissionsPublish = "HeroesCupMissionsPublish";
 
         public static string[] All()
         {
@@ -45,7 +46,8 @@
                 MissionsDelete,
                 MissionsEdit,
                 MissionsSave,
-                MissionsStars
+                MissionsStars,
+                MissionsPublish
             };
         }
     }
