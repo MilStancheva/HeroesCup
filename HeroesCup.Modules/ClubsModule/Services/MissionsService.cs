@@ -6,7 +6,6 @@ using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -111,8 +110,8 @@ namespace ClubsModule.Services
             mission.Title = model.Mission.Title;
             mission.Location = model.Mission.Location;
             mission.Stars = model.Mission.Stars;
-            var startDate = DateTime.ParseExact(model.UploadedStartDate, "dd/mm/yyyy", CultureInfo.InvariantCulture);
-            var endDate = DateTime.ParseExact(model.UploadedEndDate, "dd/mm/yyyy", CultureInfo.InvariantCulture);
+            var startDate = DateTime.Parse(model.UploadedStartDate);
+            var endDate = DateTime.Parse(model.UploadedEndDate);
             mission.StartDate = startDate.ToUnixMilliseconds();
             mission.EndDate = endDate.ToUnixMilliseconds();
             mission.SchoolYear = CalculateSchoolYear(startDate);
@@ -169,27 +168,27 @@ namespace ClubsModule.Services
             return $"{startYear} / {endYear}";
         }
 
-        private String getEndSchoolYear(int value)
+        private string getEndSchoolYear(int startYear)
         {
-            return (value + 1).ToString();
+            return (startYear + 1).ToString();
         }
 
-        private String getStartSchoolYear(DateTime? value)
+        private string getStartSchoolYear(DateTime? startDate)
         {
-            var month = value.Value.Month;
+            var month = startDate.Value.Month;
             if (month >= 8 && month <= 12)
             {
-                var startYear = value.Value.Year;
+                var startYear = startDate.Value.Year;
                 return startYear.ToString();
             }
 
             if (month >= 1 && month <= 7)
             {
-                var startYear = value.Value.Year - 1;
+                var startYear = startDate.Value.Year - 1;
                 return startYear.ToString();
             }
 
-            return value.Value.Year.ToString();
+            return startDate.Value.Year.ToString();
         }
 
         public async Task<bool> PublishMissionEditModelAsync(Guid missionId)
@@ -241,8 +240,8 @@ namespace ClubsModule.Services
                 model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
             }
 
-            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToString();
-            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToString();
+            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString();
+            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString();
 
             if (mission.HeroMissions != null && mission.HeroMissions.Count > 0)
             {

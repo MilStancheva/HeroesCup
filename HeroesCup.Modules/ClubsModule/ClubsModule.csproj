@@ -27,6 +27,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="assets\src\images\User.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="assets\src\images\User.svg" />
+    <None Remove="assets\src\js\editor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="assets\src\images\User.svg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.4" />
   </ItemGroup>
 
