@@ -22,7 +22,7 @@ namespace ClubsModule.Models
 
         public ICollection<Hero> Heroes { get; set; }
 
-        public IEnumerable<Guid> HeroesIds { get; set; }
+        public ICollection<Guid> HeroesIds { get; set; }
 
         public IEnumerable<Club> Clubs { get; set; }
 

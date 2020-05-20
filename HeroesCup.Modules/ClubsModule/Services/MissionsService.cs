@@ -93,6 +93,7 @@ namespace ClubsModule.Services
             {
                 Mission = new Mission(),
                 Heroes = heroes,
+                HeroesIds = new List<Guid>(),
                 Clubs = clubs,
                 MissionTypes = new MissionType[]
                 {
@@ -137,16 +138,8 @@ namespace ClubsModule.Services
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
             {
-                var heroMissions = new List<HeroMission>();
-                foreach (var heroId in model.HeroesIds)
-                {
-                    var hero = this.dbContext.Heroes.FirstOrDefault(h => h.Id == heroId);
-
-                    heroMissions.Add(new HeroMission() { 
-                        Hero = hero,
-                        Mission = mission
-                    });
-                }
+                await DeleteHeroMissions(mission);
+                await AddHeroesToMission(mission, model.HeroesIds, true);
             }
 
             // set mission organizer
@@ -262,7 +255,7 @@ namespace ClubsModule.Services
                 foreach (var heroMission in mission.HeroMissions)
                 {
                     var hero = await this.dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == heroMission.HeroId);
-                    model.Heroes.Add(hero);
+                    model.HeroesIds.Add(hero.Id);
                 }
             }
             
@@ -282,5 +275,41 @@ namespace ClubsModule.Services
             await this.dbContext.SaveChangesAsync();
             return true;
         }
+
+        private async Task DeleteHeroMissions(Mission mission, bool commit = false)
+        {
+            var heroMissions = this.dbContext.HeroMissions.Where(hm => hm.MissionId == mission.Id);
+            foreach (var heroMission in heroMissions)
+            {
+                this.dbContext.HeroMissions.Remove(heroMission);
+            }
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task AddHeroesToMission(Mission mission, IEnumerable<Guid> heroesIds, bool commit = false)
+        {
+            var heroMissions = new List<HeroMission>();
+            foreach (var heroId in heroesIds)
+            {
+                var hero = this.dbContext.Heroes.FirstOrDefault(h => h.Id == heroId);
+                heroMissions.Add(new HeroMission()
+                {
+                    Hero = hero,
+                    Mission = mission
+                });
+            }
+
+            mission.HeroMissions = heroMissions;
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
     }
 }

@@ -33,6 +33,7 @@
   <ItemGroup>
     <None Remove="assets\src\images\User.svg" />
     <None Remove="assets\src\js\editor.js" />
+    <None Remove="assets\src\js\mission-multiselect.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,13 @@
 
     var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes.ToList() : new List<HeroesCup.Data.Models.Hero>();
     var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
+    foreach (var heroSelectItem in heroesMultipleSelectList)
+    {
+        if (Model.HeroesIds.Contains(Guid.Parse(heroSelectItem.Value)))
+        {
+            heroSelectItem.Selected = true;
+        }
+    }
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
     var missionTypes = Model.MissionTypes != null && Model.MissionTypes.Count() > 0 ? Model.MissionTypes.ToList() : new List<HeroesCup.Data.Models.MissionType>();
     var missionTypesSelectList = new SelectList(missionTypes);
