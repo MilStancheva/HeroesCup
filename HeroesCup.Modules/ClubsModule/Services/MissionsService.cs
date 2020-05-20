@@ -25,23 +25,15 @@ namespace ClubsModule.Services
         public async Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId)
         {
             var missions = new List<Mission>();
+            missions = await this.dbContext.Missions
+                    .Include(m => m.Club)
+                    .Include(m => m.HeroMissions)
+                    .ThenInclude(hm => hm.Hero)
+                    .ToListAsync();
+
             if (ownerId.HasValue)
             {
-                missions = await this.dbContext.Missions
-                    .Where(m => m.Club.OwnerId == ownerId.Value)
-                    .Include(h => h.Club)
-                    .ToListAsync();
-            }
-            else
-            {
-                missions = await this.dbContext.Missions
-                    .Include(m => m.Club)
-                    .ToListAsync();
-            }
-
-            if (missions == null)
-            {
-                missions = new List<Mission>();
+                missions = missions.Where(m => m.Club.OwnerId == ownerId.Value).ToList(); 
             }
 
             var model = new MissionListModel()
