@@ -22,6 +22,7 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IMissionsService, MissionsService>();
+            services.AddTransient<IPointsService, PointsService>();
 
             services.AddAuthorization(options =>
             {
