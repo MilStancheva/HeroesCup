@@ -178,8 +178,9 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-multiselect.js");
+            //App.Modules.Get<Piranha.Manager.Module>().Styles.Add("http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css");
+            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {
