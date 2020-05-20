@@ -75,10 +75,24 @@ namespace ClubsModule.Services
                 clubs = await this.dbContext.Clubs.ToListAsync();
             }
 
+            var heroes = new List<Hero>();
+            if (ownerId.HasValue)
+            {
+                heroes = await this.dbContext.Heroes
+                    .Include(h => h.Club)
+                    .Where(h => h.Club.Id == ownerId.Value).ToListAsync();
+            }
+            else
+            {
+                heroes = await this.dbContext.Heroes
+                     .Include(h => h.Club)
+                     .ToListAsync();
+            }
+
             var model = new MissionEditModel()
             {
                 Mission = new Mission(),
-                Heroes = new List<Hero>(),
+                Heroes = heroes,
                 Clubs = clubs,
                 MissionTypes = new MissionType[]
                 {

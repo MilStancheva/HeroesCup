@@ -3,6 +3,7 @@ using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Piranha.Manager.Controllers;
 using System;
 using System.Threading.Tasks;
@@ -47,6 +48,7 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ErrorMessage("The mission could not be saved.", false);
                 return View("Edit", model);
             }
 

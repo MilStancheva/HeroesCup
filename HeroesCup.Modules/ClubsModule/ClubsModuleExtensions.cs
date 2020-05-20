@@ -2,14 +2,12 @@ using ClubsModule;
 using ClubsModule.Security;
 using ClubsModule.Services;
 using ClubsModule.Services.Contracts;
-using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Piranha;
 using Piranha.Manager;
-using System.Linq;
 
 namespace HeroesCup.Modules.ClubsModule
 {
@@ -180,6 +178,8 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

@@ -8,4 +8,6 @@
 
     start_date_datepicker = $("#start_date").datepicker(config);
     end_date_datepicker = $("#end_date").datepicker(config);
+
+    $('#heroes').selectpicker();
 });
