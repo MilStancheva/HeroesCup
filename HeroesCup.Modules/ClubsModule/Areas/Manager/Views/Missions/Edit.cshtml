@@ -14,6 +14,11 @@
     var missionTypesSelectList = new SelectList(Model.MissionTypes);
 }
 
+@section script{
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+}
+
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.Mission.Id)
@@ -159,7 +164,7 @@
 
                         <div class="form-group">
                             <label>@Localizer.General["Content"]</label>
-                            @*@Html.Partial("~/Areas/Manager/Shared/Partial/_EditorConfig.cshtml", new { @class= "editor" })*@
+                            @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id="editor" })
                         </div>
 
                     </div>
@@ -174,7 +179,7 @@
                                     }
                                     else
                                     {
-                                       <img src="~/manager/clubsmodule/images/User.svg" alt="Mission Image">
+                                        <img src="~/manager/clubsmodule/images/User.svg" alt="Mission Image">
                                     }
 
                                 </div>
