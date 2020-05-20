@@ -17,6 +17,7 @@
             heroSelectItem.Selected = true;
         }
     }
+
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
     var missionTypes = Model.MissionTypes != null && Model.MissionTypes.Count() > 0 ? Model.MissionTypes.ToList() : new List<HeroesCup.Data.Models.MissionType>();
     var missionTypesSelectList = new SelectList(missionTypes);
@@ -188,7 +189,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Heroes"]</label>
-                            @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
+                            @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
                         </div>
                     </div>
                 </div>

@@ -228,6 +228,8 @@ namespace ClubsModule.Services
             else
             {
                 mission = await this.dbContext.Missions
+                    .Include(c => c.HeroMissions)
+                    .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)
                     .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
