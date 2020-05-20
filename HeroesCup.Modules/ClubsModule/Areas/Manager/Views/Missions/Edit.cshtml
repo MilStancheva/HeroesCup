@@ -112,19 +112,21 @@
                             @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small" })
                         </div>
                     </div>
+
                     <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@Localizer.General["Heroes"]</label>
-                            @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
-                        </div>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsStars)).Succeeded)
+                        {
+                            <div class="form-group">
+                                <label>@Localizer.General["Stars"]</label>
+                                @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
+                            </div>
+                        }
                     </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row">                    
+                    <div class="col-sm-6">
                         <div class="form-group">
-
                             @if (!User.IsInRole("Coordinator"))
                             {
                                 <label>@Localizer.General["Type"]</label>
@@ -135,10 +137,9 @@
                                 Model.Mission.Type = HeroesCup.Data.Models.MissionType.HeroesCupMission;
                                 @Html.HiddenFor(m => m.Mission.Type);
                             }
-
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         @if (Model.Mission.Type == HeroesCup.Data.Models.MissionType.TimeheroesMission && !User.IsInRole("Coordinator"))
                         {
                             <div class="form-group">
@@ -147,27 +148,9 @@
                             </div>
                         }
                     </div>
-                    <div class="col-sm-4">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsStars)).Succeeded)
-                        {
-                            <div class="form-group">
-                                <label>@Localizer.General["Stars"]</label>
-                                @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
-                            </div>
-                        }
-                    </div>
-
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
-
-                        <div class="form-group">
-                            <label>@Localizer.General["Content"]</label>
-                            @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id="editor" })
-                        </div>
-
-                    </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["Image"]</label>
@@ -188,6 +171,21 @@
                                     @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Heroes"]</label>
+                            @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>@Localizer.General["Content"]</label>
+                            @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor" })
                         </div>
                     </div>
                 </div>

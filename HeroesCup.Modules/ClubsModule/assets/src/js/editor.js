@@ -1,18 +1,11 @@
 $(function () {
+
     tinymce.init({
         selector: 'textarea#editor',
-        plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable',
-        mobile: {
-            plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable'
-        },
-        menu: {
-            tc: {
-                title: 'TinyComments',
-                items: 'addcomment showcomments deleteallconversations'
-            }
-        },
-        menubar: 'file edit view insert format tools table tc help',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+        plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+        menubar: 'file edit view insert format tools table help',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+        toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",
         autosave_prefix: "{path}{query}-{id}-",
@@ -20,18 +13,6 @@ $(function () {
         autosave_retention: "2m",
         image_advtab: true,
         content_css: '//www.tiny.cloud/css/codepen.min.css',
-        link_list: [
-            { title: 'My page 1', value: 'http://www.tinymce.com' },
-            { title: 'My page 2', value: 'http://www.moxiecode.com' }
-        ],
-        image_list: [
-            { title: 'My page 1', value: 'http://www.tinymce.com' },
-            { title: 'My page 2', value: 'http://www.moxiecode.com' }
-        ],
-        image_class_list: [
-            { title: 'None', value: '' },
-            { title: 'Some class', value: 'class-name' }
-        ],
         importcss_append: true,
         height: 400,
         templates: [
@@ -46,11 +27,6 @@ $(function () {
         quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
         noneditable_noneditable_class: "mceNonEditable",
         toolbar_mode: 'sliding',
-        spellchecker_dialog: true,
-        spellchecker_whitelist: ['Ephox', 'Moxiecode'],
-        tinycomments_mode: 'embedded',
-        content_style: ".mymention{ color: gray; }",
-        contextmenu: "link image imagetools table configurepermanentpen",
-        a11y_advanced_options: true,
+        contextmenu: "link image imagetools table",
     });
 })
