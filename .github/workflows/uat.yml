@@ -32,7 +32,7 @@ jobs:
         name: uat-self-contained-package
   deploy:
     needs: publish
-    runs-on: cd-test
+    runs-on: [self-hosted, cd-test]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
