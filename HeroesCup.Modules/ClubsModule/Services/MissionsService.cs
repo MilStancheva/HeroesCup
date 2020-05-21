@@ -38,7 +38,7 @@ namespace ClubsModule.Services
 
             var model = new MissionListModel()
             {
-                Missions = missions.OrderByDescending(m => m.StartDate)
+                Missions = missions.OrderBy(m => m.IsPublished)
                                 .Select(m => new MissionListItem()
                                 {
                                     Id = m.Id,
