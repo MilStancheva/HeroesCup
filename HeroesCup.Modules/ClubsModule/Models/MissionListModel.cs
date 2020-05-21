@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeroesCup.Data.Models;
+using System;
 using System.Collections.Generic;
 
 namespace ClubsModule.Models
@@ -21,5 +22,7 @@ namespace ClubsModule.Models
         public int HeroesCount { get; set; }
 
         public bool IsPublished { get; set; }
+
+        public MissionType Type { get; set; }
     }
 }

@@ -34,7 +34,11 @@
                 <th>@Localizer.General["Club"]</th>
                 <th>@Localizer.General["Heroes"]</th>
                 <th>@Localizer.General["Published"]</th>
-                <th class="actions one"></th>
+                @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                {
+                    <th>@Localizer.General["Type"]</th>
+                }
+                    <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
@@ -67,6 +71,12 @@
                 <td>
                     <span class="title">@mission.IsPublished</span>
                 </td>
+                @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                {
+                    <td>
+                        <span class="title">@mission.Type</span>
+                    </td>
+                }
                 <td class="actions one">
                     @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsDelete)).Succeeded)
                     {

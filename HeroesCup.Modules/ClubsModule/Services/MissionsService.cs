@@ -46,7 +46,8 @@ namespace ClubsModule.Services
                                     ClubId = m.ClubId,
                                     ClubName = m.Club.Name,
                                     HeroesCount = m.HeroMissions != null ? m.HeroMissions.Where(hm => hm.MissionId == m.Id).Count() : 0,
-                                    IsPublished = m.IsPublished
+                                    IsPublished = m.IsPublished,
+                                    Type = m.Type
                                 })
 
             };
