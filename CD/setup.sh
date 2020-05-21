@@ -1,5 +1,10 @@
 apt-get install mariadb-server
 apt-get install nginx
+sudo add-apt-repository universe
+sudo apt-get update
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install aspnetcore-runtime-3.1
 useradd actions-runner
 passwd actions-runner
 cd /var
