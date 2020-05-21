@@ -62,7 +62,7 @@
                     </button>
                 }
 
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded && Model.Mission.IsPublished == false)
                 {
                     <button asp-action="Publish" class="btn btn-labeled btn-success pull-right">
                         <span class="btn-label">

@@ -78,6 +78,7 @@ namespace ClubsModule.Services
         public async Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id, Guid? ownerId)
         {
             var hero = await this.dbContext.Heroes
+                     .Include(h => h.Club)
                      .Include(x => x.HeroMissions)
                      .ThenInclude(x => x.Mission)
                      .FirstOrDefaultAsync(h => h.Id == id);
@@ -87,7 +88,7 @@ namespace ClubsModule.Services
                 return null;
             }
 
-            if (ownerId.HasValue && hero.Club.OwnerId != ownerId.Value)
+            if (ownerId.HasValue && hero.Club.OwnerId != ownerId)
             {
                 return null;
             }
