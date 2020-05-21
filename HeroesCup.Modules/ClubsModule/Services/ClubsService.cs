@@ -52,24 +52,17 @@ namespace ClubsModule.Services
 
         public async Task<ClubEditModel> GetClubEditModelByIdAsync(Guid id, Guid? ownerId)
         {
-            Club club = null;
-            if (ownerId.HasValue)
-            {
-                club = await this.dbContext.Clubs
-                 .Where(c => c.OwnerId == ownerId.Value)
-                 .Include(c => c.ClubImages)
-                 .ThenInclude(ci => ci.Image)
-                 .FirstOrDefaultAsync(c => c.Id == id);
-            }
-            else
-            {
-                club = await this.dbContext.Clubs
+            var club = await this.dbContext.Clubs
                     .Include(c => c.ClubImages)
                     .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
-            }
 
             if (club == null)
+            {
+                return null;
+            }
+
+            if (ownerId.HasValue && club.OwnerId != ownerId)
             {
                 return null;
             }
