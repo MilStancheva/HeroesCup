@@ -1,4 +1,6 @@
 apt-get install mariadb-server
+sudo mysql_secure_installation 
+#https://stackoverflow.com/questions/42043205/how-to-fix-mysql-index-column-size-too-large-laravel-migrate
 apt-get install nginx
 sudo add-apt-repository universe
 sudo apt-get update
@@ -19,5 +21,7 @@ cd /var/actions-runner
 curl -O -L https://github.com/actions/runner/releases/download/v2.262.1/actions-runner-linux-x64-2.262.1.tar.gz
 tar xzf ./actions-runner-linux-x64-2.262.1.tar.gz
 ./config.sh --url https://github.com/MilStancheva/HeroesCup --token xxx
-./run.sh
+./svc.sh
 
+# 2014  export HEROESCUP_CONNECTIONSTRING="server=localhost;port=3306;database=heroes_cup_db;uid=heroescup;password=xxx"
+#https://stackoverflow.com/questions/34212765/how-do-i-get-the-kestrel-web-server-to-listen-to-non-localhost-requests
