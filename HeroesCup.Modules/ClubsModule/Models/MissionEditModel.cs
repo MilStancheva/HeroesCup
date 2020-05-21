@@ -3,6 +3,7 @@ using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClubsModule.Models
 {
@@ -14,8 +15,10 @@ namespace ClubsModule.Models
         [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "Allowed file exensions: {0}")]
         public IFormFile Image { get; set; }
 
+        [Required]
         public string UploadedStartDate { get; set; }
 
+        [Required]
         public string UploadedEndDate { get; set; }
 
         public string ImageSrc { get; set; }
