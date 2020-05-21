@@ -32,10 +32,12 @@ jobs:
         name: uat-self-contained-package
   deploy:
     needs: publish
-    runs-on: [self-hosted, cd-test]
+    # runs-on: [self-hosted, uat-test]
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
       with:
-        name: uat-self-contained-package
+        # name: uat-self-contained-package
+        name:uat-se
         path: /var/www/heroes-cup/
