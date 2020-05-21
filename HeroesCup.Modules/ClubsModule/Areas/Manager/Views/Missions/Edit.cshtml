@@ -21,6 +21,11 @@
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
     var missionTypes = Model.MissionTypes != null && Model.MissionTypes.Count() > 0 ? Model.MissionTypes.ToList() : new List<HeroesCup.Data.Models.MissionType>();
     var missionTypesSelectList = new SelectList(missionTypes);
+
+    if (Model.Mission.Club == null)
+    {
+        Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
+    }
 }
 
 @section script{
@@ -79,6 +84,36 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label>@Localizer.General["Club Organizer"]</label>
+                            @if (User.IsInRole("Coordinator"))
+                            {
+                                <p><span>@Model.Mission.Club.Name</span></p>
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
+                            }
+
+                            @Html.HiddenFor(m => m.ClubId)
+                            <div class="invalid-feedback">
+                                @Localizer.General["Club Organizer is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsStars)).Succeeded)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@Localizer.General["Stars"]</label>
+                                @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
                             <label>@Localizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
@@ -110,35 +145,26 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@Localizer.General["End Date"]</label>
-                            <input asp-for="UploadedEndDate" type="text" id='end_date' name="UploadedEndDate" required="required"/>
+                            <input asp-for="UploadedEndDate" type="text" id='end_date' name="UploadedEndDate" required="required" />
                             <div class="invalid-feedback">
                                 @Localizer.General["End date is mandatory."]
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@Localizer.General["Club Organizer"]</label>
-                            @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
-                            @Html.HiddenFor(m => m.ClubId)
-                            <div class="invalid-feedback">
-                                @Localizer.General["Club Organizer is mandatory."]
+
+                @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
+                {
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@Localizer.General["Duration"]</label>
+                                <p>@Model.Duration.TotalDays дни</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsStars)).Succeeded)
-                        {
-                            <div class="form-group">
-                                <label>@Localizer.General["Stars"]</label>
-                                @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
-                            </div>
-                        }
-                    </div>
-                </div>
+                }
 
                 <div class="row">
                     <div class="col-sm-6">

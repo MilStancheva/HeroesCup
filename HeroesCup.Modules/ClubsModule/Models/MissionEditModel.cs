@@ -32,5 +32,7 @@ namespace ClubsModule.Models
         public Guid ClubId { get; set; }
 
         public IEnumerable<MissionType> MissionTypes { get; set; }
+
+        public TimeSpan Duration { get; set; }
     }
 }

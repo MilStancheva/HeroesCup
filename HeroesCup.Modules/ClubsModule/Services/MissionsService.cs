@@ -4,6 +4,7 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Piranha.AspNetCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,7 @@ namespace ClubsModule.Services
                 Heroes = heroes,
                 HeroesIds = new List<Guid>(),
                 Clubs = clubs,
+                ClubId = clubs.FirstOrDefault().Id,
                 MissionTypes = new MissionType[]
                 {
                     MissionType.TimeheroesMission,
@@ -212,6 +214,7 @@ namespace ClubsModule.Services
 
             var model = await CreateMissionEditModelAsync(ownerId);
             model.Mission = mission;
+            model.ClubId = mission.Club.Id;
 
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
@@ -221,6 +224,7 @@ namespace ClubsModule.Services
 
             model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString();
             model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString();
+            model.Duration = GetMissionDuration(mission.StartDate, mission.EndDate);
 
             if (mission.HeroMissions != null && mission.HeroMissions.Count > 0)
             {
@@ -233,6 +237,11 @@ namespace ClubsModule.Services
 
 
             return model;
+        }
+
+        private TimeSpan GetMissionDuration(long startDate, long endDate)
+        {
+            return endDate.ToUniversalDateTime() - startDate.ToUniversalDateTime();
         }
 
         public async Task<bool> DeleteAsync(Guid id)
