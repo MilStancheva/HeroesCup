@@ -23,10 +23,11 @@ jobs:
       uses: actions/setup-dotnet@v1.4.0
     # Runs a single command using the runners shell
     - name: Publish
-      run: cd HeroesCup.Web && dotnet publish --self-contained -o=/tmp/heroescup-web-test -r=linux-x64
+      run: cd HeroesCup.Web && dotnet publish --self-contained -o=heroescup-web-test -r=linux-x64
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
+        path: heroescup-web-test
         name: uat-self-contained-package
   deploy:
     needs: publish
