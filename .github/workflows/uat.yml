@@ -39,5 +39,5 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         # name: uat-self-contained-package
-        name:uat-se
+        name: uat-self-contained-package
         path: /var/www/heroes-cup/
