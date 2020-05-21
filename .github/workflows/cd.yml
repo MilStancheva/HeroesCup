@@ -18,12 +18,12 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    
+
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.4.0
     # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: cd HeroesCup/HeroesCup.Web
+    - name: See where if is
+      run: ls
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
