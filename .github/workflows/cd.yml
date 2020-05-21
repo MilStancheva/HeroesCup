@@ -22,10 +22,10 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.4.0
     # Runs a single command using the runners shell
-    - name: See where if is
-      run: ls
+    - name: Publish
+      run: cd HeroesCup.Web && dotnet publish --self-contained -o=/tmp/heroescup-web-test -r=linux-x64
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
         # A file, directory or wildcard pattern that describes what to upload
-        path: /tmp/heroescup-web
+        path: /tmp/heroescup-web-test
