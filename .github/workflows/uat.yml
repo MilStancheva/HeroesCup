@@ -36,6 +36,8 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
+    - name: Navigate to working folder
+      run: cd /var/www/heroes-cup
     - uses: actions/download-artifact@v2
       with:
-        path: /var/www/heroes-cup
+        name: uat-self-contained-package
