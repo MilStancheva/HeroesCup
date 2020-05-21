@@ -33,7 +33,7 @@ namespace ClubsModule.Services
 
             if (ownerId.HasValue)
             {
-                missions = missions.Where(m => m.Club.OwnerId == ownerId.Value).ToList(); 
+                missions = missions.Where(m => m.Club.OwnerId == ownerId.Value).ToList();
             }
 
             var model = new MissionListModel()
@@ -57,28 +57,17 @@ namespace ClubsModule.Services
         public async Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId)
         {
             var clubs = new List<Club>();
-            if (ownerId.HasValue)
-            {
-                clubs = await this.dbContext.Clubs
-                    .Where(c => c.OwnerId == ownerId.Value).ToListAsync();
-            }
-            else
-            {
-                clubs = await this.dbContext.Clubs.ToListAsync();
-            }
+            clubs = await this.dbContext.Clubs.ToListAsync();
 
             var heroes = new List<Hero>();
-            if (ownerId.HasValue)
-            {
-                heroes = await this.dbContext.Heroes
-                    .Include(h => h.Club)
-                    .Where(h => h.Club.Id == ownerId.Value).ToListAsync();
-            }
-            else
-            {
-                heroes = await this.dbContext.Heroes
+            heroes = await this.dbContext.Heroes
                      .Include(h => h.Club)
                      .ToListAsync();
+
+            if (ownerId.HasValue)
+            {
+                clubs = clubs.Where(c => c.OwnerId == ownerId.Value).ToList();
+                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value).ToList();
             }
 
             var model = new MissionEditModel()
@@ -92,7 +81,7 @@ namespace ClubsModule.Services
                     MissionType.TimeheroesMission,
                     MissionType.HeroesCupMission
                 }
-        };
+            };
 
             model.Mission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
             return model;
@@ -103,7 +92,7 @@ namespace ClubsModule.Services
             var mission = await this.dbContext.Missions
                 .Include(c => c.MissionImages)
                 .ThenInclude(m => m.Image)
-                .Include(m => m.Club)               
+                .Include(m => m.Club)
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
             if (mission == null)
@@ -131,7 +120,7 @@ namespace ClubsModule.Services
             if (model.HeroesIds != null && model.HeroesIds.Any())
             {
                 await DeleteHeroMissions(mission);
-                await AddHeroesToMission(mission, model.HeroesIds, true);
+                await AddHeroesToMission(mission, model.HeroesIds, false);
             }
 
             // set mission organizer
@@ -207,25 +196,13 @@ namespace ClubsModule.Services
         public async Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId)
         {
             Mission mission = null;
-            if (ownerId.HasValue)
-            {
-                mission = await this.dbContext.Missions
-                 .Where(c => c.OwnerId == ownerId.Value)
-                 .Include(c => c.HeroMissions)
-                 .ThenInclude(m => m.Hero)
-                 .Include(c => c.MissionImages)
-                 .ThenInclude(ci => ci.Image)
-                 .FirstOrDefaultAsync(c => c.Id == id);
-            }
-            else
-            {
-                mission = await this.dbContext.Missions
+            mission = await this.dbContext.Missions
+                    .Include(m => m.Club)
                     .Include(c => c.HeroMissions)
                     .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)
                     .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
-            }
 
             if (mission == null)
             {
@@ -252,7 +229,7 @@ namespace ClubsModule.Services
                     model.HeroesIds.Add(hero.Id);
                 }
             }
-            
+
 
             return model;
         }
