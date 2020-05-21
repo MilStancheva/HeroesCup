@@ -25,6 +25,8 @@ namespace HeroesCup.Data
 
         public DbSet<MissionImage> MissionImages { get; set; }
 
+        public DbSet<StoryImage> StoryImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -35,12 +37,12 @@ namespace HeroesCup.Data
                 .HasForeignKey(h => h.ClubId);
 
             modelBuilder.Entity<Club>()
-               .HasMany(c => c.Missions)
-               .WithOne(c => c.Club)
-               .HasForeignKey(m => m.ClubId);
+                .HasMany(c => c.Missions)
+                .WithOne(c => c.Club)
+                .HasForeignKey(m => m.ClubId);
 
             modelBuilder.Entity<ClubImage>()
-            .HasKey(h => new { h.ClubId, h.ImageId });
+                .HasKey(h => new { h.ClubId, h.ImageId });
 
             modelBuilder.Entity<ClubImage>()
                 .HasOne(hm => hm.Club)
@@ -53,7 +55,7 @@ namespace HeroesCup.Data
                 .HasForeignKey(hm => hm.ImageId);
 
             modelBuilder.Entity<MissionImage>()
-           .HasKey(h => new { h.MissionId, h.ImageId });
+                .HasKey(h => new { h.MissionId, h.ImageId });
 
             modelBuilder.Entity<MissionImage>()
                 .HasOne(hm => hm.Mission)
@@ -76,7 +78,7 @@ namespace HeroesCup.Data
                 .HasForeignKey(m => m.ClubId);
 
             modelBuilder.Entity<HeroMission>()
-            .HasKey(h => new { h.HeroId, h.MissionId });
+                .HasKey(h => new { h.HeroId, h.MissionId });
 
             modelBuilder.Entity<HeroMission>()
                 .HasOne(hm => hm.Hero)
@@ -87,6 +89,19 @@ namespace HeroesCup.Data
                 .HasOne(hm => hm.Mission)
                 .WithMany(m => m.HeroMissions)
                 .HasForeignKey(hm => hm.MissionId);
+
+            modelBuilder.Entity<Mission>()
+                .HasOne(h => h.Story)
+                .WithOne(s => s.Mission)
+                .HasForeignKey<Story>(m => m.MissionId);
+
+            modelBuilder.Entity<StoryImage>()
+                .HasKey(h => new { h.StoryId, h.ImageId });
+
+            modelBuilder.Entity<StoryImage>()
+                .HasOne(hm => hm.Image)
+                .WithMany(m => m.StoryImages)
+                .HasForeignKey(hm => hm.ImageId);
 
         }
     }
