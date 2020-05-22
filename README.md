@@ -12,7 +12,7 @@ It's goal is to enable school teams to find information about various volunteer 
 * MySql
 
 ## Installation
-* Clone/Download repository
+* `git clone git@github.com:MilStancheva/HeroesCup.git --recurse-submodules`
 * Add 'HEROESCUP_CONNECTIONSTRING' to your environmental variables as a key and your connection string itself as a value
 * Go to the root projects directory
 * Run: 

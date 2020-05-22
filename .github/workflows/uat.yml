@@ -44,7 +44,7 @@ jobs:
     - name: Stop service 
       run: sudo /bin/systemctl stop heroescup.service
     - name: Wait service shutdown time 
-      run: wait 90 
+      run: sleep 90 
     - name: Remove www
       run: rm -rf /var/www/heroes-cup
     - name: create www
