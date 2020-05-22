@@ -1,0 +1,78 @@
+@model ClubsModule.Models.ClubListModel
+@inject IAuthorizationService Auth
+@inject Piranha.Manager.ManagerLocalizer Localizer
+@{
+    ViewBag.Title = "Clubs";
+    ViewBag.MenuItem = "Clubs";
+}
+
+<div class="top">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
+            <li class="breadcrumb-item active" aria-current="page">Clubs</li>
+        </ol>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="top-nav">
+            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsAdd)).Succeeded)
+            {
+                <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
+                    <i class="fas fa-plus"></i>@Localizer.General["Add"]
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>@Localizer.General["Name"]</th>
+                <th>@Localizer.General["Organization"]</th>
+                <th>@Localizer.General["Heroes"]</th>
+                <th class="actions one"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var club in Model.Clubs)
+            {
+            <tr>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", new {id = club.Id})">@club.Name</a>
+                    }
+                    else
+                    {
+                        <span class="title">@club.Name</span>
+                    }
+                </td>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", new {id = club.Id})">@club.OrganizationType @club.OrganizationName</a>
+                    }
+                    else
+                    {
+                        <span class="title">@club.OrganizationType @club.OrganizationName</span>
+                    }
+                </td>
+                <td>
+                    <span class="title">@club.HeroesCount</span>
+                </td>
+                <td class="actions one">
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsDelete)).Succeeded)
+                    {
+                        <a class="danger" href="@Url.Action("Delete", new {id = club.Id})">
+                            <span class="fas fa-trash"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
