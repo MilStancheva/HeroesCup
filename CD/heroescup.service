@@ -11,7 +11,7 @@ KillSignal=SIGINT
 SyslogIdentifier=heroes-cup
 User=www-data
 Environment=ASPNETCORE_ENVIRONMENT=Production
-Environment=HEROESCUP_CONNECTIONSTRING="server=localhost;port=3306;database=heroes_cup_db;uid=heroescup;password=***REMOVED***"
+Environment=HEROESCUP_CONNECTIONSTRING="server=localhost;port=3306;database=heroes_cup_db;uid=heroescup;password=xxx"
 
 TimeoutStopSec=90
 
