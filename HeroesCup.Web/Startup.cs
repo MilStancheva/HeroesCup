@@ -16,6 +16,7 @@ using HeroesCup.Modules.ClubsModule;
 using System;
 using HeroesCup.Identity;
 
+
 namespace HeroesCup
 {
     public class Startup
@@ -114,9 +115,9 @@ namespace HeroesCup
             if (dbSeed == "true")
             {
                 var serviceProvider = Services.BuildServiceProvider();
+
                 var identitySeed = serviceProvider.GetService<IHeroesCupIdentitySeed>();
                 identitySeed.SeedIdentityAsync();
-
                 var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
 
                 pagesInitializer.SeedResourcesPageAsync().Wait();
