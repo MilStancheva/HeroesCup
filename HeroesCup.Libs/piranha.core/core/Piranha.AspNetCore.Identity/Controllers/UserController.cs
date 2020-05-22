@@ -120,7 +120,7 @@ namespace Piranha.AspNetCore.Identity.Controllers
             //var temp = UserEditModel.Create(_db);
             //model.Roles = temp.Roles;
 
-            if(model.User == null)
+            if (model.User == null)
             {
                 return BadRequest(GetErrorMessage(_localizer.Security["The user could not be found."]));
             }
@@ -229,7 +229,7 @@ namespace Piranha.AspNetCore.Identity.Controllers
 
         private AliasListModel GetErrorMessage(string errorMessage)
         {
-            return GetMessage(!string.IsNullOrWhiteSpace(errorMessage) ? errorMessage :  _localizer.General["An error occurred"], StatusMessage.Error);
+            return GetMessage(!string.IsNullOrWhiteSpace(errorMessage) ? errorMessage : _localizer.General["An error occurred"], StatusMessage.Error);
         }
 
         private AliasListModel GetMessage(string message, string type)

@@ -73,7 +73,8 @@ namespace Piranha.AspNetCore.Identity.Models
                 User.Id = user.Id;
 
                 result = await userManager.CreateAsync(user, Password);
-                if (!result.Succeeded) {
+                if (!result.Succeeded)
+                {
                     return result;
                 }
             }
