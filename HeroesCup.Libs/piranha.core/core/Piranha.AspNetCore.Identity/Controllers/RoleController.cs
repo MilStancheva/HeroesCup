@@ -26,7 +26,7 @@ namespace Piranha.AspNetCore.Identity.Controllers
         {
             _db = db;
         }
-        
+
         [HttpGet]
         [Route("/manager/roles")]
         [Authorize(Policy = Permissions.Roles)]
@@ -59,7 +59,7 @@ namespace Piranha.AspNetCore.Identity.Controllers
             if (model.Save(_db))
             {
                 SuccessMessage("The role has been saved.");
-                return RedirectToAction("Edit", new {id = model.Role.Id});
+                return RedirectToAction("Edit", new { id = model.Role.Id });
             }
 
             ErrorMessage("The role could not be saved.", false);

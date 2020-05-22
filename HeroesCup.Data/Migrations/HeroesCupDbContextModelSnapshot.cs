@@ -96,11 +96,34 @@ namespace HeroesCup.Data.Migrations
                     b.Property<Guid>("MissionId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("HeroId", "MissionId");
 
                     b.HasIndex("MissionId");
 
                     b.ToTable("HeroMissions");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<byte[]>("Bytes")
+                        .HasColumnType("longblob");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Filename")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
@@ -189,8 +212,7 @@ namespace HeroesCup.Data.Migrations
 
             modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid?>("MissionId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Content")
