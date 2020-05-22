@@ -65,7 +65,7 @@ namespace ClubsModule.Controllers
 
         [HttpPost]
         [Route("/manager/mission/publish")]
-        [Authorize(Policy = Permissions.MissionsSave)]
+        [Authorize(Policy = Permissions.MissionsPublish)]
         public async Task<IActionResult> PublishAsync(MissionEditModel model)
         {
             if (!ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace ClubsModule.Controllers
 
         [HttpPost]
         [Route("/manager/mission/unpublish")]
-        [Authorize(Policy = Permissions.MissionsSave)]
+        [Authorize(Policy = Permissions.MissionsPublish)]
         public async Task<IActionResult> UnpublishAsync(MissionEditModel model)
         {
             if (!ModelState.IsValid)

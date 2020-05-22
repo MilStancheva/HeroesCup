@@ -14,6 +14,10 @@ namespace ClubsModule.Services.Contracts
 
         Task<bool> PublishStoryEditModelAsync(Guid storyId);
 
+        Task<bool> UnpublishStoryEditModelAsync(Guid storyId);
+
         Task<StoryEditModel> GetStoryEditModelByIdAsync(Guid id, Guid? ownerId);
+
+        Task<bool> DeleteAsync(Guid id);
     }
 }

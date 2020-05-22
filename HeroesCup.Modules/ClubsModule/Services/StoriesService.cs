@@ -103,9 +103,32 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public Task<bool> PublishStoryEditModelAsync(Guid storyId)
+        public async Task<bool> PublishStoryEditModelAsync(Guid storyId)
         {
-            throw new NotImplementedException();
+            var story = await this.dbContext.Stories.FirstOrDefaultAsync(m => m.Id == storyId);
+            if (story == null)
+            {
+                return false;
+            }
+
+            story.IsPublished = true;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> UnpublishStoryEditModelAsync(Guid storyId)
+        {
+            var story = await this.dbContext.Stories.FirstOrDefaultAsync(m => m.Id == storyId);
+            if (story == null)
+            {
+                return false;
+            }
+
+            story.IsPublished = false;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<Guid> SaveStoryEditModelAsync(StoryEditModel model)
@@ -145,6 +168,19 @@ namespace ClubsModule.Services
 
             await dbContext.SaveChangesAsync();
             return story.Id;
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var story = this.dbContext.Stories.FirstOrDefault(c => c.Id == id);
+            if (story == null)
+            {
+                return false;
+            }
+
+            this.dbContext.Stories.Remove(story);
+            await this.dbContext.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -77,5 +77,63 @@ namespace ClubsModule.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [Route("/manager/story/delete")]
+        [Authorize(Policy = Permissions.StoriesDelete)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await this.storiesService.DeleteAsync(id);
+            if (!result)
+            {
+                ErrorMessage("The story could not be deleted.", false);
+                return RedirectToAction("List");
+            }
+
+            SuccessMessage("The story has been deleted.");
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        [Route("/manager/story/publish")]
+        [Authorize(Policy = Permissions.StoriesPublish)]
+        public async Task<IActionResult> PublishAsync(StoryEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.storiesService.PublishStoryEditModelAsync(model.Story.Id);
+            if (result)
+            {
+                SuccessMessage("The story has been published.");
+                return RedirectToAction("Edit", new { id = model.Story.Id });
+            }
+
+            ErrorMessage("The story could not be published.", false);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [Route("/manager/story/unpublish")]
+        [Authorize(Policy = Permissions.StoriesPublish)]
+        public async Task<IActionResult> UnpublishAsync(StoryEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.storiesService.UnpublishStoryEditModelAsync(model.Story.Id);
+            if (result)
+            {
+                SuccessMessage("The story has been unpublished.");
+                return RedirectToAction("Edit", new { id = model.Story.Id });
+            }
+
+            ErrorMessage("The story could not be unpublished.", false);
+            return View("Edit", model);
+        }
     }
 }
