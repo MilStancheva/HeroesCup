@@ -33,7 +33,7 @@ jobs:
   deploy:
     needs: publish
     # runs-on: [self-hosted, uat-test]
-    runs-on: self-hosted
+    runs-on: [self-hosted, uat-test]
     steps:
     - uses: actions/checkout@v2
     

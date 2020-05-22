@@ -25,3 +25,4 @@ tar xzf ./actions-runner-linux-x64-2.262.1.tar.gz
 
 # 2014  export HEROESCUP_CONNECTIONSTRING="server=localhost;port=3306;database=heroes_cup_db;uid=heroescup;password=xxx"
 #https://stackoverflow.com/questions/34212765/how-do-i-get-the-kestrel-web-server-to-listen-to-non-localhost-requests
+#https://askubuntu.com/questions/692701/allowing-user-to-run-systemctl-systemd-services-without-password
