@@ -19,6 +19,8 @@ namespace HeroesCup.Data
 
         public DbSet<HeroMission> HeroMissions { get; set; }
 
+        public DbSet<Story> Stories { get; set; }
+
         public DbSet<Image> Images { get; set; }
 
         public DbSet<ClubImage> ClubImages { get; set; }

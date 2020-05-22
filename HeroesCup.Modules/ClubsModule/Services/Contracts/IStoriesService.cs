@@ -6,6 +6,8 @@ namespace ClubsModule.Services.Contracts
 {
     public interface IStoriesService
     {
+        Task<StoryListModel> GetStoryListModelAsync(Guid? ownerId);
+
         Task<StoryEditModel> CreateStoryEditModelAsync(Guid? ownerId);
 
         Task<Guid> SaveStoryEditModelAsync(StoryEditModel model);

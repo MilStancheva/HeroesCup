@@ -35,6 +35,14 @@ namespace HeroesCup.Modules.ClubsModule
             new PermissionItem { Name = Permissions.MissionsSave, Title = "Save Missions", Category = "Missions", IsInternal = true },
             new PermissionItem { Name = Permissions.MissionsStars, Title = "Stars Missions", Category = "Missions", IsInternal = true },
             new PermissionItem { Name = Permissions.MissionsPublish, Title = "Publish Missions", Category = "Missions", IsInternal = true },
+
+
+            new PermissionItem { Name = Permissions.Stories, Title = "List Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesAdd, Title = "Add Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesDelete, Title = "Delete Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesEdit, Title = "Edit Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesSave, Title = "Save Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesPublish, Title = "Publish Stories", Category = "Stories", IsInternal = true },
         };
 
         /// <summary>
@@ -108,6 +116,15 @@ namespace HeroesCup.Modules.ClubsModule
                 Route = "~/manager/missions",
                 Policy = Permissions.Missions,
                 Css = "far fa-calendar-alt"
+            });
+
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "Stories",
+                Name = "Stories",
+                Route = "~/manager/stories",
+                Policy = Permissions.Stories,
+                Css = "fas fa-history"
             });
 
             App.Blocks.Register<Clubs>();

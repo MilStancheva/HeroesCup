@@ -14,5 +14,7 @@ namespace HeroesCup.Data.Models
 
         public ICollection<StoryImage> StoryImages { get; set; }
 
+        public bool IsPublished { get; set; }
+
     }
 }

@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200522070952_AddIsPublishedToStory")]
+    partial class AddIsPublishedToStory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,7 +209,7 @@ namespace HeroesCup.Data.Migrations
                     b.HasIndex("MissionId")
                         .IsUnique();
 
-                    b.ToTable("Stories");
+                    b.ToTable("Story");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>

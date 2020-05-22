@@ -22,6 +22,8 @@ namespace HeroesCup.Modules.ClubsModule
                 options.AreaViewLocationFormats.Add("/Areas/ClubsModule/{1}/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Areas/ClubsModule/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Areas/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/Manager/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/Manager/Views/Shared/{0}.cshtml");
             });
 
             services.AddHttpContextAccessor();
@@ -32,6 +34,7 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IMissionsService, MissionsService>();
             services.AddTransient<IPointsService, PointsService>();
+            services.AddTransient<IStoriesService, StoriesService>();
 
             services.AddAuthorization(options =>
             {
@@ -159,6 +162,48 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permission.Admin, Permission.Admin);
                     policy.RequireClaim(Permissions.Missions, Permissions.Missions);
                     policy.RequireClaim(Permissions.MissionsPublish, Permissions.MissionsPublish);
+                });
+
+                // Stories policies
+                options.AddPolicy(Permissions.Stories, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                });
+
+                options.AddPolicy(Permissions.StoriesAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                    policy.RequireClaim(Permissions.StoriesAdd, Permissions.StoriesAdd);
+                });
+
+                options.AddPolicy(Permissions.StoriesDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                    policy.RequireClaim(Permissions.StoriesDelete, Permissions.StoriesDelete);
+                });
+
+                options.AddPolicy(Permissions.StoriesEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                    policy.RequireClaim(Permissions.StoriesEdit, Permissions.StoriesEdit);
+                });
+
+                options.AddPolicy(Permissions.StoriesSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                    policy.RequireClaim(Permissions.StoriesSave, Permissions.StoriesSave);
+                });
+
+                options.AddPolicy(Permissions.StoriesPublish, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.Stories, Permissions.Stories);
+                    policy.RequireClaim(Permissions.StoriesPublish, Permissions.StoriesPublish);
                 });
             });
 

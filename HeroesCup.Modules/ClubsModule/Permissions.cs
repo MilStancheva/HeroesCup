@@ -26,6 +26,13 @@
         public const string MissionsStars = "HeroesCupMissionsStars";
         public const string MissionsPublish = "HeroesCupMissionsPublish";
 
+        public const string Stories = "HeroesCupStories";
+        public const string StoriesAdd = "HeroesCupStoriesAdd";
+        public const string StoriesDelete = "HeroesCupStoriesDelete";
+        public const string StoriesEdit = "HeroesCupStoriesEdit";
+        public const string StoriesSave = "HeroesCupStoriesSave";
+        public const string StoriesPublish = "HeroesCupStoriesPublish";
+
         public static string[] All()
         {
             return new[]
@@ -47,7 +54,13 @@
                 MissionsEdit,
                 MissionsSave,
                 MissionsStars,
-                MissionsPublish
+                MissionsPublish,
+                Stories,
+                StoriesAdd,
+                StoriesDelete,
+                StoriesEdit,
+                StoriesSave,
+                StoriesPublish
             };
         }
     }
