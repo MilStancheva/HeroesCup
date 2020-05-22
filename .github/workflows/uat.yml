@@ -42,7 +42,7 @@ jobs:
         name: uat-self-contained-package
         path: uat
     - name: Stop service 
-      run: sudo /bin/systemctl stop heroescup.service && wait 90
+      run: sudo /bin/systemctl stop heroescup.service
     - name: Wait service shutdown time 
       run: wait 90 
     - name: Remove www
