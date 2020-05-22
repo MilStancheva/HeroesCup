@@ -14,6 +14,7 @@ using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
 using HeroesCup.Modules.ClubsModule;
 using System;
+using HeroesCup.Identity;
 
 namespace HeroesCup
 {
@@ -61,6 +62,8 @@ namespace HeroesCup
                 options.UseIdentityWithSeed<IdentityMySQLDb>(db =>
                     db.UseMySql(connectionString));
             });
+
+            services.AddTransient<IHeroesCupIdentitySeed, IdentitySeed>();
             services.AddClubsModule();
             services.AddTransient<IPageInitializer, PageInitializer>();
 
@@ -99,7 +102,6 @@ namespace HeroesCup
                 options.UseManager();
                 options.UseTinyMCE();
                 options.UseIdentity();
-
             });
             app.UsePiranhaStartPage();
             app.UseClubsModule();
@@ -112,6 +114,9 @@ namespace HeroesCup
             if (dbSeed == "true")
             {
                 var serviceProvider = Services.BuildServiceProvider();
+                var identitySeed = serviceProvider.GetService<IHeroesCupIdentitySeed>();
+                identitySeed.SeedIdentityAsync();
+
                 var pagesInitializer = serviceProvider.GetService<IPageInitializer>();
 
                 pagesInitializer.SeedResourcesPageAsync().Wait();

@@ -7,6 +7,7 @@ It's goal is to enable school teams to find information about various volunteer 
 
 ## Prerequisites
 * DotNet Core 3.1
+* [Entity Framework Core tools reference - .NET CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet)
 * MySql
 
 ## Installation
@@ -17,10 +18,15 @@ It's goal is to enable school teams to find information about various volunteer 
 ```
 dotnet restore
 dotnet build
+cd HeroesCup.Data
+dotnet ef database update
+cd ..
+cd HeroesCup.Web
 dotnet run
 ```  
 
 ## Dependecies
 * DotNet Core 3.1
+* Entity Framework Core 3.1
 * Piranha 8.1.0
 * MySql

@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HeroesCup.Data\HeroesCup.Data.csproj" />
+    <ProjectReference Include="..\HeroesCup.Identity\HeroesCup.Identity.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj" />
+    <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore.Identity\Piranha.AspNetCore.Identity.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha.AttributeBuilder\Piranha.AttributeBuilder.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha.ImageSharp\Piranha.ImageSharp.csproj" />
@@ -24,6 +26,10 @@
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj" />
     <ProjectReference Include="..\HeroesCup.Libs\piranha.core\data\Piranha.Data.EF.MySql\Piranha.Data.EF.MySql.csproj" />
     <ProjectReference Include="..\HeroesCup.Modules\ClubsModule\ClubsModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>
