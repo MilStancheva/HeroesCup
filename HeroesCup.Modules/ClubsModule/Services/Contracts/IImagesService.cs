@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
 {
-    public interface IImagesService : IMissionImagesService
+    public interface IImagesService : IMissionImagesService, IStoryImageService
     {
         Task CreateClubImageAsync(Image image, Club club);
 

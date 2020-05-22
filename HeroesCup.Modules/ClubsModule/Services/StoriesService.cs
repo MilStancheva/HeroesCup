@@ -14,11 +14,13 @@ namespace ClubsModule.Services
 {
     public class StoriesService : IStoriesService
     {
-        private readonly HeroesCupDbContext dbContext; 
+        private readonly HeroesCupDbContext dbContext;
+        private readonly IImagesService imagesService;
 
-        public StoriesService(HeroesCupDbContext dbContext)
+        public StoriesService(HeroesCupDbContext dbContext, IImagesService imagesService)
         {
             this.dbContext = dbContext;
+            this.imagesService = imagesService;
         }
 
         public async Task<StoryListModel> GetStoryListModelAsync(Guid? ownerId)
@@ -49,14 +51,56 @@ namespace ClubsModule.Services
             return model;
         }
 
-        public Task<StoryEditModel> CreateStoryEditModelAsync(Guid? ownerId)
+        public async Task<StoryEditModel> CreateStoryEditModelAsync(Guid? ownerId)
         {
-            throw new NotImplementedException();
+            var missions = new List<Mission>();
+            if (ownerId.HasValue)
+            {
+                missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId.Value).ToListAsync();
+            }
+            else
+            {
+                missions = await this.dbContext.Missions.ToListAsync();
+            }
+
+            var model = new StoryEditModel()
+            {
+                Story = new Story(),
+                Missions = missions != null ? missions : new List<Mission>()
+            };
+
+            return model;
         }
 
-        public Task<StoryEditModel> GetStoryEditModelByIdAsync(Guid id, Guid? ownerId)
+        public async Task<StoryEditModel> GetStoryEditModelByIdAsync(Guid id, Guid? ownerId)
         {
-            throw new NotImplementedException();
+            var story = await this.dbContext.Stories
+                   .Include(s => s.Mission)
+                   .ThenInclude(m => m.Club)
+                   .Include(c => c.StoryImages)
+                   .ThenInclude(ci => ci.Image)
+                   .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (story == null)
+            {
+                return null;
+            }
+
+            if (ownerId.HasValue && story.Mission.Club.OwnerId != ownerId)
+            {
+                return null;
+            }
+
+            var model = await CreateStoryEditModelAsync(ownerId);
+            model.Story = story;
+
+            if (story.StoryImages != null && story.StoryImages.Count > 0)
+            {
+                var storyImage = await this.imagesService.GetStoryImage(story.Id);
+                model.ImageSrc = this.imagesService.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes);
+            }
+
+            return model;
         }
 
         public Task<bool> PublishStoryEditModelAsync(Guid storyId)
@@ -64,9 +108,43 @@ namespace ClubsModule.Services
             throw new NotImplementedException();
         }
 
-        public Task<Guid> SaveStoryEditModelAsync(StoryEditModel model)
+        public async Task<Guid> SaveStoryEditModelAsync(StoryEditModel model)
         {
-            throw new NotImplementedException();
+            var story = await this.dbContext.Stories
+                .Include(c => c.Mission)
+                .Include(c => c.StoryImages)
+                .FirstOrDefaultAsync(h => h.Id == model.Story.Id);
+
+            if (story == null)
+            {
+                story = new Story();
+                story.Id = model.Story.Id != Guid.Empty ? model.Story.Id : Guid.NewGuid();
+                this.dbContext.Stories.Add(story);
+            }
+
+            if (model.Story.MissionId != null && model.Story.MissionId != Guid.Empty)
+            {
+                story.Mission = this.dbContext.Missions.FirstOrDefault(m => m.Id == model.Story.MissionId);
+            }
+
+            story.Content = model.Story.Content;
+
+            // set story image
+            if (model.UploadedImage != null)
+            {
+                var image = new Image();
+                var bytes = this.imagesService.GetByteArrayFromImage(model.UploadedImage);
+                var filename = this.imagesService.GetFilename(model.UploadedImage);
+                var contentType = this.imagesService.GetFileContentType(model.UploadedImage);
+                image.Bytes = bytes;
+                image.Filename = filename;
+                image.ContentType = contentType;
+
+                await this.imagesService.CreateStoryImageAsync(image, story);
+            }
+
+            await dbContext.SaveChangesAsync();
+            return story.Id;
         }
     }
 }

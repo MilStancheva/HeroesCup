@@ -124,5 +124,43 @@ namespace ClubsModule.Services
         {
             return await this.dbContext.MissionImages.Where(mi => mi.MissionId == missionId).FirstOrDefaultAsync();
         }
+
+        public async Task CreateStoryImageAsync(Image image, Story story)
+        {
+            var oldStoryImages = this.dbContext.StoryImages.Where(si => si.StoryId == story.Id)
+                .Include(si => si.Image);
+
+            if (oldStoryImages != null)
+            {
+                foreach (var storyImage in oldStoryImages)
+                {
+                    await this.DeleteStoryImageAsync(storyImage);
+                }
+            }
+
+            this.dbContext.Images.Add(image);
+            this.dbContext.StoryImages.Add(new StoryImage()
+            {
+                Story = story,
+                Image = image
+            });
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteStoryImageAsync(StoryImage storyImage, bool commit = false)
+        {
+            this.dbContext.Images.Remove(storyImage.Image);
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task<StoryImage> GetStoryImage(Guid storyId)
+        {
+            return await this.dbContext.StoryImages.Where(si => si.StoryId == storyId).FirstOrDefaultAsync();
+        }
     }
 }
