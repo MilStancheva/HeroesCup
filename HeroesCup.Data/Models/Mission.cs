@@ -9,8 +9,6 @@ namespace HeroesCup.Data.Models
 
         public string Title { get; set; }
 
-        public byte[] Image { get; set; }
-
         public MissionType Type { get; set; }
 
         public string Location { get; set; }
@@ -23,14 +21,18 @@ namespace HeroesCup.Data.Models
 
         public int Stars { get; set; }
 
-        public Guid SchoolClubId { get; set; }
-        public SchoolClub SchoolClub { get; set; }
+        public Guid ClubId { get; set; }
+        public Club Club { get; set; }
 
         public ICollection<HeroMission> HeroMissions { get; set; }
+
+        public ICollection<MissionImage> MissionImages { get; set; }
 
         public string Content { get; set; }
 
         public string TimeheroesUrl { get; set; }
+
+        public Guid OwnerId { get; set; }
     }
 
     public enum MissionType

@@ -1,16 +1,16 @@
-/*global
-    heroescup
-*/
+///*global
+//    heroescup
+//*/
 
-heroescup.clubs = new Vue({
-    el: "#clubs",
-    data: {
-        body: "Yo",
+//heroescup.clubs = new Vue({
+//    el: "#clubs",
+//    data: {
+//        body: "Yo",
         
-    },
-    methods: {
-        load: function() {
-            console.log("loaded");
-        }
-    }
-});
+//    },
+//    methods: {
+//        load: function() {
+//            console.log("loaded");
+//        }
+//    }
+//});

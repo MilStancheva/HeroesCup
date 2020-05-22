@@ -1,2 +1,2 @@
-var heroescup = {};
-window.heroescup = heroescup;
+//var heroescup = {};
+//window.heroescup = heroescup;
