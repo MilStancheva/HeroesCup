@@ -101,7 +101,14 @@
                             <label>@Localizer.General["Logo"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
-                                    <img src="@Model.LogoSrc" alt="Club Logo">
+                                    @if (Model.LogoSrc != null)
+                                    {
+                                        <img src="@Model.LogoSrc" alt="Club Logo">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/manager/clubsmodule/images/team_no_image.png" alt="Club Logo">                                        
+                                    }
                                 </div>
                                 <div class="col-6">
                                     <input type="file" asp-for="UploadedLogo" class="form-control-file" contextmenu="Избери файл" />

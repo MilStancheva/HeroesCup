@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200519160506_FixMissionIsPublished")]
+    partial class FixMissionIsPublished
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,27 +105,7 @@ namespace HeroesCup.Data.Migrations
 
                     b.HasIndex("MissionId");
 
-                    b.ToTable("HeroMissions");
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<byte[]>("Bytes")
-                        .HasColumnType("longblob");
-
-                    b.Property<string>("ContentType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Filename")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
+                    b.ToTable("HeroMission");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
@@ -210,43 +192,6 @@ namespace HeroesCup.Data.Migrations
                     b.ToTable("MissionImages");
                 });
 
-            modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
-                {
-                    b.Property<Guid?>("MissionId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<Guid>("MissionId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MissionId")
-                        .IsUnique();
-
-                    b.ToTable("Stories");
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>
-                {
-                    b.Property<Guid?>("StoryId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("ImageId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("StoryId", "ImageId");
-
-                    b.HasIndex("ImageId");
-
-                    b.ToTable("StoryImages");
-                });
-
             modelBuilder.Entity("HeroesCup.Data.Models.ClubImage", b =>
                 {
                     b.HasOne("HeroesCup.Data.Models.Club", "Club")
@@ -306,30 +251,6 @@ namespace HeroesCup.Data.Migrations
                     b.HasOne("HeroesCup.Data.Models.Mission", "Mission")
                         .WithMany("MissionImages")
                         .HasForeignKey("MissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
-                {
-                    b.HasOne("HeroesCup.Data.Models.Mission", "Mission")
-                        .WithOne("Story")
-                        .HasForeignKey("HeroesCup.Data.Models.Story", "MissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>
-                {
-                    b.HasOne("HeroesCup.Data.Models.Image", "Image")
-                        .WithMany("StoryImages")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HeroesCup.Data.Models.Story", "Story")
-                        .WithMany("StoryImages")
-                        .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

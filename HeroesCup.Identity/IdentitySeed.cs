@@ -130,6 +130,16 @@ namespace HeroesCup.Identity
                     permission.Name == ClubsModule.Permissions.HeroesEdit ||
                     permission.Name == ClubsModule.Permissions.HeroesSave ||
                     permission.Name == ClubsModule.Permissions.HeroesAddCoordinator ||
+                    permission.Name == ClubsModule.Permissions.Missions ||
+                    permission.Name == ClubsModule.Permissions.MissionsAdd ||
+                    permission.Name == ClubsModule.Permissions.MissionsDelete ||
+                    permission.Name == ClubsModule.Permissions.MissionsEdit ||
+                    permission.Name == ClubsModule.Permissions.MissionsSave ||
+                    permission.Name == ClubsModule.Permissions.Stories ||
+                    permission.Name == ClubsModule.Permissions.StoriesAdd ||
+                    permission.Name == ClubsModule.Permissions.StoriesDelete ||
+                    permission.Name == ClubsModule.Permissions.StoriesEdit ||
+                    permission.Name == ClubsModule.Permissions.StoriesSave ||
                     permission.Name == Piranha.Manager.Permission.Admin;
 
                 if (isCoordinatorPermission)

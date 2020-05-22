@@ -22,18 +22,13 @@ namespace ClubsModule.Services
         public async Task<HeroListModel> GetHeroListModelAsync(Guid? ownerId)
         {
             var heroes = new List<Hero>();
+            heroes = await this.dbContext.Heroes
+                    .Include(h => h.Club)
+                    .ToListAsync();
+
             if (ownerId.HasValue)
             {
-                heroes = await this.dbContext.Heroes
-                    .Where(h => h.Club.OwnerId == ownerId.Value)
-                    .Include(h => h.Club)
-                    .ToListAsync();
-            }
-            else
-            {
-                heroes = await this.dbContext.Heroes
-                    .Include(h => h.Club)
-                    .ToListAsync();
+                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value).ToList();
             }
 
             if (heroes == null)
@@ -82,24 +77,18 @@ namespace ClubsModule.Services
 
         public async Task<HeroEditModel> GetHeroEditModelByIdAsync(Guid id, Guid? ownerId)
         {
-            Hero hero = null;
-            if (ownerId.HasValue)
-            {
-                hero = await this.dbContext.Heroes
-                     .Where(h => h.Club.OwnerId == ownerId.Value)
+            var hero = await this.dbContext.Heroes
+                     .Include(h => h.Club)
                      .Include(x => x.HeroMissions)
                      .ThenInclude(x => x.Mission)
                      .FirstOrDefaultAsync(h => h.Id == id);
-            }
-            else
-            {
-                hero = await this.dbContext.Heroes
-                     .Include(x => x.HeroMissions)
-                     .ThenInclude(x => x.Mission)
-                     .FirstOrDefaultAsync(h => h.Id == id);
-            }
 
             if (hero == null)
+            {
+                return null;
+            }
+
+            if (ownerId.HasValue && hero.Club.OwnerId != ownerId)
             {
                 return null;
             }
