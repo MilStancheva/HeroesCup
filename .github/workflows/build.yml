@@ -30,38 +30,21 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-  # dotnet-format:
-  #   runs-on: ubuntu-latest
-  #   steps:      
-  #     - name: Install dotnet-format
-  #       run: |
-  #         echo "::set-env name=PATH::${PATH}:${HOME}/.dotnet/tools"
-  #         dotnet tool install -g dotnet-format
-  #     - name: Checkout repo
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: ${{ github.head_ref }}
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Install dotnet-format
+        run: |
+          echo "::set-env name=PATH::${PATH}:${HOME}/.dotnet/tools"
+          dotnet tool install -g dotnet-format
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
-  #     - name: Run dotnet format
-  #       id: format
-  #       uses: xt0rted/dotnet-format@v1
-  #       with:
-  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
-  #         action: "fix"
-  #         only-changed-files: true
-
-  #     - name: Commit files
-  #       if: steps.format.outputs.has-changes == 'true'
-  #       run: |
-  #         git config --local user.name "heroescup-ci[bot]"
-  #         git config --local user.email "heroescup-ci[bot]@users.noreply.github.com"
-  #         git commit -a -m 'Automated dotnet-format update
-
-      #     Co-authored-by: ${{ github.event.pull_request.user.login }} <${{ github.event.pull_request.user.id }}+${{ github.event.pull_request.user.login }}@users.noreply.github.com>'
-
-      # - name: Push changes
-      #   if: steps.format.outputs.has-changes == 'true'
-      #   uses: ad-m/github-push-action@v0.5.0
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.head_ref }}  
+      - name: Run dotnet format
+        id: format
+        uses: xt0rted/dotnet-format@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          only-changed-files: true
