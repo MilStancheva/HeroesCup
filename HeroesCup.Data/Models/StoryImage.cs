@@ -2,12 +2,12 @@
 
 namespace HeroesCup.Data.Models
 {
-    public class MissionImage
+    public class StoryImage
     {
         public Guid? ImageId { get; set; }
         public Image Image { get; set; }
 
-        public Guid? MissionId { get; set; }
-        public Mission Mission { get; set; }
+        public Guid? StoryId { get; set; }
+        public Story Story { get; set; }
     }
 }

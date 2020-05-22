@@ -1,0 +1,101 @@
+@model ClubsModule.Models.StoryListModel
+@inject IAuthorizationService Auth
+@inject Piranha.Manager.ManagerLocalizer Localizer
+@{
+    ViewBag.Title = "Stories";
+    ViewBag.MenuItem = "Stories";
+}
+
+<div class="top">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">@Localizer.General["Stories"]</li>
+            <li class="breadcrumb-item active" aria-current="page">Stories</li>
+        </ol>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="top-nav">
+            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesAdd)).Succeeded)
+            {
+                <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
+                    <i class="fas fa-plus"></i>@Localizer.General["Add"]
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>@Localizer.General["Story"]</th>
+                <th>@Localizer.General["Mission"]</th>
+                @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                {
+                    <th>@Localizer.General["Club"]</th>
+                }
+                <th>@Localizer.General["Published"]</th>
+                <th class="actions one"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var story in Model.Stories)
+            {
+                <tr>
+                    <td>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesEdit)).Succeeded)
+                        {
+                            <a href="@Url.Action("Edit", new {id = story.Id})">@story.StartText</a>
+                        }
+                        else
+                        {
+                            <span class="title">@story.StartText</span>
+                        }
+                    </td>
+                    <td>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsEdit)).Succeeded)
+                        {
+                            <a href="@Url.Action("Edit", "Missions", new {id = story.Mission.Id })">@story.Mission.Title</a>
+                        }
+                        else
+                        {
+                            <span class="title">@story.Mission.Title</span>
+                        }
+                    </td>
+
+                    @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                    {
+                        <td>
+                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                            {
+                                <a href="@Url.Action("Edit", "Clubs", new {id = story.Mission.Club.Id })">@story.Mission.Club.Name</a>
+                            }
+                            else
+                            {
+                                <span class="title">@story.Mission.Club.Name</span>
+                            }
+                        </td>
+                    }
+
+                    <td>
+                        @if (story.IsPublished)
+                        {
+                            <span class="title"><i class="fas fa-check text-success"></i></span>
+                        }
+
+                    </td>
+                    <td class="actions one">
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesDelete)).Succeeded)
+                        {
+                            <a class="danger" href="@Url.Action("Delete", new {id = story.Id})">
+                                <span class="fas fa-trash"></span>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

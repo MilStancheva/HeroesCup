@@ -50,6 +50,12 @@ namespace ClubsModule.Controllers
         public async Task<IActionResult> EditAsync(Guid id)
         {
             var model = await this.clubsService.GetClubEditModelByIdAsync(id, this.loggedInUserId);
+            if (model == null)
+            {
+                ErrorMessage("The club could not be found.", false);
+                return RedirectToAction("List");
+            }
+
             return View(model);
         }
 
