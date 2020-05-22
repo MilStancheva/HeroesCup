@@ -7,7 +7,7 @@ namespace ClubsModule.Services.Contracts
 {
     public interface IImagesService : IClubImagesService, IMissionImagesService, IStoryImageService
     {
-        Task<Image> GetImage(Guid id);     
+        Task<Image> GetImage(Guid id);
 
         string GetImageSource(string contentType, byte[] bytes);
 

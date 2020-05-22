@@ -1,4 +1,4 @@
-﻿﻿using HeroesCup.Data.Models;
+﻿using HeroesCup.Data.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -13,4 +13,3 @@ namespace ClubsModule.Services.Contracts
         Task DeleteClubImageAsync(ClubImage clubImage, bool commit = false);
     }
 }
-
