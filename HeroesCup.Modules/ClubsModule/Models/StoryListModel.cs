@@ -13,6 +13,8 @@ namespace ClubsModule.Models
     {
         public Guid Id { get; set; }
 
+        public string StartText { get; set; }
+
         public Mission Mission { get; set; }
 
         public bool IsPublished { get; set; }

@@ -47,11 +47,11 @@
                     <td>
                         @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesEdit)).Succeeded)
                         {
-                            <a href="@Url.Action("Edit", new {id = story.Id})">@story.Id</a>
+                            <a href="@Url.Action("Edit", new {id = story.Id})">@story.StartText</a>
                         }
                         else
                         {
-                            <span class="title">@story.Id</span>
+                            <span class="title">@story.StartText</span>
                         }
                     </td>
                     <td>

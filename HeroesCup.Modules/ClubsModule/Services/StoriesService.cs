@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services
@@ -42,6 +43,7 @@ namespace ClubsModule.Services
                                 .Select(s => new StoryListItem()
                                 {
                                     Id = s.Id,
+                                    StartText = GetShortIntroText(s.Content, 50),
                                     Mission = s.Mission,
                                     IsPublished = s.IsPublished
                                 })
@@ -181,6 +183,24 @@ namespace ClubsModule.Services
             this.dbContext.Stories.Remove(story);
             await this.dbContext.SaveChangesAsync();
             return true;
+        }
+
+        private string GetShortIntroText(string htmlString, int length)
+        {
+            var text = GetPlainTextFromHtmlString(htmlString);
+            text = GetShortTextFromString(text, length);
+
+            return text + "...";
+        }
+
+        private string GetPlainTextFromHtmlString(string htmlString)
+        {
+            return Regex.Replace(htmlString, @"<(.|\n)*?>", "");
+        }
+
+        private string GetShortTextFromString(string htmlString, int length)
+        {
+            return htmlString.Substring(0, Math.Min(htmlString.Length, length));
         }
     }
 }

@@ -5,15 +5,9 @@ using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
 {
-    public interface IImagesService : IMissionImagesService, IStoryImageService
+    public interface IImagesService : IClubImagesService, IMissionImagesService, IStoryImageService
     {
-        Task CreateClubImageAsync(Image image, Club club);
-
-        Task<Image> GetImage(Guid id);
-
-        Task<ClubImage> GetClubImage(Guid clubId);
-
-        Task DeleteClubImageAsync(ClubImage clubImage, bool commit = false);
+        Task<Image> GetImage(Guid id);     
 
         string GetImageSource(string contentType, byte[] bytes);
 
