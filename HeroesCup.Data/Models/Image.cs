@@ -18,5 +18,7 @@ namespace HeroesCup.Data.Models
 
         public ICollection<MissionImage> MissionImages { get; set; }
 
+        public ICollection<StoryImage> StoryImages { get; set; }
+
     }
 }

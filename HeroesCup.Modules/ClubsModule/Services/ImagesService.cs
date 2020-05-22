@@ -86,5 +86,81 @@ namespace ClubsModule.Services
         {
             return file.ContentType;
         }
+
+        public async Task CreateMissionImageAsync(Image image, Mission mission)
+        {
+            var oldMissionImages = this.dbContext.MissionImages.Where(mi => mi.MissionId == mission.Id)
+                .Include(mi => mi.Image);
+
+            if (oldMissionImages != null)
+            {
+                foreach (var missionImage in oldMissionImages)
+                {
+                    await this.DeleteMissionImageAsync(missionImage);
+                }
+            }
+
+            this.dbContext.Images.Add(image);
+            this.dbContext.MissionImages.Add(new MissionImage()
+            {
+                Mission = mission,
+                Image = image
+            });
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteMissionImageAsync(MissionImage missionImage, bool commit = false)
+        {
+            this.dbContext.Images.Remove(missionImage.Image);
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task<MissionImage> GetMissionImage(Guid missionId)
+        {
+            return await this.dbContext.MissionImages.Where(mi => mi.MissionId == missionId).FirstOrDefaultAsync();
+        }
+
+        public async Task CreateStoryImageAsync(Image image, Story story)
+        {
+            var oldStoryImages = this.dbContext.StoryImages.Where(si => si.StoryId == story.Id)
+                .Include(si => si.Image);
+
+            if (oldStoryImages != null)
+            {
+                foreach (var storyImage in oldStoryImages)
+                {
+                    await this.DeleteStoryImageAsync(storyImage);
+                }
+            }
+
+            this.dbContext.Images.Add(image);
+            this.dbContext.StoryImages.Add(new StoryImage()
+            {
+                Story = story,
+                Image = image
+            });
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteStoryImageAsync(StoryImage storyImage, bool commit = false)
+        {
+            this.dbContext.Images.Remove(storyImage.Image);
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task<StoryImage> GetStoryImage(Guid storyId)
+        {
+            return await this.dbContext.StoryImages.Where(si => si.StoryId == storyId).FirstOrDefaultAsync();
+        }
     }
 }

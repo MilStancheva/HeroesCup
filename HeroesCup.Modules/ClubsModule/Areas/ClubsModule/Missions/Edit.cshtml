@@ -1,0 +1,256 @@
+﻿@model ClubsModule.Models.MissionEditModel
+@inject IAuthorizationService Auth
+@inject ManagerLocalizer Localizer
+@{
+    ViewBag.Title = "Edit mission";
+    ViewBag.MenuItem = "Missions";
+
+    var clubs = Model.Clubs != null && Model.Clubs.Count() > 0 ? Model.Clubs.ToList() : new List<HeroesCup.Data.Models.Club>();
+    var clubsSelectList = new SelectList(clubs, "Id", "Name");
+
+    var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes.ToList() : new List<HeroesCup.Data.Models.Hero>();
+    var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
+    foreach (var heroSelectItem in heroesMultipleSelectList)
+    {
+        if (Model.HeroesIds.Contains(Guid.Parse(heroSelectItem.Value)))
+        {
+            heroSelectItem.Selected = true;
+        }
+    }
+
+    var heroesSelectList = new SelectList(heroes, "Id", "Name");
+    var missionTypes = Model.MissionTypes != null && Model.MissionTypes.Count() > 0 ? Model.MissionTypes.ToList() : new List<HeroesCup.Data.Models.MissionType>();
+    var missionTypesSelectList = new SelectList(missionTypes);
+
+    if (Model.Mission.Club == null)
+    {
+        Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
+    }
+}
+
+@section script{
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+    <link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"></link>
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+}
+
+@using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.Mission.Id)
+    @Html.HiddenFor(m => m.Mission.OwnerId)
+    @Html.HiddenFor(m => m.ImageSrc)
+
+    <div class="top">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">@Localizer.General["Missions"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Missions"]</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
+            </ol>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="top-nav">
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded)
+                {
+                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                        <span class="btn-label">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        @Localizer.General["Save"]
+                    </button>
+                }
+
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                {
+                    @if (Model.Mission.IsPublished == false)
+                    {
+                        <button asp-action="Publish" class="btn btn-labeled btn-success pull-right">
+                            <span class="btn-label">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            @Localizer.General["Publish"]
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <button asp-action="Unpublish" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <span class="title">@Localizer.General["General"]</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Club Organizer"]</label>
+                            @if (User.IsInRole("Coordinator"))
+                            {
+                                <p><span>@Model.Mission.Club.Name</span></p>
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
+                            }
+
+                            @Html.HiddenFor(m => m.ClubId)
+                            <div class="invalid-feedback">
+                                @Localizer.General["Club Organizer is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsStars)).Succeeded)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@Localizer.General["Stars"]</label>
+                                @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Title"]</label>
+                            @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Title is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Location"]</label>
+                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Location is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Start Date"]</label>
+                            <input asp-for="UploadedStartDate" type="text" id='start_date' name="UploadedStartDate" required="required" />
+                            <div class="invalid-feedback">
+                                @Localizer.General["Start date is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["End Date"]</label>
+                            <input asp-for="UploadedEndDate" type="text" id='end_date' name="UploadedEndDate" required="required" />
+                            <div class="invalid-feedback">
+                                @Localizer.General["End date is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
+                {
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@Localizer.General["Duration"]</label>
+                                <p>@Model.Duration.TotalDays дни</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @if (!User.IsInRole("Coordinator"))
+                            {
+                                <label>@Localizer.General["Type"]</label>
+                                @Html.DropDownListFor(m => m.Mission.Type, missionTypesSelectList, new { @class = "form-control small", required = "" })
+                                <div class="invalid-feedback">
+                                    @Localizer.General["Coordinator is mandatory."]
+                                </div>
+                            }
+                            else
+                            {
+                                Model.Mission.Type = HeroesCup.Data.Models.MissionType.HeroesCupMission;
+                                @Html.HiddenFor(m => m.Mission.Type);
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        @if (Model.Mission.Type == HeroesCup.Data.Models.MissionType.TimeheroesMission && !User.IsInRole("Coordinator"))
+                        {
+                            <div class="form-group">
+                                <label>@Localizer.General["Timeheroes Mission URL"]</label>
+                                @Html.TextBoxFor(m => m.Mission.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Image"]</label>
+                            <div class="row col-12">
+                                <div class="col-6">
+                                    @if (Model.ImageSrc != null)
+                                    {
+                                        <img src="@Model.ImageSrc" alt="Mission Image">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
+                                    }
+
+                                </div>
+                                <div class="col-6">
+                                    <input type="file" asp-for="Image" class="form-control-file" />
+                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@Localizer.General["Heroes"]</label>
+                            @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>@Localizer.General["Content"]</label>
+                            @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor", required = "" })
+                            <div class="invalid-feedback">
+                                @Localizer.General["Content is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

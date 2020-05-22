@@ -18,6 +18,21 @@
         public const string ClubsEdit = "HeroesCupClubsEdit";
         public const string ClubsSave = "HeroesCupClubsSave";
 
+        public const string Missions = "HeroesCupMissions";
+        public const string MissionsAdd = "HeroesCupMissionsAdd";
+        public const string MissionsDelete = "HeroesCupMissionsDelete";
+        public const string MissionsEdit = "HeroesCupMissionsEdit";
+        public const string MissionsSave = "HeroesCupMissionsSave";
+        public const string MissionsStars = "HeroesCupMissionsStars";
+        public const string MissionsPublish = "HeroesCupMissionsPublish";
+
+        public const string Stories = "HeroesCupStories";
+        public const string StoriesAdd = "HeroesCupStoriesAdd";
+        public const string StoriesDelete = "HeroesCupStoriesDelete";
+        public const string StoriesEdit = "HeroesCupStoriesEdit";
+        public const string StoriesSave = "HeroesCupStoriesSave";
+        public const string StoriesPublish = "HeroesCupStoriesPublish";
+
         public static string[] All()
         {
             return new[]
@@ -32,7 +47,20 @@
                 HeroesDelete,
                 HeroesEdit,
                 HeroesSave,
-                HeroesAddCoordinator
+                HeroesAddCoordinator,
+                Missions,
+                MissionsAdd,
+                MissionsDelete,
+                MissionsEdit,
+                MissionsSave,
+                MissionsStars,
+                MissionsPublish,
+                Stories,
+                StoriesAdd,
+                StoriesDelete,
+                StoriesEdit,
+                StoriesSave,
+                StoriesPublish
             };
         }
     }

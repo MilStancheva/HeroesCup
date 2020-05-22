@@ -18,9 +18,19 @@
         <div class="top-nav">
             @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsAdd)).Succeeded)
             {
-                <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
-                    <i class="fas fa-plus"></i>@Localizer.General["Add"]
-                </a>
+                if (User.IsInRole("Coordinator") && (Model.Clubs == null || Model.Clubs.Count() == 0))
+                {
+                    <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
+                        <i class="fas fa-plus"></i>@Localizer.General["Add"]
+                    </a>
+                }
+
+                if (!User.IsInRole("Coordinator"))
+                {
+                    <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
+                        <i class="fas fa-plus"></i>@Localizer.General["Add"]
+                    </a>
+                }
             }
         </div>
     </div>

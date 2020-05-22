@@ -46,6 +46,12 @@ namespace ClubsModule.Controllers
         public async Task<IActionResult> EditAsync(Guid id)
         {
             var model = await this.heroesService.GetHeroEditModelByIdAsync(id, this.loggedInUserId);
+            if (model == null)
+            {
+                ErrorMessage("The hero could not be found.", false);
+                return RedirectToAction("List");
+            }
+
             return View(model);
         }
 
