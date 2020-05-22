@@ -53,12 +53,12 @@ namespace Piranha.Manager.Services
                 Sites = (await _api.Sites.GetAllAsync())
                     .OrderByDescending(s => s.IsDefault)
                     .Select(s => new PageListModel.SiteItem
-                {
-                    Id = s.Id,
-                    Title = s.Title,
-                    Slug = "/",
-                    EditUrl = "manager/site/edit/"
-                }).ToList(),
+                    {
+                        Id = s.Id,
+                        Title = s.Title,
+                        Slug = "/",
+                        EditUrl = "manager/site/edit/"
+                    }).ToList(),
                 PageTypes = App.PageTypes.Select(t => new ContentTypeModel
                 {
                     Id = t.Id,
@@ -117,12 +117,12 @@ namespace Piranha.Manager.Services
                 Sites = (await _api.Sites.GetAllAsync())
                     .OrderByDescending(s => s.IsDefault)
                     .Select(s => new PageListModel.SiteItem
-                {
-                    Id = s.Id,
-                    Title = s.Title,
-                    Slug = "/",
-                    EditUrl = "manager/site/edit/"
-                }).ToList(),
+                    {
+                        Id = s.Id,
+                        Title = s.Title,
+                        Slug = "/",
+                        EditUrl = "manager/site/edit/"
+                    }).ToList(),
                 Items = await GetPageStructure(siteId)
             };
             return model;
@@ -443,7 +443,7 @@ namespace Piranha.Manager.Services
             return false;
         }
 
-        private Tuple<Guid?,int> GetPosition(Guid id, IList<StructureModel.StructureItem> items, Guid? parentId = null)
+        private Tuple<Guid?, int> GetPosition(Guid id, IList<StructureModel.StructureItem> items, Guid? parentId = null)
         {
             for (var n = 0; n < items.Count; n++)
             {
@@ -530,7 +530,8 @@ namespace Piranha.Manager.Services
 
             foreach (var r in type.Routes)
             {
-                model.Routes.Add(new RouteModel {
+                model.Routes.Add(new RouteModel
+                {
                     Title = r.Title,
                     Route = r.Route
                 });
@@ -584,7 +585,7 @@ namespace Piranha.Manager.Services
 
                         if (typeof(Extend.Fields.SelectFieldBase).IsAssignableFrom(appFieldType.Type))
                         {
-                            foreach(var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(appFieldType.Type)).Items)
+                            foreach (var item in ((Extend.Fields.SelectFieldBase)Activator.CreateInstance(appFieldType.Type)).Items)
                             {
                                 field.Meta.Options.Add(Convert.ToInt32(item.Value), item.Title);
                             }

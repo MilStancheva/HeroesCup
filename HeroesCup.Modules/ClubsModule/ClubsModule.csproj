@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HeroesCup.Data\HeroesCup.Data.csproj" />
+    <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core.mysql\src\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj" />
+    <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore.SimpleSecurity\Piranha.AspNetCore.SimpleSecurity.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha\Piranha.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.Manager\Piranha.Manager.csproj" />
     <ProjectReference Include="..\..\HeroesCup.Libs\piranha.core\core\Piranha.AspNetCore\Piranha.AspNetCore.csproj" />
@@ -14,6 +17,29 @@
 
   <ItemGroup>
     <EmbeddedResource Include="assets\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <Content Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="assets\src\images\no_image.png" />
+    <None Remove="assets\src\images\team_no_image.png" />
+    <None Remove="assets\src\images\team_no_image.svg" />
+    <None Remove="assets\src\js\editor.js" />
+    <None Remove="assets\src\js\mission-multiselect.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Manager\Views\" />
   </ItemGroup>
 
 </Project>

@@ -141,7 +141,7 @@ namespace Piranha.Services
 
             foreach (var mapping in mappings)
             {
-                foreach (var host in mapping.Hostnames.Split(new [] { ',' }))
+                foreach (var host in mapping.Hostnames.Split(new[] { ',' }))
                 {
                     if (host.Trim().ToLower() == hostname)
                     {
@@ -295,7 +295,7 @@ namespace Piranha.Services
             {
                 // Make sure we have a default site
                 var def = await _repo.GetDefault().ConfigureAwait(false);
-                if (def == null || def.Id == model.Id)
+                if (def == null || def.Id == model.Id)
                     model.IsDefault = true;
             }
             // Call hooks & save

@@ -17,24 +17,73 @@ namespace HeroesCup.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("HeroesCup.Data.Models.Club", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("OrganizationName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("OrganizationType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clubs");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.ClubImage", b =>
+                {
+                    b.Property<Guid?>("ClubId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("ImageId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("ClubId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("ClubImages");
+                });
+
             modelBuilder.Entity("HeroesCup.Data.Models.Hero", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("ClubId")
+                        .HasColumnType("char(36)");
+
                     b.Property<bool>("IsCoordinator")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<Guid>("SchoolClubId")
-                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SchoolClubId");
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Heroes");
                 });
@@ -47,11 +96,54 @@ namespace HeroesCup.Data.Migrations
                     b.Property<Guid>("MissionId")
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("HeroId", "MissionId");
 
                     b.HasIndex("MissionId");
 
-                    b.ToTable("HeroMission");
+                    b.ToTable("HeroMissions");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<byte[]>("Bytes")
+                        .HasColumnType("longblob");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Filename")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<byte[]>("Bytes")
+                        .HasColumnType("longblob");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Filename")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Mission", b =>
@@ -60,23 +152,26 @@ namespace HeroesCup.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("ClubId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<long>("EndDate")
                         .HasColumnType("bigint");
 
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("longblob");
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Location")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<Guid>("SchoolClubId")
+                    b.Property<Guid>("OwnerId")
                         .HasColumnType("char(36)");
 
-                    b.Property<int>("SchoolYear")
-                        .HasColumnType("int");
+                    b.Property<string>("SchoolYear")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Stars")
                         .HasColumnType("int");
@@ -95,42 +190,83 @@ namespace HeroesCup.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SchoolClubId");
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Missions");
                 });
 
-            modelBuilder.Entity("HeroesCup.Data.Models.SchoolClub", b =>
+            modelBuilder.Entity("HeroesCup.Data.Models.MissionImage", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid?>("MissionId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Location")
+                    b.Property<Guid?>("ImageId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("MissionId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("MissionImages");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
+                {
+                    b.Property<Guid?>("MissionId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("Points")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SchoolName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("SchoolType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<Guid>("MissionId")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchoolClubs");
+                    b.HasIndex("MissionId")
+                        .IsUnique();
+
+                    b.ToTable("Stories");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>
+                {
+                    b.Property<Guid?>("StoryId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("ImageId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("StoryId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("StoryImages");
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.ClubImage", b =>
+                {
+                    b.HasOne("HeroesCup.Data.Models.Club", "Club")
+                        .WithMany("ClubImages")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HeroesCup.Data.Models.Image", "Image")
+                        .WithMany("ClubImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Hero", b =>
                 {
-                    b.HasOne("HeroesCup.Data.Models.SchoolClub", "SchoolClub")
+                    b.HasOne("HeroesCup.Data.Models.Club", "Club")
                         .WithMany("Heroes")
-                        .HasForeignKey("SchoolClubId")
+                        .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -152,9 +288,48 @@ namespace HeroesCup.Data.Migrations
 
             modelBuilder.Entity("HeroesCup.Data.Models.Mission", b =>
                 {
-                    b.HasOne("HeroesCup.Data.Models.SchoolClub", "SchoolClub")
+                    b.HasOne("HeroesCup.Data.Models.Club", "Club")
                         .WithMany("Missions")
-                        .HasForeignKey("SchoolClubId")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.MissionImage", b =>
+                {
+                    b.HasOne("HeroesCup.Data.Models.Image", "Image")
+                        .WithMany("MissionImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HeroesCup.Data.Models.Mission", "Mission")
+                        .WithMany("MissionImages")
+                        .HasForeignKey("MissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
+                {
+                    b.HasOne("HeroesCup.Data.Models.Mission", "Mission")
+                        .WithOne("Story")
+                        .HasForeignKey("HeroesCup.Data.Models.Story", "MissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>
+                {
+                    b.HasOne("HeroesCup.Data.Models.Image", "Image")
+                        .WithMany("StoryImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HeroesCup.Data.Models.Story", "Story")
+                        .WithMany("StoryImages")
+                        .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

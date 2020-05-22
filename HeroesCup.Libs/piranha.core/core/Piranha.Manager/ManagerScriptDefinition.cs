@@ -8,7 +8,7 @@
  *
  */
 
- using System;
+using System;
 
 namespace Piranha.Manager
 {
@@ -48,7 +48,7 @@ namespace Piranha.Manager
                 case ECrossOriginPolicy.None:
                     return "";
                 case ECrossOriginPolicy.Anonymous:
-                    return includeAttributeName ? "crossorigin=\"anonymous\"": "anonymous";
+                    return includeAttributeName ? "crossorigin=\"anonymous\"" : "anonymous";
                 case ECrossOriginPolicy.UseCredentials:
                     return includeAttributeName ? "crossorigin=\"use-credentials\"" : "use-credentials";
                 default:
@@ -97,7 +97,7 @@ namespace Piranha.Manager
         /// Returns a text string of what a rendered script tag for this script would look like.
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => $"<script type=\"{Type}\" src=\"{Src}\"{(string.IsNullOrWhiteSpace(Integrity) ? "":$" integrity=\"{Integrity}\" {GetCrossOriginValueStrValue(true)}")}></script>";
+        public override string ToString() => $"<script type=\"{Type}\" src=\"{Src}\"{(string.IsNullOrWhiteSpace(Integrity) ? "" : $" integrity=\"{Integrity}\" {GetCrossOriginValueStrValue(true)}")}></script>";
 
         /// <summary>
         /// Backwards compatibility for the original string list.
@@ -137,7 +137,7 @@ namespace Piranha.Manager
                 return true;
             }
 
-            return obj.GetType() == this.GetType() && Equals((ManagerScriptDefinition) obj);
+            return obj.GetType() == this.GetType() && Equals((ManagerScriptDefinition)obj);
         }
     }
 }

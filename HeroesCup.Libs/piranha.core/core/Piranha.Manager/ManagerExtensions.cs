@@ -24,7 +24,8 @@ public static class ManagerModuleExtensions
     /// </summary>
     /// <param name="services">The current service collection</param>
     /// <returns>The services</returns>
-    public static IServiceCollection AddPiranhaManager(this IServiceCollection services) {
+    public static IServiceCollection AddPiranhaManager(this IServiceCollection services)
+    {
         // Add the manager module
         Piranha.App.Modules.Register<Piranha.Manager.Module>();
 
@@ -49,175 +50,209 @@ public static class ManagerModuleExtensions
         services.AddSignalR();
 
         // Setup authorization policies
-        services.AddAuthorization(o => {
+        services.AddAuthorization(o =>
+        {
             // Admin policy
-            o.AddPolicy(Permission.Admin, policy => {
+            o.AddPolicy(Permission.Admin, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
             });
 
             // Alias policies
-            o.AddPolicy(Permission.Aliases, policy => {
+            o.AddPolicy(Permission.Aliases, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Aliases, Permission.Aliases);
             });
-            o.AddPolicy(Permission.AliasesDelete, policy => {
+            o.AddPolicy(Permission.AliasesDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Aliases, Permission.Aliases);
                 policy.RequireClaim(Permission.AliasesDelete, Permission.AliasesDelete);
             });
-            o.AddPolicy(Permission.AliasesEdit, policy => {
+            o.AddPolicy(Permission.AliasesEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Aliases, Permission.Aliases);
                 policy.RequireClaim(Permission.AliasesEdit, Permission.AliasesEdit);
             });
 
             // Comment policies
-            o.AddPolicy(Permission.Comments, policy => {
+            o.AddPolicy(Permission.Comments, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Comments, Permission.Comments);
             });
-            o.AddPolicy(Permission.CommentsApprove, policy => {
+            o.AddPolicy(Permission.CommentsApprove, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Comments, Permission.Comments);
                 policy.RequireClaim(Permission.CommentsApprove, Permission.CommentsApprove);
             });
-            o.AddPolicy(Permission.CommentsDelete, policy => {
+            o.AddPolicy(Permission.CommentsDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Comments, Permission.Comments);
                 policy.RequireClaim(Permission.CommentsDelete, Permission.CommentsDelete);
             });
 
             // Config policies
-            o.AddPolicy(Permission.Config, policy => {
+            o.AddPolicy(Permission.Config, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Config, Permission.Config);
             });
-            o.AddPolicy(Permission.ConfigEdit, policy => {
+            o.AddPolicy(Permission.ConfigEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Config, Permission.Config);
                 policy.RequireClaim(Permission.ConfigEdit, Permission.ConfigEdit);
             });
 
             // Media policies
-            o.AddPolicy(Permission.Media, policy => {
+            o.AddPolicy(Permission.Media, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
             });
-            o.AddPolicy(Permission.MediaAdd, policy => {
+            o.AddPolicy(Permission.MediaAdd, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
                 policy.RequireClaim(Permission.MediaAdd, Permission.MediaAdd);
             });
-            o.AddPolicy(Permission.MediaDelete, policy => {
+            o.AddPolicy(Permission.MediaDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
                 policy.RequireClaim(Permission.MediaDelete, Permission.MediaDelete);
             });
-            o.AddPolicy(Permission.MediaEdit, policy => {
+            o.AddPolicy(Permission.MediaEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
                 policy.RequireClaim(Permission.MediaEdit, Permission.MediaEdit);
             });
-            o.AddPolicy(Permission.MediaAddFolder, policy => {
+            o.AddPolicy(Permission.MediaAddFolder, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
                 policy.RequireClaim(Permission.MediaAddFolder, Permission.MediaAddFolder);
             });
-            o.AddPolicy(Permission.MediaDeleteFolder, policy => {
+            o.AddPolicy(Permission.MediaDeleteFolder, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Media, Permission.Media);
                 policy.RequireClaim(Permission.MediaDeleteFolder, Permission.MediaDeleteFolder);
             });
 
             // Module policies
-            o.AddPolicy(Permission.Modules, policy => {
+            o.AddPolicy(Permission.Modules, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Modules, Permission.Modules);
             });
 
             // Page policies
-            o.AddPolicy(Permission.Pages, policy => {
+            o.AddPolicy(Permission.Pages, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
             });
-            o.AddPolicy(Permission.PagesAdd, policy => {
+            o.AddPolicy(Permission.PagesAdd, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
                 policy.RequireClaim(Permission.PagesAdd, Permission.PagesAdd);
             });
-            o.AddPolicy(Permission.PagesDelete, policy => {
+            o.AddPolicy(Permission.PagesDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
                 policy.RequireClaim(Permission.PagesDelete, Permission.PagesDelete);
             });
-            o.AddPolicy(Permission.PagesEdit, policy => {
+            o.AddPolicy(Permission.PagesEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
                 policy.RequireClaim(Permission.PagesEdit, Permission.PagesEdit);
             });
-            o.AddPolicy(Permission.PagesPublish, policy => {
+            o.AddPolicy(Permission.PagesPublish, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
                 policy.RequireClaim(Permission.PagesPublish, Permission.PagesPublish);
             });
-            o.AddPolicy(Permission.PagesSave, policy => {
+            o.AddPolicy(Permission.PagesSave, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Pages, Permission.Pages);
                 policy.RequireClaim(Permission.PagesSave, Permission.PagesSave);
             });
 
             // Posts policies
-            o.AddPolicy(Permission.Posts, policy => {
+            o.AddPolicy(Permission.Posts, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
             });
-            o.AddPolicy(Permission.PostsAdd, policy => {
+            o.AddPolicy(Permission.PostsAdd, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
                 policy.RequireClaim(Permission.PostsAdd, Permission.PostsAdd);
             });
-            o.AddPolicy(Permission.PostsDelete, policy => {
+            o.AddPolicy(Permission.PostsDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
                 policy.RequireClaim(Permission.PostsDelete, Permission.PostsDelete);
             });
-            o.AddPolicy(Permission.PostsEdit, policy => {
+            o.AddPolicy(Permission.PostsEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
                 policy.RequireClaim(Permission.PostsEdit, Permission.PostsEdit);
             });
-            o.AddPolicy(Permission.PostsPublish, policy => {
+            o.AddPolicy(Permission.PostsPublish, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
                 policy.RequireClaim(Permission.PostsPublish, Permission.PostsPublish);
             });
-            o.AddPolicy(Permission.PostsSave, policy => {
+            o.AddPolicy(Permission.PostsSave, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Posts, Permission.Posts);
                 policy.RequireClaim(Permission.PostsSave, Permission.PostsSave);
             });
 
             // Site policies
-            o.AddPolicy(Permission.Sites, policy => {
+            o.AddPolicy(Permission.Sites, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Sites, Permission.Sites);
             });
-            o.AddPolicy(Permission.SitesAdd, policy => {
+            o.AddPolicy(Permission.SitesAdd, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Sites, Permission.Sites);
                 policy.RequireClaim(Permission.SitesAdd, Permission.SitesAdd);
             });
-            o.AddPolicy(Permission.SitesDelete, policy => {
+            o.AddPolicy(Permission.SitesDelete, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Sites, Permission.Sites);
                 policy.RequireClaim(Permission.SitesDelete, Permission.SitesDelete);
             });
-            o.AddPolicy(Permission.SitesEdit, policy => {
+            o.AddPolicy(Permission.SitesEdit, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Sites, Permission.Sites);
                 policy.RequireClaim(Permission.SitesEdit, Permission.SitesEdit);
             });
-            o.AddPolicy(Permission.SitesSave, policy => {
+            o.AddPolicy(Permission.SitesSave, policy =>
+            {
                 policy.RequireClaim(Permission.Admin, Permission.Admin);
                 policy.RequireClaim(Permission.Sites, Permission.Sites);
                 policy.RequireClaim(Permission.SitesSave, Permission.SitesSave);
@@ -233,7 +268,8 @@ public static class ManagerModuleExtensions
     /// </summary>
     /// <param name="builder">The application builder</param>
     /// <returns>The builder</returns>
-    public static IApplicationBuilder UsePiranhaManager(this IApplicationBuilder builder) {
+    public static IApplicationBuilder UsePiranhaManager(this IApplicationBuilder builder)
+    {
         return builder.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new EmbeddedFileProvider(typeof(ManagerModuleExtensions).Assembly, "Piranha.Manager.assets.dist"),

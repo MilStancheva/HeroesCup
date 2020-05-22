@@ -17,6 +17,10 @@ namespace HeroesCup
                 {
                     config.AddEnvironmentVariables();
                 })
+                .ConfigureKestrel((context, options) =>
+                {
+                    options.Listen(System.Net.IPAddress.Any, 5000);
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

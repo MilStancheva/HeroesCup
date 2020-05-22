@@ -19,36 +19,36 @@ namespace Piranha
     /// </summary>
     public interface IStorageSession : IDisposable
     {
-		/// <summary>
-		/// Writes the content for the specified media content to the given stream.
-		/// </summary>
-		/// <param name="id">The unique id</param>
-		/// <param name="stream">The output stream</param>
-		/// <returns>If the media was found</returns>
-		Task<bool> GetAsync(string id, Stream stream);
+        /// <summary>
+        /// Writes the content for the specified media content to the given stream.
+        /// </summary>
+        /// <param name="id">The unique id</param>
+        /// <param name="stream">The output stream</param>
+        /// <returns>If the media was found</returns>
+        Task<bool> GetAsync(string id, Stream stream);
 
-		/// <summary>
-		/// Stores the given media content.
-		/// </summary>
-		/// <param name="id">The unique id</param>
-		/// <param name="contentType">The content type</param>
-		/// <param name="stream">The input stream</param>
-		/// <returns>The public URL</returns>
-		Task<string> PutAsync(string id, string contentType, Stream stream);
+        /// <summary>
+        /// Stores the given media content.
+        /// </summary>
+        /// <param name="id">The unique id</param>
+        /// <param name="contentType">The content type</param>
+        /// <param name="stream">The input stream</param>
+        /// <returns>The public URL</returns>
+        Task<string> PutAsync(string id, string contentType, Stream stream);
 
-		/// <summary>
-		/// Stores the given media content.
-		/// </summary>
-		/// <param name="id">The unique id</param>
-		/// <param name="contentType">The content type</param>
-		/// <param name="bytes">The binary data</param>
-		/// <returns>The public URL</returns>
-		Task<string> PutAsync(string id, string contentType, byte[] bytes);
+        /// <summary>
+        /// Stores the given media content.
+        /// </summary>
+        /// <param name="id">The unique id</param>
+        /// <param name="contentType">The content type</param>
+        /// <param name="bytes">The binary data</param>
+        /// <returns>The public URL</returns>
+        Task<string> PutAsync(string id, string contentType, byte[] bytes);
 
-		/// <summary>
-		/// Deletes the content for the specified media.
-		/// </summary>
-		/// <param name="id">The unique id</param>
-		Task<bool> DeleteAsync(string id);
+        /// <summary>
+        /// Deletes the content for the specified media.
+        /// </summary>
+        /// <param name="id">The unique id</param>
+        Task<bool> DeleteAsync(string id);
     }
 }

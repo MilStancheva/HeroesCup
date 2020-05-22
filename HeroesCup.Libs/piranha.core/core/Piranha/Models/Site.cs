@@ -32,7 +32,7 @@ namespace Piranha.Models
         /// </summary>
         [Required]
         [StringLength(128)]
-	    public string Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets/sets the internal textual id.

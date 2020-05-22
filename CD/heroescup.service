@@ -1,0 +1,19 @@
+[Unit]
+Description=HeroesCup kestrel service
+
+[Service]
+WorkingDirectory=/var/www/heroes-cup
+ExecStart=/usr/bin/dotnet /var/www/heroes-cup/HeroesCup.Web.dll
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=heroes-cup
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=HEROESCUP_CONNECTIONSTRING="server=localhost;port=3306;database=heroes_cup_db;uid=heroescup;password=***REMOVED***"
+
+TimeoutStopSec=90
+
+[Install]
+WantedBy=multi-user.target

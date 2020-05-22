@@ -20,7 +20,8 @@ public static class TinyMCEExtensions
     /// </summary>
     /// <param name="services">The current service collection</param>
     /// <returns>The services</returns>
-    public static IServiceCollection AddPiranhaTinyMCE(this IServiceCollection services) {
+    public static IServiceCollection AddPiranhaTinyMCE(this IServiceCollection services)
+    {
         // Add the manager module
         Piranha.App.Modules.Register<Piranha.Manager.TinyMCE.Module>();
 
@@ -33,7 +34,8 @@ public static class TinyMCEExtensions
     /// </summary>
     /// <param name="builder">The application builder</param>
     /// <returns>The builder</returns>
-    public static IApplicationBuilder UsePiranhaTinyMCE(this IApplicationBuilder builder) {
+    public static IApplicationBuilder UsePiranhaTinyMCE(this IApplicationBuilder builder)
+    {
         //
         // Register the editor scripts.
         //

@@ -1,6 +1,10 @@
+using ClubsModule;
 using HeroesCup.Modules.ClubsModule.Blocks;
 using Piranha;
 using Piranha.Extend;
+using Piranha.Manager;
+using Piranha.Security;
+using System.Collections.Generic;
 
 namespace HeroesCup.Modules.ClubsModule
 {
@@ -9,6 +13,38 @@ namespace HeroesCup.Modules.ClubsModule
     /// </summary>
     public class Module : IModule
     {
+        private readonly List<PermissionItem> _permissions = new List<PermissionItem>
+        {
+            new PermissionItem { Name = Permissions.Clubs, Title = "List Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsAdd, Title = "Add Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsDelete, Title = "Delete Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsEdit, Title = "Edit Clubs", Category = "Clubs", IsInternal = true },
+            new PermissionItem { Name = Permissions.ClubsSave, Title = "Save Clubs", Category = "Clubs", IsInternal = true },
+
+            new PermissionItem { Name = Permissions.Heroes, Title = "List Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesAdd, Title = "Add Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesDelete, Title = "Delete Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesEdit, Title = "Edit Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesSave, Title = "Save Heroes", Category = "Heroes", IsInternal = true },
+            new PermissionItem { Name = Permissions.HeroesAddCoordinator, Title = "Add Coordinator Heroes", Category = "Heroes", IsInternal = true },
+
+            new PermissionItem { Name = Permissions.Missions, Title = "List Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsAdd, Title = "Add Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsDelete, Title = "Delete Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsEdit, Title = "Edit Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsSave, Title = "Save Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsStars, Title = "Stars Missions", Category = "Missions", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionsPublish, Title = "Publish Missions", Category = "Missions", IsInternal = true },
+
+
+            new PermissionItem { Name = Permissions.Stories, Title = "List Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesAdd, Title = "Add Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesDelete, Title = "Delete Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesEdit, Title = "Edit Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesSave, Title = "Save Stories", Category = "Stories", IsInternal = true },
+            new PermissionItem { Name = Permissions.StoriesPublish, Title = "Publish Stories", Category = "Stories", IsInternal = true },
+        };
+
         /// <summary>
         /// Gets the Author
         /// </summary>
@@ -44,6 +80,53 @@ namespace HeroesCup.Modules.ClubsModule
         /// </summary>
         public void Init()
         {
+            foreach (var permission in _permissions)
+            {
+                App.Permissions["Manager"].Add(permission);
+            }
+
+            Menu.Items.Insert(2, new MenuItem
+            {
+                InternalId = "ClubsModule",
+                Name = "Clubs",
+                Css = "fas fa-fish"
+            });
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "Clubs",
+                Name = "Clubs",
+                Route = "~/manager/clubs",
+                Policy = Permissions.Clubs,
+                Css = "fas fa-brain"
+            });
+
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "Heroes",
+                Name = "Heroes",
+                Route = "~/manager/heroes",
+                Policy = Permissions.Heroes,
+                Css = "fas fa-users"
+            });
+
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "Missions",
+                Name = "Missions",
+                Route = "~/manager/missions",
+                Policy = Permissions.Missions,
+                Css = "far fa-calendar-alt"
+            });
+
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "Stories",
+                Name = "Stories",
+                Route = "~/manager/stories",
+                Policy = Permissions.Stories,
+                Css = "fas fa-history"
+            });
+
             App.Blocks.Register<Clubs>();
         }
     }

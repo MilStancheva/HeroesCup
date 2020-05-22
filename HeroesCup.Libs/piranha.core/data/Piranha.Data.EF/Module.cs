@@ -114,7 +114,7 @@ namespace Piranha.Data.EF
                 cfg.CreateMap<Models.PostBase, Data.Post>()
                     .ForMember(p => p.PostTypeId, o => o.MapFrom(m => m.TypeId))
                     .ForMember(p => p.CategoryId, o => o.MapFrom(m => m.Category.Id))
-                    .ForMember(p => p.PrimaryImageId, o => o.MapFrom(m => m.PrimaryImage != null ? m.PrimaryImage.Id : (Guid?)null ))
+                    .ForMember(p => p.PrimaryImageId, o => o.MapFrom(m => m.PrimaryImage != null ? m.PrimaryImage.Id : (Guid?)null))
                     .ForMember(p => p.Blocks, o => o.Ignore())
                     .ForMember(p => p.Fields, o => o.Ignore())
                     .ForMember(p => p.Created, o => o.Ignore())

@@ -23,7 +23,8 @@ namespace Piranha.Models
         /// <summary>
         /// Gets if this is the startpage of the site.
         /// </summary>
-        public bool IsStartPage {
+        public bool IsStartPage
+        {
             get { return !ParentId.HasValue && SortOrder == 0; }
         }
 

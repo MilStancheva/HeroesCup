@@ -47,7 +47,8 @@ namespace Piranha.Manager.Extend
         /// <summary>
         /// Gets/sets the optional script for the global Vue component.
         /// </summary>
-        public string ComponentScript {
+        public string ComponentScript
+        {
             get
             {
                 return _script?.Src;
