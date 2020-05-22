@@ -19,7 +19,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "HEROESCUP_CONNECTIONSTRING": "server=localhost;database=heroes_cup_db;user=root;password=***REMOVED***"
+                "HEROESCUP_CONNECTIONSTRING": "server=localhost;database=heroes_cup_db;user=root;password=Ad1.ad1.ad1"
             }
         }
 
