@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200521130242_RemoveStoryTitle")]
+    partial class RemoveStoryTitle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,34 +98,11 @@ namespace HeroesCup.Data.Migrations
                     b.Property<Guid>("MissionId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("HeroId", "MissionId");
 
                     b.HasIndex("MissionId");
 
                     b.ToTable("HeroMissions");
-                });
-
-            modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<byte[]>("Bytes")
-                        .HasColumnType("longblob");
-
-                    b.Property<string>("ContentType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Filename")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.Image", b =>
@@ -212,14 +191,12 @@ namespace HeroesCup.Data.Migrations
 
             modelBuilder.Entity("HeroesCup.Data.Models.Story", b =>
                 {
-                    b.Property<Guid?>("MissionId")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<Guid>("MissionId")
                         .HasColumnType("char(36)");
@@ -229,7 +206,7 @@ namespace HeroesCup.Data.Migrations
                     b.HasIndex("MissionId")
                         .IsUnique();
 
-                    b.ToTable("Stories");
+                    b.ToTable("Story");
                 });
 
             modelBuilder.Entity("HeroesCup.Data.Models.StoryImage", b =>
