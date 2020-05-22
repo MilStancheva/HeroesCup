@@ -3,6 +3,7 @@ using ClubsModule.Security;
 using ClubsModule.Services;
 using ClubsModule.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -15,6 +16,14 @@ namespace HeroesCup.Modules.ClubsModule
     {
         public static IServiceCollection AddClubsModule(this IServiceCollection services)
         {
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Areas/ClubsModule/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/ClubsModule/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/Views/Shared/{0}.cshtml");
+            });
+
             services.AddHttpContextAccessor();
             App.Modules.Register<Module>();
             services.AddTransient<IHeroesService, HeroesService>();
