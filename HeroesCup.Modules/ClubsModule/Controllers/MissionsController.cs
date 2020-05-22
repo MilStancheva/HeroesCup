@@ -84,6 +84,27 @@ namespace ClubsModule.Controllers
             return View("Edit", model);
         }
 
+        [HttpPost]
+        [Route("/manager/mission/unpublish")]
+        [Authorize(Policy = Permissions.MissionsSave)]
+        public async Task<IActionResult> UnpublishAsync(MissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionsService.UnpublishMissionEditModelAsync(model.Mission.Id);
+            if (result)
+            {
+                SuccessMessage("The mission has been unpublished.");
+                return RedirectToAction("Edit", new { id = model.Mission.Id });
+            }
+
+            ErrorMessage("The mission could not be unpublished.", false);
+            return View("Edit", model);
+        }
+
         [HttpGet]
         [Route("/manager/mission/{id:Guid}")]
         [Authorize(Policy = Permissions.MissionsEdit)]

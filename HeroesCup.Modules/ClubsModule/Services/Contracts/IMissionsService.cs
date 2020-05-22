@@ -14,6 +14,8 @@ namespace ClubsModule.Services.Contracts
 
         Task<bool> PublishMissionEditModelAsync(Guid missionId);
 
+        Task<bool> UnpublishMissionEditModelAsync(Guid missionId);
+
         Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId);
 
         Task<bool> DeleteAsync(Guid id);

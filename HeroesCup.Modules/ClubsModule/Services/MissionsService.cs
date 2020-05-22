@@ -196,6 +196,20 @@ namespace ClubsModule.Services
             return true;
         }
 
+        public async Task<bool> UnpublishMissionEditModelAsync(Guid missionId)
+        {
+            var mission = await this.dbContext.Missions.FirstOrDefaultAsync(m => m.Id == missionId);
+            if (mission == null)
+            {
+                return false;
+            }
+
+            mission.IsPublished = false;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId)
         {
             Mission mission = null;
@@ -291,6 +305,5 @@ namespace ClubsModule.Services
                 await this.dbContext.SaveChangesAsync();
             }
         }
-
     }
 }

@@ -62,15 +62,34 @@
                     </button>
                 }
 
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded && Model.Mission.IsPublished == false)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
                 {
-                    <button asp-action="Publish" class="btn btn-labeled btn-success pull-right">
-                        <span class="btn-label">
-                            <i class="fas fa-check"></i>
-                        </span>
-                        @Localizer.General["Publish"]
-                    </button>
+                    @if (Model.Mission.IsPublished == false)
+                    {
+                        <button asp-action="Publish" class="btn btn-labeled btn-success pull-right">
+                            <span class="btn-label">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            @Localizer.General["Publish"]
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <button asp-action="Unpublish" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
+                            </div>
+                        </div>
+                        @*<button asp-action="Unpublish" class="btn btn-labeled btn-success pull-right">
+                            <span class="btn-label">
+                                <i class="fas fa-undo"></i>
+                            </span>
+                            @Localizer.General["Unpublish"]
+                        </button>*@
+                    }
                 }
+
             </div>
         </div>
     </div>
