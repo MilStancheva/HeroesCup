@@ -1,0 +1,59 @@
+name: Continuous-Delivery-UAT
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: 
+      - 'infrastructure-cd'
+      - 'demo-releases/**'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  publish:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.4.0
+    # Runs a single command using the runners shell
+    - name: Publish
+      run: cd HeroesCup.Web && dotnet publish -c=release -o=/tmp/heroescup-web-test
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # A file, directory or wildcard pattern that describes what to upload
+        path: /tmp/heroescup-web-test
+        name: uat-self-contained-package
+  deploy:
+    needs: publish
+    # runs-on: [self-hosted, uat-test]
+    runs-on: [self-hosted, uat-test]
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/download-artifact@v2
+      with:
+        name: uat-self-contained-package
+        path: uat
+    - name: Stop service 
+      run: sudo /bin/systemctl stop heroescup.service
+    - name: Wait service shutdown time 
+      run: sleep 90 
+    - name: Remove www
+      run: rm -rf /var/www/heroes-cup
+    - name: create www
+      run: mkdir -p /var/www/heroes-cup
+    - name: Move distro
+      run: mv uat/* /var/www/heroes-cup
+    - name: Change permissions
+      run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
+    - name: Start kestrel
+      run: sudo /bin/systemctl start heroescup.service
+
+      

@@ -94,8 +94,8 @@ namespace HeroesCup
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                SeedDefaultPages();
             }
+            SeedDefaultPages();
             // Middleware setup
             app.UsePiranha(options =>
             {
