@@ -16,7 +16,7 @@ namespace HeroesCup.Models
 
         public int HeroesCount { get; set; }
 
-        public int TeamsCount { get; set; }
+        public int ClubsCount { get; set; }
 
         public int MissionsCount { get; set; }
 

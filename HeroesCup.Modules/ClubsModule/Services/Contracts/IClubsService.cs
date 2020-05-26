@@ -1,6 +1,8 @@
 ﻿using ClubsModule.Models;
 using HeroesCup.Data.Models;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
@@ -18,5 +20,7 @@ namespace ClubsModule.Services.Contracts
         Task<Hero> GetClubCoordinatorAsync(Guid clubId);
 
         Task<bool> DeleteAsync(Guid id);
+
+        IEnumerable<Club> GetAllClubs();
     }
 }

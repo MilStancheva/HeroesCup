@@ -298,5 +298,14 @@ namespace ClubsModule.Services
 
             return schoolYears.ToArray();
         }
+
+        public IEnumerable<Mission> GetAllHeroesCupPublishedMissions()
+        {
+            var missions = this.dbContext.Missions
+                .Where(m => m.Type == MissionType.HeroesCupMission)
+                .Where(m => m.IsPublished == true);
+
+            return missions;
+        }
     }
 }

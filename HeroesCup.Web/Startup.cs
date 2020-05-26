@@ -68,6 +68,7 @@ namespace HeroesCup
             services.AddClubsModule();
             services.AddTransient<IPageInitializer, PageInitializer>();
             services.AddTransient<ILeaderboardService, LeaderboardService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
 
             services.AddControllersWithViews();
 

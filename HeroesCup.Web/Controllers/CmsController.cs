@@ -19,16 +19,18 @@ namespace HeroesCup.Controllers
         private readonly IApi _api;
         private readonly IModelLoader _loader;
         private readonly ILeaderboardService leaderboardService;
+        private readonly IStatisticsService statisticsService;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="api">The current api</param>
-        public CmsController(IApi api, IModelLoader loader, ILeaderboardService leaderboardService)
+        public CmsController(IApi api, IModelLoader loader, ILeaderboardService leaderboardService, IStatisticsService statisticsService)
         {
             _api = api;
             _loader = loader;
             this.leaderboardService = leaderboardService;
+            this.statisticsService = statisticsService;
         }
 
         /// <summary>
@@ -90,6 +92,9 @@ namespace HeroesCup.Controllers
             model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
             var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(model.SelectedSchoolYear);
             model.Clubs = clubsListModel;
+            model.MissionsCount = this.statisticsService.GetAllMissionsCount();
+            model.ClubsCount = this.statisticsService.GetAllClubsCount();
+            model.HeroesCount = this.statisticsService.GetAllHeroesCount();
 
 
             return View(model);
