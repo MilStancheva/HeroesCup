@@ -4,7 +4,6 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Piranha.AspNetCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,13 @@ namespace ClubsModule.Services
     {
         private readonly HeroesCupDbContext dbContext;
         private readonly IImagesService imagesService;
+        private readonly ISchoolYearService schoolYearService;
 
-        public MissionsService(HeroesCupDbContext dbContext, IImagesService imagesService)
+        public MissionsService(HeroesCupDbContext dbContext, IImagesService imagesService, ISchoolYearService schoolYearService)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
+            this.schoolYearService = schoolYearService;
         }
 
         public async Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId)
@@ -108,7 +109,10 @@ namespace ClubsModule.Services
 
             mission.Title = model.Mission.Title;
             mission.Location = model.Mission.Location;
-            mission.Stars = model.Mission.Stars;
+            if (model.Mission.Stars != 0)
+            {
+                mission.Stars = model.Mission.Stars;
+            }
             var startDate = DateTime.Parse(model.UploadedStartDate);
             var endDate = DateTime.Parse(model.UploadedEndDate);
             mission.StartDate = startDate.ToUnixMilliseconds();
@@ -117,7 +121,6 @@ namespace ClubsModule.Services
             mission.Content = model.Mission.Content;
             mission.TimeheroesUrl = model.Mission.TimeheroesUrl;
             mission.Type = model.Mission.Type;
-            mission.IsPublished = false;
 
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
@@ -304,6 +307,27 @@ namespace ClubsModule.Services
             {
                 await this.dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
+        {
+            return await this.dbContext.Missions
+                .Where(m => m.IsPublished)
+                .Include(m => m.Club)
+                .Include(m => m.HeroMissions)
+                .ThenInclude(hm => hm.Hero)
+                .Where(m => m.SchoolYear == schoolYear)
+                .ToListAsync();
+        }
+
+        public IEnumerable<string> GetMissionSchoolYears()
+        {
+            var schoolYears = this.dbContext.Missions
+               .Where(m => m.IsPublished)
+               .GroupBy(m => m.SchoolYear)
+               .Select(sy => sy.Key);
+
+            return schoolYears.ToArray();
         }
     }
 }
