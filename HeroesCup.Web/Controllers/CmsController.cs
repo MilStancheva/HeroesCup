@@ -2,6 +2,7 @@
 using HeroesCup.Models.Regions;
 using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Resources;
+using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
@@ -17,15 +18,17 @@ namespace HeroesCup.Controllers
     {
         private readonly IApi _api;
         private readonly IModelLoader _loader;
+        private readonly ILeaderboardService leaderboardService;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="api">The current api</param>
-        public CmsController(IApi api, IModelLoader loader)
+        public CmsController(IApi api, IModelLoader loader, ILeaderboardService leaderboardService)
         {
             _api = api;
             _loader = loader;
+            this.leaderboardService = leaderboardService;
         }
 
         /// <summary>
@@ -83,67 +86,11 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
-            var pages = _api.Pages.GetAllAsync().Result.ToList();
+            model.SchoolYears = this.leaderboardService.GetSchoolYears();
+            model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
+            var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(model.SelectedSchoolYear);
+            model.Clubs = clubsListModel;
 
-            // Get school club regions
-            var schoolClubArchive = pages.FirstOrDefault(p => p.TypeId == "SchoolClubArchive");
-            if (schoolClubArchive != null)
-            {
-                var schoolClubArchiveId = schoolClubArchive.Id;
-                var schoolClubPosts = await _api.Posts.GetAllAsync<SchoolClubPost>(schoolClubArchiveId);
-                model.SchoolClubs = schoolClubPosts.OrderByDescending(x => x.Points).ToList();
-
-                // Get Heroes count
-                var heroesCount = 0;
-                var missionsCount = 0;
-                var teamsCount = 0;
-                foreach (var post in schoolClubPosts)
-                {
-                    if (post.Participants.Count > 0)
-                    {
-                        heroesCount += post.Participants.Count;
-                    }
-
-                    if (post.Missions.Count > 0)
-                    {
-                        missionsCount += post.Missions.Count;
-                    }
-
-                    if (post.SchoolClubRegion != null)
-                    {
-                        teamsCount += 1;
-                    }
-                }
-
-                model.HeroesCount = heroesCount;
-                model.MissionsCount = missionsCount;
-                model.TeamsCount = teamsCount;
-
-            }
-
-            // Get missions
-            var missionsArchive = pages.FirstOrDefault(p => p.TypeId == "MissionsArchive");
-            if (missionsArchive != null)
-            {
-                var missionsArchiveId = missionsArchive.Id;
-                var linkedMissionsPosts = await _api.Posts.GetAllAsync<LinkMissionPost>(missionsArchiveId);
-                var lastEnteredLinkedMissions = linkedMissionsPosts.OrderByDescending(x => x.Published).Take(3);
-                foreach (var post in lastEnteredLinkedMissions)
-                {
-                    model.LinkedMissions.Add(post);
-                }
-
-                // School years
-                var blogMissionPosts = await _api.Posts.GetAllAsync<BlogMissionPost>(missionsArchiveId);
-
-                var schoolYears = new HashSet<String>();
-                foreach (var post in blogMissionPosts)
-                {
-                    schoolYears.Add(post.Details.SchoolYear);
-                }
-
-                model.SchoolYears = schoolYears.OrderByDescending(x => x.Contains(DateTime.Now.Year.ToString())).ToList();
-            }
 
             return View(model);
         }

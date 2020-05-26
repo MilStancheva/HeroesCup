@@ -15,7 +15,7 @@ using Piranha.Manager.Editor;
 using HeroesCup.Modules.ClubsModule;
 using System;
 using HeroesCup.Identity;
-
+using HeroesCup.Web.Services;
 
 namespace HeroesCup
 {
@@ -67,6 +67,7 @@ namespace HeroesCup
             services.AddTransient<IHeroesCupIdentitySeed, IdentitySeed>();
             services.AddClubsModule();
             services.AddTransient<IPageInitializer, PageInitializer>();
+            services.AddTransient<ILeaderboardService, LeaderboardService>();
 
             services.AddControllersWithViews();
 

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Piranha;
+using Piranha.Manager;
 
 namespace HeroesCup.Modules.ClubsModule
 {

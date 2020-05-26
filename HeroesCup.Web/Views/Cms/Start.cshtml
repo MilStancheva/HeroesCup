@@ -76,7 +76,7 @@
 
 
         @* Statistics *@
-        @if (Model.SchoolClubs.Count > 0)
+        @if (Model.Clubs.Clubs.Count() > 0)
         {
 
 
@@ -85,14 +85,14 @@
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/User.svg" />
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
+                            <div class="m-1"><strong>@Model.HeroesCount+</strong></div>
                             <div class="m-1"><span class="small">Герои</span></div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/School.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
+                            <div class="m-1"><strong>@Model.TeamsCount+</strong></div>
                             <div class="m-1"><span class="small">Ученически клуба</span></div>
                         </div>
                     </div>
@@ -101,14 +101,14 @@
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Heart.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
+                            <div class="m-1"><strong>@Model.MissionsCount</strong></div>
                             <div class="m-1"><span class="small">Реализирани мисии</span></div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Clock.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
+                            <div class="m-1"><strong>@Model.HoursCount+</strong></div>
                             <div class="m-1"><span class="small">Дарени часа</span></div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
 
         @* School clubs *@
         <div class="section-margin section-padding">
-            @if (Model.SchoolClubs.Count > 0 && Model.SchoolYears.Count > 0)
+            @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
                 @foreach (var year in Model.SchoolYears)
@@ -151,30 +151,29 @@
                         var index = 0;
                     }
 
-                    @foreach (var club in Model.SchoolClubs)
+                    @foreach (var club in Model.Clubs.Clubs)
                     {
                         index += 1;
-                        <a href="@club.Permalink" class="col-12 leaderboard-club p-3">
+                        <a href="#" class="col-12 leaderboard-club p-3">
                             <div class="row vertical-center leaderboard-club">
                                 <div class="col-md-1 col-sm-1">
                                     <span class="rate">@index</span>
                                 </div>
                                 <div class="col-md-1 col-sm-1">
-                                    <span data-letters="@club.SchoolClubRegion.Initials"></span>
+                                    <span data-letters="@club.ClubInitials"></span>
                                 </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <span>@club.SchoolClubRegion.SchoolType</span>
-                                    <span>"@club.SchoolClubRegion.SchoolName"</span>
-                                    <span>@club.SchoolClubRegion.Location</span>
+                                <div class="col-md-6 col-sm-6">
+                                    <span>@club.Name</span>,
+                                    <span>@club.Location</span>
                                 </div>
-                                <div class="col-md-1 col-sm-1">
+                                <div class="col-md-2 col-sm-2">
                                     <span>@club.Points точки</span>
                                 </div>
                                 <div class="col-md-1 col-sm-1 text-center">
                                     <span class="points-heroes-separator"></span>
                                 </div>
                                 <div class="col-md-1 col-sm-1">
-                                    <span>@club.Participants.Count герои</span>
+                                    <span>@club.HeroesCount герои</span>
                                 </div>
                             </div>
                         </a>
@@ -214,7 +213,7 @@
                 <div class="row mt-3 justify-content-center">
                     <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
                 </div>
->>>>>>> refs/heads/master
+                >>>>>>> refs/heads/master
             </div>
         }
 
