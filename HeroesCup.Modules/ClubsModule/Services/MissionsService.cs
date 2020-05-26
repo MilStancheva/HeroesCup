@@ -283,6 +283,7 @@ namespace ClubsModule.Services
             return await this.dbContext.Missions
                 .Where(m => m.IsPublished)
                 .Include(m => m.Club)
+                .Include(m => m.MissionImages)
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)

@@ -122,7 +122,10 @@ namespace ClubsModule.Services
 
         public async Task<MissionImage> GetMissionImage(Guid missionId)
         {
-            return await this.dbContext.MissionImages.Where(mi => mi.MissionId == missionId).FirstOrDefaultAsync();
+            return await this.dbContext.MissionImages
+                .Where(mi => mi.MissionId == missionId)
+                .Include(mi => mi.Image)
+                .FirstOrDefaultAsync();
         }
 
         public async Task CreateStoryImageAsync(Image image, Story story)

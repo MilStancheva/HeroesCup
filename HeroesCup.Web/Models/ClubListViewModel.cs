@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeroesCup.Data.Models;
+using System;
 using System.Collections.Generic;
 
 namespace HeroesCup.Web.Models
@@ -21,5 +22,9 @@ namespace HeroesCup.Web.Models
         public int Points { get; set; }
 
         public int HeroesCount { get; set; }
+
+        public Club Club { get; set; }
+
+        public IEnumerable<MissionViewModel> Missions { get; set; }
     }
 }

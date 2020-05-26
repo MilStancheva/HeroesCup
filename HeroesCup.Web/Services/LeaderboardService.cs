@@ -12,11 +12,13 @@ namespace HeroesCup.Web.Services
     {
         private readonly IMissionsService missionsService;
         private readonly ISchoolYearService schoolYearService;
+        private readonly IImagesService imagesService;
 
-        public LeaderboardService(IMissionsService missionsService, ISchoolYearService schoolYearService)
+        public LeaderboardService(IMissionsService missionsService, ISchoolYearService schoolYearService, IImagesService imageService)
         {
             this.missionsService = missionsService;
             this.schoolYearService = schoolYearService;
+            this.imagesService = imageService;
         }
 
         public async Task<ClubListViewModel> GetClubsBySchoolYearAsync(string schoolYear)
@@ -29,15 +31,27 @@ namespace HeroesCup.Web.Services
                     Club = g.Key,
                     Missions = g.ToList()
                 })
-                .Select(c => new ClubListItem()
+                .Select(c =>
                 {
-                    Id = c.Club.Id,
-                    Name = GetClubName(c.Club),
-                    Location = c.Club.Location,
-                    ClubInitials = GetClubInitials(c.Club.OrganizationName),
-                    HeroesCount = GetHeroesCount(c.Club),
-                    Points = getClubPoints(c.Missions)
+                    IEnumerable<MissionViewModel> clubMissions = c.Missions.Select(m => new MissionViewModel()
+                    {
+                        Id = m.Id,
+                        Title = m.Title,
+                        Club = m.Club,
+                        ImageSrc = GetImageSource(m)
+                    });
 
+                    return new ClubListItem()
+                    {
+                        Id = c.Club.Id,
+                        Name = GetClubName(c.Club),
+                        Location = c.Club.Location,
+                        ClubInitials = GetClubInitials(c.Club.OrganizationName),
+                        HeroesCount = GetHeroesCount(c.Club),
+                        Points = getClubPoints(c.Missions),
+                        Club = c.Club,
+                        Missions = clubMissions
+                    };
                 })
                 .OrderByDescending(c => c.Points);
 
@@ -47,6 +61,17 @@ namespace HeroesCup.Web.Services
             };
 
             return model;
+        }
+
+        private string GetImageSource(Mission mission)
+        {
+            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
+            {
+                var missionImage = this.imagesService.GetMissionImage(mission.Id).Result;
+                return this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+            }
+
+            return string.Empty;
         }
 
         private string GetClubName(Club club)
