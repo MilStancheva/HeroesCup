@@ -88,13 +88,18 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+
+            // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
             model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
             var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(model.SelectedSchoolYear);
             model.Clubs = clubsListModel;
+
+            // Statistics
             model.MissionsCount = this.statisticsService.GetAllMissionsCount();
             model.ClubsCount = this.statisticsService.GetAllClubsCount();
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
+            model.HoursCount = this.statisticsService.GetAllHoursCount();
 
 
             return View(model);

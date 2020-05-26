@@ -2,6 +2,7 @@
 @inject IApi Api
 @{
     ViewBag.Title = Model.Title;
+    var hoursCount = $"{Model.HoursCount / 1000:#,##k}";
 }
 
 <div class="main">
@@ -108,7 +109,7 @@
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Clock.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HoursCount+</strong></div>
+                            <div class="m-1"><strong>@hoursCount+</strong></div>
                             <div class="m-1"><span class="small">Дарени часа</span></div>
                         </div>
                     </div>

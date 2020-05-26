@@ -1,4 +1,5 @@
-﻿using ClubsModule.Services.Contracts;
+﻿using AutoMapper.Configuration.Annotations;
+using ClubsModule.Services.Contracts;
 using HeroesCup.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace HeroesCup.Web.Services
 {
     public class StatisticsService : IStatisticsService
     {
+        private const int SPENT_HOURS_PER_DAY = 8;
         private readonly IMissionsService missionsService;
         private readonly IClubsService clubsService;
 
@@ -37,7 +39,16 @@ namespace HeroesCup.Web.Services
 
         public int GetAllHoursCount()
         {
-            throw new NotImplementedException();
+            var missions = this.missionsService.GetAllHeroesCupPublishedMissions();
+            var hours = 0;
+            foreach (var mission in missions)
+            {
+                 var missionDuration = this.missionsService.GetMissionDuration(mission.StartDate, mission.EndDate);
+                var missionHours = ((int)missionDuration.TotalDays * SPENT_HOURS_PER_DAY) * mission.HeroMissions.Count();
+                hours += missionHours;
+            }
+
+            return hours;
         }
 
         public int GetAllMissionsCount()

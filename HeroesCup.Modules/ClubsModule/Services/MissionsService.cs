@@ -225,7 +225,7 @@ namespace ClubsModule.Services
             return model;
         }
 
-        private TimeSpan GetMissionDuration(long startDate, long endDate)
+        public TimeSpan GetMissionDuration(long startDate, long endDate)
         {
             return endDate.ToUniversalDateTime() - startDate.ToUniversalDateTime();
         }
@@ -303,7 +303,8 @@ namespace ClubsModule.Services
         {
             var missions = this.dbContext.Missions
                 .Where(m => m.Type == MissionType.HeroesCupMission)
-                .Where(m => m.IsPublished == true);
+                .Where(m => m.IsPublished == true)
+                .Include(m => m.HeroMissions);
 
             return missions;
         }

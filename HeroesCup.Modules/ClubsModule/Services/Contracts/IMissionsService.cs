@@ -22,6 +22,8 @@ namespace ClubsModule.Services.Contracts
 
         Task<bool> DeleteAsync(Guid id);
 
+        TimeSpan GetMissionDuration(long startDate, long endDate);
+
         Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear);
 
         IEnumerable<string> GetMissionSchoolYears();
