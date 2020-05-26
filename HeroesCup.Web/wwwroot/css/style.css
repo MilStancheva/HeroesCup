@@ -664,3 +664,10 @@ a:hover .resource-icon-article {
     align-self: center;
     margin: 8px 0px;
 }
+
+/* Club Leaderboard*/
+.club-image img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}

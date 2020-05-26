@@ -15,6 +15,8 @@ namespace HeroesCup.Web.Models
 
         public string ClubInitials { get; set; }
 
+        public string ClubImageSrc { get; set; }
+
         public string Name { get; set; }
 
         public string Location { get; set; }
@@ -26,5 +28,9 @@ namespace HeroesCup.Web.Models
         public Club Club { get; set; }
 
         public IEnumerable<MissionViewModel> Missions { get; set; }
+
+        public IEnumerable<HeroViewModel> Heroes { get; set; }
+
+        public HeroViewModel Coordinator { get; set; }
     }
 }

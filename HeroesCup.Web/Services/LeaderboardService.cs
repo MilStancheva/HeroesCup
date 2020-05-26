@@ -38,7 +38,14 @@ namespace HeroesCup.Web.Services
                         Id = m.Id,
                         Title = m.Title,
                         Club = m.Club,
-                        ImageSrc = GetImageSource(m)
+                        ImageSrc = GetMissionImageSource(m)
+                    });
+
+                    IEnumerable<HeroViewModel> clubHeroes = c.Club.Heroes.Select(h => new HeroViewModel()
+                    {
+                        HeroInitials = GetClubInitials(h.Name),
+                        IsCoordinator = h.IsCoordinator,
+                        Name = h.Name
                     });
 
                     return new ClubListItem()
@@ -47,10 +54,13 @@ namespace HeroesCup.Web.Services
                         Name = GetClubName(c.Club),
                         Location = c.Club.Location,
                         ClubInitials = GetClubInitials(c.Club.OrganizationName),
+                        ClubImageSrc = GetClubImageSource(c.Club),
                         HeroesCount = GetHeroesCount(c.Club),
                         Points = getClubPoints(c.Missions),
                         Club = c.Club,
-                        Missions = clubMissions
+                        Missions = clubMissions,
+                        Heroes = clubHeroes,
+                        Coordinator = clubHeroes.FirstOrDefault(h => h.IsCoordinator)
                     };
                 })
                 .OrderByDescending(c => c.Points);
@@ -63,7 +73,7 @@ namespace HeroesCup.Web.Services
             return model;
         }
 
-        private string GetImageSource(Mission mission)
+        private string GetMissionImageSource(Mission mission)
         {
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
@@ -71,7 +81,18 @@ namespace HeroesCup.Web.Services
                 return this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
             }
 
-            return string.Empty;
+            return null;
+        }
+
+        private string GetClubImageSource(Club club)
+        {
+            if (club.ClubImages != null && club.ClubImages.Count > 0)
+            {
+                var clubImage = this.imagesService.GetClubImage(club.Id).Result;
+                return this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
+            }
+
+            return null;
         }
 
         private string GetClubName(Club club)
