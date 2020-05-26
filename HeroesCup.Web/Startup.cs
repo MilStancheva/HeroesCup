@@ -51,8 +51,7 @@ namespace HeroesCup
                 opt.UseMySql(connectionString));
 
             // Service setup
-            services.AddPiranha(options =>
-            {
+            services.AddPiranha(options =>{
                 options.UseFileStorage();
                 options.UseImageSharp();
                 options.UseManager();
