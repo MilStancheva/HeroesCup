@@ -47,4 +47,18 @@ jobs:
         uses: xt0rted/dotnet-format@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          action: "fix"
           only-changed-files: true
+
+      - name: Commit files
+        if: steps.format.outputs.has-changes == 'true'
+        run: |
+          git config --local user.name "heroescup-ci[bot]"
+          git config --local user.email "heroescup-ci[bot]@users.noreply.github.com"
+          git commit -a -m 'Automated dotnet-format update'
+      - name: Push changes
+        if: steps.format.outputs.has-changes == 'true'
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
