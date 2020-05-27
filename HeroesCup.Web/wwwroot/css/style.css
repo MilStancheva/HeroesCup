@@ -482,9 +482,55 @@ a.leaderboard-club {
     font-weight: bold;
 }
 
+.initials > [data-letters]:before {
+    background: #FE5E17;
+    color: #FFFFFF;
+}
+
+.club {
+    height: 290px;
+    overflow-y: auto;
+}
+
+.tabpanel, .tabbable {
+    background-color: #FAF8F3;
+}
+
+a .tab-title{
+    text-decoration: none;
+}
+
+.tab-title {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #1C1E21;
+}
+
+    .tab-title:hover {
+        color: #FE5E17;
+    }
+
+    .tab-title.active {
+        color: #FE5E17;
+        border-bottom: 1px solid #FE5E17;
+    }
+
 .rate {
     font-weight: bold;
 }
+
+.club-image img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Select */
 
 .custom-select select {
     display: none; /*hide original SELECT element: */
@@ -665,9 +711,20 @@ a:hover .resource-icon-article {
     margin: 8px 0px;
 }
 
-/* Club Leaderboard*/
-.club-image img {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+/* Scrollbar */
+
+.club::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #FAF8F3;
+}
+
+.club::-webkit-scrollbar {
+    width: 8px;
+    background-color: #FAF8F3;
+}
+
+.club::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #c5c4c1;
+    opacity: 24;
 }
