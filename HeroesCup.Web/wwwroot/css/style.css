@@ -512,13 +512,31 @@ a .tab-title{
 }
 
     .tab-title:hover {
-        color: #FE5E17;
+        text-decoration: none;
+        color: #1C1E21;
     }
 
-    .tab-title.active {
-        color: #FE5E17;
-        border-bottom: 1px solid #FE5E17;
+.nav-link {
+    border: none;
+    background-color: #FAF8F3;
+}
+
+    .nav-link:hover {
+        border: none;
+        background-color: #FAF8F3;
     }
+
+.nav-tabs .nav-link.active {
+    border: none;
+    color: #FE5E17;
+    background-color: #FAF8F3;
+    border-bottom: 2px solid #FE5E17;
+}
+
+
+.no-border {
+    border: none;
+}
 
 .rate {
     font-weight: bold;
@@ -528,6 +546,7 @@ a .tab-title{
     margin: 0;
     padding: 0;
     width: 100%;
+    height: auto;
 }
 
 /* Select */
