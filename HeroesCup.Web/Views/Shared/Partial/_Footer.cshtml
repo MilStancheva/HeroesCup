@@ -1,58 +1,52 @@
-﻿<footer class="border-top text-muted custom-footer pt-md-3 pl-md-5 pr-md-5 pt-sm-2 pl-sm-2 pr-sm-1">
-    <div class="pt-md-3 pl-md-5 pr-md-5 pt-sm-2 pl-sm-2 pr-sm-1">
-        <div class="pt-3 pl-md-5 pr-md-5 pl-sm-2 pr-sm-1">
-            <div class="pt-3 pl-md-5 pr-md-5 pl-sm-2 pr-sm-1">
-                @{
-                    var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
-                }
-                @if (currentSite != null)
-                {
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            @Html.Raw(currentSite.FooterContents.UpperContentLeft)
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            @Html.Raw(currentSite.FooterContents.UpperContentRight)
-                        </div>
-                    </div>
-                    @if (!string.IsNullOrWhiteSpace(currentSite.FooterContents.MiddleContent) && string.IsNullOrEmpty(currentSite.FooterContents.MiddleContent))
-                    {
-                        <div class="row footer-line"></div>
-                        <div class="row mt-1">
-                            @Html.Raw(currentSite.FooterContents.MiddleContent)
-                        </div>
-                    }
-
-                    <div class="row footer-line"></div>
-                    <div class="row mt-1 pl-2">
-                        <div class="col-md-8 col-sm-12 mt-2">
-                            <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a> | Уеб разработка от Saorsa </p>
-                        </div>
-                        <div class="row col-md-4 col-sm-12 mt-2">
-                            <div class="col-2 offset-4">
-                                <a href="https://www.facebook.com/TimeHeroes/">
-                                    <span class="icon icon-facebook"></span>
-                                </a>
-                            </div>
-                            <div class="col-2">
-                                <a class="footer_social_icon" href="https://twitter.com/timeheroesorg?lang=en">
-                                    <span class="icon icon-twitter"></span>
-                                </a>
-                            </div>
-                            <div class="col-2">
-                                <a href="https://www.youtube.com/channel/UC7l1t9MKG2uwcU1TXP7rhZQ">
-                                    <span class="icon icon-youtube"></span>
-                                </a>
-                            </div>
-                            <div class="col-2">
-                                <a href="https://www.instagram.com/time.heroes/?hl=en">
-                                    <span class="icon icon-instagram"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                }
+﻿<footer class="border-top text-muted custom-footer row">
+    @{
+        var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
+    }
+    @if (currentSite != null)
+    {
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @Html.Raw(currentSite.FooterContents.UpperContentLeft)
+            </div>
+            <div class="col-md-6 col-sm-12">
+                @Html.Raw(currentSite.FooterContents.UpperContentRight)
             </div>
         </div>
-    </div>
+        @if (!string.IsNullOrWhiteSpace(currentSite.FooterContents.MiddleContent) && string.IsNullOrEmpty(currentSite.FooterContents.MiddleContent))
+        {
+            <div class="row footer-line"></div>
+            <div class="row mt-1">
+                @Html.Raw(currentSite.FooterContents.MiddleContent)
+            </div>
+        }
+
+        <div class="footer-line"></div>
+        <div class="footer-bottom  row mt-1 pl-2">
+            <div class="col-md-8 col-sm-12 mt-2">
+                <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a> | Уеб разработка от <a href="https://saorsa.bg/">Saorsa</a> </p>
+            </div>
+            <div class="row col-md-4 col-sm-12 mt-2">
+                <div class="col-2 offset-4">
+                    <a href="https://www.facebook.com/TimeHeroes/">
+                        <span class="icon icon-facebook"></span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a class="footer_social_icon" href="https://twitter.com/timeheroesorg?lang=en">
+                        <span class="icon icon-twitter"></span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="https://www.youtube.com/channel/UC7l1t9MKG2uwcU1TXP7rhZQ">
+                        <span class="icon icon-youtube"></span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="https://www.instagram.com/time.heroes/?hl=en">
+                        <span class="icon icon-instagram"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
 </footer>
