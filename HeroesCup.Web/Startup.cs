@@ -1,8 +1,10 @@
-﻿﻿using HeroesCup.Data;
-using HeroesCup.Services;
+﻿using HeroesCup.Data;
+using HeroesCup.Identity;
+using HeroesCup.Modules.ClubsModule;
+using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,10 +14,7 @@ using Piranha.AspNetCore.Identity.MySQL;
 using Piranha.AttributeBuilder;
 using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
-using HeroesCup.Modules.ClubsModule;
 using System;
-using HeroesCup.Identity;
-using Microsoft.AspNetCore.HttpOverrides;
 
 namespace HeroesCup
 {

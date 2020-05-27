@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HeroesCup.Services
+namespace HeroesCup.Web.Services
 {
     public interface IPageInitializer
     {
