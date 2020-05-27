@@ -1,4 +1,4 @@
-﻿using HeroesCup.Data;
+﻿﻿using HeroesCup.Data;
 using HeroesCup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,7 +15,7 @@ using Piranha.Manager.Editor;
 using HeroesCup.Modules.ClubsModule;
 using System;
 using HeroesCup.Identity;
-using HeroesCup.Web.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace HeroesCup
 {
@@ -69,7 +69,6 @@ namespace HeroesCup
             services.AddTransient<IPageInitializer, PageInitializer>();
             services.AddTransient<ILeaderboardService, LeaderboardService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
-
             services.AddControllersWithViews();
 
             Services = services;
@@ -78,6 +77,13 @@ namespace HeroesCup
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api)
         {
+            if (!env.IsDevelopment())
+            {
+                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                });
+            }
 
             app.UseSession();
             // Initialize Piranha
