@@ -43,7 +43,7 @@ namespace HeroesCup.Web.Services
             var hours = 0;
             foreach (var mission in missions)
             {
-                 var missionDuration = this.missionsService.GetMissionDuration(mission.StartDate, mission.EndDate);
+                var missionDuration = this.missionsService.GetMissionDuration(mission.StartDate, mission.EndDate);
                 var missionHours = ((int)missionDuration.TotalDays * SPENT_HOURS_PER_DAY) * mission.HeroMissions.Count();
                 hours += missionHours;
             }
