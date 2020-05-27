@@ -33,7 +33,9 @@ namespace HeroesCup.Web.Services
                 })
                 .Select(c =>
                 {
-                    IEnumerable<MissionViewModel> clubMissions = c.Missions.Select(m => new MissionViewModel()
+                    IEnumerable<MissionViewModel> clubMissions = c.Club.Missions
+                    .OrderByDescending(m => m.StartDate)
+                    .Select(m => new MissionViewModel()
                     {
                         Id = m.Id,
                         Title = m.Title,
@@ -124,7 +126,7 @@ namespace HeroesCup.Web.Services
 
         public IEnumerable<string> GetSchoolYears()
         {
-            return this.missionsService.GetMissionSchoolYears();
+            return this.missionsService.GetMissionSchoolYears().OrderBy(x => x);
         }
 
         public string GetCurrentSchoolYear()

@@ -282,6 +282,9 @@ namespace ClubsModule.Services
         {
             return await this.dbContext.Missions
                 .Where(m => m.IsPublished)
+                .Include(c => c.Club)
+                .ThenInclude(c => c.Missions)
+                .ThenInclude(m => m.MissionImages)
                 .Include(m => m.Club)
                 .ThenInclude(c => c.ClubImages)
                 .ThenInclude(ci => ci.Image)
@@ -289,6 +292,7 @@ namespace ClubsModule.Services
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
+                .OrderByDescending(c => c.StartDate)
                 .ToListAsync();
         }
 
