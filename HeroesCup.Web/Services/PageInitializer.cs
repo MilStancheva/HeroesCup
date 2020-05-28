@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HeroesCup.Services
+namespace HeroesCup.Web.Services
 {
     public class PageInitializer : IPageInitializer
     {

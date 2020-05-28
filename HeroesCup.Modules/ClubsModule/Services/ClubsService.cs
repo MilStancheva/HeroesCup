@@ -223,5 +223,11 @@ namespace ClubsModule.Services
             await this.dbContext.SaveChangesAsync();
             return true;
         }
+
+        public IEnumerable<Club> GetAllClubs()
+        {
+            return this.dbContext.Clubs
+                .Include(c => c.Heroes);
+        }
     }
 }

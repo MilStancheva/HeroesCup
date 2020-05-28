@@ -2,6 +2,7 @@
 @inject IApi Api
 @{
     ViewBag.Title = Model.Title;
+    var hoursCount = $"{Model.HoursCount / 1000:#,##k}";
 }
 
 <div class="main">
@@ -76,7 +77,7 @@
 
 
         @* Statistics *@
-        @if (Model.SchoolClubs.Count > 0)
+        @if (Model.Clubs.Clubs.Count() > 0)
         {
 
 
@@ -85,14 +86,14 @@
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/User.svg" />
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HeroesCount.Value+</strong></div>
+                            <div class="m-1"><strong>@Model.HeroesCount+</strong></div>
                             <div class="m-1"><span class="small">Герои</span></div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/School.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.TeamsCount.Value+</strong></div>
+                            <div class="m-1"><strong>@Model.ClubsCount+</strong></div>
                             <div class="m-1"><span class="small">Ученически клуба</span></div>
                         </div>
                     </div>
@@ -101,14 +102,14 @@
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Heart.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.MissionsCount.Value</strong></div>
+                            <div class="m-1"><strong>@Model.MissionsCount</strong></div>
                             <div class="m-1"><span class="small">Реализирани мисии</span></div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Clock.svg">
                         <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HoursCount.Value+</strong></div>
+                            <div class="m-1"><strong>@hoursCount+</strong></div>
                             <div class="m-1"><span class="small">Дарени часа</span></div>
                         </div>
                     </div>
@@ -117,9 +118,9 @@
             <hr />
         }
 
-        @* School clubs *@
+        @* Leaderboard *@
         <div class="section-margin section-padding">
-            @if (Model.SchoolClubs.Count > 0 && Model.SchoolYears.Count > 0)
+            @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
                 @foreach (var year in Model.SchoolYears)
@@ -132,17 +133,6 @@
                         <div class="btn btn-default school-years-button">
                             <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
                         </div>
-                        @*<div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle school-years-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @Model.SchoolYears.First()
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @foreach (var year in selectItems)
-                                    {
-                                        <button value="@year.Value" class="dropdown-item" href="/" onclick="this.form.submit()">@year.Value</button>
-                                    }
-                                </div>
-                            </div>*@
                     </form>
                 </div>
 
@@ -151,34 +141,37 @@
                         var index = 0;
                     }
 
-                    @foreach (var club in Model.SchoolClubs)
+                    @foreach (var club in Model.Clubs.Clubs)
                     {
                         index += 1;
-                        <a href="@club.Permalink" class="col-12 leaderboard-club p-3">
+                        <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
                             <div class="row vertical-center leaderboard-club">
                                 <div class="col-md-1 col-sm-1">
                                     <span class="rate">@index</span>
                                 </div>
                                 <div class="col-md-1 col-sm-1">
-                                    <span data-letters="@club.SchoolClubRegion.Initials"></span>
+                                    <span data-letters="@club.ClubInitials"></span>
                                 </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <span>@club.SchoolClubRegion.SchoolType</span>
-                                    <span>"@club.SchoolClubRegion.SchoolName"</span>
-                                    <span>@club.SchoolClubRegion.Location</span>
+                                <div class="col-md-6 col-sm-6">
+                                    <span>@club.Name</span>,
+                                    <span>@club.Location</span>
                                 </div>
-                                <div class="col-md-1 col-sm-1">
+                                <div class="col-md-2 col-sm-2">
                                     <span>@club.Points точки</span>
                                 </div>
                                 <div class="col-md-1 col-sm-1 text-center">
                                     <span class="points-heroes-separator"></span>
                                 </div>
                                 <div class="col-md-1 col-sm-1">
-                                    <span>@club.Participants.Count герои</span>
+                                    <span>@club.HeroesCount герои</span>
                                 </div>
                             </div>
                         </a>
+
                         <hr />
+
+                        <!-- Club Modal -->
+                        @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
                     }
                 </div>
             }
@@ -214,7 +207,7 @@
                 <div class="row mt-3 justify-content-center">
                     <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
                 </div>
->>>>>>> refs/heads/master
+                >>>>>>> refs/heads/master
             </div>
         }
 

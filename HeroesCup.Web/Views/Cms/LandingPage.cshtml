@@ -1,0 +1,19 @@
+﻿@model HeroesCup.Web.Models.LandingPage
+@inject IApi Api
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="main" id="landing-main">
+    <div class="container">
+        <div class="row landing-image-hero justify-content-center pt-5 section-padding">
+            <div class="row justify-content-center">
+                <img src="~/images/Logo.svg" />
+            </div>
+        </div>
+        
+        <div class="col-sm-12 page-body text-center section-padding section-margin">
+            @Html.DisplayFor(m => m.Blocks)
+        </div>
+    </div>
+</div>

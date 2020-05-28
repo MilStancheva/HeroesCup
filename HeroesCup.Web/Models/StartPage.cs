@@ -1,9 +1,8 @@
 using HeroesCup.Models.Regions;
+using HeroesCup.Web.Models;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
-using Piranha.Extend.Fields;
 using Piranha.Models;
-using System;
 using System.Collections.Generic;
 
 namespace HeroesCup.Models
@@ -15,28 +14,24 @@ namespace HeroesCup.Models
         [Region(ListTitle = "Carousel")]
         public IList<HeroRegion> Carousel { get; set; }
 
-        [Region(ListTitle = "Heroes Count")]
-        public NumberField HeroesCount { get; set; }
+        public int HeroesCount { get; set; }
 
-        [Region(ListTitle = "Teams Count")]
-        public NumberField TeamsCount { get; set; }
+        public int ClubsCount { get; set; }
 
-        [Region(ListTitle = "Missions Count")]
-        public NumberField MissionsCount { get; set; }
+        public int MissionsCount { get; set; }
 
-        [Region(ListTitle = "Hours Count")]
-        public NumberField HoursCount { get; set; }
+        public int HoursCount { get; set; }
 
         /// <summary>
         /// Gets/sets the available linked missions.
         /// </summary>
         public IList<LinkMissionPost> LinkedMissions { get; set; }
 
-        public IList<SchoolClubPost> SchoolClubs { get; set; }
+        public ClubListViewModel Clubs { get; set; }
 
-        public IList<String> SchoolYears { get; set; }
+        public IEnumerable<string> SchoolYears { get; set; }
 
-        public String SelectedSchoolYear { get; set; }
+        public string SelectedSchoolYear { get; set; }
 
         /// <summary>
         /// Default constructor.
@@ -44,7 +39,8 @@ namespace HeroesCup.Models
         public StartPage()
         {
             LinkedMissions = new List<LinkMissionPost>();
-            SchoolClubs = new List<SchoolClubPost>();
+            SchoolYears = new List<string>();
+            Clubs = new ClubListViewModel();
         }
     }
 }
