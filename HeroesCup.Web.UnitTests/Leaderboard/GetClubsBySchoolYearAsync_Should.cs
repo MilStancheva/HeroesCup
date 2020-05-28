@@ -43,7 +43,8 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
             string schoolYear = null;
 
             // Act & Assert
-            await Assert.ThrowsAsync<ArgumentException>(async () => {
+            await Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
                 await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
             });
         }
@@ -60,7 +61,8 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
             string schoolYear = string.Empty;
 
             // Act & Assert
-            await Assert.ThrowsAsync<ArgumentException>(async () => {
+            await Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
                 await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
             });
         }
@@ -81,15 +83,15 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Name = "Club's name",
                 OwnerId = Guid.NewGuid(),
                 OrganizationType = "Type of school",
-                OrganizationName = "School name"                
+                OrganizationName = "School name"
             };
             var hero = new Hero()
             {
-               Id = Guid.NewGuid(),
-               Club = club,
-               ClubId = club.Id,
-               Name = "Hero",
-               IsCoordinator = false
+                Id = Guid.NewGuid(),
+                Club = club,
+                ClubId = club.Id,
+                Name = "Hero",
+                IsCoordinator = false
             };
             var mission = new Mission()
             {
@@ -105,7 +107,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Stars = 2,
                 IsPublished = true,
                 StartDate = new DateTime(2020, 5, 28).ToUnixMilliseconds(),
-                EndDate = new DateTime(2020, 6, 28).ToUnixMilliseconds()                
+                EndDate = new DateTime(2020, 6, 28).ToUnixMilliseconds()
             };
             var heroMission = new HeroMission()
             {
@@ -230,7 +232,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
 
             missionsServiceMock.Setup(m => m.GetMissionsBySchoolYear(schoolYear)).ReturnsAsync(new List<Mission>()
             {
-                mission, 
+                mission,
                 secondMission
             });
 
