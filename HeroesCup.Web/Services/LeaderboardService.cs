@@ -1,6 +1,7 @@
 ﻿using ClubsModule.Services.Contracts;
 using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ namespace HeroesCup.Web.Services
 {
     public class LeaderboardService : ILeaderboardService
     {
+        private const string SchoolYearIsNullOrEmptyExceptionMessage = "schoolYear is null or empty.";
         private readonly IMissionsService missionsService;
         private readonly ISchoolYearService schoolYearService;
         private readonly IImagesService imagesService;
@@ -23,6 +25,11 @@ namespace HeroesCup.Web.Services
 
         public async Task<ClubListViewModel> GetClubsBySchoolYearAsync(string schoolYear)
         {
+            if (string.IsNullOrEmpty(schoolYear) || string.IsNullOrWhiteSpace(schoolYear))
+            {
+                throw new ArgumentException(SchoolYearIsNullOrEmptyExceptionMessage);
+            }
+
             var missions = await this.missionsService.GetMissionsBySchoolYear(schoolYear);
             var clubs = missions
                 .GroupBy(m => m.Club)
@@ -115,13 +122,7 @@ namespace HeroesCup.Web.Services
 
         private int getClubPoints(IEnumerable<Mission> missions)
         {
-            var points = 0;
-            foreach (var mission in missions)
-            {
-                points += mission.Stars * mission.HeroMissions.Count();
-            }
-
-            return points;
+            return missions.Select(m => m.Stars * m.HeroMissions.Count()).Sum();
         }
 
         public IEnumerable<string> GetSchoolYears()
