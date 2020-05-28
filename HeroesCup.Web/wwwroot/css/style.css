@@ -756,3 +756,12 @@ a:hover .resource-icon-article {
     background-color: #c5c4c1;
     opacity: 24;
 }
+
+#landing-main {
+    margin-top: 0;
+    background: url('../images/background/hero_landing_left.svg') left top no-repeat, url('../images/background/hero_landing_right.svg') right top no-repeat;
+}
+
+#landing-main > .container {
+    margin-top: 0;
+}
