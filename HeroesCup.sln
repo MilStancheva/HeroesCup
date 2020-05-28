@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6585D5EA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroesCup.ClubsModule.UnitTests", "HeroesCup.ClubsModule.UnitTests\HeroesCup.ClubsModule.UnitTests.csproj", "{D9F6A9F7-2B7D-489A-9E3F-C88EA5503317}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroesCup.Web.UnitTests", "HeroesCup.Web.UnitTests\HeroesCup.Web.UnitTests.csproj", "{722CE1CE-E204-401A-ABB6-1A17F2A9094A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,12 +48,17 @@ Global
 		{D9F6A9F7-2B7D-489A-9E3F-C88EA5503317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9F6A9F7-2B7D-489A-9E3F-C88EA5503317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9F6A9F7-2B7D-489A-9E3F-C88EA5503317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722CE1CE-E204-401A-ABB6-1A17F2A9094A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722CE1CE-E204-401A-ABB6-1A17F2A9094A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722CE1CE-E204-401A-ABB6-1A17F2A9094A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722CE1CE-E204-401A-ABB6-1A17F2A9094A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D9F6A9F7-2B7D-489A-9E3F-C88EA5503317} = {6585D5EA-EB5C-4982-8444-A75531F8D4EA}
+		{722CE1CE-E204-401A-ABB6-1A17F2A9094A} = {6585D5EA-EB5C-4982-8444-A75531F8D4EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5402787-F491-4A30-9AFE-87A7E3103C2B}

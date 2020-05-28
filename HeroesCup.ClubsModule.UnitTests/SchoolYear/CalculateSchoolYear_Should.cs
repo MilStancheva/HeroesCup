@@ -1,7 +1,7 @@
 using ClubsModule.Services;
 using Xunit;
 
-namespace HeroesCup.ClubsModule.UnitTests
+namespace HeroesCup.ClubsModule.UnitTests.SchoolYear
 {
     public class CalculateSchoolYear_Should
     {

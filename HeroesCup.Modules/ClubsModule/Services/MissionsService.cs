@@ -281,6 +281,7 @@ namespace ClubsModule.Services
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
         {
             return await this.dbContext.Missions
+                .Where(m => m.Type == MissionType.HeroesCupMission)
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
                 .ThenInclude(c => c.Missions)
@@ -299,6 +300,7 @@ namespace ClubsModule.Services
         public IEnumerable<string> GetMissionSchoolYears()
         {
             var schoolYears = this.dbContext.Missions
+               .Where(m => m.Type == MissionType.HeroesCupMission)
                .Where(m => m.IsPublished)
                .GroupBy(m => m.SchoolYear)
                .Select(sy => sy.Key);
