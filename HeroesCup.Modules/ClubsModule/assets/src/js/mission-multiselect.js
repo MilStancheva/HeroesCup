@@ -1,3 +1,5 @@
 ﻿$(function () {
-    $('#heroes').multiselect();
+    $(document).ready(function () {
+        $('#heroes').multiselect();
+    });
 });

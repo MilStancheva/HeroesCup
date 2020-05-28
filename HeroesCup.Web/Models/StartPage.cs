@@ -39,6 +39,7 @@ namespace HeroesCup.Models
         public StartPage()
         {
             LinkedMissions = new List<LinkMissionPost>();
+            SchoolYears = new List<string>();
             Clubs = new ClubListViewModel();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
@@ -109,6 +110,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, String selectedSchoolYear, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
             model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
@@ -169,6 +171,19 @@ namespace HeroesCup.Controllers
             var model = await _loader.GetPageAsync<MissionsArchive>(id, HttpContext.User, draft);
             model.LinkMissionArchive = await _api.Archives.GetByIdAsync<LinkMissionPost>(id, page, category, tag, year, month);
             model.BlogMissionArchive = await _api.Archives.GetByIdAsync<BlogMissionPost>(id, page, category, tag, year, month);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Gets the landing page with the given id.
+        /// </summary>
+        /// <param name="id">The unique page id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("/landing")]
+        public async Task<IActionResult> LandingPage(Guid id, bool draft = false)
+        {
+            var model = await _loader.GetPageAsync<LandingPage>(id, HttpContext.User, draft);
 
             return View(model);
         }
