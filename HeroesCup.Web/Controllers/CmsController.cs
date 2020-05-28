@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
@@ -109,6 +110,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Start(Guid id, String selectedSchoolYear, bool draft = false)
         {
             var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
             model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
@@ -174,34 +176,14 @@ namespace HeroesCup.Controllers
         }
 
         /// <summary>
-        /// Gets the school club post with the given id.
+        /// Gets the landing page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("club")]
-        public async Task<IActionResult> SchoolClubPost(Guid id, bool draft = false)
+        [Route("/landing")]
+        public async Task<IActionResult> LandingPage(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPostAsync<SchoolClubPost>(id, HttpContext.User, draft);
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Gets the missions archive with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="year">The optional year</param>
-        /// <param name="month">The optional month</param>
-        /// <param name="page">The optional page</param>
-        /// <param name="category">The optional category</param>
-        /// <param name="tag">The optional tag</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("clubs")]
-        public async Task<IActionResult> SchoolClubsArchive(Guid id, int? year = null, int? month = null, int? page = null,
-            Guid? category = null, Guid? tag = null, bool draft = false)
-        {
-            var model = await _loader.GetPageAsync<SchoolClubArchive>(id, HttpContext.User, draft);
-            model.SchoolClubsArchive = await _api.Archives.GetByIdAsync<SchoolClubPost>(id, page, category, tag, year, month);
+            var model = await _loader.GetPageAsync<LandingPage>(id, HttpContext.User, draft);
 
             return View(model);
         }
