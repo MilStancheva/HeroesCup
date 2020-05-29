@@ -1,11 +1,11 @@
 ﻿<footer class="border-top text-muted custom-footer">
-    <div class="row col-12">
+    <div class="container ">
         @{
             var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
         }
         @if (currentSite != null)
         {
-            <div class="row">
+            <div class="row col-12">
                 <div class="col-md-6 col-sm-12">
                     @Html.Raw(currentSite.FooterContents.UpperContentLeft)
                 </div>
