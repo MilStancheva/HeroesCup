@@ -12,15 +12,19 @@ namespace HeroesCup.Localization
 
         public IStringLocalizer<HeroesCup.Localization.Story> Story { get; private set; }
 
+        public IStringLocalizer<HeroesCup.Localization.General> General { get; private set; }
+
         public ManagerLocalizer(IStringLocalizer<HeroesCup.Localization.Club> club,
             IStringLocalizer<HeroesCup.Localization.Hero> hero,
             IStringLocalizer<HeroesCup.Localization.Mission> mission,
-            IStringLocalizer<HeroesCup.Localization.Story> story)
+            IStringLocalizer<HeroesCup.Localization.Story> story,
+             IStringLocalizer<HeroesCup.Localization.General> general)
         {
             Club = club;
             Hero = hero;
             Mission = mission;
             Story = story;
+            General = general;
         }
     }
 }

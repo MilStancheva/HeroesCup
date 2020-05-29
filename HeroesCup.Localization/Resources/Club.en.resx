@@ -118,54 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add Hero" xml:space="preserve">
-    <value>Добави герой</value>
+    <value>Add Hero</value>
   </data>
   <data name="Club" xml:space="preserve">
-    <value>Клуб</value>
+    <value>Club</value>
   </data>
   <data name="Clubs" xml:space="preserve">
-    <value>Клубове</value>
+    <value>Clubs</value>
   </data>
   <data name="Coordinator" xml:space="preserve">
-    <value>Координатор на клуба</value>
+    <value>Coordinator</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Описание</value>
+    <value>Description</value>
   </data>
   <data name="Description is mandatory." xml:space="preserve">
-    <value>Описанието е задължително поле.</value>
+    <value>Description is mandatory.</value>
   </data>
   <data name="Heroes" xml:space="preserve">
-    <value>Герои</value>
+    <value>Heroes</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Локация</value>
+    <value>Location</value>
   </data>
   <data name="Location is mandatory." xml:space="preserve">
-    <value>Локацията на клуба е задължително поле.</value>
+    <value>Location is mandatory.</value>
   </data>
   <data name="Logo" xml:space="preserve">
-    <value>Изображение </value>
+    <value>Logo</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Име на клуба</value>
+    <value>Name</value>
   </data>
   <data name="Name is mandatory." xml:space="preserve">
-    <value>Името на клуба е задължително поле.</value>
+    <value>Name is mandatory.</value>
   </data>
   <data name="Organization" xml:space="preserve">
-    <value>Организация/Училище</value>
+    <value>Organization/School</value>
   </data>
   <data name="Organization Name" xml:space="preserve">
-    <value>Име на организацията / училището</value>
+    <value>Organization Name</value>
   </data>
   <data name="Organization Name is mandatory." xml:space="preserve">
-    <value>Име на организацията / училището е задължително поле.</value>
+    <value>Organization Name is mandatory.</value>
   </data>
   <data name="Organization Type" xml:space="preserve">
-    <value>Тип на организацията/ училището</value>
+    <value>Organization/ School Type</value>
   </data>
   <data name="Organization Type is mandatory." xml:space="preserve">
-    <value>Тип на организацията/ училището е задължително поле.</value>
+    <value>Organization Type is mandatory.</value>
   </data>
 </root>

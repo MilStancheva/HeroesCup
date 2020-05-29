@@ -117,55 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add Hero" xml:space="preserve">
-    <value>Добави герой</value>
+  <data name="Mission" xml:space="preserve">
+    <value>Мисия</value>
   </data>
-  <data name="Club" xml:space="preserve">
-    <value>Клуб</value>
-  </data>
-  <data name="Clubs" xml:space="preserve">
-    <value>Клубове</value>
-  </data>
-  <data name="Coordinator" xml:space="preserve">
-    <value>Координатор на клуба</value>
-  </data>
-  <data name="Description" xml:space="preserve">
-    <value>Описание</value>
-  </data>
-  <data name="Description is mandatory." xml:space="preserve">
-    <value>Описанието е задължително поле.</value>
-  </data>
-  <data name="Heroes" xml:space="preserve">
-    <value>Герои</value>
-  </data>
-  <data name="Location" xml:space="preserve">
-    <value>Локация</value>
-  </data>
-  <data name="Location is mandatory." xml:space="preserve">
-    <value>Локацията на клуба е задължително поле.</value>
-  </data>
-  <data name="Logo" xml:space="preserve">
-    <value>Изображение </value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Име на клуба</value>
-  </data>
-  <data name="Name is mandatory." xml:space="preserve">
-    <value>Името на клуба е задължително поле.</value>
-  </data>
-  <data name="Organization" xml:space="preserve">
-    <value>Организация/Училище</value>
-  </data>
-  <data name="Organization Name" xml:space="preserve">
-    <value>Име на организацията / училището</value>
-  </data>
-  <data name="Organization Name is mandatory." xml:space="preserve">
-    <value>Име на организацията / училището е задължително поле.</value>
-  </data>
-  <data name="Organization Type" xml:space="preserve">
-    <value>Тип на организацията/ училището</value>
-  </data>
-  <data name="Organization Type is mandatory." xml:space="preserve">
-    <value>Тип на организацията/ училището е задължително поле.</value>
+  <data name="Missions" xml:space="preserve">
+    <value>Мисии</value>
   </data>
 </root>
