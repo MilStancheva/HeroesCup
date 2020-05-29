@@ -1,9 +1,10 @@
 @model ClubsModule.Models.HeroEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Edit hero";
-    ViewBag.MenuItem = "Heroes";
+    ViewBag.MenuItem = HeroesCupLocalizer.Hero["Heroes"];
     var clubs = Model.Clubs;
     var clubsSelectList = new SelectList(clubs, "Id", "Name");
 }
@@ -15,8 +16,8 @@
     <div class="top">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Heroes"]</a></li>
+                <li class="breadcrumb-item">@HeroesCupLocalizer.Club["Clubs"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.Hero["Heroes"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>
@@ -45,16 +46,16 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Name"]</label>
+                            <label>@HeroesCupLocalizer.Hero["Name"]</label>
                             @Html.TextBoxFor(m => m.Hero.Name, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Name is mandatory."]
+                                @HeroesCupLocalizer.Hero["Name is mandatory."]
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Club"]</label>
+                            <label>@HeroesCupLocalizer.Club["Club"]</label>
                             @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", maxlength = 128, required = "" })
                         </div>
                     </div>
@@ -66,7 +67,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>
-                                    @Localizer.General["Is Coordinator"]
+                                    @HeroesCupLocalizer.Hero["Is Coordinator"]
                                     @Html.CheckBoxFor(m => m.Hero.IsCoordinator)
                                 </label>
                             </div>

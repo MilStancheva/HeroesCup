@@ -123,4 +123,13 @@
   <data name="Heroes" xml:space="preserve">
     <value>Герои</value>
   </data>
+  <data name="Is Coordinator" xml:space="preserve">
+    <value>Отбележи ако героят е координатор</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Име на героя</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Името на героя е задължително поле.</value>
+  </data>
 </root>

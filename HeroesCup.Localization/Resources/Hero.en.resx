@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Hero" xml:space="preserve">
-    <value>Герой</value>
+    <value>Hero</value>
   </data>
   <data name="Heroes" xml:space="preserve">
-    <value>Герои</value>
+    <value>Heroes</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
 </root>
