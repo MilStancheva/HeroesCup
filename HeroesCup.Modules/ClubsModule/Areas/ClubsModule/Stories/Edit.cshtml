@@ -1,9 +1,10 @@
 ﻿@model ClubsModule.Models.StoryEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Edit story";
-    ViewBag.MenuItem = "Stories";
+    ViewBag.MenuItem = HeroesCupLocalizer.Story["Stories"];
 
     var missions = Model.Missions != null && Model.Missions.Count() > 0 ? Model.Missions.ToList() : new List<HeroesCup.Data.Models.Mission>();
     var missionsSelectList = new SelectList(missions, "Id", "Title");
@@ -22,8 +23,8 @@
     <div class="top">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">@Localizer.General["Stories"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Stories"]</a></li>
+                <li class="breadcrumb-item">@HeroesCupLocalizer.Mission["Missions"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.Story["Stories"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>
@@ -76,13 +77,16 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Mission"]</label>
-                            @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control" })
+                            <label>@HeroesCupLocalizer.Mission["Mission"]</label>
+                            @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control", required="" })
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Image"]</label>
+                            <label>@HeroesCupLocalizer.General["Image"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
                                     @if (Model.ImageSrc != null)
@@ -107,10 +111,10 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label>@Localizer.General["Content"]</label>
+                            <label>@HeroesCupLocalizer.General["Content"]</label>
                             @Html.TextAreaFor(m => m.Story.Content, new { @class = "form-control small", @id = "editor", required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Content is mandatory."]
+                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>

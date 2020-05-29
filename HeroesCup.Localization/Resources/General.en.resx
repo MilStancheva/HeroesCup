@@ -120,4 +120,16 @@
   <data name="Choose file" xml:space="preserve">
     <value>Choose file</value>
   </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Mandatory field" xml:space="preserve">
+    <value>Mandatory field</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
 </root>

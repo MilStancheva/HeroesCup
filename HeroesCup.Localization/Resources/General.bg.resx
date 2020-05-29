@@ -120,4 +120,16 @@
   <data name="Choose file" xml:space="preserve">
     <value>Избери файл</value>
   </data>
+  <data name="Content" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="Mandatory field" xml:space="preserve">
+    <value>Задължително поле</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Публикувано</value>
+  </data>
 </root>

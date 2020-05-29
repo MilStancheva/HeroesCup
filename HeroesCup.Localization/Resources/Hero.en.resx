@@ -123,7 +123,13 @@
   <data name="Heroes" xml:space="preserve">
     <value>Heroes</value>
   </data>
+  <data name="Is Coordinator" xml:space="preserve">
+    <value>Is Coordinator</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Name is mandatory." xml:space="preserve">
+    <value>Name is mandatory.</value>
   </data>
 </root>
