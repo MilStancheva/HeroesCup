@@ -761,8 +761,6 @@ a:hover .resource-icon-article {
     margin-top: 0;
     background: url('../images/background/hero_landing_left.svg') left top no-repeat, url('../images/background/hero_landing_right.svg') right top no-repeat;
     background-size: contain;
-    background: -webkit-image-set( url('../images/background/hero_landing_left_small.svg') 1x, url('../images/background/hero_landing_left.svg') 2x, );
-    background: image-set( url('../images/background/hero_landing_left_small.svg') 1x, url('../images/background/hero_landing_left.svg') 2x, );
 }
 
 #landing-main > .container {
