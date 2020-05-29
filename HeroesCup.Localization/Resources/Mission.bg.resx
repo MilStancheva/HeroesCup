@@ -117,10 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Club Organizer" xml:space="preserve">
+    <value>Клуб организатор</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Продължителност</value>
+  </data>
+  <data name="End Date" xml:space="preserve">
+    <value>Крайна дата</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Локация</value>
+  </data>
   <data name="Mission" xml:space="preserve">
     <value>Мисия</value>
   </data>
   <data name="Missions" xml:space="preserve">
     <value>Мисии</value>
+  </data>
+  <data name="Stars" xml:space="preserve">
+    <value>Звезди</value>
+  </data>
+  <data name="Start Date" xml:space="preserve">
+    <value>Начална дата</value>
+  </data>
+  <data name="Timeheroes Mission URL" xml:space="preserve">
+    <value>URL към мисията в Timeheroes</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип на мисията</value>
   </data>
 </root>

@@ -1,9 +1,10 @@
 ﻿@model ClubsModule.Models.MissionEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Edit mission";
-    ViewBag.MenuItem = "Missions";
+    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Missions"];
 
     var clubs = Model.Clubs != null && Model.Clubs.Count() > 0 ? Model.Clubs.ToList() : new List<HeroesCup.Data.Models.Club>();
     var clubsSelectList = new SelectList(clubs, "Id", "Name");
@@ -44,8 +45,8 @@
     <div class="top">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">@Localizer.General["Missions"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Missions"]</a></li>
+                <li class="breadcrumb-item">@HeroesCupLocalizer.Mission["Missions"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.Mission["Missions"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>
@@ -97,7 +98,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Club Organizer"]</label>
+                            <label>@HeroesCupLocalizer.Mission["Club Organizer"]</label>
                             @if (User.IsInRole("Coordinator"))
                             {
                                 <p><span>@Model.Mission.Club.Name</span></p>
@@ -109,7 +110,7 @@
 
                             @Html.HiddenFor(m => m.ClubId)
                             <div class="invalid-feedback">
-                                @Localizer.General["Club Organizer is mandatory."]
+                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
@@ -117,7 +118,7 @@
                     {
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>@Localizer.General["Stars"]</label>
+                                <label>@HeroesCupLocalizer.Mission["Stars"]</label>
                                 @Html.TextBoxFor(m => m.Mission.Stars, new { @class = "form-control small", @type = "number" })
                             </div>
                         </div>
@@ -127,20 +128,20 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Title"]</label>
+                            <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
-                                @Localizer.General["Title is mandatory."]
-                            </div>
+                        <div class="invalid-feedback">
+                            @HeroesCupLocalizer.General["Mandatory field"]
+                        </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Location"]</label>
+                            <label>@HeroesCupLocalizer.Mission["Location"]</label>
                             @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
-                                @Localizer.General["Location is mandatory."]
-                            </div>
+                        <div class="invalid-feedback">
+                            @HeroesCupLocalizer.General["Mandatory field"]
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -148,19 +149,19 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Start Date"]</label>
+                            <label>@HeroesCupLocalizer.Mission["Start Date"]</label>
                             <input asp-for="UploadedStartDate" type="text" id='start_date' name="UploadedStartDate" required="required" />
                             <div class="invalid-feedback">
-                                @Localizer.General["Start date is mandatory."]
+                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["End Date"]</label>
+                            <label>@HeroesCupLocalizer.Mission["End Date"]</label>
                             <input asp-for="UploadedEndDate" type="text" id='end_date' name="UploadedEndDate" required="required" />
                             <div class="invalid-feedback">
-                                @Localizer.General["End date is mandatory."]
+                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
@@ -172,7 +173,7 @@
                         <div class="col-sm-6"></div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>@Localizer.General["Duration"]</label>
+                                <label>@HeroesCupLocalizer.Mission["Duration"]</label>
                                 <p>@Model.Duration.TotalDays дни</p>
                             </div>
                         </div>
@@ -184,11 +185,11 @@
                         <div class="form-group">
                             @if (!User.IsInRole("Coordinator"))
                             {
-                                <label>@Localizer.General["Type"]</label>
+                                <label>@HeroesCupLocalizer.Mission["Type"]</label>
                                 @Html.DropDownListFor(m => m.Mission.Type, missionTypesSelectList, new { @class = "form-control small", required = "" })
-                                <div class="invalid-feedback">
-                                    @Localizer.General["Coordinator is mandatory."]
-                                </div>
+                        <div class="invalid-feedback">
+                            @HeroesCupLocalizer.General["Mandatory field"]
+                        </div>
                             }
                             else
                             {
@@ -201,7 +202,7 @@
                         @if (Model.Mission.Type == HeroesCup.Data.Models.MissionType.TimeheroesMission && !User.IsInRole("Coordinator"))
                         {
                             <div class="form-group">
-                                <label>@Localizer.General["Timeheroes Mission URL"]</label>
+                                <label>@HeroesCupLocalizer.Mission["Timeheroes Mission URL"]</label>
                                 @Html.TextBoxFor(m => m.Mission.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
                             </div>
                         }
@@ -211,7 +212,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Image"]</label>
+                            <label>@HeroesCupLocalizer.General["Image"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
                                     @if (Model.ImageSrc != null)
@@ -233,7 +234,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Heroes"]</label>
+                            <label>@HeroesCupLocalizer.Hero["Heroes"]</label>
                             @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
                         </div>
                     </div>
@@ -242,11 +243,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label>@Localizer.General["Content"]</label>
+                            <label>@HeroesCupLocalizer.General["Content"]</label>
                             @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor", required = "" })
-                            <div class="invalid-feedback">
-                                @Localizer.General["Content is mandatory."]
-                            </div>
+                        <div class="invalid-feedback">
+                            @HeroesCupLocalizer.General["Mandatory field"]
+                        </div>
                         </div>
                     </div>
                 </div>
