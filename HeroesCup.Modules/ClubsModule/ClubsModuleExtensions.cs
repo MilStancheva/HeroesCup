@@ -28,6 +28,10 @@ namespace HeroesCup.Modules.ClubsModule
 
             services.AddHttpContextAccessor();
             App.Modules.Register<Module>();
+
+            services.AddLocalization(options =>
+                options.ResourcesPath = "Resources"
+            );
             services.AddTransient<IHeroesService, HeroesService>();
             services.AddTransient<IClubsService, ClubsService>();
             services.AddTransient<IImagesService, ImagesService>();
@@ -35,6 +39,9 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IMissionsService, MissionsService>();
             services.AddTransient<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
+
+            // Add localization service
+            services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();
 
             services.AddAuthorization(options =>
             {
