@@ -47,7 +47,7 @@ jobs:
     - name: Wait service shutdown time 
       run: sleep 90 
     - name: Remove www
-      run: rm -rf /var/www/heroes-cup
+      run: sudo /bin/rm -rf /var/www/heroes-cup
     - name: create www
       run: mkdir -p /var/www/heroes-cup
     - name: Move distro

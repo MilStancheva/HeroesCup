@@ -1,11 +1,11 @@
 ﻿<footer class="border-top text-muted custom-footer">
-    <div class="row col-12">
+    <div class="container ">
         @{
             var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
         }
         @if (currentSite != null)
         {
-            <div class="row">
+            <div class="row col-12">
                 <div class="col-md-6 col-sm-12">
                     @Html.Raw(currentSite.FooterContents.UpperContentLeft)
                 </div>
@@ -27,7 +27,7 @@
                     <p>Проект на <a href="https://super.timeheroes.org">Timeheroes.org</a> | Проектът е реализиран от <a href="https://saorsa.bg/">Саорса ООД </a> </p>
                 </div>
                 <div class="row col-md-4 col-sm-12 mt-2">
-                    <div class="col-2 offset-4">
+                    <div class="col-2 offset-md-4">
                         <a href="https://www.facebook.com/TimeHeroes/">
                             <span class="icon icon-facebook"></span>
                         </a>
