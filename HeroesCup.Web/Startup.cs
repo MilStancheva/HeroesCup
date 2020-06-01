@@ -1,6 +1,7 @@
 ﻿using HeroesCup.Data;
 using HeroesCup.Identity;
 using HeroesCup.Modules.ClubsModule;
+using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -103,6 +104,7 @@ namespace HeroesCup
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseUnhandledExceptionLogging();
             SeedDefaultPages();
             // Middleware setup
             app.UsePiranha(options =>
