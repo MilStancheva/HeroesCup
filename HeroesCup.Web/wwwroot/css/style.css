@@ -599,6 +599,8 @@ a .tab-title{
     color: #370AEB;
     background: url('../images/dropdown-rectangle.svg') no-repeat right;
     background-position: 100% 45%;
+    border: none !important;
+    box-shadow: none !important;
 }
 
     .custom-select::selection {
@@ -629,22 +631,62 @@ a .tab-title{
     }
 
 option {
-    box-shadow: none;
-    border: none;
     padding: 2%;
     margin: 2%;
-    border: none;
-    outline: none;
-    box-shadow: none;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: normal;
+    font-size: 14px;
     line-height: 24px;
-    color: #370AEB;
-    background-color: #EBE7FD;
-    border-radius: 25%;
+    background: rgba(244, 244, 244, 0.8);
+    backdrop-filter: blur(48px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 6px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #000000;
+    background-origin: unset;
 }
+
+    option:hover {
+        padding: 2%;
+        margin: 2%;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        background: #3585F5;
+        border-radius: 6px;
+        /* identical to box height */
+        color: white;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    option:active {
+        padding: 2%;
+        margin: 2%;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        background: #3585F5;
+        border-radius: 6px;
+        /* identical to box height */
+        color: white;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
 
 .school-years-button {
