@@ -20,8 +20,8 @@ namespace ClubsModule.Services
         private readonly ISchoolYearService schoolYearService;
         private readonly IConfiguration configuration;
 
-        public MissionsService(HeroesCupDbContext dbContext, 
-            IImagesService imagesService, 
+        public MissionsService(HeroesCupDbContext dbContext,
+            IImagesService imagesService,
             ISchoolYearService schoolYearService,
             IConfiguration configuration)
         {
