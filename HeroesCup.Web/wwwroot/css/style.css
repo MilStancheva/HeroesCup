@@ -358,14 +358,15 @@ h2 {
 .modal-content {
     width: 120%;
     background-color: #faf8f3;
+    border-radius: 0;
 }
 
 .modal-title {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 32px;
-    line-height: 42px;
+    font-size: 36px;
+    line-height: 44px;
 }
 
 .modal-content > .modal-header {
@@ -374,6 +375,28 @@ h2 {
 
 .modal-content > .modal-footer {
     border-top: none;
+}
+
+.modal-body {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.modal-close {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: url('../images/cross.svg') center no-repeat;
+    background-color: white;
+    align-content: center;
 }
 
 /* Nav icon */
@@ -771,6 +794,11 @@ a:hover .resource-icon-article {
     margin-top: 0;
     background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat;
     background-color: #FAF8F3;
+}
+
+.btn:focus, .btn:active {
+    outline: none !important;
+    box-shadow: none;
 }
 
 
