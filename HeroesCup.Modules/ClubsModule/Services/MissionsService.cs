@@ -6,6 +6,7 @@ using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -113,8 +114,10 @@ namespace ClubsModule.Services
             {
                 mission.Stars = model.Mission.Stars;
             }
-            var startDate = DateTime.Parse(model.UploadedStartDate);
-            var endDate = DateTime.Parse(model.UploadedEndDate);
+
+            var format = "dd MM yyyy";
+            var startDate = DateTime.ParseExact(model.UploadedStartDate, format, CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact(model.UploadedEndDate, format, CultureInfo.InvariantCulture);
             mission.StartDate = startDate.ToUnixMilliseconds();
             mission.EndDate = endDate.ToUnixMilliseconds();
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
@@ -208,8 +211,8 @@ namespace ClubsModule.Services
                 model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
             }
 
-            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString();
-            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString();
+            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString("dd MM yyyy");
+            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString("dd MM yyyy");
             model.Duration = GetMissionDuration(mission.StartDate, mission.EndDate);
 
             if (mission.HeroMissions != null && mission.HeroMissions.Count > 0)
