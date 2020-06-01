@@ -205,14 +205,17 @@ h2 {
 
 /* Footer */
 .custom-footer {
-    margin:0;
+    margin: 0;
     padding: 2%;
+    clear: both;
     position: relative;
     left: 0;
-    right:0;
+    right: 0;
     bottom: 0;
     width: 100%;
     background-color: black;
+    font-size: 14px;
+    font-family: Montserrat;
     color: white;
 }
 
@@ -527,18 +530,15 @@ a .tab-title{
 
 .nav-link {
     border: none;
-    background-color: #FAF8F3;
 }
 
     .nav-link:hover {
         border: none;
-        background-color: #FAF8F3;
     }
 
 .nav-tabs .nav-link.active {
     border: none;
     color: #FE5E17;
-    background-color: #FAF8F3;
     border-bottom: 2px solid #FE5E17;
 }
 
@@ -764,5 +764,35 @@ a:hover .resource-icon-article {
 
 #landing-main > .container {
     margin-top: 0;
+}
+
+.home-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat;
+    background-color: #FAF8F3;
+}
+
+
+@media screen and (max-width: 1060px) {
+    body{
+        font-size: 1rem;
+    }
+
+    #landing-main {
+        margin-top: 0;
+        background: url('../images/background/hero_landing_left.svg') left top no-repeat, url('../images/background/hero_landing_right.svg') right top no-repeat;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 0.8rem;
+    }
+
+    #landing-main {
+        margin-top: 0;
+        background: url('../images/background/hero_landing_left_small.svg') left top no-repeat, url('../images/background/hero_landing_right_small.svg') right top no-repeat;
+    }
 }
 
