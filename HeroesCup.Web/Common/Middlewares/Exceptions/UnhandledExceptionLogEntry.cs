@@ -9,7 +9,7 @@ namespace HeroesCup.Web.Common.Middlewares.Exceptions
         public string Message { get; }
         public string StackTrace { get; }
 
-        private UnhandledExceptionLogEntry(DateTime dateGenerated, string name, 
+        private UnhandledExceptionLogEntry(DateTime dateGenerated, string name,
             string message, string stackTrace)
         {
             this.DateGenerated = dateGenerated;
