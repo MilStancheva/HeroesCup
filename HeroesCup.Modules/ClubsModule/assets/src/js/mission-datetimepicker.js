@@ -3,7 +3,7 @@
     config = {
         locale: 'bg-bg',
         uiLibrary: 'bootstrap4',
-        //format: 'dd/mmm/yyyy'
+        format: 'dd mm yyyy'
     };
 
     start_date_datepicker = $("#start_date").datepicker(config);
