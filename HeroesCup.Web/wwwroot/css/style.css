@@ -48,13 +48,144 @@ header {
         max-width: 100%;
     }
 
-.teasers {
+.heading1 {
+    /* Heading 1 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 48px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading2 {
+    /* Heading 2 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height, or 122% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading3 {
+    /* Heading 3 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 32px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading4 {
+    /* Heading 4 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading5 {
+    /* Heading 5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 24px;
+    /* identical to box height, or 109% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body1 {
+    /* Body 1 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body1-bold {
+    /* Body 1 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2 {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2-bold {
+    /* Body 2 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3-bold {
+    /* Body 3 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+/*.teasers {
     margin-bottom: 1rem;
 }
 
     .teasers .teaser {
         margin-bottom: 2rem;
-    }
+    }*/
 
 .archive-item {
     padding-top: 3rem;
@@ -84,9 +215,9 @@ header {
     margin-top: 3rem;
 }
 
-.page-body h1 {
+/*.page-body h1 {
     margin-bottom: 3rem;
-}
+}*/
 
 body {
     font-family: 'Montserrat', sans-serif;
