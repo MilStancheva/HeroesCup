@@ -48,13 +48,144 @@ header {
         max-width: 100%;
     }
 
-.teasers {
+.heading1 {
+    /* Heading 1 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 48px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading2 {
+    /* Heading 2 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height, or 122% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading3 {
+    /* Heading 3 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 32px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading4 {
+    /* Heading 4 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.heading5 {
+    /* Heading 5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 24px;
+    /* identical to box height, or 109% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body1 {
+    /* Body 1 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body1-bold {
+    /* Body 1 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2 {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2-bold {
+    /* Body 2 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3-bold {
+    /* Body 3 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+/*.teasers {
     margin-bottom: 1rem;
 }
 
     .teasers .teaser {
         margin-bottom: 2rem;
-    }
+    }*/
 
 .archive-item {
     padding-top: 3rem;
@@ -84,13 +215,20 @@ header {
     margin-top: 3rem;
 }
 
-.page-body h1 {
+/*.page-body h1 {
     margin-bottom: 3rem;
-}
+}*/
 
 body {
     font-family: 'Montserrat', sans-serif;
 }
+
+    body p, div {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+    }
 
 header {
     color: #fff;
@@ -205,14 +343,17 @@ h2 {
 
 /* Footer */
 .custom-footer {
-    margin:0;
+    margin: 0;
     padding: 2%;
+    clear: both;
     position: relative;
     left: 0;
-    right:0;
+    right: 0;
     bottom: 0;
     width: 100%;
     background-color: black;
+    font-size: 14px;
+    font-family: Montserrat;
     color: white;
 }
 
@@ -355,14 +496,15 @@ h2 {
 .modal-content {
     width: 120%;
     background-color: #faf8f3;
+    border-radius: 0;
 }
 
 .modal-title {
     font-family: Montserrat;
     font-style: normal;
     font-weight: bold;
-    font-size: 32px;
-    line-height: 42px;
+    font-size: 36px;
+    line-height: 44px;
 }
 
 .modal-content > .modal-header {
@@ -371,6 +513,28 @@ h2 {
 
 .modal-content > .modal-footer {
     border-top: none;
+}
+
+.modal-body {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.modal-close {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: url('../images/cross.svg') center no-repeat;
+    background-color: white;
+    align-content: center;
 }
 
 /* Nav icon */
@@ -450,11 +614,21 @@ h2 {
 }
 
 /* Leaderboard */
+.leaderboard-clubs {
+    min-height: 90px;
+    max-height: 600px;
+    overflow-y: auto;
+}
 
 a.leaderboard-club {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.2rem;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
     text-decoration: none;
     text-underline-position: unset;
-    color: #1C1E21;
     border-bottom: 1px solid #eeece6;
 }
 
@@ -527,18 +701,15 @@ a .tab-title{
 
 .nav-link {
     border: none;
-    background-color: #FAF8F3;
 }
 
     .nav-link:hover {
         border: none;
-        background-color: #FAF8F3;
     }
 
 .nav-tabs .nav-link.active {
     border: none;
     color: #FE5E17;
-    background-color: #FAF8F3;
     border-bottom: 2px solid #FE5E17;
 }
 
@@ -576,6 +747,8 @@ a .tab-title{
     color: #370AEB;
     background: url('../images/dropdown-rectangle.svg') no-repeat right;
     background-position: 100% 45%;
+    border: none !important;
+    box-shadow: none !important;
 }
 
     .custom-select::selection {
@@ -606,22 +779,62 @@ a .tab-title{
     }
 
 option {
-    box-shadow: none;
-    border: none;
     padding: 2%;
     margin: 2%;
-    border: none;
-    outline: none;
-    box-shadow: none;
     font-family: Montserrat;
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: normal;
+    font-size: 14px;
     line-height: 24px;
-    color: #370AEB;
-    background-color: #EBE7FD;
-    border-radius: 25%;
+    background: rgba(244, 244, 244, 0.8);
+    backdrop-filter: blur(48px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 6px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #000000;
+    background-origin: unset;
 }
+
+    option:hover {
+        padding: 2%;
+        margin: 2%;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        background: #3585F5;
+        border-radius: 6px;
+        /* identical to box height */
+        color: white;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    option:active {
+        padding: 2%;
+        margin: 2%;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        background: #3585F5;
+        border-radius: 6px;
+        /* identical to box height */
+        color: white;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
 
 .school-years-button {
@@ -747,11 +960,29 @@ a:hover .resource-icon-article {
 }
 
 .club::-webkit-scrollbar {
+    padding-left: 2%;
     width: 8px;
     background-color: #FAF8F3;
 }
 
 .club::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #c5c4c1;
+    opacity: 24;
+}
+
+.leaderboard-clubs::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #FAF8F3;
+}
+
+.leaderboard-clubs::-webkit-scrollbar {
+    margin-left: 2%;
+    width: 8px;
+    background-color: #FAF8F3;
+}
+
+.leaderboard-clubs::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background-color: #c5c4c1;
     opacity: 24;
@@ -764,5 +995,40 @@ a:hover .resource-icon-article {
 
 #landing-main > .container {
     margin-top: 0;
+}
+
+.home-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat;
+    background-color: #FAF8F3;
+}
+
+.btn:focus, .btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+
+@media screen and (max-width: 1060px) {
+    body{
+        font-size: 1rem;
+    }
+
+    #landing-main {
+        margin-top: 0;
+        background: url('../images/background/hero_landing_left.svg') left top no-repeat, url('../images/background/hero_landing_right.svg') right top no-repeat;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 0.8rem;
+    }
+
+    #landing-main {
+        margin-top: 0;
+        background: url('../images/background/hero_landing_left_small.svg') left top no-repeat, url('../images/background/hero_landing_right_small.svg') right top no-repeat;
+    }
 }
 
