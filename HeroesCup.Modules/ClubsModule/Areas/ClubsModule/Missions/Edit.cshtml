@@ -53,7 +53,7 @@
 
         <div class="container-fluid">
             <div class="top-nav">
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded && Model.Mission.Club != null)
                 {
                     <button type="submit" class="btn btn-labeled btn-success pull-right">
                         <span class="btn-label">
@@ -63,7 +63,7 @@
                     </button>
                 }
 
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded && Model.Mission.Club != null)
                 {
                     @if (Model.Mission.IsPublished == false)
                     {
@@ -101,7 +101,14 @@
                             <label>@HeroesCupLocalizer.Mission["Club Organizer"]</label>
                             @if (User.IsInRole("Coordinator"))
                             {
-                                <p><span>@Model.Mission.Club.Name</span></p>
+                                if (Model.Mission.Club != null)
+                                {
+                                    <p><span>@Model.Mission.Club.Name</span></p>
+                                }
+                                else
+                                {
+                        <p><a class="btn btn-warning" href="/manager/club"><span> @HeroesCupLocalizer.Mission["Create a club"]</span></a></p>
+                                }
                             }
                             else
                             {

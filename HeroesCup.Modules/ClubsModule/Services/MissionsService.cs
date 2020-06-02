@@ -86,7 +86,7 @@ namespace ClubsModule.Services
                 Heroes = heroes,
                 HeroesIds = new List<Guid>(),
                 Clubs = clubs,
-                ClubId = clubs.FirstOrDefault().Id,
+                ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid(),
                 MissionTypes = new MissionType[]
                 {
                     MissionType.TimeheroesMission,
