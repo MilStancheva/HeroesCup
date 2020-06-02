@@ -15,6 +15,7 @@ using Piranha.AspNetCore.Identity.MySQL;
 using Piranha.AttributeBuilder;
 using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
+using Serilog;
 using System;
 
 namespace HeroesCup
@@ -104,6 +105,8 @@ namespace HeroesCup
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSerilogRequestLogging();
             app.UseUnhandledExceptionLogging();
             SeedDefaultPages();
             // Middleware setup

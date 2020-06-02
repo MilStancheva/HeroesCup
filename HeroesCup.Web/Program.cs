@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace HeroesCup
 {
@@ -20,6 +22,10 @@ namespace HeroesCup
                 .ConfigureKestrel((context, options) =>
                 {
                     options.Listen(System.Net.IPAddress.Any, 5000);
+                })
+                .UseSerilog((context, configuration) =>
+                {
+                    configuration.ReadFrom.Configuration(context.Configuration);
                 })
                 .UseStartup<Startup>()
                 .Build();

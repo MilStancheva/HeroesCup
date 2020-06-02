@@ -24,8 +24,9 @@ namespace HeroesCup.Web.Common.Middlewares.Exceptions
             }
             catch (Exception ex)
             {
-                var logger = _loggerFactory.CreateLogger("Heroes Cup");
-                logger.LogError(UnhandledExceptionLogEntry.FromException(ex).ToString());
+                var logger = _loggerFactory.CreateLogger(string.Empty);
+                logger.LogError(ex, string.Empty);
+                throw;
             }
         }
     }
