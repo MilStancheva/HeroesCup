@@ -10,28 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="HeroesCupLog20200602.log" />
-    <None Remove="HeroesCupLog20200602_001.log" />
-    <None Remove="HeroesCupLog20200602_002.log" />
-    <None Remove="HeroesCupLog20200602_003.log" />
-    <None Remove="HeroesCupLog20200602_004.log" />
-    <None Remove="HeroesCupLog20200602_005.log" />
-    <None Remove="HeroesCupLog20200602_006.log" />
-    <None Remove="HeroesCupLog20200602_007.log" />
-    <None Remove="HeroesCupLog20200602_008.log" />
-    <None Remove="HeroesCupLog20200602_009.log" />
-    <None Remove="HeroesCupLog20200602_010.log" />
-    <None Remove="HeroesCupLog20200602_011.log" />
-    <None Remove="HeroesCupLog20200602_012.log" />
-    <None Remove="HeroesCupLog20200602_013.log" />
-    <None Remove="HeroesCupLog20200602_014.log" />
-    <None Remove="HeroesCupLog20200602_015.log" />
-    <None Remove="HeroesCupLog20200602_016.log" />
-    <None Remove="HeroesCupLog20200602_017.log" />
-    <None Remove="HeroesCupLog20200602_018.log" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="wwwroot\images\team_no_image.png" />
   </ItemGroup>
 
