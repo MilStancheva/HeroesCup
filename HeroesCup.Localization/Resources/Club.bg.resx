@@ -163,9 +163,9 @@
     <value>Име на организацията / училището е задължително поле.</value>
   </data>
   <data name="Organization Type" xml:space="preserve">
-    <value>Тип на организацията/ училището</value>
+    <value>Тип на организацията / училището</value>
   </data>
   <data name="Organization Type is mandatory." xml:space="preserve">
-    <value>Тип на организацията/ училището е задължително поле.</value>
+    <value>Тип на организацията / училището е задължително поле.</value>
   </data>
 </root>
