@@ -5,6 +5,8 @@
 @{
     ViewBag.Title = "Clubs";
     ViewBag.MenuItem = HeroesCupLocalizer.Club["Clubs"];
+
+    var userHasEditClubPermissions = (await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded;
 }
 
 <div class="top">
@@ -52,7 +54,7 @@
             {
                 <tr>
                     <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                        @if (userHasEditClubPermissions)
                         {
                             <a href="@Url.Action("Edit", new {id = club.Id})">@club.Name</a>
                         }
@@ -62,7 +64,7 @@
                         }
                     </td>
                     <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                        @if (userHasEditClubPermissions)
                         {
                             <a href="@Url.Action("Edit", new {id = club.Id})">@club.OrganizationType @club.OrganizationName</a>
                         }
