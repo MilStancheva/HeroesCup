@@ -484,7 +484,8 @@ h2 {
 
 /* Leaderboard */
 .leaderboard-clubs {
-    height: 800px;
+    min-height: 90px;
+    max-height: 600px;
     overflow-y: auto;
 }
 
@@ -828,6 +829,7 @@ a:hover .resource-icon-article {
 }
 
 .club::-webkit-scrollbar {
+    padding-left: 2%;
     width: 8px;
     background-color: #FAF8F3;
 }
@@ -844,6 +846,7 @@ a:hover .resource-icon-article {
 }
 
 .leaderboard-clubs::-webkit-scrollbar {
+    margin-left: 2%;
     width: 8px;
     background-color: #FAF8F3;
 }
@@ -852,11 +855,6 @@ a:hover .resource-icon-article {
     border-radius: 8px;
     background-color: #c5c4c1;
     opacity: 24;
-}
-
-.leaderboard-clubs::-webkit-scrollbar:vertical {
-    margin-left: 4px;
-    height: 184px;
 }
 
 #landing-main {
