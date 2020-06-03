@@ -645,20 +645,20 @@ a.leaderboard-club {
 [data-letters]:before {
     content: attr(data-letters);
     display: inline-block;
-    font-size: 1em;
-    width: 3em;
-    height: 3em;
-    line-height: 3em;
+    width: 64px;
+    height: 64px;
+    line-height: 4rem;
     text-align: center;
     border-radius: 50%;
     background: #EBE7FD;
     vertical-align: middle;
-    margin-right: 1em;
+    margin-right: 3rem;
     color: #370AEB;
     font-weight: bold;
 }
 
 .initials > [data-letters]:before {
+    vertical-align: middle;
     background: #FE5E17;
     color: #FFFFFF;
 }

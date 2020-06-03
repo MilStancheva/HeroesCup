@@ -83,10 +83,10 @@
                                         <div class="col-12">
                                             <p class="body2">Координатор:</p>
                                         </div>
-                                        <div class="col-md-3 col-sm-3">
-                                            <span data-letters="@club.Coordinator.HeroInitials"></span>
+                                        <div class="col-md-4 col-sm-4">
+                                            <span class="body1-bold" data-letters="@club.Coordinator.HeroInitials"></span>
                                         </div>
-                                        <div class="col-md-9 col-sm-9 body2">@club.Coordinator.Name</div>
+                                        <div class="col-md-8 col-sm-8 body2">@club.Coordinator.Name</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +115,8 @@
                                     @foreach (var hero in club.Heroes)
                                     {
                                         <div class="row col-sm-6 p-1 vertical-center">
-                                            <div class="col-md-3 col-sm-3 body1-bold">
-                                                <span data-letters="@hero.HeroInitials"></span>
+                                            <div class="col-md-3 col-sm-3 body1-bold mr-2">
+                                                <span class="body1-bold" data-letters="@hero.HeroInitials"></span>
                                             </div>
                                             <div class="col-md-8 col-sm-8 body2"><span>@hero.Name</span></div>
                                         </div>
