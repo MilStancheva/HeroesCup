@@ -66,7 +66,7 @@
                                     <div class="col-12">
                                         @club.Club.Description
                                     </div>
-                                    <div class="row col-12 pt-3 pb-3">
+                                    <div class="row col-12 mt-3">
                                         <div class="row col-md-6 col-sm-12">
                                             <div class="col-md-5 col-sm-6">
                                                 <span>@club.Points точки</span>
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="separator"></div>
+                                    <div class="separator mt-3"></div>
                                     <div class="row col-sm-6 vertical-center pt-3">
                                         <div class="col-12">
                                             <p>Координатор:</p>
@@ -93,7 +93,7 @@
                             </div>
 
                             @* Club Missions *@
-                            <div role="tabpanel" class="tab-pane p-3" id="club_missions_{@club.Id.ToString()}">
+                            <div role="tabpanel" class="tab-pane mt-3" id="club_missions_{@club.Id.ToString()}">
                                 <div class="club row missions-block section-padding">
                                     @foreach (var mission in club.Missions)
                                     {
