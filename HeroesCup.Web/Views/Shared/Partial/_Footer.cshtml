@@ -5,11 +5,13 @@
         }
         @if (currentSite != null)
         {
-            <div class="row col-12 pb-5">
+            <div class="row col-12 pb-5 body3 text-white">
                 <div class="col-md-5 col-sm-12">
-                    @Html.Raw(currentSite.FooterContents.UpperContentLeft)
+                    @*@Html.Raw(currentSite.FooterContents.UpperContentLeft)*@
+                    <h2 class="heading2 text-white d-none d-md-block d-sm-none d-xs-none">С подкрепата на</h2>
+                    <h3 class="heading3 text-white d-sm-block d-md-none">С подкрепата на</h3>
                 </div>
-                <div class="col-md-7 col-sm-12">
+                <div class="col-md-7 col-sm-12 mt-3 mt-md-0">
                     @Html.Raw(currentSite.FooterContents.UpperContentRight)
                 </div>
             </div>

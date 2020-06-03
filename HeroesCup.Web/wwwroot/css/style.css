@@ -215,20 +215,9 @@ header {
     margin-top: 3rem;
 }
 
-/*.page-body h1 {
-    margin-bottom: 3rem;
-}*/
-
 body {
     font-family: 'Montserrat', sans-serif;
 }
-
-    body p, div {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 24px;
-    }
 
 header {
     color: #fff;
@@ -331,20 +320,10 @@ header {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
-h2 {
-    margin-bottom: 18px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 44px;
-    color: #1C1E21;
-}
-
 /* Footer */
 .custom-footer {
     margin: 0;
-    padding: 2%;
+    padding: 0;
     clear: both;
     position: relative;
     left: 0;
