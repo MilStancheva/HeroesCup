@@ -1,16 +1,17 @@
 @model ClubsModule.Models.HeroListModel
 @inject IAuthorizationService Auth
 @inject Piranha.Manager.ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Heroes";
-    ViewBag.MenuItem = "Heroes";
+    ViewBag.MenuItem = HeroesCupLocalizer.Hero["Heroes"];
 }
 
 <div class="top">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
-            <li class="breadcrumb-item active" aria-current="page">Heroes</li>
+            <li class="breadcrumb-item">@HeroesCupLocalizer.Club["Clubs"]</li>
+            <li class="breadcrumb-item active" aria-current="page">@HeroesCupLocalizer.Hero["Heroes"]</li>
         </ol>
     </nav>
 
@@ -31,43 +32,43 @@
         <thead>
             <tr>
                 <th>@Localizer.General["Name"]</th>
-                <th>@Localizer.General["Club"]</th>
+                <th>@HeroesCupLocalizer.Club["Club"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var hero in Model.Heroes)
             {
-            <tr>
-                <td>
-                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesEdit)).Succeeded)
-                    {
-                        <a href="@Url.Action("Edit", new {id = hero.Id})">@hero.Name</a>
-                    }
-                    else
-                    {
-                        <span class="title">@hero.Name</span>
-                    }
-                </td>
-                <td>
-                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
-                    {
-                        <a href="@Url.Action("Edit", "Clubs", new {id = hero.ClubId })">@hero.ClubName</a>
-                    }
-                    else
-                    {
-                        <span class="title">@hero.ClubName</span>
-                    }
-                </td>
-                <td class="actions one">
-                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesDelete)).Succeeded)
-                    {
-                        <a class="danger" href="@Url.Action("Delete", new {id = hero.Id})">
-                            <span class="fas fa-trash"></span>
-                        </a>
-                    }
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesEdit)).Succeeded)
+                        {
+                            <a href="@Url.Action("Edit", new {id = hero.Id})">@hero.Name</a>
+                        }
+                        else
+                        {
+                            <span class="title">@hero.Name</span>
+                        }
+                    </td>
+                    <td>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                        {
+                            <a href="@Url.Action("Edit", "Clubs", new {id = hero.ClubId })">@hero.ClubName</a>
+                        }
+                        else
+                        {
+                            <span class="title">@hero.ClubName</span>
+                        }
+                    </td>
+                    <td class="actions one">
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesDelete)).Succeeded)
+                        {
+                            <a class="danger" href="@Url.Action("Delete", new {id = hero.Id})">
+                                <span class="fas fa-trash"></span>
+                            </a>
+                        }
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

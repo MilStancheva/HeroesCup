@@ -1,9 +1,10 @@
 ﻿@model ClubsModule.Models.ClubEditModel
 @inject IAuthorizationService Auth
 @inject ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Edit club";
-    ViewBag.MenuItem = "Clubs";
+    ViewBag.MenuItem = HeroesCupLocalizer.Club["Clubs"];
 
     var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes : new List<HeroesCup.Data.Models.Hero>();
     var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
@@ -18,8 +19,8 @@
     <div class="top">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">@Localizer.General["Clubs"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@Localizer.General["Clubs"]</a></li>
+                <li class="breadcrumb-item">@HeroesCupLocalizer.Club["Clubs"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.Club["Clubs"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>
@@ -48,19 +49,19 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Name"]</label>
+                            <label>@HeroesCupLocalizer.Club["Name"]</label>
                             @Html.TextBoxFor(m => m.Club.Name, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Name is mandatory."]
+                                @HeroesCupLocalizer.Club["Name is mandatory."]
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Location"]</label>
+                            <label>@HeroesCupLocalizer.Club["Location"]</label>
                             @Html.TextBoxFor(m => m.Club.Location, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Location is mandatory."]
+                                @HeroesCupLocalizer.Club["Location is mandatory."]
                             </div>
                         </div>
                     </div>
@@ -69,19 +70,19 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Organization Type"]</label>
+                            <label>@HeroesCupLocalizer.Club["Organization Type"]</label>
                             @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Organization Type is mandatory."]
+                                @HeroesCupLocalizer.Club["Organization Type is mandatory."]
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Organization Name"]</label>
+                            <label>@HeroesCupLocalizer.Club["Organization Name"]</label>
                             @Html.TextBoxFor(m => m.Club.OrganizationName, new { @class = "form-control small", maxlength = 128, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Organization Name is mandatory."]
+                                @HeroesCupLocalizer.Club["Organization Name is mandatory."]
                             </div>
                         </div>
                     </div>
@@ -89,16 +90,16 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Description"]</label>
+                            <label>@HeroesCupLocalizer.Club["Description"]</label>
                             @Html.TextAreaFor(m => m.Club.Description, new { @class = "form-control small", maxlength = 500, required = "" })
                             <div class="invalid-feedback">
-                                @Localizer.General["Description is mandatory."]
+                                @HeroesCupLocalizer.Club["Description is mandatory."]
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Logo"]</label>
+                            <label>@HeroesCupLocalizer.Club["Logo"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
                                     @if (Model.LogoSrc != null)
@@ -107,35 +108,35 @@
                                     }
                                     else
                                     {
-                                        <img src="~/manager/clubsmodule/images/team_no_image.png" alt="Club Logo">                                        
+                                        <img src="~/manager/clubsmodule/images/team_no_image.png" alt="Club Logo">
                                     }
                                 </div>
                                 <div class="col-6">
-                                    <input type="file" asp-for="UploadedLogo" class="form-control-file" contextmenu="Избери файл" />
-                                    @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger" })                                    
+                                    <input type="file" asp-for="UploadedLogo" class="form-control-file" contextmenu="@HeroesCupLocalizer.General["Choose file"]" placeholder="@HeroesCupLocalizer.General["Choose file"]" />
+                                    @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                         
+
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Coordinator"]</label>
+                            <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
                             @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>@Localizer.General["Heroes"]</label>
+                            <label>@HeroesCupLocalizer.Club["Heroes"]</label>
                             @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
                         </div>
                         <div class="text-right">
                             @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded)
                             {
                                 <a href="@Url.Action("Add", "Heroes")" class="btn btn-labeled btn-primary pull-right">
-                                    <i class="fas fa-plus"></i>@Localizer.General["Add Hero"]
+                                    <i class="fas fa-plus"></i>@HeroesCupLocalizer.Club["Add Hero"]
                                 </a>
                             }
                         </div>

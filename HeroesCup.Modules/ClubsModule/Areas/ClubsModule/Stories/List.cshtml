@@ -1,16 +1,17 @@
 @model ClubsModule.Models.StoryListModel
 @inject IAuthorizationService Auth
 @inject Piranha.Manager.ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Stories";
-    ViewBag.MenuItem = "Stories";
+    ViewBag.MenuItem = HeroesCupLocalizer.Story["Stories"];
 }
 
 <div class="top">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">@Localizer.General["Stories"]</li>
-            <li class="breadcrumb-item active" aria-current="page">Stories</li>
+            <li class="breadcrumb-item">@HeroesCupLocalizer.Mission["Missions"]</li>
+            <li class="breadcrumb-item active" aria-current="page">@HeroesCupLocalizer.Story["Stories"]</li>
         </ol>
     </nav>
 
@@ -30,13 +31,13 @@
     <table class="table table-borderless">
         <thead>
             <tr>
-                <th>@Localizer.General["Story"]</th>
-                <th>@Localizer.General["Mission"]</th>
+                <th>@HeroesCupLocalizer.Story["Story"]</th>
+                <th>@HeroesCupLocalizer.Mission["Mission"]</th>
                 @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
                 {
-                    <th>@Localizer.General["Club"]</th>
+                    <th>@HeroesCupLocalizer.Club["Club"]</th>
                 }
-                <th>@Localizer.General["Published"]</th>
+                <th>@HeroesCupLocalizer.General["Published"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
