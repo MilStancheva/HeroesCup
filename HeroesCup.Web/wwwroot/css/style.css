@@ -455,11 +455,6 @@ header {
 .mission-title {
     display: inline-block;
     margin-top: 24px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
 }
 
     .mission-title:hover {
@@ -606,6 +601,10 @@ header {
     padding-left: 0;
 }
 
+.sticky-top {
+    position: fixed;
+}
+
 /* Leaderboard */
 .leaderboard-clubs {
     padding-right: 8px;
@@ -665,7 +664,7 @@ a.leaderboard-club {
 }
 
 .club {
-    height: 290px;
+    height: 242px;
     overflow-y: auto;
 }
 
@@ -702,6 +701,9 @@ a .tab-title {
     .club-modal .nav-link.active {
         border: none;
         color: #FE5E17;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
         border-bottom: 2px solid #FE5E17;
         background: #FAF8F3;
     }
