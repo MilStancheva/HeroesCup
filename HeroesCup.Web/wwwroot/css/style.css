@@ -608,6 +608,7 @@ header {
 
 /* Leaderboard */
 .leaderboard-clubs {
+    padding-right: 8px;
     min-height: 90px;
     max-height: 600px;
     overflow-y: auto;
