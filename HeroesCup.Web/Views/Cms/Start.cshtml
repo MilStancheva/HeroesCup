@@ -11,7 +11,7 @@
         @* Carousel *@
         @if (Model.Carousel.Count > 0)
         {
-            <div class="row section-margin">
+            <div class="row pt-5 pb-5">
                 <div class="col-sm-12 col-md-12">
                     <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
                         <ol class="carousel-indicators justify-content-start">
@@ -79,7 +79,7 @@
         @* Statistics *@
         @if (Model.Clubs.Clubs.Count() > 0)
         {
-            <div class="row justify-content-center block section-margin">
+            <div class="row justify-content-center block pt-5 pb-5">
                 <div class="col-6 row">
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/User.svg" />
@@ -117,7 +117,7 @@
         }
 
         @* Leaderboard *@
-        <div class="section-margin section-padding">
+        <div class="pt-5 pb-5">
             @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
@@ -179,7 +179,7 @@
         @* Missions *@
         @if (Model.LinkedMissions.Count > 0)
         {
-            <div class="section-margin section-padding">
+            <div class="pt-5 pb-5">
                 <h2 class="mb-5">Мисии</h2>
                 <div class="row missions-block">
                     @foreach (var mission in Model.LinkedMissions)
@@ -190,12 +190,12 @@
                                     <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
                                     <h4 class="mission-title">@mission.Title</h4>
                                     @*@if (mission.Tags.Count > 0)
+                                    {
+                                        @foreach (var tag in mission.Tags)
                                         {
-                                            @foreach (var tag in mission.Tags)
-                                            {
-                                                <span>#@tag.Title </span>
-                                            }
-                                        }*@
+                                            <span>#@tag.Title </span>
+                                        }
+                                    }*@
                                     <p>от @mission.Details.OrganizedBy</p>
                                 </a>
                             </div>
@@ -205,17 +205,20 @@
                 <div class="row mt-3 justify-content-center">
                     <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
                 </div>
-                >>>>>>> refs/heads/master
             </div>
         }
 
         <hr />
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
 
-        <div class="row justify-content-center">
-            <div class="col-sm-10 page-body">
-                @Html.DisplayFor(m => m.Blocks)
+        @if (Model.Blocks != null && Model.Blocks.Count > 0)
+        {
+            <div class="row justify-content-center">
+                <div class="col-sm-10 page-body">
+                    @Html.DisplayFor(m => m.Blocks)
+                </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>
