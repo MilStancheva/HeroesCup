@@ -6,9 +6,6 @@ namespace HeroesCup.Models.Regions
     public class Footer
     {
         [Field]
-        public HtmlField UpperContentLeft { get; set; }
-
-        [Field]
         public HtmlField UpperContentRight { get; set; }
 
         [Field]
