@@ -1,6 +1,7 @@
 ﻿using HeroesCup.Data;
 using HeroesCup.Identity;
 using HeroesCup.Modules.ClubsModule;
+using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,7 @@ using Piranha.AspNetCore.Identity.MySQL;
 using Piranha.AttributeBuilder;
 using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
+using Serilog;
 using System;
 
 namespace HeroesCup
@@ -103,6 +105,9 @@ namespace HeroesCup
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSerilogRequestLogging();
+            app.UseUnhandledExceptionLogging();
             SeedDefaultPages();
             // Middleware setup
             app.UsePiranha(options =>
