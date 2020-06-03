@@ -4,10 +4,10 @@
 }
 
 <div class="modal fading" id="@club.Id.ToString()">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg club-modal" role="document">
         <div class="modal-content">
             <div class="row">
-                <div class="col-4 club-image">
+                <div class="col-md-4 col-sm-12 club-image">
                     @if (@club.ClubImageSrc != null)
                     {
                         <img src="@club.ClubImageSrc" class="img-fluid" alt="@club.Name" />
@@ -17,26 +17,26 @@
                         <img src="~/images/team_no_image.png" class="img-fluid" alt="@club.Name" />
                     }
                 </div>
-                <div class="row col-8">
-                    <div class="modal-header no-border section-padding">
-                        <div class="row col-12">
-                            <div class="col-md-2 col-sm-2 initials">
+                <div class="col-md-8 col-sm-12 pr-5">
+                    <div class="modal-header no-border pt-5">
+                        <div class="row">
+                            <div class="col-2 body1-bold initials">
                                 <span data-letters="@club.ClubInitials"></span>
                             </div>
-                            <div class="col-md-10 col-sm-10">
-                                <h3>
+                            <div class="col-9">
+                                <h3 class="heading3">
                                     <span>@club.Name</span>,
                                     <span>@club.Location</span>
                                 </h3>
                             </div>
+                            <div class="col-1">
+                                <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
+                            </div>
                         </div>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
-                    <div class="row col-12">
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs" role="tablist">
+                    <div class="tabbable">
+                        @*<div class="tabbable">*@
+                            <ul class="nav nav-tabs body2-bold" role="tablist">
                                 <li class="nav-item active">
                                     <a class="nav-link active tab-title" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
                                         Информация
@@ -61,38 +61,39 @@
 
                             @* Club Information *@
                         <div class="tab-content no-border">
-                            <div role="tabpanel" class="tab-pane active p-2" id="club_information_{@club.Id.ToString()}">
-                                <div class="club section-padding p-3">
-                                    <div class="row p-2">
+                            <div role="tabpanel" class="tab-pane active p-3" id="club_information_{@club.Id.ToString()}">
+                                <div class="row club body2">
+                                    <div class="col-12">
                                         @club.Club.Description
                                     </div>
-                                    <div class="row p-2">
-                                        <div class="row col-5">
-                                            <div class="col-md-4 col-sm-4">
+                                    <div class="row col-12 pt-3 pb-3">
+                                        <div class="row col-md-6 col-sm-12">
+                                            <div class="col-md-5 col-sm-6">
                                                 <span>@club.Points точки</span>
                                             </div>
-                                            <div class="col-md-4 col-sm-4 text-center">
+                                            <div class="col-md-1 col-sm-1 text-center">
                                                 <span class="points-heroes-separator"></span>
                                             </div>
-                                            <div class="col-md-4 col-sm-4">
+                                            <div class="col-md-5 col-sm-5">
                                                 <span>@club.HeroesCount герои</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
-
-                                    Координатор:
-                                    <div class="row col-sm-6 vertical-center p-2">
+                                    <div class="separator"></div>
+                                    <div class="row col-sm-6 vertical-center pt-3">
+                                        <div class="col-12">
+                                            <p>Координатор:</p>
+                                        </div>
                                         <div class="col-md-3 col-sm-3">
                                             <span data-letters="@club.Coordinator.HeroInitials"></span>
                                         </div>
-                                        <div class="col-md-8 col-sm-8">@club.Coordinator.Name</div>
+                                        <div class="col-md-9 col-sm-9">@club.Coordinator.Name</div>
                                     </div>
                                 </div>
                             </div>
 
                             @* Club Missions *@
-                            <div role="tabpanel" class="tab-pane p-2" id="club_missions_{@club.Id.ToString()}">
+                            <div role="tabpanel" class="tab-pane p-3" id="club_missions_{@club.Id.ToString()}">
                                 <div class="club row missions-block section-padding">
                                     @foreach (var mission in club.Missions)
                                     {
@@ -110,7 +111,7 @@
                             </div>
 
                             @* Club Heroes *@
-                            <div role="tabpanel" class="tab-pane p-2" id="club_heroes_{@club.Id.ToString()}">
+                            <div role="tabpanel" class="tab-pane p-3" id="club_heroes_{@club.Id.ToString()}">
                                 <div class="club row section-padding pl-2 pr-2">
                                     @foreach (var hero in club.Heroes)
                                     {
@@ -125,13 +126,13 @@
                                 </div>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane p-2" id="club_coordinators_{@club.Id.ToString()}">
+                            <div role="tabpanel" class="tab-pane p-3" id="club_coordinators_{@club.Id.ToString()}">
                                 <div class="club row section-padding">
 
                                 </div>
                             </div>
                         </div>
-                        </div>
+                        @*</div>*@
                     </div>
                 </div>
             </div>

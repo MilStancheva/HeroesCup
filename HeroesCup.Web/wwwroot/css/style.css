@@ -499,14 +499,6 @@ h2 {
     border-radius: 0;
 }
 
-.modal-title {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 44px;
-}
-
 .modal-content > .modal-header {
     border-bottom: none;
 }
@@ -535,6 +527,23 @@ h2 {
     background: url('../images/cross.svg') center no-repeat;
     background-color: white;
     align-content: center;
+}
+
+/* Club Modal */
+.club-modal {
+    height: 484px;
+}
+
+.modal-ku {
+    width: 750px;
+    margin: auto;
+}
+
+.club-image img {
+    margin: 0;
+    padding: 0;
+    width: 384px;
+    height: 100%;
 }
 
 /* Nav icon */
@@ -585,6 +594,13 @@ h2 {
 }
 
 /* Common */
+
+.separator {
+    width: 100%;
+    border-top: 1px solid #EEECE6;
+    bottom: 0;
+}
+
 .vertical-center {
     margin-top: auto;
     margin-bottom: auto;
@@ -686,10 +702,6 @@ a .tab-title{
 .tab-title {
     display: inline-block;
     margin-top: 24px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 16px;
-    font-weight: bold;
     line-height: 24px;
     color: #1C1E21;
 }
@@ -699,18 +711,21 @@ a .tab-title{
         color: #1C1E21;
     }
 
-.nav-link {
+.tabbable.nav-link {
     border: none;
+    background: #FAF8F3;
 }
 
-    .nav-link:hover {
+    .tabbable.nav-link:hover {
         border: none;
+        background: #FAF8F3;
     }
 
-.nav-tabs .nav-link.active {
+.tabbable.nav-tabs .tabbable.nav-link.active {
     border: none;
     color: #FE5E17;
     border-bottom: 2px solid #FE5E17;
+    background: #FAF8F3;
 }
 
 
@@ -722,12 +737,6 @@ a .tab-title{
     font-weight: bold;
 }
 
-.club-image img {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: auto;
-}
 
 /* Select */
 
