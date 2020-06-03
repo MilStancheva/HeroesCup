@@ -35,30 +35,30 @@
                         </div>
                     </div>
                     <div class="tabbable">
-                            <ul class="nav nav-tabs body2 pr-5 pl-4" role="tablist">
-                                <li class="nav-item active">
-                                    <a class="nav-link active tab-title pl-0 pr-0  ml-3 mr-3" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
-                                        Информация
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_missions_{@club.Id.ToString()}" data-toggle="tab">
-                                        Мисии
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_heroes_{@club.Id.ToString()}" data-toggle="tab">
-                                        Герои
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_coordinators_{@club.Id.ToString()}" data-toggle="tab">
-                                        За координатори
-                                    </a>
-                                </li>
-                            </ul>
+                        <ul class="nav nav-tabs body2 pr-5 pl-4" role="tablist">
+                            <li class="nav-item active">
+                                <a class="nav-link active tab-title pl-0 pr-0  ml-3 mr-3" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
+                                    Информация
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_missions_{@club.Id.ToString()}" data-toggle="tab">
+                                    Мисии
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_heroes_{@club.Id.ToString()}" data-toggle="tab">
+                                    Герои
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_coordinators_{@club.Id.ToString()}" data-toggle="tab">
+                                    За координатори
+                                </a>
+                            </li>
+                        </ul>
 
-                            @* Club Information *@
+                        @* Club Information *@
                         <div class="tab-content no-border pr-5 pl-4">
                             <div role="tabpanel" class="tab-pane active p-3" id="club_information_{@club.Id.ToString()}">
                                 <div class="row club body2 mt-3">
@@ -81,12 +81,12 @@
                                     <div class="separator mt-3"></div>
                                     <div class="row col-sm-6 vertical-center pt-3">
                                         <div class="col-12">
-                                            <p>Координатор:</p>
+                                            <p class="body2">Координатор:</p>
                                         </div>
                                         <div class="col-md-3 col-sm-3">
                                             <span data-letters="@club.Coordinator.HeroInitials"></span>
                                         </div>
-                                        <div class="col-md-9 col-sm-9">@club.Coordinator.Name</div>
+                                        <div class="col-md-9 col-sm-9 body2">@club.Coordinator.Name</div>
                                     </div>
                                 </div>
                             </div>
@@ -114,24 +114,26 @@
                                 <div class="club row mt-3">
                                     @foreach (var hero in club.Heroes)
                                     {
-                                    <div class="row col-sm-6 p-1 vertical-center">
-                                        <div class="col-md-3 col-sm-3 body1-bold">
-                                            <span data-letters="@hero.HeroInitials"></span>
+                                        <div class="row col-sm-6 p-1 vertical-center">
+                                            <div class="col-md-3 col-sm-3 body1-bold">
+                                                <span data-letters="@hero.HeroInitials"></span>
+                                            </div>
+                                            <div class="col-md-8 col-sm-8 body2"><span>@hero.Name</span></div>
                                         </div>
-                                        <div class="col-md-8 col-sm-8 body2"><span>@hero.Name</span></div>
-                                    </div>
                                     }
 
                                 </div>
                             </div>
 
                             <div role="tabpanel" class="tab-pane p-3" id="club_coordinators_{@club.Id.ToString()}">
-                                <div class="club row mt-3">
-
+                                <div class="club row mt-3 body2">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</p>
+                                    <p>
+                                        <a class="btn btn-heroes text-white">admin.timeheroes.bg</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        @*</div>*@
                     </div>
                 </div>
             </div>
