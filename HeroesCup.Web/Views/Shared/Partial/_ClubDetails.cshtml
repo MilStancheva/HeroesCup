@@ -20,14 +20,18 @@
                 <div class="col-md-7 col-sm-12 pl-0">
                     <div class="modal-header no-border pt-5 pr-5 ml-4">
                         <div class="row">
-                            <div class="col-2 body1-bold initials">
+                            <div class="col-2 body1-bold initials mr-1">
                                 <span data-letters="@club.ClubInitials"></span>
                             </div>
-                            <div class="col-9">
-                                <h3 class="heading3">
+                            <div class="col-8">
+                                <h3 class="heading3 d-none d-md-block d-sm-none d-xs-none">
                                     <span>@club.Name</span>,
                                     <span>@club.Location</span>
                                 </h3>
+                                <p class="body1-bold d-sm-block d-md-none">
+                                    <span>@club.Name</span>,
+                                    <span>@club.Location</span>
+                                </p>
                             </div>
                             <div class="col-1">
                                 <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
@@ -57,7 +61,6 @@
                                 </a>
                             </li>
                         </ul>
-
                         @* Club Information *@
                         <div class="tab-content no-border pr-5 pl-4">
                             <div role="tabpanel" class="tab-pane active p-3" id="club_information_{@club.Id.ToString()}">
@@ -83,10 +86,10 @@
                                         <div class="col-12">
                                             <p class="body2">Координатор:</p>
                                         </div>
-                                        <div class="col-md-4 col-sm-4">
+                                        <div class="col-4">
                                             <span class="body1-bold" data-letters="@club.Coordinator.HeroInitials"></span>
                                         </div>
-                                        <div class="col-md-8 col-sm-8 body2">@club.Coordinator.Name</div>
+                                        <div class="col-8 body2">@club.Coordinator.Name</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,10 +118,10 @@
                                     @foreach (var hero in club.Heroes)
                                     {
                                         <div class="row col-sm-6 p-1 vertical-center">
-                                            <div class="col-md-3 col-sm-3 body1-bold mr-2">
+                                            <div class="col-3 body1-bold mr-2">
                                                 <span class="body1-bold" data-letters="@hero.HeroInitials"></span>
                                             </div>
-                                            <div class="col-md-8 col-sm-8 body2"><span>@hero.Name</span></div>
+                                            <div class="col-8 body2"><span>@hero.Name</span></div>
                                         </div>
                                     }
 

@@ -117,7 +117,7 @@
         }
 
         @* Leaderboard *@
-        <div class="pt-5 pb-5">
+        <div class="pt-5 pb-5 pl-3 pr-3">
             @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
@@ -144,23 +144,23 @@
                         index += 1;
                         <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
                             <div class="row vertical-center leaderboard-club">
-                                <div class="col-md-1 col-sm-1 body1-bold text-center">
+                                <div class="col-md-1 col-sm-1 body1-bold text-md-center">
                                     <span>@index</span>
                                 </div>
-                                <div class="col-md-1 col-sm-1 text-center">
+                                <div class="col-md-1 col-sm-3 text-md-center">
                                     <span class="body1-bold" data-letters="@club.ClubInitials"></span>
                                 </div>
-                                <div class="col-md-5 col-sm-5 body1">
+                                <div class="col-md-5 col-sm-8 body1">
                                     <span>@club.Name</span>,
                                     <span>@club.Location</span>
                                 </div>
-                                <div class="col-md-2 col-sm-2 text-right body1">
+                                <div class="col-md-2 col-sm-5 text-right body1">
                                     <span>@club.Points точки</span>
                                 </div>
-                                <div class="col-md-1 col-sm-1 text-center pr-1 pl-1">
+                                <div class="col-md-1 col-sm-2 text-center pr-1 pl-1">
                                     <span class="points-heroes-separator"></span>
                                 </div>
-                                <div class="col-md-2 col-sm-2 text-left body1">
+                                <div class="col-md-2 col-sm-5 text-left body1">
                                     <span>@club.HeroesCount герои</span>
                                 </div>
                             </div>
