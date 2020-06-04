@@ -135,10 +135,10 @@ namespace ClubsModule.Services
                 this.dbContext.Clubs.Add(club);
             }
 
-            club.Name = model.Club.Name;
+            club.Name = TrimInputName(model.Club.Name);
             club.Location = model.Club.Location;
             club.OrganizationType = model.Club.OrganizationType;
-            club.OrganizationName = model.Club.OrganizationName;
+            club.OrganizationName = TrimInputName(model.Club.OrganizationName);
             club.Description = model.Club.Description;
 
 
@@ -228,6 +228,11 @@ namespace ClubsModule.Services
         {
             return this.dbContext.Clubs
                 .Include(c => c.Heroes);
+        }
+
+        private string TrimInputName(string name)
+        {
+            return name.Trim(new char[] { '\"', '\'', '.', ' ', '“', '”' });
         }
     }
 }
