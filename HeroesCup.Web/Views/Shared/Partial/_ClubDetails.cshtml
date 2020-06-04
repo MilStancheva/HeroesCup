@@ -10,11 +10,11 @@
                 <div class="col-md-5 col-sm-12 club-image pr-0">
                     @if (@club.ClubImageSrc != null)
                     {
-                        <img src="@club.ClubImageSrc" width="384" class="img-fluid" alt="@club.Name" />
+                        <img src="@club.ClubImageSrc" width="384" class="img-fluid center-cropped" alt="@club.Name" />
                     }
                     else
                     {
-                        <img src="~/images/team_no_image.png" width="384" class="img-fluid" alt="@club.Name" />
+                        <img src="~/images/team_no_image.png" width="384" class="img-fluid center-cropped" alt="@club.Name" />
                     }
                 </div>
                 <div class="col-md-7 col-sm-12 pl-0">

@@ -531,6 +531,13 @@ header {
     height: 100%;
 }
 
+.center-cropped {
+    object-fit: none; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    height: 100px;
+    width: 100px;
+}
+
 /* Nav icon */
 .navbar-toggler-icon {
     color: #1C1E21;
