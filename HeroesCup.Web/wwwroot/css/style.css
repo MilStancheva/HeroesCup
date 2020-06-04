@@ -600,12 +600,9 @@ header {
     padding-bottom: 38px;
 }
 
-.no-padding-left {
-    padding-left: 0;
-}
-
 .sticky-top {
     position: fixed;
+    top: 0;
 }
 
 /* Leaderboard */

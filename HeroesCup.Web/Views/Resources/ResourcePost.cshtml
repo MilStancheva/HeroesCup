@@ -8,33 +8,38 @@
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
 }
 
-<div class="main">
+<div class="main mb-0">
     <div class="container">
-        <div class="row section-margin">
-            <div class="row col-12 justify-content-center">
-                <div class="col-12 section-margin">
-                    <h2 class="heading2">@Model.Title</h2>
-                    <p class="body2">@Model.Subtitle.Value</p>
+        <div class="row pt-4 pb-4">
+            <div class="col-md-8 col-sm-12 pt-4 pb-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="heading2">@Model.Title</h2>
+                    </div>
+                    <div class="col-12">
+                        <p class="body2">@Model.Subtitle.Value</p>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-9 no-padding-left">
                 <div class="row justify-content-center">
                     <div class="post-body body2">
                         @Html.DisplayFor(m => m.Blocks)
                     </div>
                 </div>
             </div>
-            <div class="col-3 justify-content-start">
-                <div class="row sticky-top">
-                    <span class="text-regular">Сподели тази статия:</span>
+            <div class="col-md-4 col-sm-12 justify-content-start pt-4 pb-4">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="text-regular">Сподели тoзи ресурс:</span>
+                    </div>                 
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-5 body2">
                         <a class="btn btn-share" href="/">
                             <span class="m-1">Share</span>
                             <i class="fa fa-facebook-f"></i>
                         </a>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-5">
                         <a class="btn btn-share" href="/">
                             <span class="m-1">Tweet</span>
                             <i class="fa fa-twitter"></i>
@@ -46,11 +51,11 @@
         </div>
         <hr />
         @* Other Resource Posts *@
-        <div class="row section-margin">
+        <div class="row pt-5">
             @if (Model.OtherResources.Count() > 0)
             {
-                <div class=" col-12 row">
-                    <h2>Още ресурси</h2>
+                <div class="col-12">
+                    <h2 class="heading2">Още ресурси</h2>
                 </div>
                 <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
             }
