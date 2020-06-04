@@ -13,28 +13,13 @@
         <div class="row section-margin">
             <div class="row col-12 justify-content-center">
                 <div class="col-12 section-margin">
-                    <h2>@Model.Title</h2>
-                    <span class="tag">@archive.Published.Value.ToString("dd MMMM yyyy", culture) </span>
-                    @if (Model.Tags.Count > 0)
-                    {
-                        foreach (var tag in Model.Tags)
-                        {
-                            <span class="tag"><a href="@archive.Permalink/tag/@tag.Slug">#@tag.Title</a></span>
-                        }
-                    }
+                    <h2 class="heading2">@Model.Title</h2>
+                    <p class="body2">@Model.Subtitle.Value</p>
                 </div>
             </div>
             <div class="col-9 no-padding-left">
-                @if (Model.Hero.PrimaryImage.HasValue)
-                {
-                    <div class="row">
-                        <div class="col-sm">
-                            <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
-                        </div>
-                    </div>
-                }
                 <div class="row justify-content-center">
-                    <div class="post-body">
+                    <div class="post-body body2">
                         @Html.DisplayFor(m => m.Blocks)
                     </div>
                 </div>
@@ -65,7 +50,7 @@
             @if (Model.OtherResources.Count() > 0)
             {
                 <div class=" col-12 row">
-                    <h2>Други ресурси</h2>
+                    <h2>Още ресурси</h2>
                 </div>
                 <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
             }

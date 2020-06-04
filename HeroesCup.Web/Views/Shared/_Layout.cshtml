@@ -1,4 +1,22 @@
-﻿<!doctype html>
+﻿@{
+    var mainBodyClass = GetMainBodyClass();
+
+    string GetMainBodyClass()
+    {
+        if (ViewBag.Title == "Home")
+        {
+            return "home-background";
+        }
+
+        if (ViewBag.Title == "Resources")
+        {
+            return "resources-background";
+        }
+
+        return string.Empty;
+    }
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,7 +40,7 @@
 
     @RenderSection("head", required: false)
 </head>
-<body class="@(ViewBag.Title == "Home" ? "home-background" : "")">
+<body class="@mainBodyClass">
     <header class="site-header @(ViewBag.HasImage == null || !ViewBag.HasImage ? "site-header-dark" : "")">
         @if (ViewBag.Title != "Landing")
         {

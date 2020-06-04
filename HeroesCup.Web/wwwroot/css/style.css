@@ -179,14 +179,6 @@ header {
     color: #1C1E21;
 }
 
-/*.teasers {
-    margin-bottom: 1rem;
-}
-
-    .teasers .teaser {
-        margin-bottom: 2rem;
-    }*/
-
 .archive-item {
     padding-top: 3rem;
 }
@@ -603,10 +595,6 @@ header {
     margin-bottom: 38px;
 }
 
-.margin-bottom {
-    margin-bottom: 38px;
-}
-
 .section-padding {
     padding-top: 38px;
     padding-bottom: 38px;
@@ -862,20 +850,6 @@ option {
     text-decoration-style: none;
 }
 
-.item-title {
-    display: inline-block;
-    margin-top: 24px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-}
-
-.items-block {
-    padding-top: 48px;
-    padding-bottom: 48px;
-}
 
 .text-regular {
     /* Body 2 Regular */
@@ -998,6 +972,13 @@ a:hover .resource-icon-article {
     margin-top: 0;
     background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat;
     background-color: #FAF8F3;
+}
+
+.resources-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_resources_top_center.svg') 78% top no-repeat;
+        background-color: #FAF8F3;
 }
 
 .btn:focus, .btn:active {
