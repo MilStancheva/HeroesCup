@@ -11,14 +11,14 @@
                     <h3 class="heading3 text-white d-sm-block d-md-none">С подкрепата на</h3>
                 </div>
                 <div class="col-md-7 col-sm-12 mt-3 mt-md-0">
-                    @Html.Raw(currentSite.FooterContents.UpperContentRight)
+                    @Html.Raw(currentSite.FooterContents.MainPartnerInfoBox)
                 </div>
             </div>
-            @if (!string.IsNullOrWhiteSpace(currentSite.FooterContents.MiddleContent) && string.IsNullOrEmpty(currentSite.FooterContents.MiddleContent))
+            @if (!string.IsNullOrWhiteSpace(currentSite.FooterContents.OtherPartners) && string.IsNullOrEmpty(currentSite.FooterContents.OtherPartners))
             {
                 <div class="row footer-line"></div>
                 <div class="row mt-1">
-                    @Html.Raw(currentSite.FooterContents.MiddleContent)
+                    @Html.Raw(currentSite.FooterContents.OtherPartners)
                 </div>
             }
 
