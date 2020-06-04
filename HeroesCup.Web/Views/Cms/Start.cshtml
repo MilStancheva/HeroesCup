@@ -143,25 +143,29 @@
                     {
                         index += 1;
                         <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                            <div class="row vertical-center leaderboard-club">
-                                <div class="col-md-1 col-sm-1 body1-bold text-md-center">
-                                    <span>@index</span>
+                            <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
+                                <div class="row col-md-9 col-sm-12 vertical-center mr-0">
+                                    <div class="col-1 body1-bold text-md-center">
+                                        <span>@index</span>
+                                    </div>
+                                    <div class="col-2 text-md-center">
+                                        <span class="body1-bold" data-letters="@club.ClubInitials"></span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 body1">
+                                        <span>@club.Name</span>,
+                                        <span>@club.Location</span>
+                                    </div>
                                 </div>
-                                <div class="col-md-1 col-sm-3 text-md-center">
-                                    <span class="body1-bold" data-letters="@club.ClubInitials"></span>
-                                </div>
-                                <div class="col-md-5 col-sm-8 body1">
-                                    <span>@club.Name</span>,
-                                    <span>@club.Location</span>
-                                </div>
-                                <div class="col-md-2 col-sm-5 text-right body1">
-                                    <span>@club.Points точки</span>
-                                </div>
-                                <div class="col-md-1 col-sm-2 text-center pr-1 pl-1">
-                                    <span class="points-heroes-separator"></span>
-                                </div>
-                                <div class="col-md-2 col-sm-5 text-left body1">
-                                    <span>@club.HeroesCount герои</span>
+                                <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
+                                    <div class="col-5 text-right body1 pr-0">
+                                        <span>@club.Points точки</span>
+                                    </div>
+                                    <div class="col-1 text-center">
+                                        <span class="points-heroes-separator"></span>
+                                    </div>
+                                    <div class="col-5 text-left body1 pl-2">
+                                        <span>@club.HeroesCount герои</span>
+                                    </div>
                                 </div>
                             </div>
                         </a>

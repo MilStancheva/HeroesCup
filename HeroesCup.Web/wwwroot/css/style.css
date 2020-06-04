@@ -629,12 +629,6 @@ header {
 }
 
 a.leaderboard-club {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.2rem;
-    /* identical to box height, or 133% */
-    /* Dark */
-    color: #1C1E21;
     text-decoration: none;
     text-underline-position: unset;
     border-bottom: 1px solid #eeece6;
