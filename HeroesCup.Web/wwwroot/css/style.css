@@ -509,13 +509,19 @@ header {
 
 /* Club Modal */
 
-.club-modal {
-    height: 484px;
+.club-modal{
+    align-content: center;
 }
 
-.modal-ku {
-    width: 750px;
-    margin: auto;
+    .club-modal .modal-content {
+        max-width: 1024px;
+    }
+
+.modal-lg {
+    min-width: 800px;
+    max-width: 1024px;
+    min-height: 484px;
+    max-height: 484px;
 }
 
 .club-image img {
@@ -711,10 +717,6 @@ a .tab-title {
 
 .no-border {
     border: none;
-}
-
-.rate {
-    font-weight: bold;
 }
 
 
