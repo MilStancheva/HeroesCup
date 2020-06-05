@@ -6,6 +6,7 @@
     var site = await WebApp.Api.Sites.GetDefaultAsync();
     var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
+    var twitterShareUrl = "https://twitter.com/share?url=@HttpAccess.HttpContext.Request.Host&text=@Model.Title";
 }
 
 @section script{
@@ -14,8 +15,12 @@
     <script src="~/scripts/share-buttons.js" type="text/javascript"></script>
 }
 
-@section head{
-    <meta property="og:url" content="https://kupatanageroite.com/@Model.Category.Title/@Model.Slug" />
+@section head {
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@HttpAccess.HttpContext.Request.Host" />
+    <meta name="twitter:creator" content="@HttpAccess.HttpContext.Request.Host" />
+
+    <meta property="og:url" content="@HttpAccess.HttpContext.Request.Host/@Model.Category.Title/@Model.Slug" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Subtitle.Value" />
@@ -55,9 +60,9 @@
                         </div>
                     </div>
 
-                    @* <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Споделяне</a></div>*@
                     <div class="col-5">
-                        <a class="btn btn-share" href="/">
+                        <a class="btn btn-share" id="twitter-share-button"
+                           href="https://twitter.com/intent/tweet?url=@HttpAccess.HttpContext.Request.Host/@Model.Category.Title/@Model.Slug&text=@Model.Title">
                             <span class="m-1">Tweet</span>
                             <i class="fa fa-twitter"></i>
                         </a>
