@@ -6,7 +6,7 @@
     var site = await WebApp.Api.Sites.GetDefaultAsync();
     var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
-    var twitterShareUrl = "https://twitter.com/share?url=@HttpAccess.HttpContext.Request.Host&text=@Model.Title";
+    var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
 }
 
 @section script{
@@ -17,10 +17,10 @@
 
 @section head {
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@HttpAccess.HttpContext.Request.Host" />
-    <meta name="twitter:creator" content="@HttpAccess.HttpContext.Request.Host" />
+    <meta name="twitter:site" content="@currentUrlBase" />
+    <meta name="twitter:creator" content="@currentUrlBase" />
 
-    <meta property="og:url" content="@HttpAccess.HttpContext.Request.Host/@Model.Category.Title/@Model.Slug" />
+    <meta property="og:url" content="@currentUrlBase/@Model.Category.Title/@Model.Slug" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Subtitle.Value" />
@@ -62,7 +62,7 @@
 
                     <div class="col-5">
                         <a class="btn btn-share" id="twitter-share-button"
-                           href="https://twitter.com/intent/tweet?url=@HttpAccess.HttpContext.Request.Host/@Model.Category.Title/@Model.Slug&text=@Model.Title">
+                           href="https://twitter.com/intent/tweet?url=@currentUrlBase/@Model.Category.Title/@Model.Slug&text=@Model.Title">
                             <span class="m-1">Tweet</span>
                             <i class="fa fa-twitter"></i>
                         </a>
@@ -72,6 +72,7 @@
             </div>
         </div>
         <hr />
+
         @* Other Resource Posts *@
         <div class="row pt-5 mr-0">
             @if (Model.OtherResources.Count() > 0)
@@ -83,6 +84,5 @@
             }
 
         </div>
-
     </div>
 </div>
