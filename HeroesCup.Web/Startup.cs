@@ -99,8 +99,6 @@ namespace HeroesCup
                 .Build()
                 .DeleteOrphans();
 
-            // Configure Tiny MCE
-            EditorConfig.FromFile("editorconfig.json");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -109,6 +107,7 @@ namespace HeroesCup
             app.UseSerilogRequestLogging();
             app.UseUnhandledExceptionLogging();
             SeedDefaultPages();
+
             // Middleware setup
             app.UsePiranha(options =>
             {
@@ -119,6 +118,7 @@ namespace HeroesCup
             app.UsePiranhaStartPage();
             app.UseClubsModule();
 
+            ConfigurePiranhaEditor();
         }
 
         private void SeedDefaultPages()
@@ -137,6 +137,12 @@ namespace HeroesCup
                 pagesInitializer.SeedAboutPageAsync().Wait();
                 pagesInitializer.SeedStarPageAsync().Wait();
             }
+        }
+
+        private void ConfigurePiranhaEditor()
+        {
+            EditorConfig.FromFile("editorconfig.json");
+            Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/editor.js";
         }
     }
 }

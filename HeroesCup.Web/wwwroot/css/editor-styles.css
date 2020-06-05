@@ -1,0 +1,35 @@
+﻿body {
+}
+
+/* Custom Hero Button */
+.btn-heroes {
+    padding: 12px 24px;
+    background: #FE5E17;
+    color: white;
+    vertical-align: middle;
+    border-radius: 32px;
+    text-decoration: none;
+    text-underline-position: unset;
+    text-decoration-style: none;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+a.btn-heroes {
+    text-decoration: none;
+    color: white;
+    text-underline-position: unset;
+}
+
+    a.btn-heroes:hover {
+        text-decoration: none;
+        color: white;
+        text-underline-position: unset;
+        text-decoration-style: none;
+        background: linear-gradient(0deg, rgba(28, 30, 33, 0.08), rgba(28, 30, 33, 0.08)), #FE5E17;
+    }
+
+a.btn-heroes span {
+    color: white;
+}
