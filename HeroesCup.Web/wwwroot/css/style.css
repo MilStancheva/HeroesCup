@@ -898,8 +898,10 @@ a:hover .resource-icon-article {
 }
 
 .btn-share {
-    /*width: 128px;
-    height: 48px;*/
+    width: 128px;
+    height: 48px;
+    display: inline-block;
+    position: static;
     padding: 12px 26px 12px 26px;
     /* Blue Light */
     background: #EBE7FD;
@@ -918,6 +920,10 @@ a:hover .resource-icon-article {
     align-self: center;
     margin: 8px 0px;
 }
+
+    .btn-share:hover {
+        cursor: pointer;
+    }
 
 /* Scrollbar */
 
