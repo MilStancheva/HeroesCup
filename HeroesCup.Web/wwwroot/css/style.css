@@ -923,6 +923,7 @@ a:hover .resource-icon-article {
 
     .btn-share:hover {
         cursor: pointer;
+        color: #370AEB;
     }
 
 /* Scrollbar */
