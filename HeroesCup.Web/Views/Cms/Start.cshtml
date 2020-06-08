@@ -5,8 +5,8 @@
     var hoursCount = Model.HoursCount <= 1000 ? Model.HoursCount.ToString() : $"{Model.HoursCount / 1000:#,##k}";
 }
 
-<div class="main" id="home-main">
-    <div class="container">
+<div class="main mt-md-4 pt-md-4" id="home-main">
+    <div class="container mt-md-4 pt-md-4">
 
         @* Carousel *@
         @if (Model.Carousel.Count > 0)

@@ -988,7 +988,7 @@ a:hover .resource-icon-article {
 .events-background {
     top: 0;
     margin-top: 0;
-    background: url('../images/background/hero_events_top_left.svg') left 3% no-repeat, url('../images/background/hero_events_top_right.svg') right top no-repeat;
+    background: url('../images/background/hero_events_top_left.svg') left 2% no-repeat, url('../images/background/hero_events_top_right.svg') right top no-repeat;
     background-color: #FAF8F3;
 }
 
@@ -1019,17 +1019,18 @@ a:hover .resource-icon-article {
     }
 }
 
-
 .fixed-top.scrolled {
     box-shadow: inset 0px -2px 0px #EEECE6;
     background-color: #FAF8F3 !important;
     transition: background-color 150ms linear;
 }
 
-.fixed-top.scrolled.container {
-    margin-left:0;
-    margin-right:0;
-    width: 100%;
-    align-self: center;
-}
+@media (max-width: 767px) {
+    body {
+        padding-top: 0px !important;
+    }
 
+    .fixed-top {
+        position: initial !important;
+    }
+}
