@@ -600,7 +600,7 @@ header {
     padding-bottom: 38px;
 }
 
-.sticky-top {
+.sticky {
     position: fixed;
 }
 
@@ -1018,3 +1018,18 @@ a:hover .resource-icon-article {
         background: url('../images/background/hero_landing_left_small.svg') left top no-repeat, url('../images/background/hero_landing_right_small.svg') right top no-repeat;
     }
 }
+
+
+.fixed-top.scrolled {
+    box-shadow: inset 0px -2px 0px #EEECE6;
+    background-color: #FAF8F3 !important;
+    transition: background-color 150ms linear;
+}
+
+.fixed-top.scrolled.container {
+    margin-left:0;
+    margin-right:0;
+    width: 100%;
+    align-self: center;
+}
+
