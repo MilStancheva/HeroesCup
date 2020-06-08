@@ -49,14 +49,16 @@
     <header class="site-header @(ViewBag.HasImage == null || !ViewBag.HasImage ? "site-header-dark" : "") justify-content-center">
         @if (ViewBag.Title != "Landing")
         {
-            <div class="pl-5 pr-5 fixed-top mt-0">
-                <div class="row ml-5 mr-5 pl-5 pr-5">
-                    <div class="col-md-10 col-sm-12">
-                        <partial name="Partial/_Menu.cshtml" />
+            <div class="fixed-top">
+                <div class="container mt-0">
+                    <div class="row">
+                        <div class="col-md-10 col-sm-12">
+                            <partial name="Partial/_Menu.cshtml" />
+                        </div>
+                        <form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-start">
+                            <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModal">Участвай</button>
+                        </form>
                     </div>
-                    <form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-start">
-                        <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModal">Участвай</button>
-                    </form>
                 </div>
             </div>
         }
