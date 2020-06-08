@@ -30,23 +30,23 @@
 
 <div class="main">
     <div class="container">
-        <div class="row pt-4 pb-4">
+        <div class="row pt-5 mb-5">
             <div class="row col-12 justify-content-center">
                 <div class="col-12 pt-4 pb-4">
                     <h2 class="heading2">@Model.Title</h2>
                     <span class="body2">от @Model.Author.Value, @archive.Published.Value.ToString("d MMMM yyyy", culture) </span>
                 </div>
 
-                <div class="col-8">
+                <div class="col-8 pl-0 mt-5">
                     @if (Model.Hero.PrimaryImage.HasValue)
                     {
-                        <div class="col-12">
+                        <div class="col-12 pl-0">
                             <div class="col-sm">
                                 <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
                             </div>
                         </div>
                     }
-                    <div class="col-12 justify-content-start">
+                    <div class="col-12 justify-content-start pl-0">
                         <div class="col-12 post-body pr-2">
                             @Html.DisplayFor(m => m.Blocks)
                         </div>
@@ -79,7 +79,7 @@
         </div>
         <div class="separator"></div>
         @* Other Events Posts *@
-        <div class="row pt-4 pb-4">
+        <div class="row mt-5 pl-1">
             @if (Model.OtherEvents.Count() > 0)
             {
                 <div class="col-12">
