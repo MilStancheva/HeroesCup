@@ -1,4 +1,32 @@
-﻿<!doctype html>
+﻿@{
+    var mainBodyClass = GetMainBodyClass();
+
+    string GetMainBodyClass()
+    {
+        if (ViewBag.Title == "Home")
+        {
+            return "home-background";
+        }
+
+        if (ViewBag.Title == "Resources")
+        {
+            return "resources-background";
+        }
+
+        if (ViewBag.Title == "Events")
+        {
+            return "events-background";
+        }
+
+        if (ViewBag.Title == "About")
+        {
+            return "about-background";
+        }
+
+        return string.Empty;
+    }
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,25 +50,26 @@
 
     @RenderSection("head", required: false)
 </head>
-<body class="@(ViewBag.Title == "Home" ? "home-background" : "")">
-    <header class="site-header @(ViewBag.HasImage == null || !ViewBag.HasImage ? "site-header-dark" : "")">
+<body class="@mainBodyClass">
+    <header class="site-header @(ViewBag.HasImage == null || !ViewBag.HasImage ? "site-header-dark" : "") justify-content-center">
         @if (ViewBag.Title != "Landing")
         {
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-10 col-sm-12">
-                        <partial name="Partial/_Menu.cshtml" />
+            <div class="fixed-top">
+                <div class="container mt-0 pl-0">
+                    <div class="row pl-0">
+                        <div class="col-md-10 col-sm-12 pl-0">
+                            <partial name="Partial/_Menu.cshtml" />
+                        </div>
+                        <form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-md-start justify-content-sm-center">
+                            <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#participateModal">Участвай</button>
+                        </form>
                     </div>
-                    <form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-center">
-                        <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModal">Участвай</button>
-                    </form>
                 </div>
             </div>
         }
     </header>
     <!-- Modal -->
-    <div class="modal fade justify-content-center" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade justify-content-center" id="participateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content p-4">
                 <div class="modal-header">
@@ -63,7 +92,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="/scripts/navbar.js" type="text/javascript"></script>
     @RenderSection("script", required: false)
 </body>
 </html>

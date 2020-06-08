@@ -1,12 +1,11 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Common;
+using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -135,10 +134,10 @@ namespace ClubsModule.Services
                 this.dbContext.Clubs.Add(club);
             }
 
-            club.Name = model.Club.Name;
+            club.Name = model.Club.Name.TrimInput();
             club.Location = model.Club.Location;
             club.OrganizationType = model.Club.OrganizationType;
-            club.OrganizationName = model.Club.OrganizationName;
+            club.OrganizationName = model.Club.OrganizationName.TrimInput();
             club.Description = model.Club.Description;
 
 

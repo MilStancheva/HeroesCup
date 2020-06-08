@@ -12,11 +12,8 @@ namespace HeroesCup.Web.Models.Resources
     [PostTypeRoute(Title = "Default", Route = "/resource")]
     public class ResourcePost : Post<ResourcePost>
     {
-        /// <summary>
-        /// Gets/sets the post hero.
-        /// </summary>
-        [Region]
-        public HeroRegion Hero { get; set; }
+        [Region(Title = "Subtitle")]
+        public StringField Subtitle { get; set; }
 
         [Region(Title = "Type of resource")]
         public SelectField<ResourcePostType> Type { get; set; }

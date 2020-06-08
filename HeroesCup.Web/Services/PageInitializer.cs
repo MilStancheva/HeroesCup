@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Events;
 using HeroesCup.Web.Models.Resources;
 using Microsoft.Extensions.Configuration;
@@ -48,7 +49,7 @@ namespace HeroesCup.Web.Services
             var aboutPage = pages.ToList().FirstOrDefault(p => p.Title == aboutPageTitle);
             if (aboutPage == null)
             {
-                var newAboutPage = await StandardPage.CreateAsync(_api);
+                var newAboutPage = await AboutPage.CreateAsync(_api);
                 newAboutPage.Id = Guid.NewGuid();
                 newAboutPage.SiteId = site.Id;
                 newAboutPage.Title = aboutPageTitle;
@@ -57,7 +58,7 @@ namespace HeroesCup.Web.Services
                 newAboutPage.MetaDescription = this._configuration["AboutPageSettings:MetaDescription"];
                 newAboutPage.NavigationTitle = this._configuration["AboutPageSettings:NavigationTitle"]; ;
                 newAboutPage.Published = DateTime.Now;
-                await _api.Pages.SaveAsync<StandardPage>(newAboutPage);
+                await _api.Pages.SaveAsync<AboutPage>(newAboutPage);
             }
         }
 

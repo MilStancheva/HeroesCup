@@ -5,13 +5,13 @@
     var hoursCount = Model.HoursCount <= 1000 ? Model.HoursCount.ToString() : $"{Model.HoursCount / 1000:#,##k}";
 }
 
-<div class="main" id="home-main">
-    <div class="container">
+<div class="main mt-md-4 pt-md-4" id="home-main">
+    <div class="container mt-md-4 pt-md-4">
 
         @* Carousel *@
         @if (Model.Carousel.Count > 0)
         {
-            <div class="row section-margin">
+            <div class="row pt-5 pb-5">
                 <div class="col-sm-12 col-md-12">
                     <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
                         <ol class="carousel-indicators justify-content-start">
@@ -43,8 +43,8 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 vertical-center">
-                                                <h2>@hero.IngressTitle</h2>
-                                                <p>@Html.Raw(hero.Ingress)</p>
+                                                <h1 class="heading1">@hero.IngressTitle</h1>
+                                                <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
@@ -57,8 +57,8 @@
                                     <div class="carousel-item">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 vertical-center">
-                                                <h2>@hero.IngressTitle</h2>
-                                                <p>@Html.Raw(hero.Ingress)</p>
+                                                <h2 class="heading1">@hero.IngressTitle</h2>
+                                                <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
@@ -79,38 +79,36 @@
         @* Statistics *@
         @if (Model.Clubs.Clubs.Count() > 0)
         {
-
-
-            <div class="row justify-content-center block section-margin">
+            <div class="row justify-content-center block pt-5 pb-5">
                 <div class="col-6 row">
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/User.svg" />
-                        <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.HeroesCount+</strong></div>
-                            <div class="m-1">Герои</div>
+                        <div class="m-3">
+                            <div class="m-1 heading3">@Model.HeroesCount+</div>
+                            <div class="m-1 body2">Герои</div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/School.svg">
-                        <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.ClubsCount+</strong></div>
-                            <div class="m-1">Ученически клуба</div>
+                        <div class="m-3">
+                            <div class="m-1 heading3">@Model.ClubsCount+</div>
+                            <div class="m-1 body2">Ученически клуба</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 row">
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Heart.svg">
-                        <div class="stats-info m-1">
-                            <div class="m-1"><strong>@Model.MissionsCount</strong></div>
-                            <div class="m-1">Реализирани мисии</div>
+                        <div class="m-3">
+                            <div class="m-1 heading3">@Model.MissionsCount</div>
+                            <div class="m-1 body2">Реализирани мисии</div>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 start-icon text-center">
                         <img class="img-fluid m-1" src="~/images/Clock.svg">
-                        <div class="stats-info m-1">
-                            <div class="m-1"><strong>@hoursCount+</strong></div>
-                            <div class="m-1">Дарени часа</div>
+                        <div class="m-3">
+                            <div class="m-1 heading3">@hoursCount+</div>
+                            <div class="m-1 body2">Дарени часа</div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +117,7 @@
         }
 
         @* Leaderboard *@
-        <div class="section-margin section-padding">
+        <div class="pt-5 pb-5 pl-3 pr-3">
             @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
@@ -128,9 +126,9 @@
                     selectItems.Add(new SelectListItem(year, year));
                 }
                 <div class="row justify-content-between">
-                    <h2 class="mb-5">Класация</h2>
+                    <h2 class="mb-5 heading2">Класация</h2>
                     <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                        <div class="btn btn-default school-years-button">
+                        <div class="btn btn-default school-years-button body2-bold">
                             <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
                         </div>
                     </form>
@@ -145,25 +143,29 @@
                     {
                         index += 1;
                         <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                            <div class="row vertical-center leaderboard-club">
-                                <div class="col-md-1 col-sm-1">
-                                    <span class="rate">@index</span>
+                            <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
+                                <div class="row col-md-9 col-sm-12 vertical-center mr-0">
+                                    <div class="col-1 body1-bold text-md-center">
+                                        <span>@index</span>
+                                    </div>
+                                    <div class="col-2 text-md-center">
+                                        <span class="body1-bold" data-letters="@club.ClubInitials"></span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 body1">
+                                        <span>@club.Name</span>,
+                                        <span>@club.Location</span>
+                                    </div>
                                 </div>
-                                <div class="col-md-1 col-sm-1">
-                                    <span data-letters="@club.ClubInitials"></span>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <span>@club.Name</span>,
-                                    <span>@club.Location</span>
-                                </div>
-                                <div class="col-md-2 col-sm-2 text-right">
-                                    <span>@club.Points точки</span>
-                                </div>
-                                <div class="col-md-1 col-sm-1 text-center">
-                                    <span class="points-heroes-separator"></span>
-                                </div>
-                                <div class="col-md-1 col-sm-1 text-left">
-                                    <span>@club.HeroesCount герои</span>
+                                <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
+                                    <div class="col-5 text-right body1 pr-0">
+                                        <span>@club.Points точки</span>
+                                    </div>
+                                    <div class="col-1 text-center">
+                                        <span class="points-heroes-separator"></span>
+                                    </div>
+                                    <div class="col-5 text-left body1 pl-2">
+                                        <span>@club.HeroesCount герои</span>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -181,7 +183,7 @@
         @* Missions *@
         @if (Model.LinkedMissions.Count > 0)
         {
-            <div class="section-margin section-padding">
+            <div class="pt-5 pb-5">
                 <h2 class="mb-5">Мисии</h2>
                 <div class="row missions-block">
                     @foreach (var mission in Model.LinkedMissions)
@@ -192,12 +194,12 @@
                                     <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
                                     <h4 class="mission-title">@mission.Title</h4>
                                     @*@if (mission.Tags.Count > 0)
+                                    {
+                                        @foreach (var tag in mission.Tags)
                                         {
-                                            @foreach (var tag in mission.Tags)
-                                            {
-                                                <span>#@tag.Title </span>
-                                            }
-                                        }*@
+                                            <span>#@tag.Title </span>
+                                        }
+                                    }*@
                                     <p>от @mission.Details.OrganizedBy</p>
                                 </a>
                             </div>
@@ -207,17 +209,20 @@
                 <div class="row mt-3 justify-content-center">
                     <a href="/missions" class="btn btn-heroes">Виж всички мисии</a>
                 </div>
-                >>>>>>> refs/heads/master
             </div>
         }
 
         <hr />
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
 
-        <div class="row justify-content-center">
-            <div class="col-sm-10 page-body">
-                @Html.DisplayFor(m => m.Blocks)
+        @if (Model.Blocks != null && Model.Blocks.Count > 0)
+        {
+            <div class="row justify-content-center">
+                <div class="col-sm-10 page-body">
+                    @Html.DisplayFor(m => m.Blocks)
+                </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>

@@ -5,5 +5,9 @@
 @using Piranha.Extend.Blocks
 
 @using HeroesCup.Models
+@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Http;
 
 @inject Piranha.AspNetCore.Services.IApplicationService WebApp
+@inject IConfiguration Configuration
+@inject IHttpContextAccessor  HttpAccess

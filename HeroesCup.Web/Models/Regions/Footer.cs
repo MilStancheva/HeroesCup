@@ -6,12 +6,9 @@ namespace HeroesCup.Models.Regions
     public class Footer
     {
         [Field]
-        public HtmlField UpperContentLeft { get; set; }
+        public HtmlField MainPartnerInfoBox { get; set; }
 
         [Field]
-        public HtmlField UpperContentRight { get; set; }
-
-        [Field]
-        public HtmlField MiddleContent { get; set; }
+        public HtmlField OtherPartners { get; set; }
     }
 }
