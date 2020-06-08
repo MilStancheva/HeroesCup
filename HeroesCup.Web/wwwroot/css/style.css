@@ -996,7 +996,7 @@ a:hover .resource-icon-article {
 .about-background {
     top: 0;
     margin-top: 0;
-    background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 25% no-repeat;
+    background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 10% no-repeat;
     background-color: #FAF8F3;
 }
 

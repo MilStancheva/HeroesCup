@@ -5,18 +5,41 @@
 }
 
 <div class="main mt-md-5 pt-md-5">
-    <div class="container mt-md-5 pt-md-5">
-        <div class="row justify-content-start">
+    <div class="container mt-md-5 pt-md-5 pb-4">
+        <div class="row justify-content-start pb-5 pt-5 vertical-center">
             <div class="col-md-6 col-sm-12">
+                @Html.Raw(Model.Introduction)
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="row justify-content-start pb-5 pt-5 vertical-center">
+            <div class="col-md-6 col-sm-12">
+                <img src="~/images/about/about-1.svg" width="496" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                @Html.Raw(Model.FirstContent)
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="row justify-content-start pb-5 pt-5 vertical-center">
+            <div class="col-md-6 col-sm-12">
+                @Html.Raw(Model.SecondContent)
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <img src="~/images/about/about-2.svg" width="496" />
+            </div>
+        </div>
+        <div class="separator"></div>
+        @if (Model.Blocks.Count > 0)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.DisplayFor(m => m.Blocks)
+                </div>
+            </div>
+            <div class="separator"></div>
+        }
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                @Html.DisplayFor(m => m.Blocks)
-            </div>
-        </div>
-        <hr />
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
