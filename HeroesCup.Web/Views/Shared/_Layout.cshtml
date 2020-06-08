@@ -18,6 +18,11 @@
             return "events-background";
         }
 
+        if (ViewBag.Title == "About")
+        {
+            return "about-background";
+        }
+
         return string.Empty;
     }
 }
@@ -56,7 +61,7 @@
                             <partial name="Partial/_Menu.cshtml" />
                         </div>
                         <form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-md-start justify-content-sm-center">
-                            <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModal">Участвай</button>
+                            <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#participateModal">Участвай</button>
                         </form>
                     </div>
                 </div>
@@ -64,7 +69,7 @@
         }
     </header>
     <!-- Modal -->
-    <div class="modal fade justify-content-center" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade justify-content-center" id="participateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content p-4">
                 <div class="modal-header">

@@ -6,6 +6,10 @@
     background-color: #FAF8F3;
 }
 
+img {
+    max-width: 496px;
+}
+
 .header-bg {
     background-size: cover;
     background-position: 50% 50%;
@@ -986,6 +990,13 @@ a:hover .resource-icon-article {
     top: 0;
     margin-top: 0;
     background: url('../images/background/hero_events_top_left.svg') left 2% no-repeat, url('../images/background/hero_events_top_right.svg') right top no-repeat;
+    background-color: #FAF8F3;
+}
+
+.about-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 25% no-repeat;
     background-color: #FAF8F3;
 }
 
