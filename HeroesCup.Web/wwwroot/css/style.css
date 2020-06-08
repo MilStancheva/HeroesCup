@@ -600,9 +600,6 @@ header {
     padding-bottom: 38px;
 }
 
-.sticky {
-    position: fixed;
-}
 
 /* Leaderboard */
 .leaderboard-clubs {
@@ -1025,12 +1022,23 @@ a:hover .resource-icon-article {
     transition: background-color 150ms linear;
 }
 
+.share-buttons.sticky {
+    position: sticky;
+    top: 100px;
+    bottom: 50px;
+    z-index: 999;
+}
+
 @media (max-width: 767px) {
     body {
         padding-top: 0px !important;
     }
 
     .fixed-top {
+        position: initial !important;
+    }
+
+    .share-buttons {
         position: initial !important;
     }
 }
