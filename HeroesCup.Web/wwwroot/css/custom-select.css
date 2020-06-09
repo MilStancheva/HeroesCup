@@ -86,7 +86,7 @@ input.custom-option {
     position: relative;
     display: block;
     padding: 0 22px 0 22px;
-    font-family: SF Pro Text;
+    font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -99,7 +99,7 @@ input.custom-option {
 
     .custom-option:hover {
         cursor: pointer;
-        font-family: SF Pro Text;
+        font-family: Montserrat;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -110,7 +110,7 @@ input.custom-option {
     }
 
     .custom-option.selected {
-        font-family: SF Pro Text;
+        font-family: Montserrat;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
