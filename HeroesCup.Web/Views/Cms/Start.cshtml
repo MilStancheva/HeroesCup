@@ -133,31 +133,29 @@
                     </div>
                 </form>*@
 
-                <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                    @*<div class="btn btn-default school-years-button body2-bold">*@
-                        <div class="custom-select-wrapper">
-                            <div class="custom-select">
-                                <div class="custom-select__trigger">
-                                    <span>@Model.SelectedSchoolYear</span>
-                                    <div class="arrow"></div>
-                                </div>
-                                <div class="custom-options">
-                                    @foreach (var year in selectItems)
-                                    {
-                                        if (Model.SelectedSchoolYear == year.Value)
-                                        {
-                                            <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value"/>
-                                        }
-                                        else
-                                        {
-                                            <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
-                                        }
-                                    }
-                                </div>
-                            </div>
+            <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                <div class="custom-select-wrapper">
+                    <div class="btn school-years-button custom-select">
+                        <div class="custom-select__trigger">
+                            <span>@Model.SelectedSchoolYear</span>
+                            @*<div class="arrow"></div>*@
                         </div>
-                    @*</div>*@
-                </form>
+                        <div class="custom-options">
+                            @foreach (var year in selectItems)
+                            {
+                                if (Model.SelectedSchoolYear == year.Value)
+                                {
+                                    <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                }
+                                else
+                                {
+                                    <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
             </div>
 
                 <div class="row leaderboard-clubs">
