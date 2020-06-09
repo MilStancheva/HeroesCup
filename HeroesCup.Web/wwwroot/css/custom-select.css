@@ -1,0 +1,203 @@
+﻿*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+/*/* Select */
+
+/*.custom-select select {
+    display: none; 
+}*/
+
+
+/*.custom-select {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #370AEB;
+    background: url('../images/dropdown-rectangle.svg') no-repeat right;
+    background-position: 100% 45%;
+}
+
+    .custom-select::selection {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .custom-select:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .custom-select:hover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
+    }
+
+    .custom-select:active {
+        border: none;
+        box-shadow: none;
+        background: url('../images/dropdown-rectangle.svg') no-repeat right;
+        background-position: 100% 45%;
+    }*/
+
+.school-years-button {
+    background-color: #EBE7FD;
+    border-radius: 32px;
+}
+
+.school-years-button:hover {
+    background: linear-gradient(0deg, rgba(55, 10, 235, 0.08), rgba(55, 10, 235, 0.08)), #EBE7FD;
+    border-radius: 32px;
+}
+
+.school-years-button:active {
+    background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
+    border-radius: 32px;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 0 2px 0 2px;
+    border-style: solid;
+    border-color: #394a6d;
+}
+
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #3b3b3b;
+    height: 60px;
+    line-height: 60px;
+    background: #ffffff;
+    cursor: pointer;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: #394a6d;
+}
+
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 6px;
+    background: rgba(244, 244, 244, 0.8);
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 6px;
+}
+
+input.custom-option {
+    width: 100%;
+    border: none;
+}
+
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px 0 22px;
+    font-family: SF Pro Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+    .custom-option:hover {
+        cursor: pointer;
+        font-family: SF Pro Text;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+        color: #FFFFFF;
+        background: #3585F5;
+    }
+
+    .custom-option.selected {
+        font-family: SF Pro Text;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+        color: #FFFFFF;
+        background: #3585F5;
+    }
+
+
+.arrow {
+    position: relative;
+    height: 15px;
+    width: 15px;
+}
+
+    .arrow::before, .arrow::after {
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        width: 0.15rem;
+        height: 100%;
+        transition: all 0.5s;
+    }
+
+    .arrow::before {
+        left: -5px;
+        transform: rotate(45deg);
+        background-color: #394a6d;
+    }
+
+    .arrow::after {
+        left: 5px;
+        transform: rotate(-45deg);
+        background-color: #394a6d;
+    }
+
+.open .arrow::before {
+    left: -5px;
+    transform: rotate(-45deg);
+}
+
+.open .arrow::after {
+    left: 5px;
+    transform: rotate(45deg);
+}

@@ -125,14 +125,40 @@
                 {
                     selectItems.Add(new SelectListItem(year, year));
                 }
-                <div class="row justify-content-between">
-                    <h2 class="mb-5 heading2">Класация</h2>
-                    <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                        <div class="btn btn-default school-years-button body2-bold">
-                            <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
+            <div class="row justify-content-between">
+                <h2 class="mb-5 heading2">Класация</h2>
+                @*<form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                    <div class="btn btn-default school-years-button body2-bold">
+                        <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
+                    </div>
+                </form>*@
+
+                <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                    @*<div class="btn btn-default school-years-button body2-bold">*@
+                        <div class="custom-select-wrapper">
+                            <div class="custom-select">
+                                <div class="custom-select__trigger">
+                                    <span>@Model.SelectedSchoolYear</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="custom-options">
+                                    @foreach (var year in selectItems)
+                                    {
+                                        if (Model.SelectedSchoolYear == year.Value)
+                                        {
+                                            <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value"/>
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                        }
+                                    }
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    @*</div>*@
+                </form>
+            </div>
 
                 <div class="row leaderboard-clubs">
                     @{
