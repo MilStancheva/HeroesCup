@@ -18,7 +18,7 @@ piranha.editor.addInline = function (id, toolbarId) {
             piranha.editorconfig.plugins
         ],
         width: "100%",
-        height: 450,
+        height: 400,
         toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",

@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesCup.Web.UnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesCup.Localization", "HeroesCup.Localization\HeroesCup.Localization.csproj", "{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroesCup.Manager.TinyMCE", "HeroesCup.Manager.TinyMCE\HeroesCup.Manager.TinyMCE.csproj", "{9A132D99-8069-40D5-8B71-F100A558775D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A132D99-8069-40D5-8B71-F100A558775D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A132D99-8069-40D5-8B71-F100A558775D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A132D99-8069-40D5-8B71-F100A558775D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A132D99-8069-40D5-8B71-F100A558775D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
