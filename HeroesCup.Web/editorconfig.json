@@ -1,7 +1,7 @@
 {
   "plugins": "print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars",
   "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl | heroButton",
-  "blockformats": "Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Code=pre;Quote=blockquote",
+  "blockformats": "Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Content=div;Quote=blockquote",
   "styleformats": [
     {
       "title": "Heading1",
@@ -46,6 +46,10 @@
     {
       "title": "Body3",
       "format": "body3"
+    },
+    {
+      "title": "TextBlock",
+      "fotmat": "textBlock"
     }
   ]
 }

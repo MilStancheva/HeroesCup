@@ -18,6 +18,7 @@ piranha.editor.addInline = function (id, toolbarId) {
             piranha.editorconfig.plugins
         ],
         width: "100%",
+        height: 450,
         toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",
@@ -40,7 +41,8 @@ piranha.editor.addInline = function (id, toolbarId) {
             body3: { selector: 'div,p,td,th,div,ul,ol,li,table', classes: 'body3' },
             body1Bold: { selector: 'div,p,td,th,div,ul,ol,li,table', classes: 'body1-bold' },
             body2Bold: { selector: 'div,p,td,th,div,ul,ol,li,table', classes: 'body2-bold' },
-            body3Bold: { selector: 'div,p,td,th,div,ul,ol,li,table', classes: 'body3-bold' }
+            body3Bold: { selector: 'div,p,td,th,div,ul,ol,li,table', classes: 'body3-bold' },
+            textBlock: { selector: 'div,p,ul,ol,li,table', classes: 'text-block'}
         },
         style_formats: piranha.editorconfig.style_formats,
         color_map: [
