@@ -8,14 +8,14 @@ namespace HeroesCup.Manager.TinyMCE
 {
     public static class TinyMCEExtensions
     {
-        public static IServiceCollection AddPiranhaTinyMCE(this IServiceCollection services)
+        public static IServiceCollection AddHeroesCupTinyMCE(this IServiceCollection services)
         {
             App.Modules.Register<HeroesCup.Manager.TinyMCE.Module>();
 
             return services;
         }
 
-        public static IApplicationBuilder UsePiranhaTinyMCE(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseHeroesCupTinyMCE(this IApplicationBuilder builder)
         {
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/heroescup/tiny/heroescup.editor.styles.css");
             EditorScripts.MainScriptUrl = "~/heroescup/tiny/tinymce/tinymce.min.js";
