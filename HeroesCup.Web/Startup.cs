@@ -141,7 +141,7 @@ namespace HeroesCup
 
         private void ConfigurePiranhaEditor()
         {
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://fonts.googleapis.com/css?family=Montserrat:300,400,500");
+            //App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://fonts.googleapis.com/css?family=Montserrat:300,400,500");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/css/manager-styles.css");
             EditorConfig.FromFile("editorconfig.json");
             Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/editor.js";

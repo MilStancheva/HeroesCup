@@ -4,7 +4,7 @@ $(function () {
         selector: 'textarea#editor',
         plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount image imagetools textpattern noneditable help charmap quickbars',
         menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap | fullscreen  preview print | insertfile image media template link anchor codesample | ltr rtl',
+        toolbar: 'undo redo | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap | fullscreen  preview print | insertfile image media template link anchor codesample | ltr rtl | customarign',
         toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",
@@ -113,7 +113,10 @@ $(function () {
             'ffffff', 'White'
         ],
         importcss_append: false,
-        content_css: "/manager/clubsmodule/css/editor-styles.css",
+        content_css: [
+            "//fonts.googleapis.com/css?family=Montserrat:300,400,500",
+            "/manager/clubsmodule/css/editor-styles.css"
+        ],
         font_formats: 'Montserrat, sans-serif; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace;',
         fontsize_formats: '11px 12px 14px 16px 18px 22px 24px 28px 36px 42px 48px',
         setup: function (editor) {
@@ -130,41 +133,29 @@ $(function () {
             var heroButtonHtml = function (title) {
                 return '<a class="btn btn-default btn-heroes"><span>' + title + '<span></a>';
             };
+
+            editor.ui.registry.addButton('customarign', {
+                text: 'Set Margin',
+                tooltip: 'Set Margin',
+                classes: "textBlock",
+                onAction: function (_) {
+                    tinymce.activeEditor.formatter.apply('textBlock');
+                }
+            });
         },
-        /* enable title field in the Image dialog*/
         image_title: true,
-        /* enable automatic uploads of images represented by blob or data URIs*/
         automatic_uploads: true,
-        /*
-          URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
-          images_upload_url: 'postAcceptor.php',
-          here we add custom filepicker only to Image dialog
-        */
         file_picker_types: 'image',
-        /* and here's our custom image picker*/
         file_picker_callback: function (cb, value, meta) {
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
             input.setAttribute('accept', 'image/*');
-
-            /*
-              Note: In modern browsers input[type="file"] is functional without
-              even adding it to the DOM, but that might not be the case in some older
-              or quirky browsers like IE, so you might want to add it to the DOM
-              just in case, and visually hide it. And do not forget do remove it
-              once you do not need it anymore.
-            */
 
             input.onchange = function () {
                 var file = this.files[0];
 
                 var reader = new FileReader();
                 reader.onload = function () {
-                    /*
-                      Note: Now we need to register the blob in TinyMCEs image blob
-                      registry. In the next release this part hopefully won't be
-                      necessary, as we are looking to handle it internally.
-                    */
                     var id = 'blobid' + (new Date()).getTime();
                     var blobCache = tinymce.activeEditor.editorUpload.blobCache;
                     var base64 = reader.result.split(',')[1];
@@ -173,7 +164,7 @@ $(function () {
 
                     /* call the callback and populate the Title field with the file name */
                     cb(blobInfo.blobUri(), {
-                        title: file.name,
+                        title: meta.filename,
                         alt: file.name,
                         width: '496'
                     });

@@ -18,7 +18,7 @@ piranha.editor.addInline = function (id, toolbarId) {
             piranha.editorconfig.plugins
         ],
         width: "100%",
-        toolbar_sticky: false,
+        toolbar_sticky: true,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",
         autosave_prefix: "{path}{query}-{id}-",
@@ -80,7 +80,7 @@ piranha.editor.addInline = function (id, toolbarId) {
         ],
         file_picker_types: 'file image media',
         file_picker_callback: function (callback, value, meta) {
-            // Provide file and text for the link dialog
+
             if (meta.filetype == 'file') {
                 piranha.mediapicker.openCurrentFolder(function (data) {
                     callback(data.publicUrl, { text: data.filename });
@@ -90,14 +90,17 @@ piranha.editor.addInline = function (id, toolbarId) {
             if (meta.filetype == 'image') {
                 piranha.mediapicker.openCurrentFolder(function (data) {
                     callback(data.publicUrl, {
-                        title: data.publicUrl,
-                        alt: data.publicUrl,
+                        title: meta.filename,
+                        alt: meta.filename,
                         width: '496'
                     })
                 }, "image");
             }
         },
-        content_css: "/css/editor-styles.css",
+        content_css: [
+            "//fonts.googleapis.com/css?family=Montserrat:300,400,500",
+            "/css/editor-styles.css"
+        ],
         font_formats: 'Montserrat, sans-serif; Arial=arial,helvetica,sans-serif; Courier New=courier new,courier,monospace;',
         fontsize_formats: '11px 12px 14px 16px 18px 22px 24px 28px 36px 42px 48px',
         setup: function (editor) {
@@ -114,8 +117,16 @@ piranha.editor.addInline = function (id, toolbarId) {
             var heroButtonHtml = function (title) {
                 return '<a class="btn btn-default btn-heroes"><span>' + title +'<span></a>';
             };
+
+            editor.ui.registry.addButton('customarign', {
+                text: 'Set Margin',
+                tooltip: 'Set Margin',
+                classes: "textBlock",
+                onAction: function (_) {
+                    tinymce.activeEditor.formatter.apply('textBlock');
+                }
+            });
         },
-        /* enable title field in the Image dialog*/
         image_title: true
     });
 };
@@ -127,4 +138,3 @@ piranha.editor.remove = function (id) {
     tinymce.remove(tinymce.get(id));
     $("#" + id).parent().find('.tiny-brand').remove();
 };
-
