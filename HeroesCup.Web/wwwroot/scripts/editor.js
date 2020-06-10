@@ -18,8 +18,7 @@ piranha.editor.addInline = function (id, toolbarId) {
             piranha.editorconfig.plugins
         ],
         width: "100%",
-        height: 400,
-        toolbar_sticky: true,
+        toolbar_sticky: false,
         autosave_ask_before_unload: true,
         autosave_interval: "30s",
         autosave_prefix: "{path}{query}-{id}-",
@@ -28,6 +27,8 @@ piranha.editor.addInline = function (id, toolbarId) {
         image_advtab: true,
         autoresize_min_height: 0,
         toolbar: piranha.editorconfig.toolbar,
+        toolbar_mode: 'sliding',
+        contextmenu: "link image imagetools table",
         extended_valid_elements: piranha.editorconfig.extended_valid_elements,
         block_formats: piranha.editorconfig.block_formats,
         formats: {
@@ -77,6 +78,7 @@ piranha.editor.addInline = function (id, toolbarId) {
             '000000', 'Black',
             'ffffff', 'White'
         ],
+        file_picker_types: 'file image media',
         file_picker_callback: function (callback, value, meta) {
             // Provide file and text for the link dialog
             if (meta.filetype == 'file') {
@@ -88,7 +90,51 @@ piranha.editor.addInline = function (id, toolbarId) {
             // Provide image and alt text for the image dialog
             if (meta.filetype == 'image') {
                 piranha.mediapicker.openCurrentFolder(function (data) {
-                    callback(data.publicUrl, { alt: "" });
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    input.setAttribute('accept', 'image/*');
+
+                    callback(data.publicUrl, {
+                        title: data.publicUrl,
+                        alt: data.publicUrl,
+                        width: '496'
+                    });
+
+                    /*
+                      Note: In modern browsers input[type="file"] is functional without
+                      even adding it to the DOM, but that might not be the case in some older
+                      or quirky browsers like IE, so you might want to add it to the DOM
+                      just in case, and visually hide it. And do not forget do remove it
+                      once you do not need it anymore.
+                    */
+
+                //    input.onchange = function () {
+                //        var file = this.files[0];
+
+                //        var reader = new FileReader();
+                //        reader.onload = function () {
+                //            /*
+                //              Note: Now we need to register the blob in TinyMCEs image blob
+                //              registry. In the next release this part hopefully won't be
+                //              necessary, as we are looking to handle it internally.
+                //            */
+                //            var id = 'blobid' + (new Date()).getTime();
+                //            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                //            var base64 = reader.result.split(',')[1];
+                //            var blobInfo = blobCache.create(id, file, base64);
+                //            blobCache.add(blobInfo);
+
+                //            /* call the callback and populate the Title field with the file name */
+                //            callback(blobInfo.blobUri(), {
+                //                title: file.name,
+                //                alt: file.name,
+                //                width: '496'
+                //            });
+                //        };
+                //        reader.readAsDataURL(file);
+                //    };
+
+                //    input.click();
                 }, "image");
             }
         },
@@ -109,9 +155,10 @@ piranha.editor.addInline = function (id, toolbarId) {
             var heroButtonHtml = function (title) {
                 return '<a class="btn btn-default btn-heroes"><span>' + title +'<span></a>';
             };
-        }
+        },
+        /* enable title field in the Image dialog*/
+        image_title: true
     });
-    $("#" + id).parent().append("<a class='tiny-brand' href='https://www.tiny.cloud' target='tiny'>Powered by Tiny</a>");
 };
 
 //
@@ -121,3 +168,4 @@ piranha.editor.remove = function (id) {
     tinymce.remove(tinymce.get(id));
     $("#" + id).parent().find('.tiny-brand').remove();
 };
+
