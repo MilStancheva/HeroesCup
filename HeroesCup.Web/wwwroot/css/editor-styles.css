@@ -2,8 +2,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.text-block {
+.top-padding {
     padding-top: 70px;
+}
+
+.bottom-padding {
     padding-bottom: 70px;
 }
 

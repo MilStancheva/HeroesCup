@@ -31,6 +31,7 @@
 
 @section script{
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
     <link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"></link>
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
 }
@@ -106,7 +107,7 @@
                                 }
                                 else
                                 {
-                        <p><a class="btn btn-warning" href="/manager/club"><span> @HeroesCupLocalizer.Mission["Create a club"]</span></a></p>
+                                    <p><a class="btn btn-warning" href="/manager/club"><span> @HeroesCupLocalizer.Mission["Create a club"]</span></a></p>
                                 }
                             }
                             else
@@ -136,18 +137,18 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                        <div class="invalid-feedback">
-                            @HeroesCupLocalizer.General["Mandatory field"]
-                        </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Location"]</label>
                             @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                        <div class="invalid-feedback">
-                            @HeroesCupLocalizer.General["Mandatory field"]
-                        </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -193,9 +194,9 @@
                             {
                                 <label>@HeroesCupLocalizer.Mission["Type"]</label>
                                 @Html.DropDownListFor(m => m.Mission.Type, missionTypesSelectList, new { @class = "form-control small", required = "" })
-                        <div class="invalid-feedback">
-                            @HeroesCupLocalizer.General["Mandatory field"]
-                        </div>
+                                <div class="invalid-feedback">
+                                    @HeroesCupLocalizer.General["Mandatory field"]
+                                </div>
                             }
                             else
                             {
@@ -251,9 +252,9 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Content"]</label>
                             @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor", required = "" })
-                        <div class="invalid-feedback">
-                            @HeroesCupLocalizer.General["Mandatory field"]
-                        </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -240,7 +240,6 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
 
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/editor-styles.css");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
 
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-multiselect.js");      
