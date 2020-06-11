@@ -1,14 +1,11 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Localization;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
@@ -18,12 +15,14 @@ namespace ClubsModule.Controllers
         private readonly IClubsService clubsService;
         private readonly IUserManager userManager;
         private Guid? loggedInUserId;
+        private readonly HeroesCup.Localization.ManagerLocalizer heroesCupLocalizer;
 
-        public ClubsController(IClubsService clubsService, IUserManager userManager)
+        public ClubsController(IClubsService clubsService, IUserManager userManager, ManagerLocalizer heroesCupLocalizer)
         {
             this.clubsService = clubsService;
             this.userManager = userManager;
             this.loggedInUserId = this.userManager.GetCurrentUserId();
+            this.heroesCupLocalizer = heroesCupLocalizer;
         }
 
         [HttpGet]
@@ -52,7 +51,7 @@ namespace ClubsModule.Controllers
             var model = await this.clubsService.GetClubEditModelByIdAsync(id, this.loggedInUserId);
             if (model == null)
             {
-                ErrorMessage("The club could not be found.", false);
+                ErrorMessage(this.heroesCupLocalizer.Club["The club could not be found."], false);
                 return RedirectToAction("List");
             }
 
@@ -72,11 +71,11 @@ namespace ClubsModule.Controllers
             var clubId = await this.clubsService.SaveClubEditModelAsync(model);
             if (clubId != null && clubId != Guid.Empty)
             {
-                SuccessMessage("The club has been saved.");
+                SuccessMessage(this.heroesCupLocalizer.Club["The club has been saved."]);
                 return RedirectToAction("Edit", new { id = clubId });
             }
 
-            ErrorMessage("The club could not be saved.", false);
+            ErrorMessage(this.heroesCupLocalizer.Club["The club could not be saved."], false);
             return View("Edit", model);
         }
 
@@ -88,11 +87,11 @@ namespace ClubsModule.Controllers
             var result = await this.clubsService.DeleteAsync(id);
             if (!result)
             {
-                ErrorMessage("The club could not be deleted.", false);
+                ErrorMessage(this.heroesCupLocalizer.Club["The club could not be deleted."], false);
                 return RedirectToAction("List");
             }
 
-            SuccessMessage("The club has been deleted.");
+            SuccessMessage(this.heroesCupLocalizer.Club["The club has been deleted."]);
             return RedirectToAction("List");
         }
     }

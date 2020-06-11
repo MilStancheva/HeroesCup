@@ -1,12 +1,11 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Controllers
@@ -16,12 +15,14 @@ namespace ClubsModule.Controllers
         private readonly IStoriesService storiesService;
         private readonly IUserManager userManager;
         private Guid? loggedInUserId;
+        private readonly HeroesCup.Localization.ManagerLocalizer heroesCupLocalizer;
 
-        public StoriesController(IStoriesService stroiesService, IUserManager userManager)
+        public StoriesController(IStoriesService stroiesService, IUserManager userManager, ManagerLocalizer heroesCupLocalizer)
         {
             this.storiesService = stroiesService;
             this.userManager = userManager;
             this.loggedInUserId = this.userManager.GetCurrentUserId();
+            this.heroesCupLocalizer = heroesCupLocalizer;
         }
 
         [HttpGet]
@@ -55,11 +56,11 @@ namespace ClubsModule.Controllers
             var storyId = await this.storiesService.SaveStoryEditModelAsync(model);
             if (storyId != null && storyId != Guid.Empty)
             {
-                SuccessMessage("The story has been saved.");
+                SuccessMessage(this.heroesCupLocalizer.Story["The story has been saved."]);
                 return RedirectToAction("Edit", new { id = storyId });
             }
 
-            ErrorMessage("The story could not be saved.", false);
+            ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."], false);
             return View("Edit", model);
         }
 
@@ -71,7 +72,7 @@ namespace ClubsModule.Controllers
             var model = await this.storiesService.GetStoryEditModelByIdAsync(id, this.loggedInUserId);
             if (model == null)
             {
-                ErrorMessage("The story could not be found.", false);
+                ErrorMessage(this.heroesCupLocalizer.Story["The story could not be found."], false);
                 return RedirectToAction("List");
             }
 
@@ -86,11 +87,11 @@ namespace ClubsModule.Controllers
             var result = await this.storiesService.DeleteAsync(id);
             if (!result)
             {
-                ErrorMessage("The story could not be deleted.", false);
+                ErrorMessage(this.heroesCupLocalizer.Story["The story could not be deleted."], false);
                 return RedirectToAction("List");
             }
 
-            SuccessMessage("The story has been deleted.");
+            SuccessMessage(this.heroesCupLocalizer.Story["The story has been deleted."]);
             return RedirectToAction("List");
         }
 
@@ -107,11 +108,11 @@ namespace ClubsModule.Controllers
             var result = await this.storiesService.PublishStoryEditModelAsync(model.Story.Id);
             if (result)
             {
-                SuccessMessage("The story has been published.");
+                SuccessMessage(this.heroesCupLocalizer.Story["The story has been published."]);
                 return RedirectToAction("Edit", new { id = model.Story.Id });
             }
 
-            ErrorMessage("The story could not be published.", false);
+            ErrorMessage(this.heroesCupLocalizer.Story["The story could not be published."], false);
             return View("Edit", model);
         }
 
@@ -128,11 +129,11 @@ namespace ClubsModule.Controllers
             var result = await this.storiesService.UnpublishStoryEditModelAsync(model.Story.Id);
             if (result)
             {
-                SuccessMessage("The story has been unpublished.");
+                SuccessMessage(this.heroesCupLocalizer.Story["The story has been unpublished."]);
                 return RedirectToAction("Edit", new { id = model.Story.Id });
             }
 
-            ErrorMessage("The story could not be unpublished.", false);
+            ErrorMessage(this.heroesCupLocalizer.Story["The story could not be unpublished."], false);
             return View("Edit", model);
         }
     }

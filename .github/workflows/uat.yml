@@ -54,6 +54,10 @@ jobs:
       run: mv uat/* /var/www/heroes-cup
     - name: Change permissions
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
+    - name: Install dotnet ef
+      run: dotnet tool install --global dotnet-ef
+    - name: Update database
+      run: cd HeroesCup.Data && dotnet ef database update
     - name: Start kestrel
       run: sudo /bin/systemctl start heroescup.service
 

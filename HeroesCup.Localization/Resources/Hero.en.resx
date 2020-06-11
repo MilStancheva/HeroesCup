@@ -132,4 +132,19 @@
   <data name="Name is mandatory." xml:space="preserve">
     <value>Name is mandatory.</value>
   </data>
+  <data name="The hero could not be deleted." xml:space="preserve">
+    <value>The hero could not be deleted.</value>
+  </data>
+  <data name="The hero could not be found." xml:space="preserve">
+    <value>The hero could not be found.</value>
+  </data>
+  <data name="The hero could not be saved." xml:space="preserve">
+    <value>The hero could not be saved.</value>
+  </data>
+  <data name="The hero has been deleted." xml:space="preserve">
+    <value>The hero has been deleted.</value>
+  </data>
+  <data name="The hero has been saved." xml:space="preserve">
+    <value>The hero has been saved.</value>
+  </data>
 </root>

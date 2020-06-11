@@ -1,6 +1,7 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Piranha.Manager.Controllers;
@@ -14,12 +15,13 @@ namespace ClubsModule.Controllers
         private readonly IHeroesService heroesService;
         private readonly IUserManager userManager;
         private Guid? loggedInUserId;
-
-        public HeroesController(IHeroesService heroesService, IUserManager userManager)
+        private readonly HeroesCup.Localization.ManagerLocalizer heroesCupLocalizer;
+        public HeroesController(IHeroesService heroesService, IUserManager userManager, ManagerLocalizer heroesCupLocalizer)
         {
             this.heroesService = heroesService;
             this.userManager = userManager;
             this.loggedInUserId = this.userManager.GetCurrentUserId();
+            this.heroesCupLocalizer = heroesCupLocalizer;
         }
 
         [HttpGet]
@@ -48,7 +50,7 @@ namespace ClubsModule.Controllers
             var model = await this.heroesService.GetHeroEditModelByIdAsync(id, this.loggedInUserId);
             if (model == null)
             {
-                ErrorMessage("The hero could not be found.", false);
+                ErrorMessage(this.heroesCupLocalizer.Hero["The hero could not be found."], false);
                 return RedirectToAction("List");
             }
 
@@ -63,11 +65,11 @@ namespace ClubsModule.Controllers
             var heroId = await this.heroesService.SaveHeroEditModelAsync(model);
             if (heroId != null && heroId != Guid.Empty)
             {
-                SuccessMessage("The hero has been saved.");
+                SuccessMessage(this.heroesCupLocalizer.Hero["The hero has been saved."]);
                 return RedirectToAction("Edit", new { id = heroId });
             }
 
-            ErrorMessage("The hero could not be saved.", false);
+            ErrorMessage(this.heroesCupLocalizer.Hero["The hero could not be saved."], false);
             return View("Edit", model);
         }
 
@@ -79,13 +81,12 @@ namespace ClubsModule.Controllers
             var result = await this.heroesService.DeleteAsync(id);
             if (!result)
             {
-                ErrorMessage("The hero could not be deleted.", false);
+                ErrorMessage(this.heroesCupLocalizer.Hero["The hero could not be deleted."], false);
                 return RedirectToAction("List");
             }
 
-            SuccessMessage("The hero has been deleted.");
+            SuccessMessage(this.heroesCupLocalizer.Hero["The hero has been deleted."]);
             return RedirectToAction("List");
         }
-
     }
 }
