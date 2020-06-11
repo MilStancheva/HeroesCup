@@ -7,10 +7,12 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\images\team_no_image.png" />
+    <Content Remove="wwwroot\scripts\editor.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\images\team_no_image.png" />
+    <EmbeddedResource Include="wwwroot\scripts\editor.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -113,7 +113,7 @@ namespace HeroesCup.Controllers
 
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
-            model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
+            model.SelectedSchoolYear = selectedSchoolYear;
             var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(selectedSchoolYear);
             model.Clubs = clubsListModel;
 
