@@ -168,4 +168,19 @@
   <data name="Organization Type is mandatory." xml:space="preserve">
     <value>Тип на организацията / училището е задължително поле.</value>
   </data>
+  <data name="The club could not be deleted." xml:space="preserve">
+    <value>Клубът не е изтрит. Възникна грешка. </value>
+  </data>
+  <data name="The club could not be found." xml:space="preserve">
+    <value>Клубът не е намерен.</value>
+  </data>
+  <data name="The club could not be saved." xml:space="preserve">
+    <value>Клубът не е запазен. Възникна грешка.</value>
+  </data>
+  <data name="The club has been deleted." xml:space="preserve">
+    <value>Клубът е изтрит успешно.</value>
+  </data>
+  <data name="The club has been saved." xml:space="preserve">
+    <value>Клубът е запазен успешно.</value>
+  </data>
 </root>

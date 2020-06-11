@@ -168,4 +168,19 @@
   <data name="Organization Type is mandatory." xml:space="preserve">
     <value>Organization Type is mandatory.</value>
   </data>
+  <data name="The club could not be deleted." xml:space="preserve">
+    <value>The club could not be deleted.</value>
+  </data>
+  <data name="The club could not be found." xml:space="preserve">
+    <value>The club could not be found.</value>
+  </data>
+  <data name="The club could not be saved." xml:space="preserve">
+    <value>The club could not be saved.</value>
+  </data>
+  <data name="The club has been deleted." xml:space="preserve">
+    <value>The club has been deleted.</value>
+  </data>
+  <data name="The club has been saved." xml:space="preserve">
+    <value>The club has been saved.</value>
+  </data>
 </root>
