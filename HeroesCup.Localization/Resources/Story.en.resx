@@ -123,4 +123,31 @@
   <data name="Story" xml:space="preserve">
     <value>Story</value>
   </data>
+  <data name="The story could not be deleted." xml:space="preserve">
+    <value>The story could not be deleted.</value>
+  </data>
+  <data name="The story could not be found." xml:space="preserve">
+    <value>The story could not be found.</value>
+  </data>
+  <data name="The story could not be published." xml:space="preserve">
+    <value>The story could not be published.</value>
+  </data>
+  <data name="The story could not be saved." xml:space="preserve">
+    <value>The story could not be saved.</value>
+  </data>
+  <data name="The story could not be unpublished." xml:space="preserve">
+    <value>The story could not be unpublished.</value>
+  </data>
+  <data name="The story has been deleted." xml:space="preserve">
+    <value>The story has been deleted.</value>
+  </data>
+  <data name="The story has been published." xml:space="preserve">
+    <value>The story has been published.</value>
+  </data>
+  <data name="The story has been saved." xml:space="preserve">
+    <value>The story has been saved.</value>
+  </data>
+  <data name="The story has been unpublished." xml:space="preserve">
+    <value>The story has been unpublished.</value>
+  </data>
 </root>
