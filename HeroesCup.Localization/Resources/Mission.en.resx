@@ -147,6 +147,33 @@
   <data name="Start Date" xml:space="preserve">
     <value>Start Date</value>
   </data>
+  <data name="The mission could not be deleted." xml:space="preserve">
+    <value>The mission could not be deleted.</value>
+  </data>
+  <data name="The mission could not be found." xml:space="preserve">
+    <value>The mission could not be found.</value>
+  </data>
+  <data name="The mission could not be published." xml:space="preserve">
+    <value>The mission could not be published.</value>
+  </data>
+  <data name="The mission could not be saved." xml:space="preserve">
+    <value>The mission could not be saved.</value>
+  </data>
+  <data name="The mission could not be unpublished." xml:space="preserve">
+    <value>The mission could not be unpublished.</value>
+  </data>
+  <data name="The mission has been deleted." xml:space="preserve">
+    <value>The mission has been deleted.</value>
+  </data>
+  <data name="The mission has been published." xml:space="preserve">
+    <value>The mission has been published.</value>
+  </data>
+  <data name="The mission has been saved." xml:space="preserve">
+    <value>The mission has been saved.</value>
+  </data>
+  <data name="The mission has been unpublished." xml:space="preserve">
+    <value>The mission has been unpublished.</value>
+  </data>
   <data name="Timeheroes Mission URL" xml:space="preserve">
     <value>Timeheroes Mission URL</value>
   </data>

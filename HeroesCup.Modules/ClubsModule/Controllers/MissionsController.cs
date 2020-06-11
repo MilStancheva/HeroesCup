@@ -1,9 +1,9 @@
 ﻿using ClubsModule.Models;
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
+using HeroesCup.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Piranha.Manager.Controllers;
 using System;
 using System.Threading.Tasks;
@@ -15,12 +15,14 @@ namespace ClubsModule.Controllers
         private readonly IMissionsService missionsService;
         private readonly IUserManager userManager;
         private Guid? loggedInUserId;
+        private readonly HeroesCup.Localization.ManagerLocalizer heroesCupLocalizer;
 
-        public MissionsController(IMissionsService missionsService, IUserManager userManager)
+        public MissionsController(IMissionsService missionsService, IUserManager userManager, ManagerLocalizer heroesCupLocalizer)
         {
             this.missionsService = missionsService;
             this.userManager = userManager;
             this.loggedInUserId = this.userManager.GetCurrentUserId();
+            this.heroesCupLocalizer = heroesCupLocalizer;
         }
 
         [HttpGet]
@@ -48,18 +50,18 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ErrorMessage("The mission could not be saved.", false);
+                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."], false);
                 return View("Edit", model);
             }
 
             var missionId = await this.missionsService.SaveMissionEditModelAsync(model);
             if (missionId != null && missionId != Guid.Empty)
             {
-                SuccessMessage("The mission has been saved.");
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been saved."]);
                 return RedirectToAction("Edit", new { id = missionId });
             }
 
-            ErrorMessage("The mission could not be saved.", false);
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."], false);
             return View("Edit", model);
         }
 
@@ -76,11 +78,11 @@ namespace ClubsModule.Controllers
             var result = await this.missionsService.PublishMissionEditModelAsync(model.Mission.Id);
             if (result)
             {
-                SuccessMessage("The mission has been published.");
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been published."]);
                 return RedirectToAction("Edit", new { id = model.Mission.Id });
             }
 
-            ErrorMessage("The mission could not be published.", false);
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be published."], false);
             return View("Edit", model);
         }
 
@@ -97,11 +99,11 @@ namespace ClubsModule.Controllers
             var result = await this.missionsService.UnpublishMissionEditModelAsync(model.Mission.Id);
             if (result)
             {
-                SuccessMessage("The mission has been unpublished.");
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been unpublished."]);
                 return RedirectToAction("Edit", new { id = model.Mission.Id });
             }
 
-            ErrorMessage("The mission could not be unpublished.", false);
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be unpublished."], false);
             return View("Edit", model);
         }
 
@@ -111,6 +113,12 @@ namespace ClubsModule.Controllers
         public async Task<IActionResult> EditAsync(Guid id)
         {
             var model = await this.missionsService.GetMissionEditModelByIdAsync(id, this.loggedInUserId);
+            if (model == null)
+            {
+                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be found."], false);
+                return RedirectToAction("List");
+            }
+
             return View(model);
         }
 
@@ -122,11 +130,11 @@ namespace ClubsModule.Controllers
             var result = await this.missionsService.DeleteAsync(id);
             if (!result)
             {
-                ErrorMessage("The mission could not be deleted.", false);
+                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be deleted."], false);
                 return RedirectToAction("List");
             }
 
-            SuccessMessage("The mission has been deleted.");
+            SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been deleted."]);
             return RedirectToAction("List");
         }
     }
