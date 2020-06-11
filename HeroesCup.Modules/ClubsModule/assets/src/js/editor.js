@@ -1,32 +1,74 @@
 $(function () {
+    var clubsSelector = 'textarea#editor';
+    var quickbarsSelectionToolbar = 'bold italic | quicklink h2 h3 blockquote quickimage quicktable';
+    var height = 600;
+    var importCssAppend = false;
+    var automaticUploads = true;
+    var clubsFilePickerTypes = 'image';
+    var clubsFilePickerCallback = function (cb, value, meta) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+
+        input.onchange = function () {
+            var file = this.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                var id = 'blobid' + (new Date()).getTime();
+                var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                var base64 = reader.result.split(',')[1];
+                var blobInfo = blobCache.create(id, file, base64);
+                blobCache.add(blobInfo);
+
+                /* call the callback and populate the Title field with the file name */
+                cb(blobInfo.blobUri(), {
+                    title: meta.filename,
+                    alt: file.name,
+                    width: '496'
+                });
+            };
+            reader.readAsDataURL(file);
+        };
+
+        input.click();
+    };
 
     tinymce.init({
-        selector: 'textarea#editor',
-        plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
-        menubar: 'file edit view insert format tools table help',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-        toolbar_sticky: true,
-        autosave_ask_before_unload: true,
-        autosave_interval: "30s",
-        autosave_prefix: "{path}{query}-{id}-",
-        autosave_restore_when_empty: false,
-        autosave_retention: "2m",
-        image_advtab: true,
-        content_css: '//www.tiny.cloud/css/codepen.min.css',
-        importcss_append: true,
-        height: 400,
-        templates: [
-            { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
-            { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
-            { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
-        ],
-        template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-        template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-        height: 600,
-        image_caption: true,
-        quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-        noneditable_noneditable_class: "mceNonEditable",
-        toolbar_mode: 'sliding',
-        contextmenu: "link image imagetools table",
+        selector: clubsSelector,
+        menubar: menubar,
+        branding: branding,
+        statusbar: statusbar,
+        inline: false,
+        convert_urls: convertUrls,
+        plugins: plugins,
+        width: width,
+        toolbar_sticky: stickyToolbar,
+        autosave_ask_before_unload: autosaveAskBeforeUnload,
+        autosave_interval: autosaveInterval,
+        autosave_prefix: autosavePrefix,
+        autosave_restore_when_empty: autosaveRestoreWhenEmpty,
+        autosave_retention: autosaveRetention,
+        image_advtab: imageAdvtab,
+        autoresize_min_height: autoresizeMinHeight,
+        toolbar: toolbar,
+        toolbar_mode: toolbarMode,
+        contextmenu: contextMenu,
+        extended_valid_elements: extendedValidElements,
+        block_formats: blockFormats,
+        formats: formats,
+        style_formats: styleFormats,
+        color_map: colorMap,
+        file_picker_types: clubsFilePickerTypes,
+        file_picker_callback: clubsFilePickerCallback,
+        content_css: contentCss,
+        font_formats: fontFormats,
+        fontsize_formats: fontsizeFormats,
+        setup: setUp,
+        image_title: imageTitle,
+        height: height,
+        quickbars_selection_toolbar: quickbarsSelectionToolbar,
+        import_css_append: importCssAppend,
+        automatic_uploads: automaticUploads,
     });
 })
