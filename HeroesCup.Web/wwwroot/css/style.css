@@ -929,3 +929,15 @@ a:hover .resource-icon-article {
         position: initial !important;
     }
 }
+
+.top-padding {
+    padding-top: 48px;
+}
+
+.bottom-padding {
+    padding-bottom: 48px;
+}
+
+p.bottom-padding {
+    margin-bottom: 0;
+}

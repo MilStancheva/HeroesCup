@@ -3,11 +3,15 @@
 }
 
 .top-padding {
-    padding-top: 70px;
+    padding-top: 48px;
+}
+
+p.bottom-padding {
+    margin-bottom: 0;
 }
 
 .bottom-padding {
-    padding-bottom: 70px;
+    padding-bottom: 48px;
 }
 
 h1, .heading1 {
