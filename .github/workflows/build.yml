@@ -22,11 +22,6 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Update database
-      run: |
-        dotnet tool install -g dotnet-ef
-        dotnet tool restore
-        dotnet ef database update --c HeroesCupDbContext --p HeroesCup.Data/HeroesCup.Data.csproj
   dotnet-format:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/master'
