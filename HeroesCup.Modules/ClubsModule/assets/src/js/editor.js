@@ -33,6 +33,10 @@ $(function () {
 
         input.click();
     };
+    var heroesCupContentCss = [
+        "//fonts.googleapis.com/css?family=Montserrat:300,400,500",
+        "/manager/clubsmodule/css/editor-styles.css"
+    ];
 
     tinymce.init({
         selector: clubsSelector,
