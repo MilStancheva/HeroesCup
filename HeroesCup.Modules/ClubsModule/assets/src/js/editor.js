@@ -65,7 +65,7 @@ $(function () {
         color_map: colorMap,
         file_picker_types: clubsFilePickerTypes,
         file_picker_callback: clubsFilePickerCallback,
-        content_css: contentCss,
+        content_css: heroesCupContentCss,
         font_formats: fontFormats,
         fontsize_formats: fontsizeFormats,
         setup: setUp,
