@@ -54,13 +54,7 @@ jobs:
     - name: Change permissions
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
     - name: Update database
-      run: |
-        dotnet exec 
-          --runtimeconfig /var/www/heroes-cup/HeroesCup.Web.runtimeconfig.json 
-          --depsfile /var/www/heroes-cup/HeroesCup.Web.deps.json /${HOME}/.dotnet/tools/.store/dotnet-ef/3.1.5/dotnet-ef/3.1.5/tools/netcoreapp3.1/any/dotnet-ef.dll 
-          --verbose database update --context HeroesCupDbContext
-          --assembly /var/www/heroes-cup/HeroesCup.Data.dll 
-          --startup-assembly /var/www/heroes-cup/HeroesCup.Web.dll --data-dir ./
+      run: dotnet exec --runtimeconfig /var/www/heroes-cup/HeroesCup.Web.runtimeconfig.json --depsfile /var/www/heroes-cup/HeroesCup.Web.deps.json /${HOME}/.dotnet/tools/.store/dotnet-ef/3.1.5/dotnet-ef/3.1.5/tools/netcoreapp3.1/any/dotnet-ef.dll --verbose database update --context HeroesCupDbContext --assembly /var/www/heroes-cup/HeroesCup.Data.dll --startup-assembly /var/www/heroes-cup/HeroesCup.Web.dll --data-dir ./
     - name: Start kestrel
       run: sudo /bin/systemctl start heroescup.service
 
