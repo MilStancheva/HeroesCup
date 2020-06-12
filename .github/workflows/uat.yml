@@ -55,7 +55,7 @@ jobs:
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
     - name: Set connection string
       run: |
-        cd /var/www/heroes-cup/
+        cd /var/heroescup/
         source ./connectionString.sh
     - name: Update database
       run: |
