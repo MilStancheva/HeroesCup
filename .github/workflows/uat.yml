@@ -62,7 +62,7 @@ jobs:
       run: |
         export PATH="$PATH:/home/actions-runner/.dotnet/tools"
         cd HeroesCup.Data
-        dotnet ef database update --c HeroesCupDbContext 
+        dotnet ef database update -c HeroesCupDbContext 
     - name: Start kestrel
       run: sudo /bin/systemctl start heroescup.service
 
