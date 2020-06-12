@@ -60,6 +60,7 @@ jobs:
         dotnet-version: 3.1.101
     - name: Update database
       run: |
+        export PATH="$PATH:/home/actions-runner/.dotnet/tools"
         cd HeroesCup.Data
         dotnet ef database update --c HeroesCupDbContext 
     - name: Start kestrel
