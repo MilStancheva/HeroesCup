@@ -19,7 +19,8 @@ namespace HeroesCup.Data
 
         protected virtual IConfigurationRoot BuildConfiguration(string[] commandLineArgs)
         {
-            var appSettingRoot = $"{Directory.GetCurrentDirectory()}/../HeroesCup.Web/";
+            var appSettingRoot = $"{Directory.GetCurrentDirectory()}";
+            //var appSettingRoot = $"{Directory.GetCurrentDirectory()}/../HeroesCup.Web/";
             var configurationBuilder = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .AddCommandLine(commandLineArgs)
