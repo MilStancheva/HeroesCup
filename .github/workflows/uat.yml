@@ -17,6 +17,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.4.0
     # Runs a single command using the runners shell
@@ -33,7 +36,6 @@ jobs:
     # runs-on: [self-hosted, uat-test]
     runs-on: [self-hosted, uat-test]
     steps:
-    - uses: actions/checkout@v2
     
     - uses: actions/download-artifact@v2
       with:
