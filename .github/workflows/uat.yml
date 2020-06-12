@@ -57,11 +57,11 @@ jobs:
     - name: Update database
       run: |
         dotnet exec 
-          --runtimeconfig ./HeroesCup.Web.runtimeconfig.json 
-          --depsfile ./HeroesCup.Web.deps.json /${HOME}/.dotnet/tools/netcoreapp3.1/ef.dll 
+          --runtimeconfig HeroesCup.Web.runtimeconfig.json 
+          --depsfile HeroesCup.Web.deps.json /${HOME}/.dotnet/tools/ef.dll 
           --verbose database update --context HeroesCupDbContext
-          --assembly ./HeroesCup.Data.dll 
-          --startup-assembly ./HeroesCup.Web.dll --data-dir ./
+          --assembly HeroesCup.Data.dll 
+          --startup-assembly HeroesCup.Web.dll --data-dir ./
     - name: Start kestrel
       run: sudo /bin/systemctl start heroescup.service
 
