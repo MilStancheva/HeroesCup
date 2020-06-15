@@ -58,7 +58,7 @@ jobs:
         cd /var/heroescup/
         source ./connectionString.sh
     - name: Test connection string
-       run: |
+      run: |
         cd /var/heroescup/
         source ./testConnectionString.sh
     - name: Update database
