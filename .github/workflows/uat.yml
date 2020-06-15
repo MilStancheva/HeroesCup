@@ -54,10 +54,11 @@ jobs:
     - name: Change permissions
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
     - name: Set connection string
-      uses: allenevans/set-env@v1.0.0
       run: |
         cd /var/heroescup/
         source ./connectionString.sh
+    - name: Set env variables
+      uses: allenevans/set-env@v1.0.0
       with:
           HEROESCUP_CONNECTIONSTRING: $HEROESCUP_CONNECTIONSTRING
     - name: Update database
