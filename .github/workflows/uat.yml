@@ -57,8 +57,8 @@ jobs:
       run: |
         cd /var/heroescup/
         source ./connectionString.sh
-        env:
-            HEROESCUP_CONNECTIONSTRING: $HEROESCUP_CONNECTIONSTRING
+      env:
+          HEROESCUP_CONNECTIONSTRING: $HEROESCUP_CONNECTIONSTRING
     - name: Update database
       run: |
         cd /var/www/heroes-cup/
