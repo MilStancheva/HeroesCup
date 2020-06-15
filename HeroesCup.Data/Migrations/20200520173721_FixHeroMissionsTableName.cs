@@ -6,17 +6,17 @@ namespace HeroesCup.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_HeroMission_Heroes_HeroId",
-                table: "HeroMission");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_HeroMission_Heroes_HeroId",
+            //    table: "HeroMission");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_HeroMission_Missions_MissionId",
-                table: "HeroMission");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_HeroMission_Missions_MissionId",
+            //    table: "HeroMission");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_HeroMission",
-                table: "HeroMission");
+            //migrationBuilder.DropPrimaryKey(
+            //    name: "PK_HeroMission",
+            //    table: "HeroMission");
 
             migrationBuilder.RenameTable(
                 name: "HeroMission",
@@ -67,10 +67,10 @@ namespace HeroesCup.Data.Migrations
                 name: "HeroMissions",
                 newName: "HeroMission");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_HeroMissions_MissionId",
-                table: "HeroMission",
-                newName: "IX_HeroMission_MissionId");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_HeroMissions_MissionId",
+            //    table: "HeroMission",
+            //    newName: "IX_HeroMission_MissionId");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_HeroMission",
