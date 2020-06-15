@@ -7,7 +7,7 @@ namespace HeroesCup.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
-                name: "isPublished",
+                name: "IsPublished",
                 table: "Missions",
                 nullable: false,
                 defaultValue: false);
@@ -16,7 +16,7 @@ namespace HeroesCup.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "isPublished",
+                name: "IsPublished",
                 table: "Missions");
         }
     }
