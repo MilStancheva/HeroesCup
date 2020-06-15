@@ -8,7 +8,7 @@ namespace HeroesCup.Data.Migrations
         {
             migrationBuilder.AddColumn<bool>(
                 name: "IsPublished",
-                table: "Story",
+                table: "Stories",
                 nullable: false,
                 defaultValue: false);
         }
@@ -17,7 +17,7 @@ namespace HeroesCup.Data.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "IsPublished",
-                table: "Story");
+                table: "Stories");
         }
     }
 }
