@@ -64,7 +64,7 @@ jobs:
     - name: Update database
       run: |
         cd /var/www/heroes-cup/
-        if [env.HEROESCUP_CONNECTIONSTRING != ""]; 
+        if [$HEROESCUP_CONNECTIONSTRING != ""]; 
         then
             echo "WOOHOO"
         fi
