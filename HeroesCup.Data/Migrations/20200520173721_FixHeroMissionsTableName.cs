@@ -22,10 +22,10 @@ namespace HeroesCup.Data.Migrations
                 name: "HeroMission",
                 newName: "HeroMissions");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_HeroMission_MissionId",
-                table: "HeroMissions",
-                newName: "IX_HeroMissions_MissionId");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_HeroMission_MissionId",
+            //    table: "HeroMissions",
+            //    newName: "IX_HeroMissions_MissionId");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_HeroMissions",
