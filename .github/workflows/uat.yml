@@ -57,6 +57,8 @@ jobs:
       run: |
         cd /var/heroescup/
         source ./connectionString.sh
+      env: 
+        HEROESCUP_CONNECTIONSTRING: $env:HEROESCUP_CONNECTIONSTRING
     - name: Test connection string
       run: |
         cd /var/heroescup/
