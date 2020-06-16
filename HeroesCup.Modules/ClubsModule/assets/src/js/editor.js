@@ -33,6 +33,10 @@ $(function () {
 
         input.click();
     };
+    var heroesCupContentCss = [
+        "//fonts.googleapis.com/css?family=Montserrat:300,400,500",
+        "/css/editor-styles.css"
+    ];
 
     tinymce.init({
         selector: clubsSelector,
@@ -61,7 +65,7 @@ $(function () {
         color_map: colorMap,
         file_picker_types: clubsFilePickerTypes,
         file_picker_callback: clubsFilePickerCallback,
-        content_css: contentCss,
+        content_css: heroesCupContentCss,
         font_formats: fontFormats,
         fontsize_formats: fontsizeFormats,
         setup: setUp,

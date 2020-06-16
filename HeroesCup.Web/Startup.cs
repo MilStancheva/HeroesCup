@@ -143,7 +143,7 @@ namespace HeroesCup
         {
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/css/manager-styles.css");
             EditorConfig.FromFile("editorconfig.json");
-            Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/editor.js";
+            Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/tinymce-editor.js";
         }
     }
 }

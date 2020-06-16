@@ -36,7 +36,6 @@ jobs:
     # runs-on: [self-hosted, uat-test]
     runs-on: [self-hosted, uat-test]
     steps:
-    - uses: actions/checkout@v2
     
     - uses: actions/download-artifact@v2
       with:
@@ -54,10 +53,12 @@ jobs:
       run: mv uat/* /var/www/heroes-cup
     - name: Change permissions
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
-    - name: Install dotnet ef
-      run: dotnet tool install --global dotnet-ef
     - name: Update database
-      run: cd HeroesCup.Data && dotnet ef database update
+      run: |
+        cd /var/heroescup/
+        source ./connectionString.sh
+        cd /var/www/heroes-cup/
+        dotnet exec --runtimeconfig HeroesCup.Web.runtimeconfig.json --depsfile HeroesCup.Web.deps.json ~/.nuget/packages/microsoft.entityframeworkcore.tools/3.1.3/tools/netcoreapp2.0/any/ef.dll --verbose database update --context HeroesCupDbContext --assembly HeroesCup.Data.dll --startup-assembly HeroesCup.Web.dll --data-dir ./
     - name: Start kestrel
       run: sudo /bin/systemctl start heroescup.service
 

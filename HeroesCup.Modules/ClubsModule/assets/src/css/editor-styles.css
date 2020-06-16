@@ -1,0 +1,179 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.top-padding {
+    padding-top: 48px;
+}
+
+p.bottom-padding {
+    margin-bottom: 0;
+}
+
+.bottom-padding {
+    padding-bottom: 48px;
+}
+
+h1, .heading1 {
+    /* Heading 1 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 48px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+h2, .heading2 {
+    /* Heading 2 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height, or 122% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+h3, .heading3 {
+    /* Heading 3 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 32px;
+    /* identical to box height, or 114% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+h4, .heading4 {
+    /* Heading 4 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+h5, .heading5 {
+    /* Heading 5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 24px;
+    /* identical to box height, or 109% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+p, .body1 {
+    /* Body 1 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body1-bold {
+    /* Body 1 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2 {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body2-bold {
+    /* Body 2 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3 {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+.body3-bold {
+    /* Body 3 Bold */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    /* Dark */
+    color: #1C1E21;
+}
+
+/* Custom Hero Button */
+.btn-heroes {
+    padding: 12px 24px;
+    background: #FE5E17;
+    color: white;
+    vertical-align: middle;
+    border-radius: 32px;
+    text-decoration: none;
+    text-underline-position: unset;
+    text-decoration-style: none;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+a.btn-heroes {
+    text-decoration: none;
+    color: white;
+    text-underline-position: unset;
+}
+
+    a.btn-heroes:hover {
+        text-decoration: none;
+        color: white;
+        text-underline-position: unset;
+        text-decoration-style: none;
+        background: linear-gradient(0deg, rgba(28, 30, 33, 0.08), rgba(28, 30, 33, 0.08)), #FE5E17;
+    }
+
+a.btn-heroes span {
+    color: white;
+}
