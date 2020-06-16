@@ -53,12 +53,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Club["Club"]</label>
-                            @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", maxlength = 128, required = "" })
+                    @if (Model.Hero.Id != Guid.Empty && Model.Hero.Club != null && Model.Hero.ClubId != Guid.Empty)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Club["Club"]</label>
+                                @Html.TextBoxFor(m => m.Hero.Club.Name, new { @class = "form-control small", disabled = true })
+                                @Html.HiddenFor(m => m.ClubId)
+                                @Html.HiddenFor(m => m.Hero.Club.Id)
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Club["Club"]</label>
+                                @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", maxlength = 128, required = "" })
+                            </div>
+                        </div>
+                    }
+
                 </div>
 
                 @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAddCoordinator)).Succeeded)
