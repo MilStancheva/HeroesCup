@@ -53,16 +53,6 @@ jobs:
       run: mv uat/* /var/www/heroes-cup
     - name: Change permissions
       run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
-    - name: Set connection string
-      run: |
-        cd /var/heroescup/
-        source ./connectionString.sh
-      env: 
-        HEROESCUP_CONNECTIONSTRING: $env:HEROESCUP_CONNECTIONSTRING
-    - name: Test connection string
-      run: |
-        cd /var/heroescup/
-        source ./testConnectionString.sh
     - name: Update database
       run: |
         cd /var/heroescup/
