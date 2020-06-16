@@ -68,16 +68,12 @@ namespace ClubsModule.Services
         {
             var clubs = new List<Club>();
             clubs = await this.dbContext.Clubs.ToListAsync();
-
-            var heroes = new List<Hero>();
-            heroes = await this.dbContext.Heroes
-                     .Include(h => h.Club)
-                     .ToListAsync();
+            ICollection<Hero> heroes = new List<Hero>();
 
             if (ownerId.HasValue)
             {
                 clubs = clubs.Where(c => c.OwnerId == ownerId.Value).ToList();
-                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value).ToList();
+                heroes = await GetHeroes(null, ownerId);
             }
 
             var model = new MissionEditModel()
@@ -110,7 +106,8 @@ namespace ClubsModule.Services
             {
                 mission = new Mission();
                 mission.Id = model.Mission.Id != Guid.Empty ? model.Mission.Id : Guid.NewGuid();
-                mission.OwnerId = model.Mission.OwnerId;
+                var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == model.ClubId);
+                mission.OwnerId = club.OwnerId;
                 this.dbContext.Missions.Add(mission);
             }
 
@@ -210,6 +207,7 @@ namespace ClubsModule.Services
             var model = await CreateMissionEditModelAsync(ownerId);
             model.Mission = mission;
             model.ClubId = mission.Club.Id;
+            model.Heroes = await GetHeroes(mission.Club.Id, ownerId);
 
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
@@ -233,6 +231,25 @@ namespace ClubsModule.Services
 
 
             return model;
+        }
+
+        private async Task<ICollection<Hero>> GetHeroes(Guid? clubId, Guid? ownerId)
+        {
+            var heroes = this.dbContext.Heroes
+                     .Include(h => h.Club)
+                     .Select(x => x);                     
+
+            if (clubId.HasValue)
+            {
+                heroes = heroes.Where(h => h.ClubId == clubId);
+            }
+
+            if (ownerId.HasValue)
+            {
+                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value);
+            }
+
+            return await heroes.ToListAsync();
         }
 
         public TimeSpan GetMissionDuration(long startDate, long endDate)

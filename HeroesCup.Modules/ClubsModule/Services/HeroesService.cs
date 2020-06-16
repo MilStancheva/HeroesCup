@@ -137,11 +137,11 @@ namespace ClubsModule.Services
             }
 
             hero.Name = model.Hero.Name;
-            hero.ClubId = model.ClubId;
+            hero.ClubId = model.ClubId != Guid.Empty ? model.ClubId : model.Hero.Club.Id;
 
             if (model.Hero.IsCoordinator)
             {
-                var heroesFromClub = await this.dbContext.Heroes.Where(h => h.ClubId == model.ClubId).ToListAsync();
+                var heroesFromClub = await this.dbContext.Heroes.Where(h => h.ClubId == hero.ClubId).ToListAsync();
                 foreach (var h in heroesFromClub)
                 {
                     h.IsCoordinator = false;
