@@ -99,20 +99,27 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Club Organizer"]</label>
-                            @if (User.IsInRole("Coordinator"))
+                            @if (User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin"))
                             {
-                                if (Model.Mission.Club != null)
+                                if (Model.ClubId != Guid.Empty && Model.Mission.ClubId != Guid.Empty)
                                 {
-                                    <p><span>@Model.Mission.Club.Name</span></p>
+                                    @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
+                                }
+                            }
+                            else
+                            {
+                                if (Model.ClubId != Guid.Empty)
+                                {
+                                    @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
                                 }
                                 else
                                 {
                                     <p><a class="btn btn-warning" href="/manager/club"><span> @HeroesCupLocalizer.Mission["Create a club"]</span></a></p>
                                 }
-                            }
-                            else
-                            {
-                                @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
                             }
 
                             @Html.HiddenFor(m => m.ClubId)

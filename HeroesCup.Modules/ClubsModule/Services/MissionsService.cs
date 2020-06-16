@@ -110,7 +110,8 @@ namespace ClubsModule.Services
             {
                 mission = new Mission();
                 mission.Id = model.Mission.Id != Guid.Empty ? model.Mission.Id : Guid.NewGuid();
-                mission.OwnerId = model.Mission.OwnerId;
+                var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == model.ClubId);
+                mission.OwnerId = club.OwnerId;
                 this.dbContext.Missions.Add(mission);
             }
 
