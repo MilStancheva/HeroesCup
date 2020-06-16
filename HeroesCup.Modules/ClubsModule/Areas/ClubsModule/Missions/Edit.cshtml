@@ -112,7 +112,7 @@
                             }
                             else
                             {
-                                if (Model.ClubId != Guid.Empty)
+                                if (Model.ClubId != Guid.Empty && Model.Mission.Club != null)
                                 {
                                     @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
                                 }
