@@ -3,22 +3,22 @@
 
     string GetMainBodyClass()
     {
-        if (ViewBag.Title == "Home")
+        if (ViewBag.TypeId == "StartPage")
         {
             return "home-background";
         }
 
-        if (ViewBag.Title == "Resources")
+        if (ViewBag.TypeId == "ResourcesArchive")
         {
             return "resources-background";
         }
 
-        if (ViewBag.Title == "Events")
+        if (ViewBag.TypeId == "EventsArchive")
         {
             return "events-background";
         }
 
-        if (ViewBag.Title == "About")
+        if (ViewBag.TypeId == "AboutPage")
         {
             return "about-background";
         }
@@ -51,7 +51,7 @@
 </head>
 <body class="@mainBodyClass">
     <header class="site-header @(ViewBag.HasImage == null || !ViewBag.HasImage ? "site-header-dark" : "") justify-content-center">
-        @if (ViewBag.Title != "Landing")
+        @if (ViewBag.TypeId != "LandingPage")
         {
             <div class="fixed-top">
                 <div class="container mt-0 pl-0">
