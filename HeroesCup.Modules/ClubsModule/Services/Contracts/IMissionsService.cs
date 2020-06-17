@@ -29,5 +29,7 @@ namespace ClubsModule.Services.Contracts
         IEnumerable<string> GetMissionSchoolYears();
 
         IEnumerable<Mission> GetAllHeroesCupPublishedMissions();
+
+        IEnumerable<Mission> GetAllTimeheroesPublishedMissions();
     }
 }

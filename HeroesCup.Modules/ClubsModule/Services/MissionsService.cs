@@ -344,5 +344,14 @@ namespace ClubsModule.Services
 
             return missions;
         }
+
+        public IEnumerable<Mission> GetAllTimeheroesPublishedMissions()
+        {
+            var missions = this.dbContext.Missions
+                .Where(m => m.Type == MissionType.TimeheroesMission)
+                .Where(m => m.IsPublished == true);
+
+            return missions;
+        }
     }
 }

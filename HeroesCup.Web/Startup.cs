@@ -70,6 +70,7 @@ namespace HeroesCup
             services.AddTransient<IPageInitializer, PageInitializer>();
             services.AddTransient<ILeaderboardService, LeaderboardService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
+            services.AddTransient<ITimeheroesMissionsService, TimeheroesMissionsService>();
             services.AddControllersWithViews();
 
             Services = services;

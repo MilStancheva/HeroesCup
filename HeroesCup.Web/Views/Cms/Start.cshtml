@@ -206,26 +206,19 @@
 
 
         @* Missions *@
-        @if (Model.LinkedMissions.Count > 0)
+        @if (Model.TimeheroesMissions.Count() > 0)
         {
             <div class="pt-5 pb-5">
                 <h2 class="mb-5">Мисии</h2>
                 <div class="row missions-block">
-                    @foreach (var mission in Model.LinkedMissions)
+                    @foreach (var mission in Model.TimeheroesMissions)
                     {
                         <div class="col-sm-6 col-md-4">
                             <div class="mission-body">
-                                <a href="@mission.Details.URL.Value" target="_blank">
-                                    <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
+                                <a href="/missions/@mission.Id" target="_blank">
+                                    @*<img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />*@
                                     <h4 class="mission-title">@mission.Title</h4>
-                                    @*@if (mission.Tags.Count > 0)
-                                    {
-                                        @foreach (var tag in mission.Tags)
-                                        {
-                                            <span>#@tag.Title </span>
-                                        }
-                                    }*@
-                                    <p>от @mission.Details.OrganizedBy</p>
+                                    @*<p>от @mission.Details.OrganizedBy</p>*@
                                 </a>
                             </div>
                         </div>
