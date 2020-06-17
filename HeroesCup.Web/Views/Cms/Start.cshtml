@@ -2,6 +2,7 @@
 @inject IApi Api
 @{
     ViewBag.Title = Model.Title;
+    ViewBag.TypeId = Model.TypeId;
     var hoursCount = Model.HoursCount <= 1000 ? Model.HoursCount.ToString() : $"{Model.HoursCount / 1000:#,##k}";
 }
 
