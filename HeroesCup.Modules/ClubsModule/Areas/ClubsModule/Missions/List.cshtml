@@ -22,6 +22,13 @@
                 <a href="@Url.Action("Add")" class="btn btn-labeled btn-primary pull-right">
                     <i class="fas fa-plus"></i>@Localizer.General["Add"]
                 </a>
+
+                if (!User.IsInRole("Coordinator"))
+                {
+                    <a href="@Url.Action("AddTimeheroesMission")" class="btn btn-labeled btn-primary pull-right">
+                        <i class="fas fa-plus"></i>@HeroesCupLocalizer.Mission["Add Timeheroes Mission"]
+                    </a>
+                }
             }
         </div>
     </div>

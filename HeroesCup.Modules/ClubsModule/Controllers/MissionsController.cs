@@ -43,6 +43,15 @@ namespace ClubsModule.Controllers
             return View("Edit", model);
         }
 
+        [HttpGet]
+        [Route("/manager/timeheroes-mission")]
+        [Authorize(Policy = Permissions.MissionsAdd)]
+        public IActionResult AddTimeheroesMission()
+        {
+            var model = this.missionsService.CreateTimeheroesMissionEditModelAsync();
+            return View("TimeheroesTypeMissionEdit", model);
+        }
+
         [HttpPost]
         [Route("/manager/mission/save")]
         [Authorize(Policy = Permissions.MissionsSave)]
@@ -123,6 +132,21 @@ namespace ClubsModule.Controllers
         }
 
         [HttpGet]
+        [Route("/manager/timeheroes-mission/{id:Guid}")]
+        [Authorize(Policy = Permissions.MissionsEdit)]
+        public IActionResult TimeheroesTypeMissionEditAsync(Guid id)
+        {
+            var model = this.missionsService.GetTimeheroesMissionEditModelByIdAsync(id);
+            if (model == null)
+            {
+                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be found."], false);
+                return RedirectToAction("List");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
         [Route("/manager/mission/delete")]
         [Authorize(Policy = Permissions.MissionsDelete)]
         public async Task<IActionResult> Delete(Guid id)
@@ -136,6 +160,28 @@ namespace ClubsModule.Controllers
 
             SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been deleted."]);
             return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        [Route("/manager/timeheroes-mission/save")]
+        [Authorize(Policy = Permissions.MissionsSave)]
+        public async Task<IActionResult> TimeheroesMissionSaveAsync(TimeheroesMissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."], false);
+                return View("TimeheroesTypeMissionEditAsync", model);
+            }
+
+            var missionId = await this.missionsService.SaveTimeheroesMissionEditModelAsync(model);
+            if (missionId != null && missionId != Guid.Empty)
+            {
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been saved."]);
+                return RedirectToAction("TimeheroesTypeMissionEditAsync", new { id = missionId });
+            }
+
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."], false);
+            return View("TimeheroesTypeMissionEditAsync", model);
         }
     }
 }
