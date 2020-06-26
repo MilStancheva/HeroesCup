@@ -33,6 +33,13 @@
         public const string StoriesSave = "HeroesCupStoriesSave";
         public const string StoriesPublish = "HeroesCupStoriesPublish";
 
+        public const string MissionIdeas = "HeroesCupMissionIdeass";
+        public const string MissionIdeasAdd = "HeroesCupMissionIdeassAdd";
+        public const string MissionIdeasDelete = "HeroesCupMissionIdeasDelete";
+        public const string MissionIdeasEdit = "HeroesCupMissionIdeasEdit";
+        public const string MissionIdeasSave = "HeroesCupMissionIdeasSave";
+        public const string MissionIdeasPublish = "HeroesCupMissionIdeasPublish";
+
         public static string[] All()
         {
             return new[]
@@ -60,7 +67,13 @@
                 StoriesDelete,
                 StoriesEdit,
                 StoriesSave,
-                StoriesPublish
+                StoriesPublish,
+                MissionIdeas,
+                MissionIdeasAdd,
+                MissionIdeasDelete,
+                MissionIdeasEdit,
+                MissionIdeasSave,
+                MissionIdeasPublish,
             };
         }
     }

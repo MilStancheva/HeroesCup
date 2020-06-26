@@ -26,7 +26,7 @@ namespace HeroesCup.Models
         /// <summary>
         /// Gets/sets the available Timeheroes missions.
         /// </summary>
-        public IEnumerable<Mission> TimeheroesMissions { get; set; }
+        public IEnumerable<MissionIdea> TimeheroesMissions { get; set; }
 
         public ClubListViewModel Clubs { get; set; }
 
@@ -39,7 +39,7 @@ namespace HeroesCup.Models
         /// </summary>
         public StartPage()
         {
-            TimeheroesMissions = new List<Mission>();
+            TimeheroesMissions = new List<MissionIdea>();
             SchoolYears = new List<string>();
             Clubs = new ClubListViewModel();
         }

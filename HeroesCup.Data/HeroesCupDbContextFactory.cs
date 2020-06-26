@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 using System.IO;
 
 namespace HeroesCup.Data
@@ -19,8 +20,12 @@ namespace HeroesCup.Data
 
         protected virtual IConfigurationRoot BuildConfiguration(string[] commandLineArgs)
         {
+#if DEBUG
+            var appSettingRoot = $"{Directory.GetCurrentDirectory()}/../HeroesCup.Web/";
+#else
             var appSettingRoot = $"{Directory.GetCurrentDirectory()}";
-            //var appSettingRoot = $"{Directory.GetCurrentDirectory()}/../HeroesCup.Web/";
+#endif
+
             var configurationBuilder = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .AddCommandLine(commandLineArgs)

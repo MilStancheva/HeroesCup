@@ -39,6 +39,7 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IMissionsService, MissionsService>();
             services.AddTransient<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
+            services.AddTransient<IMissionIdeasService, MissionIdeasService>();
 
             // Add localization service
             services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();
@@ -211,6 +212,48 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permission.Admin, Permission.Admin);
                     policy.RequireClaim(Permissions.Stories, Permissions.Stories);
                     policy.RequireClaim(Permissions.StoriesPublish, Permissions.StoriesPublish);
+                });
+
+                // Mission Ideas policies
+                options.AddPolicy(Permissions.MissionIdeas, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasAdd, Permissions.MissionIdeasAdd);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasDelete, Permissions.MissionIdeasDelete);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasEdit, Permissions.MissionIdeasEdit);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasSave, Permissions.MissionIdeasSave);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasPublish, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasPublish, Permissions.MissionIdeasPublish);
                 });
             });
 

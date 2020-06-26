@@ -16,7 +16,7 @@ namespace HeroesCup.Controllers
         private readonly IModelLoader loader;
         private readonly ILeaderboardService leaderboardService;
         private readonly IStatisticsService statisticsService;
-        private readonly ITimeheroesMissionsService missionsService;
+        private readonly ITimeheroesMissionsService missionIdeasService;
 
         /// <summary>
         /// Default constructor.
@@ -33,7 +33,7 @@ namespace HeroesCup.Controllers
             this.loader = loader;
             this.leaderboardService = leaderboardService;
             this.statisticsService = statisticsService;
-            this.missionsService = missionsService;
+            this.missionIdeasService = missionsService;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace HeroesCup.Controllers
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
             // Missions
-            model.TimeheroesMissions = this.missionsService.GetTimeheroesMissions().TakeLast(3);
+            model.TimeheroesMissions = this.missionIdeasService.GetMissionIdeas().TakeLast(3);
 
             return View(model);
         }

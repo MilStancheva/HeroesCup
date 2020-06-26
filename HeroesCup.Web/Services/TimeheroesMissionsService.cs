@@ -5,16 +5,16 @@ namespace HeroesCup.Web.Services
 {
     public class TimeheroesMissionsService : ITimeheroesMissionsService
     {
-        private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
+        private readonly ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService;
 
-        public TimeheroesMissionsService(ClubsModule.Services.Contracts.IMissionsService missionsService)
+        public TimeheroesMissionsService(ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService)
         {
-            this.missionsService = missionsService;
+            this.missionIdeasService = missionIdeasService;
         }
 
-        IEnumerable<Mission> ITimeheroesMissionsService.GetTimeheroesMissions()
+        IEnumerable<MissionIdea> ITimeheroesMissionsService.GetMissionIdeas()
         {
-            var timeheroesMissions = this.missionsService.GetAllTimeheroesPublishedMissions();
+            var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
             return timeheroesMissions;
         }
     }

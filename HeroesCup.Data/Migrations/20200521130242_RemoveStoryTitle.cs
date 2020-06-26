@@ -8,14 +8,14 @@ namespace HeroesCup.Data.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Title",
-                table: "Stories");
+                table: "Story");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
                 name: "Title",
-                table: "Stories",
+                table: "Story",
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true);
         }

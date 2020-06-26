@@ -5,6 +5,6 @@ namespace HeroesCup.Web.Services
 {
     public interface ITimeheroesMissionsService
     {
-        IEnumerable<Mission> GetTimeheroesMissions();
+        IEnumerable<MissionIdea> GetMissionIdeas();
     }
 }

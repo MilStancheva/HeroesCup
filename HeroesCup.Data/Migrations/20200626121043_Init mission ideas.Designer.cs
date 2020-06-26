@@ -3,14 +3,16 @@ using System;
 using HeroesCup.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HeroesCup.Data.Migrations
 {
     [DbContext(typeof(HeroesCupDbContext))]
-    partial class HeroesCupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200626121043_Init mission ideas")]
+    partial class Initmissionideas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,6 +244,8 @@ namespace HeroesCup.Data.Migrations
 
                     b.Property<Guid>("MissionId")
                         .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MissionId")
                         .IsUnique();

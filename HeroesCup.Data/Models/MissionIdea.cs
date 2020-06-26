@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace HeroesCup.Data.Models
 {
@@ -12,7 +11,7 @@ namespace HeroesCup.Data.Models
 
         public string Location { get; set; }
 
-        public ICollection<MissionImage> MissionImages { get; set; }
+        public ICollection<MissionIdeaImage> MissionIdeaImages { get; set; }
 
         public string Content { get; set; }
 
