@@ -36,10 +36,10 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IClubsService, ClubsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUserManager, UserManager>();
-            services.AddTransient<IMissionsService, MissionsService>();
+            services.AddScoped<IMissionsService, MissionsService>();
             services.AddTransient<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
-            services.AddTransient<IMissionIdeasService, MissionIdeasService>();
+            services.AddScoped<IMissionIdeasService, MissionIdeasService>();
 
             // Add localization service
             services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();

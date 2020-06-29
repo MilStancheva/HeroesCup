@@ -54,7 +54,9 @@ namespace ClubsModule.Services
         public IEnumerable<MissionIdea> GetAllPublishedMissionIdeas()
         {
             var missionIdeas = this.dbContext.MissionIdeas
-                .Where(m => m.IsPublished == true);
+                .Where(m => m.IsPublished == true)
+                .Include(m => m.MissionIdeaImages)
+                .ThenInclude(mi => mi.Image);
 
             return missionIdeas;
         }

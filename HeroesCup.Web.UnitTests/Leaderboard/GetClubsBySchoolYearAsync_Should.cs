@@ -17,7 +17,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Clubs_List_Not_Null_When_There_Are_No_Clubs()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -35,7 +35,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Throw_When_Passed_School_Year_Is_Null()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -53,7 +53,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Throw_When_Passed_School_Year_Is_Empty()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -71,7 +71,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Clubs_List_Count_Equal_To_The_Clubs_For_The_Passed_School_Year()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";
@@ -136,7 +136,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Calculated_Points_For_Every_Club()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";

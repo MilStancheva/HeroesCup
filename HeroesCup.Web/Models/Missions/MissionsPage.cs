@@ -12,12 +12,12 @@ namespace HeroesCup.Models
     {
         public IEnumerable<MissionViewModel> Missions { get; set; }
 
-        public IEnumerable<MissionIdeaEditModel> MissionIdeas { get; set; }
+        public IEnumerable<MissionIdeaViewModel> MissionIdeas { get; set; }
 
         public MissionsPage()
         {
             Missions = new List<MissionViewModel>();
-            MissionIdeas = new List<MissionIdeaEditModel>();
+            MissionIdeas = new List<MissionIdeaViewModel>();
         }
     }
 }

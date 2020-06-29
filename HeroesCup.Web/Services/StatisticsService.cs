@@ -11,10 +11,10 @@ namespace HeroesCup.Web.Services
     public class StatisticsService : IStatisticsService
     {
         private const int SPENT_HOURS_PER_DAY = 8;
-        private readonly IMissionsService missionsService;
+        private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
         private readonly IClubsService clubsService;
 
-        public StatisticsService(IMissionsService missionsService, IClubsService clubsService)
+        public StatisticsService(ClubsModule.Services.Contracts.IMissionsService missionsService, IClubsService clubsService)
         {
             this.missionsService = missionsService;
             this.clubsService = clubsService;

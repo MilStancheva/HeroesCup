@@ -340,7 +340,10 @@ namespace ClubsModule.Services
             var missions = this.dbContext.Missions
                 .Where(m => m.Type == MissionType.HeroesCupMission)
                 .Where(m => m.IsPublished == true)
-                .Include(m => m.HeroMissions);
+                .Include(m => m.HeroMissions)
+                .Include(m => m.Club)
+                .Include(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image);
 
             return missions;
         }

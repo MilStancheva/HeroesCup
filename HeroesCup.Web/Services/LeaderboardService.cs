@@ -12,11 +12,11 @@ namespace HeroesCup.Web.Services
     public class LeaderboardService : ILeaderboardService
     {
         private const string SchoolYearIsNullOrEmptyExceptionMessage = "schoolYear is null or empty.";
-        private readonly IMissionsService missionsService;
+        private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
         private readonly ISchoolYearService schoolYearService;
         private readonly IImagesService imagesService;
 
-        public LeaderboardService(IMissionsService missionsService, ISchoolYearService schoolYearService, IImagesService imageService)
+        public LeaderboardService(ClubsModule.Services.Contracts.IMissionsService missionsService, ISchoolYearService schoolYearService, IImagesService imageService)
         {
             this.missionsService = missionsService;
             this.schoolYearService = schoolYearService;

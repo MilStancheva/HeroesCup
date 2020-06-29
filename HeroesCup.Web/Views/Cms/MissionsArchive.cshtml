@@ -9,9 +9,9 @@
 
 <div class="main">
     <div class="container">
-        <div class="tabbable mt-5 pt-5">
+        <div class="tabbable mt-md-5 pt-md-5">
             <ul class="nav nav-tabs mt-5 pt-5" role="tablist">
-                <li class="nav-item">
+                <li class="nav-item mr-3">
                     <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3 heading3" data-toggle="tab" href="#missions" role="tab">Ученически мисии</a>
                 </li>
                 <li class="nav-item">
@@ -20,18 +20,24 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="missions">
+                    <div class="row mt-4 pt-4">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                        </div>
+                        <div class="coml-md-4 col-sm-12"></div>
+                    </div>
                     @if (Model.Missions.Count() > 0)
                     {
                         var missions = Model.Missions;
-                        <div class="row">
+                        <div class="row mt-4 pt-4">
                             @foreach (var mission in missions)
                             {
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-4 mt-4 pt-4">
                                     <div class="mission-body">
                                         <a href="/missions/@mission.Id" target="_blank">
                                             <img class="img-fluid" src="@Url.Content(mission.ImageSrc)" width="320" />
-                                            <h4 class="mission-title">@mission.Title</h4>
-                                            <p>от @mission.Club.Name</p>
+                                            <p class="mission-title body1-bold">@mission.Title</p>
+                                            <p class="body2">от @mission.Club.Name</p>
                                         </a>
                                     </div>
                                 </div>
@@ -40,19 +46,19 @@
                     }
                 </div>
 
-                <div role="tabpanel" id="missionideas" class="tab-pane row missions-block">
+                <div role="tabpanel" id="missionideas" class="tab-pane missions-block">
                     @if (Model.MissionIdeas.Count() > 0)
                     {
                         var missionIdeas = Model.MissionIdeas.ToList().OrderByDescending(m => m.MissionIdea.IsPublished);
-                        <div class="row">
+                        <div class="row mt-4 pt-4">
                             @foreach (var idea in missionIdeas)
                             {
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-4 mt-4 pt-4">
                                     <div class="mission-body">
                                         <a href="@idea.MissionIdea.TimeheroesUrl" target="_blank">
                                             <img class="img-fluid" src="@Url.Content(idea.ImageSrc)" width="320" />
-                                            <h4 class="mission-title">@idea.MissionIdea.Title</h4>
-                                            <p>от Timeheroes</p>
+                                            <p class="mission-title body1-bold">@idea.MissionIdea.Title</p>
+                                            <p class="body2">от Timeheroes</p>
                                         </a>
                                     </div>
                                 </div>
@@ -62,9 +68,9 @@
                 </div>
             </div>
         </div>
-            <hr />
+        <div class="separator"></div>
 
-            <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
 

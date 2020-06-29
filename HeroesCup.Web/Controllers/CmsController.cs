@@ -16,7 +16,7 @@ namespace HeroesCup.Controllers
         private readonly IModelLoader loader;
         private readonly ILeaderboardService leaderboardService;
         private readonly IStatisticsService statisticsService;
-        private readonly ITimeheroesMissionsService missionIdeasService;
+        private readonly IMissionsService missionsService;
 
         /// <summary>
         /// Default constructor.
@@ -27,13 +27,13 @@ namespace HeroesCup.Controllers
             IModelLoader loader, 
             ILeaderboardService leaderboardService, 
             IStatisticsService statisticsService,
-            ITimeheroesMissionsService missionsService)
+            IMissionsService missionsService)
         {
             this.api = api;
             this.loader = loader;
             this.leaderboardService = leaderboardService;
             this.statisticsService = statisticsService;
-            this.missionIdeasService = missionsService;
+            this.missionsService = missionsService;
         }
 
         /// <summary>
@@ -104,8 +104,8 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
-            // Missions
-            model.TimeheroesMissions = this.missionIdeasService.GetMissionIdeas().TakeLast(3);
+            // TODO: Missions from Heroes Cup missions. Manually selected from administration
+            model.TimeheroesMissions = this.missionsService.GetMissionIdeas().TakeLast(3);
 
             return View(model);
         }
@@ -179,6 +179,8 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
+            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels();
+            model.Missions = this.missionsService.GetMissionViewModels();
 
             return View(model);
         }
