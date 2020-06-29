@@ -178,9 +178,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> MissionsArchive(Guid id, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await this.loader.GetPageAsync<MissionsArchive>(id, HttpContext.User, draft);
-            model.LinkMissionArchive = await this.api.Archives.GetByIdAsync<LinkMissionPost>(id, page, category, tag, year, month);
-            model.BlogMissionArchive = await this.api.Archives.GetByIdAsync<BlogMissionPost>(id, page, category, tag, year, month);
+            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
 
             return View(model);
         }

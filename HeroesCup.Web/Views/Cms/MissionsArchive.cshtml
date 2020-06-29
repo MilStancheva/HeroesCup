@@ -1,81 +1,70 @@
-﻿@model MissionsArchive
+﻿@model MissionsPage
 @inject IApi Api
 
 @{
     ViewBag.Title = Model.Title;
+    ViewBag.TypeId = Model.TypeId;
 }
 
 
 <div class="main">
     <div class="container">
-        <div class="row missions-block">
-            <div class="row mb-3">
-                <h2>Мисии от Timeheroes</h2>
-            </div>
-
-
-            @if (Model.LinkMissionArchive.Posts.Count > 0)
-            {
-                var linkMissionPosts = Model.LinkMissionArchive.Posts.OrderByDescending(m => m.Published.Value);
-                <div class="row">
-                    @foreach (var mission in linkMissionPosts)
+        <div class="tabbable mt-5 pt-5">
+            <ul class="nav nav-tabs mt-5 pt-5" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3 heading3" data-toggle="tab" href="#missions" role="tab">Ученически мисии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab-title pl-0 pr-0  ml-3 mr-3 heading3" data-toggle="tab" href="#missionideas" role="tab">Грабни идея</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="missions">
+                    @if (Model.Missions.Count() > 0)
                     {
-                        <div class="col-sm-6 col-md-4">
-                            <div class="mission-body">
-                                <a href="@mission.Details.URL.Value" target="_blank">
-                                    <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
-                                    <h4 class="mission-title">@mission.Title</h4>
-                                    @if (mission.Tags.Count > 0)
-                                    {
-                                        @foreach (var tag in mission.Tags)
-                                        {
-                                            <span>#@tag.Title </span>
-                                        }
-                                    }
-                                    <p>от @mission.Details.OrganizedBy</p>
-                                </a>
-                            </div>
+                        var missions = Model.Missions;
+                        <div class="row">
+                            @foreach (var mission in missions)
+                            {
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="mission-body">
+                                        <a href="/missions/@mission.Id" target="_blank">
+                                            <img class="img-fluid" src="@Url.Content(mission.ImageSrc)" width="320" />
+                                            <h4 class="mission-title">@mission.Title</h4>
+                                            <p>от @mission.Club.Name</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
-            }
-        </div>
 
-        <div class="row missions-block">
-            <div class="row mb-3">
-                <h2>Мисии от Купата</h2>
-            </div>
-
-
-            @if (Model.BlogMissionArchive.Posts.Count > 0)
-            {
-                var blogMissionPosts = Model.BlogMissionArchive.Posts.OrderByDescending(m => m.Published.Value);
-                <div class="row">
-                    @foreach (var mission in blogMissionPosts)
+                <div role="tabpanel" id="missionideas" class="tab-pane row missions-block">
+                    @if (Model.MissionIdeas.Count() > 0)
                     {
-                        <div class="col-sm-6 col-md-4">
-                            <div class="mission-body">
-                                <a href="@mission.Permalink" target="_blank">
-                                    <img class="img-fluid" src="@Url.Content(mission.Hero.PrimaryImage.Resize(WebApp.Api, 320, 198))" />
-                                    <h4 class="mission-title">@mission.Title</h4>
-                                    @if (mission.Tags.Count > 0)
-                                    {
-                                        @foreach (var tag in mission.Tags)
-                                        {
-                                            <span>#@tag.Title </span>
-                                        }
-                                    }
-                                    <p>от @mission.Details.OrganizedBy</p>
-                                </a>
-                            </div>
+                        var missionIdeas = Model.MissionIdeas.ToList().OrderByDescending(m => m.MissionIdea.IsPublished);
+                        <div class="row">
+                            @foreach (var idea in missionIdeas)
+                            {
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="mission-body">
+                                        <a href="@idea.MissionIdea.TimeheroesUrl" target="_blank">
+                                            <img class="img-fluid" src="@Url.Content(idea.ImageSrc)" width="320" />
+                                            <h4 class="mission-title">@idea.MissionIdea.Title</h4>
+                                            <p>от Timeheroes</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
-            }
+            </div>
         </div>
-        <hr />
+            <hr />
 
-        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+            <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
 

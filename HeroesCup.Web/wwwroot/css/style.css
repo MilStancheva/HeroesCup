@@ -457,10 +457,6 @@ header {
         color: #FE5E17;
     }
 
-.missions-block {
-    padding-bottom: 48px;
-}
-
 .container {
     margin-top: 48px;
 }
@@ -663,7 +659,7 @@ a.leaderboard-club {
 }
 
 .tabpanel, .tabbable {
-    background-color: #FAF8F3;
+    background-color: none;
 }
 
 a .tab-title {
@@ -709,8 +705,21 @@ a .tab-title {
     border: none;
 }
 
-/* Items List */
+/* Missions Tabs  */
+.missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+    border: none;
+}
 
+.missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border: none;
+    background: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #FE5E17;
+    border-bottom: 2px solid #FE5E17;
+}
+
+/* Items List */
 .item-body > a {
     color: #1C1E21;
     text-decoration: none;
@@ -873,6 +882,13 @@ a:hover .resource-icon-article {
     top: 0;
     margin-top: 0;
     background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 10% no-repeat;
+    background-color: #FAF8F3;
+}
+
+.missions-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_missions_left.svg') left top no-repeat, url('../images/background/hero_missions_right.svg') right top no-repeat;
     background-color: #FAF8F3;
 }
 
