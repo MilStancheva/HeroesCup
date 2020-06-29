@@ -17,5 +17,11 @@ namespace ClubsModule.Services.Contracts
         Task<MissionIdeaEditModel> GetMissionIdeaEditModelByIdAsync(Guid id);
 
         Task<Guid> SaveMissionIdeaEditModelAsync(MissionIdeaEditModel model);
+
+        Task<bool> DeleteMissionIdeaAsync(Guid id);
+
+        Task<bool> PublishMissionIdeaAsync(Guid missionIdeaId);
+
+        Task<bool> UnpublishMissionIdeaAsync(Guid missionIdeaId);
     }
 }

@@ -126,13 +126,31 @@
   <data name="Mission Ideas" xml:space="preserve">
     <value>Идеи за мисии</value>
   </data>
+  <data name="The mission idea could not be deleted." xml:space="preserve">
+    <value>Идеята за мисия не е изтрита. Възникна грешка.</value>
+  </data>
   <data name="The mission idea could not be found." xml:space="preserve">
     <value>Идеята за мисия не е намерена.</value>
+  </data>
+  <data name="The mission idea could not be published." xml:space="preserve">
+    <value>Идеята за мисия не е публикувана. Възникна грешка.</value>
   </data>
   <data name="The mission idea could not be saved." xml:space="preserve">
     <value>Идеята за мисия не е запазена. Възникна грешка.</value>
   </data>
+  <data name="The mission idea could not be unpublished." xml:space="preserve">
+    <value>Идеата за мисията все още е публична. Възникна грешка.</value>
+  </data>
+  <data name="The mission idea has been deleted." xml:space="preserve">
+    <value>Идеята за мисия е успешно изтрита.</value>
+  </data>
+  <data name="The mission idea has been published." xml:space="preserve">
+    <value>Идеата за мисия е публикувана успешно.</value>
+  </data>
   <data name="The mission idea has been saved." xml:space="preserve">
     <value>Идеята за мисия е запазена успешно.</value>
+  </data>
+  <data name="The mission idea has been unpublished." xml:space="preserve">
+    <value>Идеята за мисия не е публична. </value>
   </data>
 </root>

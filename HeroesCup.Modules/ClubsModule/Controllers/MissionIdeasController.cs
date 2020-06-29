@@ -74,5 +74,63 @@ namespace ClubsModule.Controllers
             ErrorMessage(this.heroesCupLocalizer.Mission["The mission idea could not be saved."], false);
             return View("Edit", model);
         }
+
+        [HttpGet]
+        [Route("/manager/missionidea/delete")]
+        [Authorize(Policy = Permissions.MissionIdeasDelete)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await this.missionIdeasService.DeleteMissionIdeaAsync(id);
+            if (!result)
+            {
+                ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be deleted."], false);
+                return RedirectToAction("List");
+            }
+
+            SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been deleted."]);
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        [Route("/manager/missionidea/publish")]
+        [Authorize(Policy = Permissions.MissionIdeasPublish)]
+        public async Task<IActionResult> PublishAsync(MissionIdeaEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionIdeasService.PublishMissionIdeaAsync(model.MissionIdea.Id);
+            if (result)
+            {
+                SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been published."]);
+                return RedirectToAction("Edit", new { id = model.MissionIdea.Id });
+            }
+
+            ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be published."], false);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [Route("/manager/missionidea/unpublish")]
+        [Authorize(Policy = Permissions.MissionIdeasPublish)]
+        public async Task<IActionResult> UnpublishAsync(MissionIdeaEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionIdeasService.UnpublishMissionIdeaAsync(model.MissionIdea.Id);
+            if (result)
+            {
+                SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been unpublished."]);
+                return RedirectToAction("Edit", new { id = model.MissionIdea.Id });
+            }
+
+            ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be unpublished."], false);
+            return View("Edit", model);
+        }
     }
 }

@@ -3,8 +3,8 @@
 @inject ManagerLocalizer Localizer
 @inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
-    ViewBag.Title = "Edit mission";
-    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Missions"];    
+    ViewBag.Title = "Edit mission idea";
+    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Mission Ideas"];    
 }
 
 @section script{
@@ -21,7 +21,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">@HeroesCupLocalizer.MissionIdea["Mission Ideas"]</li>
-                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.Mission["Mission Ideas"]</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.MissionIdea["Mission Ideas"]</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
             </ol>
         </nav>

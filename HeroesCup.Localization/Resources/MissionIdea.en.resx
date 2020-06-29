@@ -126,13 +126,31 @@
   <data name="Mission Ideas" xml:space="preserve">
     <value>Mission Ideas</value>
   </data>
+  <data name="The mission idea could not be deleted." xml:space="preserve">
+    <value>The mission idea could not be deleted.</value>
+  </data>
   <data name="The mission idea could not be found." xml:space="preserve">
     <value>The mission idea could not be found.</value>
+  </data>
+  <data name="The mission idea could not be published." xml:space="preserve">
+    <value>The mission idea could not be published.</value>
   </data>
   <data name="The mission idea could not be saved." xml:space="preserve">
     <value>The mission idea could not be saved.</value>
   </data>
+  <data name="The mission idea could not be unpublished." xml:space="preserve">
+    <value>The mission idea could not be unpublished.</value>
+  </data>
+  <data name="The mission idea has been deleted." xml:space="preserve">
+    <value>The mission idea has been deleted.</value>
+  </data>
+  <data name="The mission idea has been published." xml:space="preserve">
+    <value>The mission idea has been published.</value>
+  </data>
   <data name="The mission idea has been saved." xml:space="preserve">
     <value>The mission idea has been saved.</value>
+  </data>
+  <data name="The mission idea has been unpublished." xml:space="preserve">
+    <value>The mission idea has been unpublished.</value>
   </data>
 </root>

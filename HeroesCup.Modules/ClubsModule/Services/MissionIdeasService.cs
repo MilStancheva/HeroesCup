@@ -119,5 +119,46 @@ namespace ClubsModule.Services
             await dbContext.SaveChangesAsync();
             return missionIdea.Id;
         }
+
+        public async Task<bool> DeleteMissionIdeaAsync(Guid id)
+        {
+            var missionIdea = this.dbContext.MissionIdeas.FirstOrDefault(c => c.Id == id);
+            if (missionIdea == null)
+            {
+                return false;
+            }
+
+            this.dbContext.MissionIdeas.Remove(missionIdea);
+            await this.dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> PublishMissionIdeaAsync(Guid missionIdeaId)
+        {
+            var missionIdea = await this.dbContext.MissionIdeas.FirstOrDefaultAsync(m => m.Id == missionIdeaId);
+            if (missionIdea == null)
+            {
+                return false;
+            }
+
+            missionIdea.IsPublished = true;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> UnpublishMissionIdeaAsync(Guid missionIdeaId)
+        {
+            var missionIdea = await this.dbContext.MissionIdeas.FirstOrDefaultAsync(m => m.Id == missionIdeaId);
+            if (missionIdea == null)
+            {
+                return false;
+            }
+
+            missionIdea.IsPublished = false;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
