@@ -31,6 +31,7 @@ namespace HeroesCup.Web.Controllers
         /// Gets the events blog archive with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
+        /// <param name="loadRequest">The optional load more events</param>
         /// <param name="year">The optional year</param>
         /// <param name="month">The optional month</param>
         /// <param name="page">The optional page</param>

@@ -1,7 +1,9 @@
 ﻿using HeroesCup.Models;
 using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
@@ -135,55 +137,7 @@ namespace HeroesCup.Controllers
 
 
             return View(model);
-        }
-
-
-        /// <summary>
-        /// Gets the link-mission with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("link-mission")]
-        public async Task<IActionResult> LinkMissionPost(Guid id, bool draft = false)
-        {
-            var model = await this.loader.GetPostAsync<LinkMissionPost>(id, HttpContext.User, draft);
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Gets the blog-mission with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("blog-mission")]
-        public async Task<IActionResult> BlogMissionPost(Guid id, bool draft = false)
-        {
-            var model = await this.loader.GetPostAsync<BlogMissionPost>(id, HttpContext.User, draft);
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Gets the missions archive with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="year">The optional year</param>
-        /// <param name="month">The optional month</param>
-        /// <param name="page">The optional page</param>
-        /// <param name="category">The optional category</param>
-        /// <param name="tag">The optional tag</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("missions")]
-        public async Task<IActionResult> MissionsArchive(Guid id, int? year = null, int? month = null, int? page = null,
-            Guid? category = null, Guid? tag = null, bool draft = false)
-        {
-            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
-            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels();
-            model.Missions = this.missionsService.GetMissionViewModels();
-
-            return View(model);
-        }
+        }       
 
         /// <summary>
         /// Gets the landing page with the given id.

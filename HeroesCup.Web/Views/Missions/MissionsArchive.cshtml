@@ -4,6 +4,10 @@
 @{
     ViewBag.Title = Model.Title;
     ViewBag.TypeId = Model.TypeId;
+    var missionsParams = new Dictionary<string, string>()
+{
+        {"loadRequest", "true" }
+};
 }
 
 
@@ -24,7 +28,9 @@
                         <div class="col-md-8 col-sm-12">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
-                        <div class="coml-md-4 col-sm-12"></div>
+                        <div class="coml-md-4 col-sm-12">
+
+                        </div>
                     </div>
                     @if (Model.Missions.Count() > 0)
                     {
@@ -44,6 +50,12 @@
                             }
                         </div>
                     }
+
+                    <div class="row justify-content-center mt-4 mb-4 pb-4">
+                        <form asp-controller="Missions" class="margin-bottom" asp-action="MissionsArchive" method="post">
+                            <button id="load-events" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@missionsParams">Покажи още</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div role="tabpanel" id="missionideas" class="tab-pane missions-block">
