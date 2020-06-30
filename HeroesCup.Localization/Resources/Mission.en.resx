@@ -144,6 +144,9 @@
   <data name="Missions" xml:space="preserve">
     <value>Missions</value>
   </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Pinned</value>
+  </data>
   <data name="Stars" xml:space="preserve">
     <value>Stars</value>
   </data>
@@ -156,11 +159,17 @@
   <data name="The mission could not be found." xml:space="preserve">
     <value>The mission could not be found.</value>
   </data>
+  <data name="The mission could not be pinned to home page." xml:space="preserve">
+    <value>The mission could not be pinned to home page.</value>
+  </data>
   <data name="The mission could not be published." xml:space="preserve">
     <value>The mission could not be published.</value>
   </data>
   <data name="The mission could not be saved." xml:space="preserve">
     <value>The mission could not be saved.</value>
+  </data>
+  <data name="The mission could not be unpinned from home page." xml:space="preserve">
+    <value>The mission could not be unpinned from home page.</value>
   </data>
   <data name="The mission could not be unpublished." xml:space="preserve">
     <value>The mission could not be unpublished.</value>
@@ -168,11 +177,17 @@
   <data name="The mission has been deleted." xml:space="preserve">
     <value>The mission has been deleted.</value>
   </data>
+  <data name="The mission has been pinned to home page." xml:space="preserve">
+    <value>The mission has been pinned to home page.</value>
+  </data>
   <data name="The mission has been published." xml:space="preserve">
     <value>The mission has been published.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
     <value>The mission has been saved.</value>
+  </data>
+  <data name="The mission has been unpinned from home page." xml:space="preserve">
+    <value>The mission has been unpinned from home page.</value>
   </data>
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>The mission has been unpublished.</value>

@@ -105,8 +105,7 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
-            // TODO: Missions from Heroes Cup missions. Manually selected from administration
-            model.TimeheroesMissions = this.missionsService.GetMissionIdeas().TakeLast(3);
+            model.Missions = await this.missionsService.GetPinnedMissions();
 
             return View(model);
         }
@@ -134,6 +133,7 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
+            model.Missions = await this.missionsService.GetPinnedMissions();
 
             return View(model);
         }       

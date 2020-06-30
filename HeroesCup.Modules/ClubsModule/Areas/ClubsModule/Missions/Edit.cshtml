@@ -20,8 +20,6 @@
     }
 
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
-    var missionTypes = Model.MissionTypes != null && Model.MissionTypes.Count() > 0 ? Model.MissionTypes.ToList() : new List<HeroesCup.Data.Models.MissionType>();
-    var missionTypesSelectList = new SelectList(missionTypes);
 
     if (Model.Mission.Club == null)
     {
@@ -80,6 +78,25 @@
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                                 <button asp-action="Unpublish" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.Mission.IsPinned == false)
+                    {
+                        <button asp-action="Pin" class="btn btn-labeled btn-success pull-right">
+                            <span class="btn-label">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            @HeroesCupLocalizer.General["Pin"]
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <button asp-action="Unpin" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @HeroesCupLocalizer.General["Unpin"]</button>
                             </div>
                         </div>
                     }
@@ -193,35 +210,6 @@
                         </div>
                     </div>
                 }
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            @if (!User.IsInRole("Coordinator"))
-                            {
-                                <label>@HeroesCupLocalizer.Mission["Type"]</label>
-                                @Html.DropDownListFor(m => m.Mission.Type, missionTypesSelectList, new { @class = "form-control small", required = "" })
-                                <div class="invalid-feedback">
-                                    @HeroesCupLocalizer.General["Mandatory field"]
-                                </div>
-                            }
-                            else
-                            {
-                                Model.Mission.Type = HeroesCup.Data.Models.MissionType.HeroesCupMission;
-                                @Html.HiddenFor(m => m.Mission.Type);
-                            }
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        @if (Model.Mission.Type == HeroesCup.Data.Models.MissionType.TimeheroesMission && !User.IsInRole("Coordinator"))
-                        {
-                            <div class="form-group">
-                                <label>@HeroesCupLocalizer.Mission["Timeheroes Mission URL"]</label>
-                                @Html.TextBoxFor(m => m.Mission.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
-                            </div>
-                        }
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-sm-6">

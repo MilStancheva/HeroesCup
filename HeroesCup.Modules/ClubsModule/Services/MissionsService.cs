@@ -56,7 +56,7 @@ namespace ClubsModule.Services
                                     ClubName = m.Club.Name,
                                     HeroesCount = m.HeroMissions != null ? m.HeroMissions.Where(hm => hm.MissionId == m.Id).Count() : 0,
                                     IsPublished = m.IsPublished,
-                                    Type = m.Type
+                                    IsPinned = m.IsPinned
                                 })
 
             };
@@ -82,12 +82,7 @@ namespace ClubsModule.Services
                 Heroes = heroes,
                 HeroesIds = new List<Guid>(),
                 Clubs = clubs,
-                ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid(),
-                MissionTypes = new MissionType[]
-                {
-                    MissionType.TimeheroesMission,
-                    MissionType.HeroesCupMission
-                }
+                ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid()
             };
 
             model.Mission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
@@ -125,8 +120,6 @@ namespace ClubsModule.Services
             mission.EndDate = endDate.ToUnixMilliseconds();
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
             mission.Content = model.Mission.Content;
-            mission.TimeheroesUrl = model.Mission.TimeheroesUrl;
-            mission.Type = model.Mission.Type;
 
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
@@ -308,7 +301,6 @@ namespace ClubsModule.Services
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
         {
             return await this.dbContext.Missions
-                .Where(m => m.Type == MissionType.HeroesCupMission)
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
                 .ThenInclude(c => c.Missions)
@@ -327,7 +319,6 @@ namespace ClubsModule.Services
         public IEnumerable<string> GetMissionSchoolYears()
         {
             var schoolYears = this.dbContext.Missions
-               .Where(m => m.Type == MissionType.HeroesCupMission)
                .Where(m => m.IsPublished)
                .GroupBy(m => m.SchoolYear)
                .Select(sy => sy.Key);
@@ -335,10 +326,9 @@ namespace ClubsModule.Services
             return schoolYears.ToArray();
         }
 
-        public IEnumerable<Mission> GetAllHeroesCupPublishedMissions()
+        public IEnumerable<Mission> GetAllPublishedMissions()
         {
             var missions = this.dbContext.Missions
-                .Where(m => m.Type == MissionType.HeroesCupMission)
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
@@ -346,6 +336,64 @@ namespace ClubsModule.Services
                 .ThenInclude(mi => mi.Image);
 
             return missions;
+        }
+
+        public async Task<bool> PinMissionEditModelAsync(Guid id)
+        {
+            var mission = await this.dbContext.Missions.FirstOrDefaultAsync(m => m.Id == id);
+            if (mission == null)
+            {
+                return false;
+            }
+
+            mission.IsPinned = true;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> UnpinMissionEditModelAsync(Guid id)
+        {
+            var mission = await this.dbContext.Missions.FirstOrDefaultAsync(m => m.Id == id);
+            if (mission == null)
+            {
+                return false;
+            }
+
+            mission.IsPinned = false;
+            await this.dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<IEnumerable<Mission>> GetPinnedMissions()
+        {
+            var missions = await this.dbContext.Missions
+                .Where(m => m.IsPinned == true && m.IsPublished == true)
+                .Include(m => m.Club)
+                .Include(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .ToListAsync();
+
+            int countOfPinnedMissionsOnHomePage;
+            int.TryParse(this.configuration["PinnedMissionsOnHomePageCount"], out countOfPinnedMissionsOnHomePage);
+
+            if (missions.Count() < countOfPinnedMissionsOnHomePage)
+            {
+                var countOfMissionsToAdd = countOfPinnedMissionsOnHomePage - missions.Count();
+                var latestMissions = await this.dbContext.Missions
+                    .Where(m => m.IsPublished)
+                    .OrderByDescending(m => m.StartDate)
+                    .Take(countOfMissionsToAdd)
+                    .Include(m => m.Club)
+                    .Include(m => m.MissionImages)
+                    .ThenInclude(mi => mi.Image)
+                    .ToListAsync();
+
+                missions.AddRange(latestMissions);
+            }
+
+            return missions.Take(countOfPinnedMissionsOnHomePage);
         }
     }
 }

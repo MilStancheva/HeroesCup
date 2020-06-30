@@ -28,6 +28,12 @@ namespace ClubsModule.Services.Contracts
 
         IEnumerable<string> GetMissionSchoolYears();
 
-        IEnumerable<Mission> GetAllHeroesCupPublishedMissions();
+        IEnumerable<Mission> GetAllPublishedMissions();
+
+        Task<bool> PinMissionEditModelAsync(Guid id);
+
+        Task<bool> UnpinMissionEditModelAsync(Guid id);
+
+        Task<IEnumerable<Mission>> GetPinnedMissions();
     }
 }

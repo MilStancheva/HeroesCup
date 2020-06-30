@@ -1,6 +1,7 @@
 ﻿using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HeroesCup.Web.Services
 {
@@ -11,5 +12,7 @@ namespace HeroesCup.Web.Services
         IEnumerable<MissionIdeaViewModel> GetMissionIdeaViewModels();
 
         IEnumerable<MissionViewModel> GetMissionViewModels();
+
+        Task<IEnumerable<MissionViewModel>> GetPinnedMissions();
     }
 }

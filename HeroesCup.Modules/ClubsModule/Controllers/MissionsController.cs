@@ -137,5 +137,47 @@ namespace ClubsModule.Controllers
             SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been deleted."]);
             return RedirectToAction("List");
         }
+
+        [HttpPost]
+        [Route("/manager/mission/pin")]
+        [Authorize(Policy = Permissions.MissionsPublish)]
+        public async Task<IActionResult> PinAsync(MissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionsService.PinMissionEditModelAsync(model.Mission.Id);
+            if (result)
+            {
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been pinned to home page."]);
+                return RedirectToAction("Edit", new { id = model.Mission.Id });
+            }
+
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be pinned to home page."], false);
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [Route("/manager/mission/unpin")]
+        [Authorize(Policy = Permissions.MissionsPublish)]
+        public async Task<IActionResult> UnpinAsync(MissionEditModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", model);
+            }
+
+            var result = await this.missionsService.UnpinMissionEditModelAsync(model.Mission.Id);
+            if (result)
+            {
+                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been unpinned from home page."]);
+                return RedirectToAction("Edit", new { id = model.Mission.Id });
+            }
+
+            ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be unpinned from home page."], false);
+            return View("Edit", model);
+        }
     }
 }

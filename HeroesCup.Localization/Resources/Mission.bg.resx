@@ -144,6 +144,9 @@
   <data name="Missions" xml:space="preserve">
     <value>Мисии</value>
   </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Закачено на начална страница</value>
+  </data>
   <data name="Stars" xml:space="preserve">
     <value>Звезди</value>
   </data>
@@ -156,11 +159,17 @@
   <data name="The mission could not be found." xml:space="preserve">
     <value>Мисията не е намерена. </value>
   </data>
+  <data name="The mission could not be pinned to home page." xml:space="preserve">
+    <value>Мисията не е закачена към началната страница. Възникна грешка. </value>
+  </data>
   <data name="The mission could not be published." xml:space="preserve">
     <value>Мисията не е публикувана. Възникна грешка. </value>
   </data>
   <data name="The mission could not be saved." xml:space="preserve">
     <value>Мисията не е запазена. Възникна грешка.</value>
+  </data>
+  <data name="The mission could not be unpinned from home page." xml:space="preserve">
+    <value>Мисията не е откачена от началната страница. Възникна грешка.</value>
   </data>
   <data name="The mission could not be unpublished." xml:space="preserve">
     <value>Мисията все още е публична. Възникна грешка.</value>
@@ -168,11 +177,17 @@
   <data name="The mission has been deleted." xml:space="preserve">
     <value>Мисията е успешно изтрита.</value>
   </data>
+  <data name="The mission has been pinned to home page." xml:space="preserve">
+    <value>Мисията е успешно закачена към началната страница. </value>
+  </data>
   <data name="The mission has been published." xml:space="preserve">
     <value>Мисията е публикувана успешно.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
     <value>Мисията е запазена успешно.</value>
+  </data>
+  <data name="The mission has been unpinned from home page." xml:space="preserve">
+    <value>Мисията е успешно откачена от началната страница.</value>
   </data>
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>Мисията не е публична.</value>

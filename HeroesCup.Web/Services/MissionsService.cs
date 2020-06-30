@@ -3,6 +3,7 @@ using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HeroesCup.Web.Services
 {
@@ -40,7 +41,7 @@ namespace HeroesCup.Web.Services
 
         public IEnumerable<MissionViewModel> GetMissionViewModels()
         {
-            var missions = this.missionsService.GetAllHeroesCupPublishedMissions();
+            var missions = this.missionsService.GetAllPublishedMissions();
             return missions.Select(m => new MissionViewModel()
             {
                 Id = m.Id,
@@ -74,6 +75,18 @@ namespace HeroesCup.Web.Services
             }
 
             return String.Empty;
+        }
+
+        public async Task<IEnumerable<MissionViewModel>> GetPinnedMissions()
+        {
+            var pinnedMissions = await this.missionsService.GetPinnedMissions();
+            return pinnedMissions.Select(m => new MissionViewModel()
+            {
+                Id = m.Id,
+                Title = m.Title,
+                Club = m.Club,
+                ImageSrc = GetMissionImageSource(m)
+            });
         }
     }
 }

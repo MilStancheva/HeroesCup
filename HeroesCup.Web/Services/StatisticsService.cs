@@ -39,7 +39,7 @@ namespace HeroesCup.Web.Services
 
         public int GetAllHoursCount()
         {
-            var missions = this.missionsService.GetAllHeroesCupPublishedMissions();
+            var missions = this.missionsService.GetAllPublishedMissions();
             var hours = 0;
             foreach (var mission in missions)
             {
@@ -53,7 +53,7 @@ namespace HeroesCup.Web.Services
 
         public int GetAllMissionsCount()
         {
-            return this.missionsService.GetAllHeroesCupPublishedMissions().Count();
+            return this.missionsService.GetAllPublishedMissions().Count();
         }
     }
 }

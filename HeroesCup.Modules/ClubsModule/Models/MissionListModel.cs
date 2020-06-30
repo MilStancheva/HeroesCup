@@ -23,6 +23,6 @@ namespace ClubsModule.Models
 
         public bool IsPublished { get; set; }
 
-        public MissionType Type { get; set; }
+        public bool IsPinned { get; set; }
     }
 }
