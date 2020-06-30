@@ -14,10 +14,17 @@ namespace HeroesCup.Models
 
         public IEnumerable<MissionIdeaViewModel> MissionIdeas { get; set; }
 
+        public IDictionary<string, int> MissionsPerLocation { get; set; }
+
+        public int MissionsCount { get; set; }
+
+        public string SelectedLocation { get; set; }
+
         public MissionsPage()
         {
             Missions = new List<MissionViewModel>();
             MissionIdeas = new List<MissionIdeaViewModel>();
+            MissionsPerLocation = new Dictionary<string, int>();
         }
     }
 }

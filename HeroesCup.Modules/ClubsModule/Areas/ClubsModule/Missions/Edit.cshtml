@@ -28,10 +28,40 @@
 }
 
 @section script{
+
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
     <link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"></link>
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+
+        $(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/manager/clubsmodule/bg-cities.json',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('success', data);
+                    var items = [];
+                    $.each(data, function (key, val) {
+                        items.push(val.name);
+                        console.log(key);
+                        console.log(val)
+                    });
+
+                    $("#location").autocomplete({
+                        source: items
+                    });
+                }
+            });
+        });
+
+    </script>
 }
 
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -169,7 +199,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Location"]</label>
-                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "", @id = "location" })
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>

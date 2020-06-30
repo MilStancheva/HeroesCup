@@ -1,5 +1,4 @@
 ﻿using HeroesCup.Models;
-using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +63,9 @@ namespace HeroesCup.Controllers
             
             model.Missions = this.missionsService.GetMissionViewModels().Take((int)missionsCurrentPageCount * _missionsCount);
             model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
+
+            model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
+            model.MissionsCount = this.missionsService.GetAllMissionsCount();
 
             return View(model);
         }

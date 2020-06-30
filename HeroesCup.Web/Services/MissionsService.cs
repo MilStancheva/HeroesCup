@@ -1,5 +1,6 @@
 ﻿using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,18 @@ namespace HeroesCup.Web.Services
                 Club = m.Club,
                 ImageSrc = GetMissionImageSource(m)
             });
+        }
+
+        public int GetAllMissionsCount()
+        {
+            return this.missionsService.GetAllPublishedMissions().Count();
+        }
+
+        public IDictionary<string, int> GetMissionsPerLocation()
+        {
+            return this.missionsService.GetAllPublishedMissions()
+                .GroupBy(m => m.Location)
+                .ToDictionary(x => x.Key, x => x.Count());
         }
     }
 }

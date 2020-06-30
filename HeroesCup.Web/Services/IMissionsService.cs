@@ -14,5 +14,9 @@ namespace HeroesCup.Web.Services
         IEnumerable<MissionViewModel> GetMissionViewModels();
 
         Task<IEnumerable<MissionViewModel>> GetPinnedMissions();
+
+        IDictionary<string, int> GetMissionsPerLocation();
+
+        int GetAllMissionsCount();
     }
 }
