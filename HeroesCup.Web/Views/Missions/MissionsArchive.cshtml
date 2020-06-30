@@ -4,15 +4,7 @@
 @{
     ViewBag.Title = Model.Title;
     ViewBag.TypeId = Model.TypeId;
-    var missionsParams = new Dictionary<string, string>()
-{
-        {"loadRequest", "true" }
-};
 
-    var missionIdeasParams = new Dictionary<string, string>()
-{
-        {"loadRequest", "true" }
-};
 }
 
 
@@ -37,12 +29,12 @@
 
                         </div>
                     </div>
-                    <partial name="~/Views/Shared/Partial/_MissionsList.cshtml" for="@Model.Missions" />
+                    <div id="missions-partial">
+                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
+                    </div>
 
                     <div class="row justify-content-center mt-4 mb-5 pb-4">
-                        <form asp-controller="Missions" class="margin-bottom" asp-action="MissionsArchive" method="post">
-                            <button id="load-missions" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@missionsParams">Покажи още</button>
-                        </form>
+                        <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
                     </div>
                 </div>
 
@@ -70,12 +62,16 @@
     </div>
 </div>
 
-@section script{ 
-<script>
-    $(document).ready(function () {
-        $("#load-missionideas").click(function () {
-            $("#missionideas-partial").load("missions/load-missionideas", { loadRequest: true });
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("#load-missions").click(function () {
+                $("#missions-partial").load("missions/load-missions", { loadRequest: true });
+            });
+
+            $("#load-missionideas").click(function () {
+                $("#missionideas-partial").load("missions/load-missionideas", { loadRequest: true });
+            });
         });
-    });
-</script>
+    </script>
 }

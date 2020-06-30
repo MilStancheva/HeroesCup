@@ -83,6 +83,39 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
+        [Route("missions/load-missions")]
+        public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
+            Guid? category = null, Guid? tag = null, bool draft = false)
+        {
+
+            int? currentPageCount = null;
+
+            if (loadRequest == true)
+            {
+                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
+                if (currentPageCount == null)
+                {
+                    currentPageCount = 2;
+                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
+                }
+            }
+            else
+            {
+                currentPageCount = 1;
+                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+            }
+
+
+            var missions = this.missionsService.GetMissionViewModels()
+                .Take((int)currentPageCount * _missionsCount);
+
+            return PartialView("_MissionsList", missions);
+        }
+
 
         [Route("missions/load-missionideas")]
         public IActionResult LoadMissionIdeas(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
@@ -90,12 +123,10 @@ namespace HeroesCup.Controllers
         {
 
             int? currentPageCount = null;
-            int? lastPageCount = null;
 
             if (loadRequest == true)
             {
                 currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
-                lastPageCount = currentPageCount;
                 if (currentPageCount == null)
                 {
                     currentPageCount = 2;
@@ -114,7 +145,6 @@ namespace HeroesCup.Controllers
 
 
             var missionIdeas = this.missionsService.GetMissionIdeaViewModels()
-                //.Skip((int)lastPageCount * _missionsCount)
                 .Take((int)currentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
