@@ -77,10 +77,47 @@ namespace HeroesCup.Controllers
             }
 
 
-            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels();
+            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)currentPageCount * _missionsCount);
             model.Missions = this.missionsService.GetMissionViewModels().Take((int)currentPageCount * _missionsCount);
 
             return View(model);
+        }
+
+
+        [Route("missions/load-missionideas")]
+        public IActionResult LoadMissionIdeas(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
+            Guid? category = null, Guid? tag = null, bool draft = false)
+        {
+
+            int? currentPageCount = null;
+            int? lastPageCount = null;
+
+            if (loadRequest == true)
+            {
+                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
+                lastPageCount = currentPageCount;
+                if (currentPageCount == null)
+                {
+                    currentPageCount = 2;
+                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
+                }
+            }
+            else
+            {
+                currentPageCount = 1;
+                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
+            }
+
+
+            var missionIdeas = this.missionsService.GetMissionIdeaViewModels()
+                //.Skip((int)lastPageCount * _missionsCount)
+                .Take((int)currentPageCount * _missionsCount);
+
+            return PartialView("_MissionIdeasList", missionIdeas);
         }
     }
 }

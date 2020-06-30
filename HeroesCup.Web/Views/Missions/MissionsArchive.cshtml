@@ -8,6 +8,11 @@
 {
         {"loadRequest", "true" }
 };
+
+    var missionIdeasParams = new Dictionary<string, string>()
+{
+        {"loadRequest", "true" }
+};
 }
 
 
@@ -36,38 +41,41 @@
 
                     <div class="row justify-content-center mt-4 mb-5 pb-4">
                         <form asp-controller="Missions" class="margin-bottom" asp-action="MissionsArchive" method="post">
-                            <button id="load-events" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@missionsParams">Покажи още</button>
+                            <button id="load-missions" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@missionsParams">Покажи още</button>
                         </form>
                     </div>
                 </div>
 
                 <div role="tabpanel" id="missionideas" class="tab-pane missions-block">
-                    @if (Model.MissionIdeas.Count() > 0)
-                    {
-                        var missionIdeas = Model.MissionIdeas.ToList().OrderByDescending(m => m.MissionIdea.IsPublished);
-                        <div class="row mt-4 pt-4">
-                            @foreach (var idea in missionIdeas)
-                            {
-                                <div class="col-sm-6 col-md-4 mt-4 pt-4">
-                                    <div class="mission-body">
-                                        <a href="@idea.MissionIdea.TimeheroesUrl" target="_blank">
-                                            <img class="img-fluid" src="@Url.Content(idea.ImageSrc)" width="320" />
-                                            <p class="mission-title body1-bold">@idea.MissionIdea.Title</p>
-                                            <p class="body2">от Timeheroes</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            }
+                    <div class="row mt-4 pt-4">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
-                    }
+                        <div class="coml-md-4 col-sm-12">
+
+                        </div>
+                    </div>
+                    <div id="missionideas-partial">
+                        <partial name="~/Views/Missions/_MissionIdeasList.cshtml" for="@Model.MissionIdeas" />
+                    </div>
+                    <div id="more-missionideas"></div>
+                    <div class="row justify-content-center mt-4 mb-5 pb-4">
+                        <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="separator"></div>
-
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
 </div>
 
-
-
+@section script{ 
+<script>
+    $(document).ready(function () {
+        $("#load-missionideas").click(function () {
+            $("#missionideas-partial").load("missions/load-missionideas", { loadRequest: true });
+        });
+    });
+</script>
+}
