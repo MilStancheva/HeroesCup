@@ -3,7 +3,6 @@ using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;

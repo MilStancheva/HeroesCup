@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

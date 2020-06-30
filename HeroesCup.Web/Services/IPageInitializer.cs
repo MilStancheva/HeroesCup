@@ -11,5 +11,7 @@ namespace HeroesCup.Web.Services
         Task SeedResourcesPageAsync();
 
         Task SeedEventsPageAsync();
+
+        Task SeedMissionsPageAsync();
     }
 }
