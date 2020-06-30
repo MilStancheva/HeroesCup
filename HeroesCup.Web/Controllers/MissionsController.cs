@@ -14,10 +14,12 @@ namespace HeroesCup.Controllers
 {
     public class MissionsController : Controller
     {
-        private const string PageCountKey = "pageCount";
+        private const string MissionsPageCountKey = "missionsPageCount";
+        private const string MissionIdeasPageCountKey = "missionIdeasPageCount";
         private readonly IApi api;
         private readonly IModelLoader loader;
         private readonly IMissionsService missionsService;
+        private readonly ISessionService sessionService;
         private readonly IConfiguration _configuration;
         private int _missionsCount;
 
@@ -29,11 +31,13 @@ namespace HeroesCup.Controllers
             IApi api, 
             IModelLoader loader, 
             IMissionsService missionsService,
+            ISessionService sessionService,
             IConfiguration configuration)
         {
             this.api = api;
             this.loader = loader;
             this.missionsService = missionsService;
+            this.sessionService = sessionService;
             _configuration = configuration;
             int.TryParse(_configuration["MissionsCount"], out _missionsCount);
         }
@@ -55,30 +59,11 @@ namespace HeroesCup.Controllers
         {
             var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
 
-            int? currentPageCount = null;
-
-            if (loadRequest == true)
-            {
-                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
-                if (currentPageCount == null)
-                {
-                    currentPageCount = 2;
-                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-                }
-                else
-                {
-                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
-                }
-            }
-            else
-            {
-                currentPageCount = 1;
-                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-            }
-
-
-            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)currentPageCount * _missionsCount);
-            model.Missions = this.missionsService.GetMissionViewModels().Take((int)currentPageCount * _missionsCount);
+            int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
+            int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
+            
+            model.Missions = this.missionsService.GetMissionViewModels().Take((int)missionsCurrentPageCount * _missionsCount);
+            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return View(model);
         }
@@ -88,30 +73,9 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
 
-            int? currentPageCount = null;
-
-            if (loadRequest == true)
-            {
-                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
-                if (currentPageCount == null)
-                {
-                    currentPageCount = 2;
-                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-                }
-                else
-                {
-                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
-                }
-            }
-            else
-            {
-                currentPageCount = 1;
-                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-            }
-
-
+            int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
             var missions = this.missionsService.GetMissionViewModels()
-                .Take((int)currentPageCount * _missionsCount);
+                .Take(missionsCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionsList", missions);
         }
@@ -122,30 +86,9 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
 
-            int? currentPageCount = null;
-
-            if (loadRequest == true)
-            {
-                currentPageCount = HttpContext.Session.GetInt32(PageCountKey);
-                if (currentPageCount == null)
-                {
-                    currentPageCount = 2;
-                    HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-                }
-                else
-                {
-                    HttpContext.Session.SetInt32(PageCountKey, (int)(currentPageCount += 1));
-                }
-            }
-            else
-            {
-                currentPageCount = 1;
-                HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
-            }
-
-
+            int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
             var missionIdeas = this.missionsService.GetMissionIdeaViewModels()
-                .Take((int)currentPageCount * _missionsCount);
+                .Take((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
         }

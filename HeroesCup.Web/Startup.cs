@@ -72,6 +72,7 @@ namespace HeroesCup
             services.AddTransient<ILeaderboardService, LeaderboardService>();
             services.AddTransient<IStatisticsService, StatisticsService>();
             services.AddScoped<IMissionsService, MissionsService>();
+            services.AddTransient<ISessionService, SessionService>();
             services.AddControllersWithViews();
 
             Services = services;
