@@ -65,14 +65,24 @@
                             </form>
                         </div>
                     </div>
-                    <div id="missions-partial">
-                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
-                    </div>
                     @if (Model.SelectedLocation == null)
                     {
+                        <div id="missions-partial">
+                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
+                        </div>
                         <div class="row justify-content-center mt-4 mb-5 pb-4">
                             <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
                         </div>
+                    }
+                    else
+                    {
+                        int count = Model.Missions.Count() / 2;
+                        var missionsFirstHalf = @Model.Missions.Take(count);
+                        var missionsSecondHalf = @Model.Missions.Skip(count).Take(count);
+
+                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+                        <partial name="~/Views/Missions/_MissionsBanner.cshtml" for="@Model.Title" />
+                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
                     }
 
                 </div>
