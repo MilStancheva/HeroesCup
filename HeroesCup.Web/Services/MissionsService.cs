@@ -1,5 +1,4 @@
 ﻿using ClubsModule.Common;
-using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -43,8 +42,8 @@ namespace HeroesCup.Web.Services
                 Title = m.Title,
                 Club = m.Club,
                 ImageSrc = this.imageService.GetMissionImageSource(m),
-                StartDate = ConvertToLocalDateTime(m.StartDate),
-                EndDate = ConvertToLocalDateTime(m.EndDate),
+                StartDate = m.StartDate.ConvertToLocalDateTime(),
+                EndDate = m.EndDate.ConvertToLocalDateTime(),
                 Story = new StoryViewModel()
                 {
                     Content = m.Story != null ? m.Story.Content : null,
@@ -62,8 +61,8 @@ namespace HeroesCup.Web.Services
                 Title = m.Title,
                 Club = m.Club,
                 ImageSrc = this.imageService.GetMissionImageSource(m),
-                StartDate = ConvertToLocalDateTime(m.StartDate),
-                EndDate = ConvertToLocalDateTime(m.EndDate),
+                StartDate = m.StartDate.ConvertToLocalDateTime(),
+                EndDate = m.EndDate.ConvertToLocalDateTime(),
             });
         }
 
@@ -89,8 +88,8 @@ namespace HeroesCup.Web.Services
                     Title = m.Title,
                     Club = m.Club,
                     ImageSrc = this.imageService.GetMissionImageSource(m),
-                    StartDate = ConvertToLocalDateTime(m.StartDate),
-                    EndDate = ConvertToLocalDateTime(m.EndDate),
+                    StartDate = m.StartDate.ConvertToLocalDateTime(),
+                    EndDate = m.EndDate.ConvertToLocalDateTime(),
                     Story = new StoryViewModel()
                     {
                         Content = m.Story != null ? m.Story.Content : null,
@@ -109,8 +108,8 @@ namespace HeroesCup.Web.Services
                 ImageSrc = result.ImageSrc,
                 Mission = result.Mission,
                 Club = result.Mission.Club,
-                StartDate = ConvertToLocalDateTime(result.Mission.StartDate),
-                EndDate = ConvertToLocalDateTime(result.Mission.EndDate),
+                StartDate = result.Mission.StartDate.ConvertToLocalDateTime(),
+                EndDate = result.Mission.EndDate.ConvertToLocalDateTime(),
                 Story = new StoryViewModel()
                 {
                     Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
@@ -119,11 +118,6 @@ namespace HeroesCup.Web.Services
             };
 
             return model;
-        }
-
-        private DateTime ConvertToLocalDateTime(long date)
-        {
-            return date.ToUniversalDateTime().ToLocalTime();
         }
     }
 }

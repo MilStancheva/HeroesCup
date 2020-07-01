@@ -22,5 +22,10 @@ namespace ClubsModule.Common
                 .AddMilliseconds(Convert.ToDouble(unixTimestamp))
                 .ToUniversalTime();
         }
+
+        public static DateTime ConvertToLocalDateTime(this long date)
+        {
+            return date.ToUniversalDateTime().ToLocalTime();
+        }
     }
 }
