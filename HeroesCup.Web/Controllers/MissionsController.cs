@@ -54,15 +54,24 @@ namespace HeroesCup.Controllers
         /// <param name="tag">The optional tag</param>
         /// <param name="draft">If a draft is requested</param>
         [Route("missions")]
-        public async Task<IActionResult> MissionsArchive(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
+        public async Task<IActionResult> MissionsArchive(Guid id, bool loadRequest, string selectedLocation, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);           
 
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
-            
-            model.Missions = this.missionsService.GetMissionViewModels().Take((int)missionsCurrentPageCount * _missionsCount);
+
+            if (selectedLocation != null)
+            {
+                model.SelectedLocation = selectedLocation.Trim();
+                model.Missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation); ;
+            }
+            else
+            {
+                model.Missions = this.missionsService.GetMissionViewModels().Take((int)missionsCurrentPageCount * _missionsCount);
+            }
+
             model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
 
             model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
@@ -109,24 +118,6 @@ namespace HeroesCup.Controllers
                 .Take((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
-        }
-
-        [Route("missions/missionsbylocation")]
-        public async Task<IActionResult> MissionsByLocationAsync(Guid id, string selectedLocation, bool loadRequest, int? year = null, int? month = null, int? page = null,
-            Guid? category = null, Guid? tag = null, bool draft = false)
-        {
-            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
-            model.SelectedLocation = selectedLocation.Trim();
-            var missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation);
-            model.Missions = missions;
-
-            int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
-            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
-
-            model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
-            model.MissionsCount = this.missionsService.GetAllMissionsCount();
-
-            return View("MissionsArchive", model);
         }
     }
 }
