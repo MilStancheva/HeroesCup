@@ -8,12 +8,16 @@
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
     var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
 
-    var startDate = DateTime.Parse(Model.Mission.StartDate);
-    var endDate = DateTime.Parse(Model.Mission.EndDate);
-    var startDateAsLocalString = startDate.ToString("d MMMM yyyy", culture);
-    var endDateAsLocalString = endDate.ToString("d MMMM yyyy", culture);
+
+    var startDateAsLocalString = Model.Mission.StartDate.ToString("d MMMM yyyy", culture);
+    var endDateAsLocalString = Model.Mission.EndDate.ToString("d MMMM yyyy", culture);
 
     var now = DateTime.Now;
+    var expiredMission = false;
+    if (now > Model.Mission.EndDate)
+    {
+        expiredMission = true;
+    }
 }
 
 @section script{
@@ -42,7 +46,7 @@
                 <div class="col-12 pt-4 pb-4">
                     <h2 class="heading2">@Model.Title</h2>
                     <div class="body2"><span>от @Model.Mission.Club.Name в @Model.Mission.Mission.Location </span></div>
-                    @if (now > endDate)
+                    @if (expiredMission)
                     {
                         <div class="body2"><span>публикувана на @startDateAsLocalString, изтекла на @endDateAsLocalString</span></div>
                     }
@@ -55,7 +59,14 @@
                 <div class="col-md-8 col-sm-12 pl-0 mt-5">
                     <div class="col-12 pl-0">
                         <div class="col-sm">
-                            <img class="img-fluid" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                            @if (expiredMission)
+                            {
+                                <img class="img-fluid expired-img" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                            }
+                            else
+                            {
+                                <img class="img-fluid" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                            }
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0">

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<HeroesCup.Web.Models.MissionViewModel>
 @{
-    var missions = Model.ToList();
+    var missions = Model.ToList();    
 }
 
 @if (missions.Count > 0)
@@ -8,10 +8,24 @@
     <div class="row">
         @foreach (var mission in missions)
         {
+            var now = DateTime.Now.ToLocalTime();
+            var expiredMission = false;
+            if (now > mission.EndDate)
+            {
+                expiredMission = true;
+            }
+
             <div class="col-sm-6 col-md-4 mt-4 pt-4">
                 <div class="mission-body">
                     <a href="/mission/@mission.Id" target="_blank">
-                        <img class="img-fluid" src="@Url.Content(mission.ImageSrc)" width="320" />
+                        @if (expiredMission)
+                        {
+                            <img class="img-fluid expired-img" src="@Url.Content(mission.ImageSrc)" width="320" />
+                        }
+                        else
+                        {
+                            <img class="img-fluid" src="@Url.Content(mission.ImageSrc)" width="320" />
+                        }
                         <p class="mission-title body1-bold">@mission.Title</p>
                         <p class="body2">от @mission.Club.Name</p>
                     </a>

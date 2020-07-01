@@ -1,4 +1,5 @@
-﻿using HeroesCup.Data.Models;
+﻿using ClubsModule.Common;
+using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
@@ -48,7 +49,9 @@ namespace HeroesCup.Web.Services
                 Id = m.Id,
                 Title = m.Title,
                 Club = m.Club,
-                ImageSrc = GetMissionImageSource(m)
+                ImageSrc = GetMissionImageSource(m),
+                StartDate = ConvertToLocalDateTime(m.StartDate),
+                EndDate = ConvertToLocalDateTime(m.EndDate)
             });
         }
 
@@ -86,7 +89,9 @@ namespace HeroesCup.Web.Services
                 Id = m.Id,
                 Title = m.Title,
                 Club = m.Club,
-                ImageSrc = GetMissionImageSource(m)
+                ImageSrc = GetMissionImageSource(m),
+                StartDate = ConvertToLocalDateTime(m.StartDate),
+                EndDate = ConvertToLocalDateTime(m.EndDate)
             });
         }
 
@@ -111,7 +116,9 @@ namespace HeroesCup.Web.Services
                     Id = m.Id,
                     Title = m.Title,
                     Club = m.Club,
-                    ImageSrc = GetMissionImageSource(m)
+                    ImageSrc = GetMissionImageSource(m),
+                    StartDate = ConvertToLocalDateTime(m.StartDate),
+                    EndDate = ConvertToLocalDateTime(m.EndDate)
                 });
         }
 
@@ -125,11 +132,16 @@ namespace HeroesCup.Web.Services
                 ImageSrc = result.ImageSrc,
                 Mission = result.Mission,
                 Club = result.Mission.Club,
-                StartDate = result.UploadedStartDate,
-                EndDate = result.UploadedEndDate
+                StartDate = ConvertToLocalDateTime(result.Mission.StartDate),
+                EndDate = ConvertToLocalDateTime(result.Mission.EndDate)
             };
 
             return model;
+        }
+
+        private DateTime ConvertToLocalDateTime(long date)
+        {
+            return date.ToUniversalDateTime().ToLocalTime();
         }
     }
 }

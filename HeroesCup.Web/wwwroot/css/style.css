@@ -962,3 +962,9 @@ a:hover .resource-icon-article {
 p.bottom-padding {
     margin-bottom: 0;
 }
+
+
+img.expired-img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%)
+}
