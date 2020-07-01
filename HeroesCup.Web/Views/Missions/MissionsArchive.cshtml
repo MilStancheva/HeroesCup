@@ -14,7 +14,6 @@
 
 }
 
-
 <div class="main">
     <div class="container">
         <div class="tabbable mt-md-5 pt-md-5">
@@ -33,25 +32,6 @@
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
                         <div class="col-md-4 col-sm-12">
-                            @*<form asp-controller="Missions" asp-action="MissionsByLocation" method="post" asp-for="SelectedLocation">
-                                    <div class="custom-select-wrapper">
-                                        <div class="btn locations-button custom-select">
-                                            <div class="custom-select__trigger justify-content-center">
-                                                @if (Model.SelectedLocation == null || Model.SelectedLocation == string.Empty)
-                                                {
-                                                    <span>Цяла България (@Model.MissionsCount) </span>
-                                                }
-                                                else
-                                                {
-                                                    <span>@Model.SelectedLocation</span>
-
-                                                }
-                                            </div>
-                                            <select asp-for="SelectedLocation" class="form-control" asp-items="selectLocations"></select>
-                                        </div>
-                                    </div>
-                                </form>*@
-
                             <form asp-controller="Missions" asp-action="MissionsByLocation" method="post" asp-for="SelectedLocation" id="location-form">
                                 <div class="custom-select-wrapper">
                                     <div class="btn locations-button custom-select">

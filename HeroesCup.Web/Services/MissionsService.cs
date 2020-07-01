@@ -123,7 +123,10 @@ namespace HeroesCup.Web.Services
                 Id = result.Mission.Id,
                 Title = result.Mission.Title,
                 ImageSrc = result.ImageSrc,
-                Mission = result.Mission
+                Mission = result.Mission,
+                Club = result.Mission.Club,
+                StartDate = result.UploadedStartDate,
+                EndDate = result.UploadedEndDate
             };
 
             return model;

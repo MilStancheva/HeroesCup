@@ -1,8 +1,5 @@
 ﻿@model HeroesCup.Web.Models.Missions.MissionPost
 @{
-    Model.Title = Model.Mission.Title;
-    Model.Slug = Model.Mission.Title;
-    Model.Category = "mission";
     ViewBag.Title = Model.Title;
 
     var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
@@ -10,6 +7,13 @@
     var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
     var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
+
+    var startDate = DateTime.Parse(Model.Mission.StartDate);
+    var endDate = DateTime.Parse(Model.Mission.EndDate);
+    var startDateAsLocalString = startDate.ToString("d MMMM yyyy", culture);
+    var endDateAsLocalString = endDate.ToString("d MMMM yyyy", culture);
+
+    var now = DateTime.Now;
 }
 
 @section script{
@@ -37,7 +41,15 @@
             <div class="row col-12 justify-content-center">
                 <div class="col-12 pt-4 pb-4">
                     <h2 class="heading2">@Model.Title</h2>
-                    @*<span class="body2">от @Model.Mission.Club.Name, @archive.Published.Value.ToString("d MMMM yyyy", culture) </span>*@
+                    <div class="body2"><span>от @Model.Mission.Club.Name в @Model.Mission.Mission.Location </span></div>
+                    @if (now > endDate)
+                    {
+                        <div class="body2"><span>публикувана на @startDateAsLocalString, изтекла на @endDateAsLocalString</span></div>
+                    }
+                    else
+                    {
+                        <div class="body2"><span>публикувана на @startDateAsLocalString, продължителност до @endDateAsLocalString</span></div>
+                    }
                 </div>
 
                 <div class="col-md-8 col-sm-12 pl-0 mt-5">
@@ -67,7 +79,7 @@
 
                         <div class="col-5 body2">
                             <a class="btn btn-share" id="twitter-share-button"
-                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/@Model.Category.Title/@Model.Slug&text=@Model.Title">
+                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/@Model.Mission.Id&text=@Model.Title">
                                 <span class="m-1">Tweet</span>
                                 <i class="fa fa-twitter"></i>
                             </a>

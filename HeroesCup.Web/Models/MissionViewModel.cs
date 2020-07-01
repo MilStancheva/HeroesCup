@@ -14,5 +14,9 @@ namespace HeroesCup.Web.Models
         public Mission Mission { get; set; }
 
         public string ImageSrc { get; set; }
+
+        public string StartDate { get; set; }
+
+        public string EndDate { get; set; }
     }
 }

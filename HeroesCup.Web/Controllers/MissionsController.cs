@@ -77,19 +77,14 @@ namespace HeroesCup.Controllers
             var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
             var model = new MissionPost()
             {
-                Mission = mission
-            };
+                Mission = mission,
+                Title = mission.Mission.Title,
+                Slug = mission.Mission.Title,
+                Category = "mission",
+        };
 
             return View(model);
         }
-
-        //[Route("mission")]
-        //public async Task<IActionResult> EventPost(Guid id, bool draft = false)
-        //{
-        //    var model = await this.loader.GetPostAsync<MissionPost>(id, HttpContext.User, draft);
-
-        //    return View(model);
-        //}
 
         [Route("missions/load-missions")]
         public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
