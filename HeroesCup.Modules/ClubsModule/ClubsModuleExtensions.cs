@@ -275,26 +275,10 @@ namespace HeroesCup.Modules.ClubsModule
                 endpoints.MapClubsModule();
             });
 
-            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");            
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
 
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://code.jquery.com/ui/1.12.1/jquery-ui.js");
-
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
-
-           
-
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-multiselect.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-location-autocomplete.js");
-
-            // App.Modules.Get<Piranha.Manager.Module>().Styles.Add("http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js");
+            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {
