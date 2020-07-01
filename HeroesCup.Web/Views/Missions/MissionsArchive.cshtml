@@ -27,8 +27,8 @@
                 </li>
             </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="missions">
-                    <div class="row mt-4 pt-4">
+                <div role="tabpanel" class="tab-pane active mb-4" id="missions">
+                    <div class="row mt-5 pt-4 pb-4">
                         <div class="col-md-8 col-sm-12">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
@@ -76,19 +76,43 @@
                     }
                     else
                     {
-                        int count = Model.Missions.Count() / 2;
-                        var missionsFirstHalf = @Model.Missions.Take(count);
-                        var missionsSecondHalf = @Model.Missions.Skip(count).Take(count);
+                        int firstCount = 0;
+                        int secondCount = 0;
+                        int count = Model.Missions.Count();
+                        @if (count < 4)
+                        {
+                            firstCount = 3;
+                        } 
+                        else if (count < 7)
+                        {
+                            firstCount = 3;
+                            secondCount = count - firstCount;
+                        }
+                        else if (count < 10)
+                        {
+                            firstCount = 6;
+                            secondCount = count - firstCount;
+                        }
+
+                        var missionsFirstHalf = @Model.Missions.Take(firstCount);
+                        var missionsSecondHalf = @Model.Missions.Skip(firstCount).Take(secondCount);
 
                         <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+                        <div class="col-12 separator mb-4 mt-5"></div>
+
                         <partial name="~/Views/Missions/_MissionsBanner.cshtml" for="@Model.Title" />
-                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+                        @if (secondCount > 0)
+                        {
+                            <div class="col-12 separator mb-4 mt-"></div>
+                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+                        }
+
                     }
 
                 </div>
 
-                <div role="tabpanel" id="missionideas" class="tab-pane missions-block">
-                    <div class="row mt-4 pt-4">
+                <div role="tabpanel" id="missionideas" class="tab-pane missions-block mb-4">
+                    <div class="row mt-5 pt-4 pb-4">
                         <div class="col-md-8 col-sm-12">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
