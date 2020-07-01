@@ -20,11 +20,14 @@
                     <a href="/mission/@mission.Id" target="_blank">
                         @if (expiredMission)
                         {
-                            <img class="img-fluid expired-img" src="@Url.Content(mission.ImageSrc)" width="320" />
+                        <div class="img-container">
+                            <img class="img-fluid expired-img center-cropped" src="@Url.Content(mission.ImageSrc)" width="320" height="198" />
+                            <div class="top-left body3-bold">ВИЖ РАЗКАЗ</div>
+                        </div>
                         }
                         else
                         {
-                            <img class="img-fluid" src="@Url.Content(mission.ImageSrc)" width="320" />
+                            <img class="img-fluid center-cropped" src="@Url.Content(mission.ImageSrc)" width="320"  height="198" />
                         }
                         <p class="mission-title body1-bold">@mission.Title</p>
                         <p class="body2">от @mission.Club.Name</p>

@@ -532,8 +532,8 @@ header {
 .center-cropped {
     object-fit: none; /* Do not scale the image */
     object-position: center; /* Center the image within the element */
-    height: 100px;
-    width: 100px;
+    /*height: 100px;
+    width: 100px;*/
 }
 
 /* Nav icon */
@@ -967,4 +967,22 @@ p.bottom-padding {
 img.expired-img {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%)
+}
+
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.top-left {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: row;
+    padding: 4px 12px;
+    background: #E2232E;
+    border-radius: 32px;
+    color: white;
 }
