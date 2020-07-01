@@ -12,6 +12,7 @@
         selectLocations.Add(new SelectListItem($"{location.Key} ({location.Value})", location.Key));
     }
 
+    var defaultLocationText = $"Цяла България ({Model.MissionsCount})";
 }
 
 <div class="main">
@@ -38,7 +39,7 @@
                                         <div class="custom-select__trigger justify-content-center">
                                             @if (Model.SelectedLocation == null || Model.SelectedLocation == string.Empty)
                                             {
-                                                <span>Цяла България (@Model.MissionsCount) </span>
+                                            <span>@defaultLocationText</span>
                                             }
                                             else
                                             {
@@ -46,7 +47,7 @@
                                             }
                                         </div>
                                         <div class="custom-options">
-                                            <input text="Цяла България (@Model.MissionsCount)" class="custom-option" type="submit" id="selectedLocation" name="selectedLocation" value="Цяла България (@Model.MissionsCount)" />
+                                            <input class="custom-option" type="submit" id="selectedLocation" name="selectedLocation" value="@defaultLocationText" />
                                             @foreach (var location in selectLocations)
                                             {
                                                 if (Model.SelectedLocation == location.Value)
