@@ -29,3 +29,16 @@
         color: white;
         cursor: pointer;
     }
+
+#heroes.multiselect {
+    display: none;
+}
+
+
+button.multiselect {
+    width: 120%;
+}
+
+.multiselect-container {
+    padding: 5%;
+}
