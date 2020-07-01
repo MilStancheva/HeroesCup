@@ -1,5 +1,6 @@
 ﻿using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,5 +21,7 @@ namespace HeroesCup.Web.Services
         int GetAllMissionsCount();
 
        IEnumerable<MissionViewModel> GetMissionsByLocation(string location);
+
+        Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id);
     }
 }

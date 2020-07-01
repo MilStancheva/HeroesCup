@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,26 @@ namespace HeroesCup.Controllers
 
             return View(model);
         }
+
+        [Route("mission/{id}")]
+        public async Task<IActionResult> MissionPost(Guid id, bool draft = false)
+        {
+            var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
+            var model = new MissionPost()
+            {
+                Mission = mission
+            };
+
+            return View(model);
+        }
+
+        //[Route("mission")]
+        //public async Task<IActionResult> EventPost(Guid id, bool draft = false)
+        //{
+        //    var model = await this.loader.GetPostAsync<MissionPost>(id, HttpContext.User, draft);
+
+        //    return View(model);
+        //}
 
         [Route("missions/load-missions")]
         public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,

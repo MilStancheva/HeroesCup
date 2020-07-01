@@ -114,5 +114,19 @@ namespace HeroesCup.Web.Services
                     ImageSrc = GetMissionImageSource(m)
                 });
         }
+
+        public async Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id)
+        {
+            var result = await this.missionsService.GetMissionEditModelByIdAsync(id, null);
+            var model = new MissionViewModel()
+            {
+                Id = result.Mission.Id,
+                Title = result.Mission.Title,
+                ImageSrc = result.ImageSrc,
+                Mission = result.Mission
+            };
+
+            return model;
+        }
     }
 }
