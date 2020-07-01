@@ -117,7 +117,7 @@ namespace HeroesCup.Controllers
         {
             var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
             model.SelectedLocation = selectedLocation.Trim();
-            var missions = this.missionsService.GetMissionsByLocation(selectedLocation);
+            var missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation);
             model.Missions = missions;
 
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);

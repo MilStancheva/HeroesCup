@@ -190,6 +190,9 @@ namespace ClubsModule.Services
                     .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)
                     .ThenInclude(ci => ci.Image)
+                    .Include(m => m.Story)
+                    .ThenInclude(s => s.StoryImages)
+                    .ThenInclude(s => s.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
 
             if (mission == null)
@@ -333,7 +336,10 @@ namespace ClubsModule.Services
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
                 .Include(m => m.MissionImages)
-                .ThenInclude(mi => mi.Image);
+                .ThenInclude(mi => mi.Image)
+                .Include(m => m.Story)
+                .ThenInclude(m => m.StoryImages)
+                .ThenInclude(m => m.Image);
 
             return missions;
         }
@@ -373,6 +379,9 @@ namespace ClubsModule.Services
                 .Include(m => m.Club)
                 .Include(m => m.MissionImages)
                 .ThenInclude(mi => mi.Image)
+                .Include(m => m.Story)
+                .ThenInclude(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
                 .ToListAsync();
 
             int countOfPinnedMissionsOnHomePage;
@@ -388,6 +397,9 @@ namespace ClubsModule.Services
                     .Include(m => m.Club)
                     .Include(m => m.MissionImages)
                     .ThenInclude(mi => mi.Image)
+                    .Include(m => m.Story)
+                    .ThenInclude(s => s.StoryImages)
+                    .ThenInclude(si => si.Image)
                     .ToListAsync();
 
                 missions.AddRange(latestMissions);

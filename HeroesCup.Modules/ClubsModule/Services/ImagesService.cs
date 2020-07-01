@@ -207,5 +207,46 @@ namespace ClubsModule.Services
                 .Include(mi => mi.Image)
                 .FirstOrDefaultAsync();
         }
+
+        public string GetMissionImageSource(Mission mission)
+        {
+            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
+            {
+                var missionImage = mission.MissionImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+
+                return imageSrc;
+            }
+
+            return String.Empty;
+        }
+
+        public string GetStoryImageSource(Story story)
+        {
+            if (story == null)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                var storyImage = story.StoryImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes);
+
+                return imageSrc;
+            }
+        }
+
+        public string GetMissionIdeaImageSource(MissionIdea missionIdea)
+        {
+            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
+            {
+                var missionImage = missionIdea.MissionIdeaImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+
+                return imageSrc;
+            }
+
+            return String.Empty;
+        }
     }
 }

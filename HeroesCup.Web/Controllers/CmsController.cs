@@ -105,7 +105,7 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
-            model.Missions = await this.missionsService.GetPinnedMissions();
+            model.Missions = await this.missionsService.GetPinnedMissionViewModels();
 
             return View(model);
         }
@@ -133,7 +133,7 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
-            model.Missions = await this.missionsService.GetPinnedMissions();
+            model.Missions = await this.missionsService.GetPinnedMissionViewModels();
 
             return View(model);
         }       

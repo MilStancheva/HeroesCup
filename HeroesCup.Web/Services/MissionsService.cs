@@ -1,7 +1,6 @@
 ﻿using ClubsModule.Common;
 using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,19 +24,13 @@ namespace HeroesCup.Web.Services
             this.imageService = imageService;
         }
 
-        public IEnumerable<MissionIdea> GetMissionIdeas()
-        {
-            var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
-            return timeheroesMissions;
-        }
-
         public IEnumerable<MissionIdeaViewModel> GetMissionIdeaViewModels()
         {
             var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
             return timeheroesMissions.Select(mi => new MissionIdeaViewModel()
             {
                 MissionIdea = mi,
-                ImageSrc = GetMissionIdeaImageSource(mi)
+                ImageSrc = this.imageService.GetMissionIdeaImageSource(mi)
             });
         }
 
@@ -49,39 +42,18 @@ namespace HeroesCup.Web.Services
                 Id = m.Id,
                 Title = m.Title,
                 Club = m.Club,
-                ImageSrc = GetMissionImageSource(m),
+                ImageSrc = this.imageService.GetMissionImageSource(m),
                 StartDate = ConvertToLocalDateTime(m.StartDate),
-                EndDate = ConvertToLocalDateTime(m.EndDate)
+                EndDate = ConvertToLocalDateTime(m.EndDate),
+                Story = new StoryViewModel()
+                {
+                    Content = m.Story != null ? m.Story.Content : null,
+                    ImageSrc = this.imageService.GetStoryImageSource(m.Story)
+                }
             });
         }
 
-        private string GetMissionImageSource(Mission mission)
-        {
-            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
-            {
-                var missionImage = mission.MissionImages.FirstOrDefault();
-                string imageSrc = this.imageService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-
-                return imageSrc;
-            }
-
-            return String.Empty;
-        }
-
-        private string GetMissionIdeaImageSource(MissionIdea missionIdea)
-        {
-            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
-            {
-                var missionImage = missionIdea.MissionIdeaImages.FirstOrDefault();
-                string imageSrc = this.imageService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-
-                return imageSrc;
-            }
-
-            return String.Empty;
-        }
-
-        public async Task<IEnumerable<MissionViewModel>> GetPinnedMissions()
+        public async Task<IEnumerable<MissionViewModel>> GetPinnedMissionViewModels()
         {
             var pinnedMissions = await this.missionsService.GetPinnedMissions();
             return pinnedMissions.Select(m => new MissionViewModel()
@@ -89,9 +61,9 @@ namespace HeroesCup.Web.Services
                 Id = m.Id,
                 Title = m.Title,
                 Club = m.Club,
-                ImageSrc = GetMissionImageSource(m),
+                ImageSrc = this.imageService.GetMissionImageSource(m),
                 StartDate = ConvertToLocalDateTime(m.StartDate),
-                EndDate = ConvertToLocalDateTime(m.EndDate)
+                EndDate = ConvertToLocalDateTime(m.EndDate),
             });
         }
 
@@ -107,7 +79,7 @@ namespace HeroesCup.Web.Services
                 .ToDictionary(x => x.Key, x => x.Count());
         }
 
-        public IEnumerable<MissionViewModel> GetMissionsByLocation(string location)
+        public IEnumerable<MissionViewModel> GetMissionViewModelsByLocation(string location)
         {
             return this.missionsService.GetAllPublishedMissions()
                 .Where(m => m.Location.Contains(location) || location.Contains(m.Location))
@@ -116,9 +88,14 @@ namespace HeroesCup.Web.Services
                     Id = m.Id,
                     Title = m.Title,
                     Club = m.Club,
-                    ImageSrc = GetMissionImageSource(m),
+                    ImageSrc = this.imageService.GetMissionImageSource(m),
                     StartDate = ConvertToLocalDateTime(m.StartDate),
-                    EndDate = ConvertToLocalDateTime(m.EndDate)
+                    EndDate = ConvertToLocalDateTime(m.EndDate),
+                    Story = new StoryViewModel()
+                    {
+                        Content = m.Story != null ? m.Story.Content : null,
+                        ImageSrc = this.imageService.GetStoryImageSource(m.Story)
+                    }
                 });
         }
 
@@ -133,7 +110,12 @@ namespace HeroesCup.Web.Services
                 Mission = result.Mission,
                 Club = result.Mission.Club,
                 StartDate = ConvertToLocalDateTime(result.Mission.StartDate),
-                EndDate = ConvertToLocalDateTime(result.Mission.EndDate)
+                EndDate = ConvertToLocalDateTime(result.Mission.EndDate),
+                Story = new StoryViewModel()
+                {
+                    Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
+                    ImageSrc = this.imageService.GetStoryImageSource(result.Mission.Story)
+                }
             };
 
             return model;

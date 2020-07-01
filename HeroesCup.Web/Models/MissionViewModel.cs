@@ -18,5 +18,7 @@ namespace HeroesCup.Web.Models
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public StoryViewModel Story { get; set; }
     }
 }

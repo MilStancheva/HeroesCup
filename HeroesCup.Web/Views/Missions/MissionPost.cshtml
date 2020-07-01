@@ -61,7 +61,10 @@
                         <div class="col-sm">
                             @if (expiredMission)
                             {
-                                <img class="img-fluid expired-img" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                <div class="img-container">
+                                    <img class="img-fluid expired-img" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                    <div class="top-left body3-bold">ИЗТЕКЛА</div>
+                                </div>
                             }
                             else
                             {
@@ -70,6 +73,14 @@
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0">
+                        @if (expiredMission && Model.Mission.Story != null && Model.Mission.Story.Content != null)
+                        {
+                        <div class="col-12 post-body pr-2">
+                            <p class="body2-bold">Как премина мисията?</p>
+                            @Html.Raw(Model.Mission.Story.Content)
+                            <img class="img-fluid" src="@Url.Content(Model.Mission.Story.ImageSrc)" width="672">
+                        </div>
+                        }
                         <div class="col-12 post-body pr-2">
                             @Html.Raw(Model.Mission.Mission.Content)
                         </div>
