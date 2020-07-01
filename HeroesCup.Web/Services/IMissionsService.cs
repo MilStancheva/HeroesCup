@@ -18,5 +18,7 @@ namespace HeroesCup.Web.Services
         IDictionary<string, int> GetMissionsPerLocation();
 
         int GetAllMissionsCount();
+
+       IEnumerable<MissionViewModel> GetMissionsByLocation(string location);
     }
 }

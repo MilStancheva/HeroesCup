@@ -101,5 +101,18 @@ namespace HeroesCup.Web.Services
                 .GroupBy(m => m.Location)
                 .ToDictionary(x => x.Key, x => x.Count());
         }
+
+        public IEnumerable<MissionViewModel> GetMissionsByLocation(string location)
+        {
+            return this.missionsService.GetAllPublishedMissions()
+                .Where(m => m.Location.Contains(location) || location.Contains(m.Location))
+                .Select(m => new MissionViewModel()
+                {
+                    Id = m.Id,
+                    Title = m.Title,
+                    Club = m.Club,
+                    ImageSrc = GetMissionImageSource(m)
+                });
+        }
     }
 }

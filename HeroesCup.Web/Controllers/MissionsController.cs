@@ -94,5 +94,23 @@ namespace HeroesCup.Controllers
 
             return PartialView("_MissionIdeasList", missionIdeas);
         }
+
+        [Route("missions/missionsbylocation")]
+        public async Task<IActionResult> MissionsByLocationAsync(Guid id, string selectedLocation, bool loadRequest, int? year = null, int? month = null, int? page = null,
+            Guid? category = null, Guid? tag = null, bool draft = false)
+        {
+            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
+            model.SelectedLocation = selectedLocation.Trim();
+            var missions = this.missionsService.GetMissionsByLocation(selectedLocation);
+            model.Missions = missions;
+
+            int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
+            model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
+
+            model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
+            model.MissionsCount = this.missionsService.GetAllMissionsCount();
+
+            return View("MissionsArchive", model);
+        }
     }
 }
