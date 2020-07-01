@@ -39,7 +39,7 @@
                                         <div class="custom-select__trigger justify-content-center">
                                             @if (Model.SelectedLocation == null || Model.SelectedLocation == string.Empty)
                                             {
-                                            <span>@defaultLocationText</span>
+                                                <span>@defaultLocationText</span>
                                             }
                                             else
                                             {
@@ -68,10 +68,13 @@
                     <div id="missions-partial">
                         <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
                     </div>
+                    @if (Model.SelectedLocation == null)
+                    {
+                        <div class="row justify-content-center mt-4 mb-5 pb-4">
+                            <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
+                        </div>
+                    }
 
-                    <div class="row justify-content-center mt-4 mb-5 pb-4">
-                        <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
-                    </div>
                 </div>
 
                 <div role="tabpanel" id="missionideas" class="tab-pane missions-block">
