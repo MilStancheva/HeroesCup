@@ -9,6 +9,8 @@
 <div class="row justify-content-between">
     @foreach (var post in events)
     {
+        var author = post.Author.Value != null && post.Author.Value != string.Empty ? post.Author.Value : "TimeHeroes";
+
     <div class="col-md-6 col-sm-12 item-body pt-5">
         <a href="@post.Permalink" target="_blank">
             <div class="col-12 justify-content-start">
@@ -16,7 +18,7 @@
             </div>
             <div class="col-12 justify-content-start text-start mt-3">
                 <p class="body1-bold resource-title  pr-4">@post.Title</p>
-                <p class="body2 pr-4"><span class="tag">от @post.Author.Value, @post.Published.Value.ToString("d MMMM yyyy", culture) </span></p>
+                <p class="body2 pr-4"><span class="tag">от @author, @post.Published.Value.ToString("d MMMM yyyy", culture) </span></p>
             </div>
         </a>
     </div>

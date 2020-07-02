@@ -7,6 +7,7 @@
     var siteCulture = site.Culture != null ? site.Culture : "bg-BG";
     System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(siteCulture);
     var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
+    var author = Model.Author.Value != null && Model.Author.Value != string.Empty ? Model.Author.Value : "TimeHeroes";
 }
 
 @section script{
@@ -34,7 +35,7 @@
             <div class="row col-12 justify-content-center">
                 <div class="col-12 pt-4 pb-4">
                     <h2 class="heading2">@Model.Title</h2>
-                    <span class="body2">от @Model.Author.Value, @archive.Published.Value.ToString("d MMMM yyyy", culture) </span>
+                    <span class="body2">от @author, @Model.Published.Value.ToString("d MMMM yyyy", culture) </span>
                 </div>
 
                 <div class="col-md-8 col-sm-12 pl-0 mt-5">
@@ -46,7 +47,7 @@
                             </div>
                         </div>
                     }
-                    <div class="col-12 justify-content-start pl-0">
+                    <div class="col-12 justify-content-start pl-0 body2">
                         <div class="col-12 post-body pr-2">
                             @Html.DisplayFor(m => m.Blocks)
                         </div>
@@ -55,7 +56,7 @@
                 <div class="col-md-4 col-sm-12 justify-content-start mt-5 pb-4">
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели тoзи ресурс:</span>
+                            <span class="body2">Сподели тoзи ресурс:</span>
                         </div>
 
                         <div class="col-5 body2">
