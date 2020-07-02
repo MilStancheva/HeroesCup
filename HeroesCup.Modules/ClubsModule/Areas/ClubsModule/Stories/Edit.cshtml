@@ -13,6 +13,14 @@
 @section script{
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+    @if (User.IsInRole("Coordinator"))
+    {
+        <script src="/manager/clubsmodule/js/simple-editor.js" type="text/javascript"></script>
+    }
+    else
+    {
+        <script src="/manager/clubsmodule/js/editor.js" type="text/javascript"></script>
+    }
 }
 
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -78,7 +86,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Mission"]</label>
-                            @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control", required="" })
+                            @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control", required = "" })
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
