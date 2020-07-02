@@ -138,6 +138,9 @@
   <data name="Heroes" xml:space="preserve">
     <value>Герои</value>
   </data>
+  <data name="Image Suggestion" xml:space="preserve">
+    <value>Ако искаш смени картинката с ваша, препоръчителен размер 384 px ширина/ 484 px дължина.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Локация</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Organization Name is mandatory." xml:space="preserve">
     <value>Име на организацията / училището е задължително поле.</value>
+  </data>
+  <data name="Organization Number" xml:space="preserve">
+    <value>Номер на училището</value>
   </data>
   <data name="Organization Type" xml:space="preserve">
     <value>Тип на организацията / училището</value>

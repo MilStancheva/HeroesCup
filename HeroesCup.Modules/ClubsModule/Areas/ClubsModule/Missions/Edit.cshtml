@@ -202,16 +202,21 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Start Date"]</label>
-                            <input asp-for="UploadedStartDate" class="form-control" type="text" id='start_date' name="UploadedStartDate" required="required" data-provide="datepicker" />
+                            <div class="input-group date">
+                                <input asp-for="UploadedStartDate" class="form-control" type="text" id='start_date' name="UploadedStartDate" required="required" data-provide="datepicker" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["End Date"]</label>
                             <div class="input-group date">
@@ -225,20 +230,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
-                {
-                    <div class="row">
-                        <div class="col-sm-6"></div>
+                    @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
+                    {
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>@HeroesCupLocalizer.Mission["Duration"]</label>
                                 <p>@Model.Duration.TotalDays @HeroesCupLocalizer.Mission["days"]</p>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
+
+                
 
                 <div class="row">
                     <div class="col-sm-6">

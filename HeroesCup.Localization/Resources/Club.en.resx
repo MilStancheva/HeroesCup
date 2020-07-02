@@ -138,6 +138,9 @@
   <data name="Heroes" xml:space="preserve">
     <value>Heroes</value>
   </data>
+  <data name="Image Suggestion" xml:space="preserve">
+    <value>Change the image with yours. Suggested width - 384 px, height - 484 px.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
