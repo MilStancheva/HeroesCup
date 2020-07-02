@@ -2,6 +2,7 @@
 using HeroesCup.Identity;
 using HeroesCup.Modules.ClubsModule;
 using HeroesCup.Web.Common.Extensions;
+using HeroesCup.Web.Models.Blocks;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -122,6 +123,8 @@ namespace HeroesCup
             app.UseClubsModule();
 
             ConfigurePiranhaEditor();
+
+            RegisterPiranhaCustomBlocks();
         }
 
         private void SeedDefaultPages()
@@ -148,6 +151,12 @@ namespace HeroesCup
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/css/manager-styles.css");
             EditorConfig.FromFile("editorconfig.json");
             Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/tinymce-editor.js";
+        }
+
+        private void RegisterPiranhaCustomBlocks()
+        {
+            Piranha.App.Blocks.Register<StreamingVideoBlock>();
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/scripts/blocks/streaming-video-block.js");
         }
     }
 }

@@ -1,0 +1,6 @@
+@model HeroesCup.Web.Models.Blocks.StreamingVideoBlock
+<div class="row mt-3 mb-3 p-2">
+    <div class="embed-responsive embed-responsive-16by9" style="overflow:hidden;position: relative;">
+        <iframe class="embed-responsive-item" src="@Model.Source.Value" max-width="672" max-height="416" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+</div>
