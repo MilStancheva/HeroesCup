@@ -165,6 +165,9 @@
   <data name="Organization Name is mandatory." xml:space="preserve">
     <value>Organization Name is mandatory.</value>
   </data>
+  <data name="Organization Number is mandatory." xml:space="preserve">
+    <value>Organization Number is mandatory.</value>
+  </data>
   <data name="Organization Type" xml:space="preserve">
     <value>Organization / School Type</value>
   </data>

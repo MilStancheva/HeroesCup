@@ -66,11 +66,11 @@
                     <td>
                         @if (userHasEditClubPermissions)
                         {
-                            <a href="@Url.Action("Edit", new {id = club.Id})">@club.OrganizationType @club.OrganizationName</a>
+                        <a href="@Url.Action("Edit", new {id = club.Id})">@club.OrganizationNumber @club.OrganizationType @club.OrganizationName</a>
                         }
                         else
                         {
-                            <span class="title">@club.OrganizationType @club.OrganizationName</span>
+                        <span class="title">@club.OrganizationNumber @club.OrganizationType @club.OrganizationName</span>
                         }
                     </td>
                     <td>

@@ -168,6 +168,9 @@
   <data name="Organization Number" xml:space="preserve">
     <value>Номер на училището</value>
   </data>
+  <data name="Organization Number is mandatory." xml:space="preserve">
+    <value>Изисква се номер на организацията/ училището. </value>
+  </data>
   <data name="Organization Type" xml:space="preserve">
     <value>Тип на организацията / училището</value>
   </data>
