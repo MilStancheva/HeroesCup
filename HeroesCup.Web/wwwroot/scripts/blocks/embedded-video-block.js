@@ -2,7 +2,7 @@
     piranha
 */
 
-Vue.component("streaming-video-block", {
+Vue.component("embedded-video-block", {
     props: ["uid", "toolbar", "model"],
     methods: {
         onBlur: function (e) {

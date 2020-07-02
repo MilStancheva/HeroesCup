@@ -155,8 +155,8 @@ namespace HeroesCup
 
         private void RegisterPiranhaCustomBlocks()
         {
-            Piranha.App.Blocks.Register<StreamingVideoBlock>();
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/scripts/blocks/streaming-video-block.js");
+            Piranha.App.Blocks.Register<EmbeddedVideoBlock>();
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/scripts/blocks/embedded-video-block.js");
         }
     }
 }

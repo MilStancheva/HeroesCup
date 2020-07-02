@@ -3,9 +3,9 @@ using Piranha.Extend.Fields;
 
 namespace HeroesCup.Web.Models.Blocks
 {
-    [BlockType(Name = "Streaming Video", Category = "Media",
-    Icon = "fas fa-video", Component = "streaming-video-block")]
-    public class StreamingVideoBlock : Block
+    [BlockType(Name = "Embedded Video", Category = "Media",
+    Icon = "fas fa-video", Component = "embedded-video-block")]
+    public class EmbeddedVideoBlock : Block
     {
         /// <summary>
         /// Gets/sets the source of the streaming video.
