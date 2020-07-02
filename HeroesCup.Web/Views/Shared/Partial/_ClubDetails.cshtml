@@ -10,138 +10,142 @@
                 <div class="col-md-5 col-sm-12 club-image pr-0">
                     @if (@club.ClubImageSrc != null)
                     {
-                        <img src="@club.ClubImageSrc" width="384" class="img-fluid center-cropped" alt="@club.Name" />
+                        <div class="img-container text-left">
+                            <img src="@club.ClubImageSrc" class="img-fluid club-img" alt="@club.Name" />
+                        </div>
                     }
                     else
                     {
-                        <img src="~/images/team_no_image.png" width="384" class="img-fluid center-cropped" alt="@club.Name" />
+                        <div class="img-container text-left">
+                            <img src="~/images/team_no_image.png" class="img-fluid club-img" alt="@club.Name" />
+                        </div>
                     }
                 </div>
-                <div class="col-md-7 col-sm-12 pl-0">
-                    <div class="modal-header no-border pt-5 pr-3 ml-4">
-                        <div class="row col-12 pl-0">
-                            <div class="col-12 text-right">
-                                <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
-                            </div>
-                            <div class="col-2 body1-bold initials pl-0">
-                                <span data-letters="@club.ClubInitials"></span>
-                            </div>
-                            <div class="col-10">
-                                <h3 class="heading3 d-none d-md-block d-sm-none d-xs-none">
-                                    <span>@club.Name</span>,
-                                    <span>@club.Location</span>
-                                </h3>
-                                <p class="body1-bold d-sm-block d-md-none">
-                                    <span>@club.Name</span>,
-                                    <span>@club.Location</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tabbable">
-                        <ul class="nav nav-tabs body2 pr-3 pl-4" role="tablist">
-                            <li class="nav-item active">
-                                <a class="nav-link active tab-title pl-0 pr-0  ml-3 mr-3" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
-                                    Информация
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_missions_{@club.Id.ToString()}" data-toggle="tab">
-                                    Мисии
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_heroes_{@club.Id.ToString()}" data-toggle="tab">
-                                    Герои
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_coordinators_{@club.Id.ToString()}" data-toggle="tab">
-                                    За координатори
-                                </a>
-                            </li>
-                        </ul>
-                        @* Club Information *@
-                        <div class="tab-content no-border pr-3 pl-4">
-                            <div role="tabpanel" class="tab-pane active p-3" id="club_information_{@club.Id.ToString()}">
-                                <div class="row club body2 mt-3">
-                                    <div class="col-12">
-                                        @club.Club.Description
+                        <div class="col-md-7 col-sm-12 pl-0">
+                            <div class="modal-header no-border pt-5 pr-3 ml-4">
+                                <div class="row col-12 pl-0">
+                                    <div class="col-12 text-right">
+                                        <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
                                     </div>
-                                    <div class="row col-12 mt-3">
-                                        <div class="row col-md-7 col-sm-12 text-left">
-                                            <div class="col-5">
-                                                <span>@club.Points точки</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span class="points-heroes-separator"></span>
-                                            </div>
-                                            <div class="col-5">
-                                                <span>@club.HeroesCount герои</span>
-                                            </div>
-                                        </div>
+                                    <div class="col-2 body1-bold initials pl-0">
+                                        <span data-letters="@club.ClubInitials"></span>
                                     </div>
-                                    <div class="separator mt-3"></div>
-                                    <div class="row col-sm-6 vertical-center pt-3">
-                                        <div class="col-12">
-                                            <p class="body2">Координатор:</p>
-                                        </div>
-                                        <div class="col-4">
-                                            <span class="body1-bold" data-letters="@club.Coordinator.HeroInitials"></span>
-                                        </div>
-                                        <div class="col-8 body2">@club.Coordinator.Name</div>
+                                    <div class="col-10">
+                                        <h3 class="heading3 d-none d-md-block d-sm-none d-xs-none">
+                                            <span>@club.Name</span>,
+                                            <span>@club.Location</span>
+                                        </h3>
+                                        <p class="body1-bold d-sm-block d-md-none">
+                                            <span>@club.Name</span>,
+                                            <span>@club.Location</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-
-                            @* Club Missions *@
-                            <div role="tabpanel" class="tab-pane p-3" id="club_missions_{@club.Id.ToString()}">
-                                <div class="club row mt-3">
-                                    @foreach (var mission in club.Missions)
-                                    {
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="club-mission-body">
-                                                <a href="/mission/@mission.Id" target="_blank">
-                                                    <div class="img-container text-left">
-                                                        <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs body2 pr-3 pl-4" role="tablist">
+                                    <li class="nav-item active">
+                                        <a class="nav-link active tab-title pl-0 pr-0  ml-3 mr-3" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
+                                            Информация
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_missions_{@club.Id.ToString()}" data-toggle="tab">
+                                            Мисии
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_heroes_{@club.Id.ToString()}" data-toggle="tab">
+                                            Герои
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_coordinators_{@club.Id.ToString()}" data-toggle="tab">
+                                            За координатори
+                                        </a>
+                                    </li>
+                                </ul>
+                                @* Club Information *@
+                                <div class="tab-content no-border pr-3 pl-4">
+                                    <div role="tabpanel" class="tab-pane active p-3" id="club_information_{@club.Id.ToString()}">
+                                        <div class="row club body2 mt-3">
+                                            <div class="col-12">
+                                                @club.Club.Description
+                                            </div>
+                                            <div class="row col-12 mt-3">
+                                                <div class="row col-md-7 col-sm-12 text-left">
+                                                    <div class="col-5">
+                                                        <span>@club.Points точки</span>
                                                     </div>
-                                                    <h4 class="mission-title body2-bold">@mission.Title</h4>
-                                                    <p class="body3">от @mission.Club.Name</p>
-                                                </a>
+                                                    <div class="col-2">
+                                                        <span class="points-heroes-separator"></span>
+                                                    </div>
+                                                    <div class="col-5">
+                                                        <span>@club.HeroesCount герои</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="separator mt-3"></div>
+                                            <div class="row col-sm-6 vertical-center pt-3">
+                                                <div class="col-12">
+                                                    <p class="body2">Координатор:</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <span class="body1-bold" data-letters="@club.Coordinator.HeroInitials"></span>
+                                                </div>
+                                                <div class="col-8 body2">@club.Coordinator.Name</div>
                                             </div>
                                         </div>
-                                    }
-                                </div>
-                            </div>
+                                    </div>
 
-                            @* Club Heroes *@
-                            <div role="tabpanel" class="tab-pane p-3" id="club_heroes_{@club.Id.ToString()}">
-                                <div class="club row mt-3">
-                                    @foreach (var hero in club.Heroes)
-                                    {
-                                        <div class="row col-sm-6 p-1 vertical-center">
-                                            <div class="col-3 body1-bold mr-2">
-                                                <span class="body1-bold" data-letters="@hero.HeroInitials"></span>
-                                            </div>
-                                            <div class="col-8 body2"><span>@hero.Name</span></div>
+                                    @* Club Missions *@
+                                    <div role="tabpanel" class="tab-pane p-3" id="club_missions_{@club.Id.ToString()}">
+                                        <div class="club row mt-3">
+                                            @foreach (var mission in club.Missions)
+                                            {
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="club-mission-body">
+                                                        <a href="/mission/@mission.Id" target="_blank">
+                                                            <div class="img-container text-left">
+                                                                <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
+                                                            </div>
+                                                            <h4 class="mission-title body2-bold">@mission.Title</h4>
+                                                            <p class="body3">от @mission.Club.Name</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
-                                    }
+                                    </div>
 
-                                </div>
-                            </div>
+                                    @* Club Heroes *@
+                                    <div role="tabpanel" class="tab-pane p-3" id="club_heroes_{@club.Id.ToString()}">
+                                        <div class="club row mt-3">
+                                            @foreach (var hero in club.Heroes)
+                                            {
+                                                <div class="row col-sm-6 p-1 vertical-center">
+                                                    <div class="col-3 body1-bold mr-2">
+                                                        <span class="body1-bold" data-letters="@hero.HeroInitials"></span>
+                                                    </div>
+                                                    <div class="col-8 body2"><span>@hero.Name</span></div>
+                                                </div>
+                                            }
 
-                            <div role="tabpanel" class="tab-pane p-3" id="club_coordinators_{@club.Id.ToString()}">
-                                <div class="club row mt-3 body2">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</p>
-                                    <p>
-                                        <a class="btn btn-heroes text-white" href="/manager" target="_blank">admin.timeheroes.bg</a>
-                                    </p>
+                                        </div>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane p-3" id="club_coordinators_{@club.Id.ToString()}">
+                                        <div class="club row mt-3 body2">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</p>
+                                            <p>
+                                                <a class="btn btn-heroes text-white" href="/manager" target="_blank">admin.timeheroes.bg</a>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

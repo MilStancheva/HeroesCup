@@ -1018,3 +1018,10 @@ img.expired-img {
         width: 256px;
         height: 148px;
     }
+
+    .img-container .club-img {
+        object-fit: cover;
+        object-position: 50% 0;
+        width: 348px;
+        height: 484px;
+    }
