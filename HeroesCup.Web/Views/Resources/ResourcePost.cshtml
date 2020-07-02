@@ -41,6 +41,14 @@
                     </div>
 
                 </div>
+                @if (Model.Hero.PrimaryImage.HasValue)
+                {
+                    <div class="col-12 pl-0">
+                        <div class="col-sm">
+                            <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
+                        </div>
+                    </div>
+                }
                 <div class="row justify-content-start">
                     <div class="post-body body2">
                         @Html.DisplayFor(m => m.Blocks)
