@@ -14,7 +14,7 @@
         @* Events Posts *@
         @if (Model.Archive.Posts.Count > 0)
         {
-            <partial name="~/Views/Shared/Partial/_EventsList.cshtml" for="@Model.Archive.Posts" />
+            <partial name="~/Views/Events/_EventsList.cshtml" for="@Model.Archive.Posts" />
             <div class="row justify-content-center mt-4 mb-4 pb-4">
                 <form asp-controller="Events" class="margin-bottom" asp-action="EventsArchive" method="post">
                     <button id="load-events" type="submit" class="btn btn-default btn-heroes" asp-all-route-data="@eventsParams">Покажи още</button>

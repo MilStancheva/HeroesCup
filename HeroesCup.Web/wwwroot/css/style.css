@@ -437,10 +437,21 @@ header {
 /* Missions List */
 
 .mission-body{
+    width: 320px;
  
 }
 
+.club-mission-body {
+    width: 256px;
+}
+
 .mission-body > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.club-mission-body > a {
     color: #1C1E21;
     text-decoration: none;
     text-decoration-style: none;
@@ -988,10 +999,6 @@ img.expired-img {
 }
 
 .img-container {
-    min-width: 320px;
-    max-width: 320px;
-    min-height: 198px;
-    max-height: 198px;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -1004,3 +1011,10 @@ img.expired-img {
     width: 320px;
     height: 198px;
 }
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 256px;
+        height: 148px;
+    }

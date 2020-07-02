@@ -100,9 +100,11 @@
                                     @foreach (var mission in club.Missions)
                                     {
                                         <div class="col-sm-12 col-md-6">
-                                            <div class="mission-body ">
-                                                <a href="/missions/@mission.Id" target="_blank">
-                                                    <img class="img-fluid" src="@mission.ImageSrc" width="320" height="198" />
+                                            <div class="club-mission-body">
+                                                <a href="/mission/@mission.Id" target="_blank">
+                                                    <div class="img-container text-left">
+                                                        <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
+                                                    </div>
                                                     <h4 class="mission-title body2-bold">@mission.Title</h4>
                                                     <p class="body3">от @mission.Club.Name</p>
                                                 </a>
