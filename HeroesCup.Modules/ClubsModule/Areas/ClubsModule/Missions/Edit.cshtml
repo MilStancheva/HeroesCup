@@ -27,9 +27,15 @@
     }
 }
 
+
+
+
 @section script{
     @*<link src="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
 
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
     <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
@@ -46,13 +52,10 @@
     <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
     <script src="/manager/clubsmodule/js/mission-multiselect.js"></script>
 
-    <link src="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"></script>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script>
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
 }
 
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -202,7 +205,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Start Date"]</label>
-                            <input asp-for="UploadedStartDate" type="text" id='start_date' name="UploadedStartDate" required="required" />
+                            <input asp-for="UploadedStartDate" class="form-control" type="text" id='start_date' name="UploadedStartDate" required="required" data-provide="datepicker" />
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
@@ -211,7 +214,12 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["End Date"]</label>
-                            <input asp-for="UploadedEndDate" type="text" id='end_date' name="UploadedEndDate" required="required" />
+                            <div class="input-group date">
+                                <input asp-for="UploadedEndDate" class="form-control" type="text" id='end_date' name="UploadedEndDate" required="required" data-provide="datepicker" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
