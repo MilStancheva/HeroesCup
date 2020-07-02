@@ -21,13 +21,15 @@
                         @if (expiredMission)
                         {
                         <div class="img-container">
-                            <img class="img-fluid expired-img center-cropped" src="@Url.Content(mission.ImageSrc)" width="320" height="198" />
+                            <img class="img-fluid expired-img mission-img-list" src="@Url.Content(mission.ImageSrc)"  />
                             <div class="top-left body3-bold">ВИЖ РАЗКАЗ</div>
                         </div>
                         }
                         else
                         {
-                            <img class="img-fluid center-cropped" src="@Url.Content(mission.ImageSrc)" width="320"  height="198" />
+                        <div class="img-container">
+                            <img class="img-fluid mission-img-list" src="@Url.Content(mission.ImageSrc)" />
+                        </div>
                         }
                         <p class="mission-title body1-bold">@mission.Title</p>
                         <p class="body2">от @mission.Club.Name</p>

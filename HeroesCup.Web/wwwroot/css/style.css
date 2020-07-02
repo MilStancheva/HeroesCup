@@ -437,7 +437,7 @@ header {
 /* Missions List */
 
 .mission-body{
-    max-width: 320px;
+ 
 }
 
 .mission-body > a {
@@ -975,12 +975,6 @@ img.expired-img {
     filter: grayscale(100%)
 }
 
-.img-container {
-    position: relative;
-    text-align: center;
-    color: white;
-}
-
 .top-left {
     position: absolute;
     top: 12px;
@@ -991,4 +985,22 @@ img.expired-img {
     background: #E2232E;
     border-radius: 32px;
     color: white;
+}
+
+.img-container {
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 198px;
+    max-height: 198px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.img-container .mission-img-list {
+    object-fit: cover;
+    object-position: 100% 0;
+    width: 320px;
+    height: 198px;
 }
