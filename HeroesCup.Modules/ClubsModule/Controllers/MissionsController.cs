@@ -51,6 +51,12 @@ namespace ClubsModule.Controllers
             if (!ModelState.IsValid)
             {
                 ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."], false);
+                if(model.Clubs == null)
+                {
+                    var validModel = await this.missionsService.GetMissionEditModelByIdAsync(model.Mission.Id);
+                    return View("Edit", validModel);
+                }
+
                 return View("Edit", model);
             }
 
