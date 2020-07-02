@@ -584,6 +584,12 @@ header {
     bottom: 0;
 }
 
+.separator-footer {
+    width: 100%;
+    border-top: 1px solid #E0E0E0;
+    bottom: 0;
+}
+
 .vertical-center {
     margin-top: auto;
     margin-bottom: auto;
