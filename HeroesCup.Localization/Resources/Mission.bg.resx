@@ -135,6 +135,9 @@
   <data name="End Date" xml:space="preserve">
     <value>Крайна дата</value>
   </data>
+  <data name="Heroes Hint" xml:space="preserve">
+    <value>Отбележи кои герои участваха, след като мисията приключи.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Локация</value>
   </data>

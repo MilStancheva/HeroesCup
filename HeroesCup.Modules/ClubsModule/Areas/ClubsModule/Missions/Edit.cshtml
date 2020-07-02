@@ -239,9 +239,7 @@
                             </div>
                         </div>
                     }
-                </div>
-
-                
+                </div>                
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -266,9 +264,14 @@
                             </div>
                         </div>
                     </div>
+                    @if (true)
+                    {
+
+                    }
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Hero["Heroes"]</label>
+                            <p class="small">@HeroesCupLocalizer.Mission["Heroes Hint"]</p>
                             @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
                         </div>
                     </div>

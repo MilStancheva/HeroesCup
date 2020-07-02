@@ -135,6 +135,9 @@
   <data name="End Date" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="Heroes Hint" xml:space="preserve">
+    <value>Select heroes after the mission is done.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
