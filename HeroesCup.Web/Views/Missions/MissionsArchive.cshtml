@@ -39,11 +39,11 @@
                                         <div class="custom-select__trigger justify-content-center">
                                             @if (Model.SelectedLocation == null || Model.SelectedLocation == string.Empty)
                                             {
-                                                <span>@defaultLocationText</span>
+                                                <span class="mr-3">@defaultLocationText</span>
                                             }
                                             else
                                             {
-                                                <span>@Model.SelectedLocation (@currentMissionsCount)</span>
+                                                <span class="mr-3">@Model.SelectedLocation (@currentMissionsCount)</span>
                                             }
                                         </div>
                                         <div class="custom-options">
