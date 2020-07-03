@@ -36,15 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="assets\src\css\editor-styles.css" />
-    <None Remove="assets\src\images\no_image.png" />
-    <None Remove="assets\src\images\team_no_image.png" />
-    <None Remove="assets\src\images\team_no_image.svg" />
-    <None Remove="assets\src\js\editor.js" />
-    <None Remove="assets\src\js\mission-multiselect.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="assets\src\css\editor-styles.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

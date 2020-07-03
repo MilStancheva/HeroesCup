@@ -138,6 +138,9 @@
   <data name="Heroes" xml:space="preserve">
     <value>Heroes</value>
   </data>
+  <data name="Image Suggestion" xml:space="preserve">
+    <value>Change the image with yours. Suggested width - 384 px, height - 484 px.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Organization Name is mandatory." xml:space="preserve">
     <value>Organization Name is mandatory.</value>
+  </data>
+  <data name="Organization Number is mandatory." xml:space="preserve">
+    <value>Organization Number is mandatory.</value>
   </data>
   <data name="Organization Type" xml:space="preserve">
     <value>Organization / School Type</value>

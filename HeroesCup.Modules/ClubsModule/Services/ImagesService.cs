@@ -165,5 +165,88 @@ namespace ClubsModule.Services
         {
             return await this.dbContext.StoryImages.Where(si => si.StoryId == storyId).FirstOrDefaultAsync();
         }
+
+        public async Task CreateMissionIdeaImageAsync(Image image, MissionIdea missionIdea)
+        {
+            var oldMissionIdeaImages = this.dbContext.MissionIdeaImages
+                .Where(mi => mi.MissionIdeaId == missionIdea.Id)
+                .Include(mi => mi.Image);
+
+            if (oldMissionIdeaImages != null)
+            {
+                foreach (var missionIdeaImage in oldMissionIdeaImages)
+                {
+                    await this.DeleteMissionIdeaImageAsync(missionIdeaImage);
+                }
+            }
+
+            this.dbContext.Images.Add(image);
+            this.dbContext.MissionIdeaImages.Add(new MissionIdeaImage()
+            {
+                MissionIdea = missionIdea,
+                Image = image
+            });
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteMissionIdeaImageAsync(MissionIdeaImage missionIdeaImage, bool commit = false)
+        {
+            this.dbContext.Images.Remove(missionIdeaImage.Image);
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task<MissionIdeaImage> GetMissionIdeaImageAsync(Guid missionIdeaId)
+        {
+            return await this.dbContext.MissionIdeaImages
+                .Where(mi => mi.MissionIdeaId == missionIdeaId)
+                .Include(mi => mi.Image)
+                .FirstOrDefaultAsync();
+        }
+
+        public string GetMissionImageSource(Mission mission)
+        {
+            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
+            {
+                var missionImage = mission.MissionImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+
+                return imageSrc;
+            }
+
+            return String.Empty;
+        }
+
+        public string GetStoryImageSource(Story story)
+        {
+            if (story == null)
+            {
+                return String.Empty;
+            }
+            else
+            {
+                var storyImage = story.StoryImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes);
+
+                return imageSrc;
+            }
+        }
+
+        public string GetMissionIdeaImageSource(MissionIdea missionIdea)
+        {
+            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
+            {
+                var missionImage = missionIdea.MissionIdeaImages.FirstOrDefault();
+                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+
+                return imageSrc;
+            }
+
+            return String.Empty;
+        }
     }
 }

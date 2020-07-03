@@ -8,9 +8,9 @@ namespace ClubsModule.Services.Contracts
 {
     public interface IMissionsService
     {
-        Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId);
+        Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId = null);
 
-        Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId);
+        Task<MissionEditModel> CreateMissionEditModelAsync(Guid? ownerId = null);
 
         Task<Guid> SaveMissionEditModelAsync(MissionEditModel model);
 
@@ -18,7 +18,7 @@ namespace ClubsModule.Services.Contracts
 
         Task<bool> UnpublishMissionEditModelAsync(Guid missionId);
 
-        Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId);
+        Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId = null);
 
         Task<bool> DeleteAsync(Guid id);
 
@@ -28,6 +28,12 @@ namespace ClubsModule.Services.Contracts
 
         IEnumerable<string> GetMissionSchoolYears();
 
-        IEnumerable<Mission> GetAllHeroesCupPublishedMissions();
+        IEnumerable<Mission> GetAllPublishedMissions();
+
+        Task<bool> PinMissionEditModelAsync(Guid id);
+
+        Task<bool> UnpinMissionEditModelAsync(Guid id);
+
+        Task<IEnumerable<Mission>> GetPinnedMissions();
     }
 }

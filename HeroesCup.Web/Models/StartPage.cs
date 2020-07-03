@@ -1,3 +1,4 @@
+using HeroesCup.Data.Models;
 using HeroesCup.Models.Regions;
 using HeroesCup.Web.Models;
 using Piranha.AttributeBuilder;
@@ -23,9 +24,9 @@ namespace HeroesCup.Models
         public int HoursCount { get; set; }
 
         /// <summary>
-        /// Gets/sets the available linked missions.
+        /// Gets/sets the available Timeheroes missions.
         /// </summary>
-        public IList<LinkMissionPost> LinkedMissions { get; set; }
+        public IEnumerable<MissionViewModel> Missions { get; set; }
 
         public ClubListViewModel Clubs { get; set; }
 
@@ -38,7 +39,7 @@ namespace HeroesCup.Models
         /// </summary>
         public StartPage()
         {
-            LinkedMissions = new List<LinkMissionPost>();
+            Missions = new List<MissionViewModel>();
             SchoolYears = new List<string>();
             Clubs = new ClubListViewModel();
         }

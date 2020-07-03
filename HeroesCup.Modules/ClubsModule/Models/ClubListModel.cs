@@ -18,6 +18,8 @@ namespace ClubsModule.Models
 
         public string OrganizationName { get; set; }
 
+        public string OrganizationNumber { get; set; }
+
         public int HeroesCount { get; set; }
     }
 }

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add Timeheroes Mission" xml:space="preserve">
+    <value>Add Timeheroes Mission</value>
+  </data>
   <data name="Club Organizer" xml:space="preserve">
     <value>Club Organizer</value>
   </data>
@@ -132,6 +135,15 @@
   <data name="End Date" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="EquipmentSubtitle" xml:space="preserve">
+    <value>Is additional equipment needed? Who will provide it? What is the plan for bad weather?</value>
+  </data>
+  <data name="Heroes Hint" xml:space="preserve">
+    <value>Select heroes after the mission is done.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="Missions" xml:space="preserve">
     <value>Missions</value>
+  </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Pinned</value>
   </data>
   <data name="Stars" xml:space="preserve">
     <value>Stars</value>
@@ -153,11 +168,17 @@
   <data name="The mission could not be found." xml:space="preserve">
     <value>The mission could not be found.</value>
   </data>
+  <data name="The mission could not be pinned to home page." xml:space="preserve">
+    <value>The mission could not be pinned to home page.</value>
+  </data>
   <data name="The mission could not be published." xml:space="preserve">
     <value>The mission could not be published.</value>
   </data>
   <data name="The mission could not be saved." xml:space="preserve">
     <value>The mission could not be saved.</value>
+  </data>
+  <data name="The mission could not be unpinned from home page." xml:space="preserve">
+    <value>The mission could not be unpinned from home page.</value>
   </data>
   <data name="The mission could not be unpublished." xml:space="preserve">
     <value>The mission could not be unpublished.</value>
@@ -165,11 +186,17 @@
   <data name="The mission has been deleted." xml:space="preserve">
     <value>The mission has been deleted.</value>
   </data>
+  <data name="The mission has been pinned to home page." xml:space="preserve">
+    <value>The mission has been pinned to home page.</value>
+  </data>
   <data name="The mission has been published." xml:space="preserve">
     <value>The mission has been published.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
     <value>The mission has been saved.</value>
+  </data>
+  <data name="The mission has been unpinned from home page." xml:space="preserve">
+    <value>The mission has been unpinned from home page.</value>
   </data>
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>The mission has been unpublished.</value>
@@ -179,5 +206,29 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="What" xml:space="preserve">
+    <value>What</value>
+  </data>
+  <data name="WhatSubtitle" xml:space="preserve">
+    <value>What is the event you are organizing?</value>
+  </data>
+  <data name="When" xml:space="preserve">
+    <value>When</value>
+  </data>
+  <data name="WhenSubtitle" xml:space="preserve">
+    <value>When the evenet will take place and how long will it continue?</value>
+  </data>
+  <data name="Where" xml:space="preserve">
+    <value>Where</value>
+  </data>
+  <data name="WhereSubtitle" xml:space="preserve">
+    <value>Where the event will take place and the meeting details.</value>
+  </data>
+  <data name="Why" xml:space="preserve">
+    <value>Why</value>
+  </data>
+  <data name="WhySubtitle" xml:space="preserve">
+    <value>How will you motivate the volunteers to participate?</value>
   </data>
 </root>

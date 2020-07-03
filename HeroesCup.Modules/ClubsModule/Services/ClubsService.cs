@@ -110,6 +110,7 @@ namespace ClubsModule.Services
                                     Name = c.Name,
                                     OrganizationType = c.OrganizationType,
                                     OrganizationName = c.OrganizationName,
+                                    OrganizationNumber = c.OrganizationNumber,
                                     HeroesCount = c.Heroes != null ? c.Heroes.Count() : 0
                                 })
 
@@ -138,6 +139,7 @@ namespace ClubsModule.Services
             club.Location = model.Club.Location;
             club.OrganizationType = model.Club.OrganizationType;
             club.OrganizationName = model.Club.OrganizationName.TrimInput();
+            club.OrganizationNumber = model.Club.OrganizationNumber.TrimInput();
             club.Description = model.Club.Description;
 
 

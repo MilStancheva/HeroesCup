@@ -17,7 +17,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Clubs_List_Not_Null_When_There_Are_No_Clubs()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -35,7 +35,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Throw_When_Passed_School_Year_Is_Null()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -53,7 +53,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Throw_When_Passed_School_Year_Is_Empty()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
 
@@ -71,7 +71,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Clubs_List_Count_Equal_To_The_Clubs_For_The_Passed_School_Year()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";
@@ -93,6 +93,12 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Name = "Hero",
                 IsCoordinator = false
             };
+            var missionContent = new MissionContent();
+            missionContent.What = "what";
+            missionContent.When = "When";
+            missionContent.Where = "Where";
+            missionContent.Why = "Why";
+            missionContent.Equipment = "Equipment";
             var mission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -101,8 +107,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Mission location",
                 Club = club,
                 ClubId = club.Id,
-                Content = "Mission content",
-                Type = MissionType.HeroesCupMission,
+                Content = missionContent,
                 SchoolYear = schoolYear,
                 Stars = 2,
                 IsPublished = true,
@@ -136,7 +141,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         public async Task Return_ClubListViewModel_With_Calculated_Points_For_Every_Club()
         {
             // Arrange
-            var missionsServiceMock = new Mock<IMissionsService>();
+            var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";
@@ -178,6 +183,12 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Name = "Second Hero",
                 IsCoordinator = true
             };
+            var missionContent = new MissionContent();
+            missionContent.What = "what";
+            missionContent.When = "When";
+            missionContent.Where = "Where";
+            missionContent.Why = "Why";
+            missionContent.Equipment = "Equipment";
             var mission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -186,14 +197,19 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Mission location",
                 Club = club,
                 ClubId = club.Id,
-                Content = "Mission content",
-                Type = MissionType.HeroesCupMission,
+                Content = missionContent,
                 SchoolYear = schoolYear,
                 Stars = 2,
                 IsPublished = true,
                 StartDate = new DateTime(2020, 5, 28).ToUnixMilliseconds(),
                 EndDate = new DateTime(2020, 6, 28).ToUnixMilliseconds()
             };
+            var secondMissionContent = new MissionContent();
+            secondMissionContent.What = "what";
+            secondMissionContent.When = "When";
+            secondMissionContent.Where = "Where";
+            secondMissionContent.Why = "Why";
+            secondMissionContent.Equipment = "Equipment";
             var secondMission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -202,8 +218,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Second mission location",
                 Club = secondClub,
                 ClubId = secondClub.Id,
-                Content = "Second mission content",
-                Type = MissionType.HeroesCupMission,
+                Content = secondMissionContent,
                 SchoolYear = schoolYear,
                 Stars = 3,
                 IsPublished = true,

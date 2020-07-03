@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
 {
-    public interface IImagesService : IClubImagesService, IMissionImagesService, IStoryImageService
+    public interface IImagesService : IClubImagesService, IMissionImagesService, IStoryImageService, IMissionIdeaImagesService
     {
         Task<Image> GetImage(Guid id);
 

@@ -43,6 +43,13 @@ namespace HeroesCup.Modules.ClubsModule
             new PermissionItem { Name = Permissions.StoriesEdit, Title = "Edit Stories", Category = "Stories", IsInternal = true },
             new PermissionItem { Name = Permissions.StoriesSave, Title = "Save Stories", Category = "Stories", IsInternal = true },
             new PermissionItem { Name = Permissions.StoriesPublish, Title = "Publish Stories", Category = "Stories", IsInternal = true },
+
+            new PermissionItem { Name = Permissions.MissionIdeas, Title = "List Mission Ideas", Category = "Mission Ideas", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionIdeasAdd, Title = "Add Mission Ideas", Category = "Mission Ideas", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionIdeasDelete, Title = "Delete Mission Ideas", Category = "Mission Ideas", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionIdeasEdit, Title = "Edit Mission Ideas", Category = "Mission Ideas", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionIdeasSave, Title = "Save Mission Ideas", Category = "Mission Ideas", IsInternal = true },
+            new PermissionItem { Name = Permissions.MissionIdeasPublish, Title = "Publish Mission Ideas", Category = "Mission Ideas", IsInternal = true },
         };
 
         /// <summary>
@@ -125,6 +132,15 @@ namespace HeroesCup.Modules.ClubsModule
                 Route = "~/manager/stories",
                 Policy = Permissions.Stories,
                 Css = "fas fa-history"
+            });
+
+            Menu.Items["ClubsModule"].Items.Add(new MenuItem
+            {
+                InternalId = "MissionIdeas",
+                Name = "Mission Ideas",
+                Route = "~/manager/missionideas",
+                Policy = Permissions.MissionIdeas,
+                Css = "far fa-lightbulb"
             });
 
             App.Blocks.Register<Clubs>();

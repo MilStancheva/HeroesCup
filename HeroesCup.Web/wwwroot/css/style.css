@@ -436,7 +436,22 @@ header {
 
 /* Missions List */
 
+.mission-body{
+    width: 320px;
+ 
+}
+
+.club-mission-body {
+    width: 256px;
+}
+
 .mission-body > a {
+    color: #1C1E21;
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.club-mission-body > a {
     color: #1C1E21;
     text-decoration: none;
     text-decoration-style: none;
@@ -456,10 +471,6 @@ header {
     .mission-title:hover {
         color: #FE5E17;
     }
-
-.missions-block {
-    padding-bottom: 48px;
-}
 
 .container {
     margin-top: 48px;
@@ -532,8 +543,8 @@ header {
 .center-cropped {
     object-fit: none; /* Do not scale the image */
     object-position: center; /* Center the image within the element */
-    height: 100px;
-    width: 100px;
+    /*height: 100px;
+    width: 100px;*/
 }
 
 /* Nav icon */
@@ -581,6 +592,12 @@ header {
 .separator {
     width: 100%;
     border-top: 1px solid #EEECE6;
+    bottom: 0;
+}
+
+.separator-footer {
+    width: 100%;
+    border-top: 1px solid #E0E0E0;
     bottom: 0;
 }
 
@@ -663,7 +680,7 @@ a.leaderboard-club {
 }
 
 .tabpanel, .tabbable {
-    background-color: #FAF8F3;
+    background-color: none;
 }
 
 a .tab-title {
@@ -709,8 +726,22 @@ a .tab-title {
     border: none;
 }
 
-/* Items List */
+/* Missions Tabs  */
+.missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+    border: none;
+}
 
+
+.missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border: none;
+    background: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    color: #FE5E17;
+    border-bottom: 2px solid #FE5E17;
+}
+
+/* Items List */
 .item-body > a {
     color: #1C1E21;
     text-decoration: none;
@@ -850,7 +881,7 @@ a:hover .resource-icon-article {
 .home-background {
     top: 0;
     margin-top: 0;
-    background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat;
+    background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat, url('../images/background/hero_home_left_center_top.svg') left 60% no-repeat, url('../images/background/hero_home_left_center_bottom.svg') left 68% no-repeat;
     background-color: #FAF8F3;
 }
 
@@ -873,6 +904,13 @@ a:hover .resource-icon-article {
     top: 0;
     margin-top: 0;
     background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 10% no-repeat;
+    background-color: #FAF8F3;
+}
+
+.missions-background {
+    top: 0;
+    margin-top: 0;
+    background: url('../images/background/hero_missions_left.svg') left top no-repeat, url('../images/background/hero_missions_right.svg') right top no-repeat;
     background-color: #FAF8F3;
 }
 
@@ -941,3 +979,49 @@ a:hover .resource-icon-article {
 p.bottom-padding {
     margin-bottom: 0;
 }
+
+
+img.expired-img {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%)
+}
+
+.top-left {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: row;
+    padding: 4px 12px;
+    background: #E2232E;
+    border-radius: 32px;
+    color: white;
+}
+
+.img-container {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.img-container .mission-img-list {
+    object-fit: cover;
+    object-position: 100% 0;
+    width: 320px;
+    height: 198px;
+}
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 256px;
+        height: 148px;
+    }
+
+    .img-container .club-img {
+        object-fit: cover;
+        object-position: 50% 0;
+        width: 348px;
+        height: 484px;
+    }

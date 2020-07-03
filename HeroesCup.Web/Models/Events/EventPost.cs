@@ -21,8 +21,8 @@ namespace HeroesCup.Web.Models.Events
         /// <summary>
         /// Gets/sets the post author.
         /// </summary>
-        [Region(Title="Author")]
-        public StringField Author { get; set; }
+        [Region(Title = "Author")]
+        public StringField Author { get; set; } = "TimeHeroes";
 
         public IEnumerable<EventPost> OtherEvents { get; set; }
 

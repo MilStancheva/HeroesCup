@@ -41,14 +41,22 @@
                     </div>
 
                 </div>
-                <div class="row justify-content-center">
-                    <div class="post-body body2">
+                @if (Model.Hero.PrimaryImage.HasValue)
+                {
+                    <div class="col-12 pl-0">
+                        <div class="col-sm">
+                            <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
+                        </div>
+                    </div>
+                }
+                <div class="row justify-content-start">
+                    <div class="col-12 post-body body2">
                         @Html.DisplayFor(m => m.Blocks)
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 justify-content-start pt-4 pb-4">
-                <div class="row share-buttons">
+                <div class="row share-buttons ml-2">
                     <div class="col-12">
                         <span class="text-regular">Сподели тoзи ресурс:</span>
                     </div>
@@ -80,7 +88,7 @@
                 <div class="col-12">
                     <h2 class="heading2">Още ресурси</h2>
                 </div>
-                <partial name="~/Views/Shared/Partial/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                <partial name="~/Views/Resources/_ResourcesList.cshtml" for="@Model.OtherResources" />
             }
 
         </div>

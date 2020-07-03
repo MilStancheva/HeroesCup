@@ -1,31 +1,40 @@
 ﻿using HeroesCup.Models;
 using HeroesCup.Web.Models;
 using HeroesCup.Web.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HeroesCup.Controllers
 {
     public class CmsController : Controller
     {
-        private readonly IApi _api;
-        private readonly IModelLoader _loader;
+        private readonly IApi api;
+        private readonly IModelLoader loader;
         private readonly ILeaderboardService leaderboardService;
         private readonly IStatisticsService statisticsService;
+        private readonly IMissionsService missionsService;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="api">The current api</param>
-        public CmsController(IApi api, IModelLoader loader, ILeaderboardService leaderboardService, IStatisticsService statisticsService)
+        public CmsController(
+            IApi api, 
+            IModelLoader loader, 
+            ILeaderboardService leaderboardService, 
+            IStatisticsService statisticsService,
+            IMissionsService missionsService)
         {
-            _api = api;
-            _loader = loader;
+            this.api = api;
+            this.loader = loader;
             this.leaderboardService = leaderboardService;
             this.statisticsService = statisticsService;
+            this.missionsService = missionsService;
         }
 
         /// <summary>
@@ -42,8 +51,8 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<BlogArchive>(id, HttpContext.User, draft);
-            model.Archive = await _api.Archives.GetByIdAsync(id, page, category, tag, year, month);
+            var model = await this.loader.GetPageAsync<BlogArchive>(id, HttpContext.User, draft);
+            model.Archive = await this.api.Archives.GetByIdAsync(id, page, category, tag, year, month);
 
             return View(model);
         }
@@ -56,7 +65,7 @@ namespace HeroesCup.Controllers
         [Route("page")]
         public async Task<IActionResult> Page(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<StandardPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<StandardPage>(id, HttpContext.User, draft);
 
             return View(model);
         }
@@ -69,7 +78,7 @@ namespace HeroesCup.Controllers
         [Route("post")]
         public async Task<IActionResult> Post(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPostAsync<BlogPost>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPostAsync<BlogPost>(id, HttpContext.User, draft);
 
             return View(model);
         }
@@ -82,7 +91,7 @@ namespace HeroesCup.Controllers
         [Route("/")]
         public async Task<IActionResult> Start(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
 
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
@@ -96,6 +105,7 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
+            model.Missions = await this.missionsService.GetPinnedMissionViewModels();
 
             return View(model);
         }
@@ -109,7 +119,7 @@ namespace HeroesCup.Controllers
         [Route("/")]
         public async Task<IActionResult> Start(Guid id, String selectedSchoolYear, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
 
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
@@ -123,57 +133,10 @@ namespace HeroesCup.Controllers
             model.HeroesCount = this.statisticsService.GetAllHeroesCount();
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
+            model.Missions = await this.missionsService.GetPinnedMissionViewModels();
 
             return View(model);
-        }
-
-
-        /// <summary>
-        /// Gets the link-mission with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("link-mission")]
-        public async Task<IActionResult> LinkMissionPost(Guid id, bool draft = false)
-        {
-            var model = await _loader.GetPostAsync<LinkMissionPost>(id, HttpContext.User, draft);
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Gets the blog-mission with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("blog-mission")]
-        public async Task<IActionResult> BlogMissionPost(Guid id, bool draft = false)
-        {
-            var model = await _loader.GetPostAsync<BlogMissionPost>(id, HttpContext.User, draft);
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// Gets the missions archive with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="year">The optional year</param>
-        /// <param name="month">The optional month</param>
-        /// <param name="page">The optional page</param>
-        /// <param name="category">The optional category</param>
-        /// <param name="tag">The optional tag</param>
-        /// <param name="draft">If a draft is requested</param>
-        [Route("missions")]
-        public async Task<IActionResult> MissionsArchive(Guid id, int? year = null, int? month = null, int? page = null,
-            Guid? category = null, Guid? tag = null, bool draft = false)
-        {
-            var model = await _loader.GetPageAsync<MissionsArchive>(id, HttpContext.User, draft);
-            model.LinkMissionArchive = await _api.Archives.GetByIdAsync<LinkMissionPost>(id, page, category, tag, year, month);
-            model.BlogMissionArchive = await _api.Archives.GetByIdAsync<BlogMissionPost>(id, page, category, tag, year, month);
-
-            return View(model);
-        }
+        }       
 
         /// <summary>
         /// Gets the landing page with the given id.
@@ -183,7 +146,7 @@ namespace HeroesCup.Controllers
         [Route("/landing")]
         public async Task<IActionResult> LandingPage(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<LandingPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<LandingPage>(id, HttpContext.User, draft);
 
             return View(model);
         }
@@ -196,7 +159,7 @@ namespace HeroesCup.Controllers
         [Route("/about")]
         public async Task<IActionResult> AboutPage(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<AboutPage>(id, HttpContext.User, draft);
+            var model = await this.loader.GetPageAsync<AboutPage>(id, HttpContext.User, draft);
 
             return View(model);
         }

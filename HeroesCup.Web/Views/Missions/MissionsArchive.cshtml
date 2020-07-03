@@ -1,0 +1,141 @@
+﻿@model MissionsPage
+@inject IApi Api
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.TypeId = Model.TypeId;
+
+    var selectLocations = new List<SelectListItem>();
+    var currentMissionsCount = Model.Missions.Count();
+    @foreach (var location in Model.MissionsPerLocation)
+    {
+        selectLocations.Add(new SelectListItem($"{location.Key} ({location.Value})", location.Key));
+    }
+
+    var defaultLocationText = $"Цяла България ({Model.MissionsCount})";
+}
+
+<div class="main">
+    <div class="container">
+        <div class="tabbable mt-md-5 pt-md-5">
+            <ul class="nav nav-tabs mt-5 pt-5" role="tablist">
+                <li class="nav-item mr-3">
+                    <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3 heading3" data-toggle="tab" href="#missions" role="tab">Ученически мисии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab-title pl-0 pr-0  ml-3 mr-3 heading3" data-toggle="tab" href="#missionideas" role="tab">Грабни идея</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active mb-4" id="missions">
+                    <div class="row mt-5 pt-4 pb-4">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <form asp-action="MissionsArchive" method="post" asp-for="SelectedLocation" id="location-form">
+                                <div class="custom-select-wrapper">
+                                    <div class="btn locations-button custom-select">
+                                        <div class="custom-select__trigger justify-content-center">
+                                            @if (Model.SelectedLocation == null || Model.SelectedLocation == string.Empty)
+                                            {
+                                                <span class="mr-3">@defaultLocationText</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="mr-3">@Model.SelectedLocation (@currentMissionsCount)</span>
+                                            }
+                                        </div>
+                                        <div class="custom-options">
+                                            <input class="custom-option" type="submit" id="selectedLocation" name="selectedLocation" value="@defaultLocationText" />
+                                            @foreach (var location in selectLocations)
+                                            {
+                                                if (Model.SelectedLocation == location.Value)
+                                                {
+                                                    <input class="custom-option selected" type="submit" id="selectedLocation-@location.Value" name="selectedLocation" value="@location.Text" />
+                                                }
+                                                else
+                                                {
+                                                    <input class="custom-option" type="submit" id="selectedLocation-@location.Value" name="selectedLocation" value="@location.Text" />
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    @if (Model.SelectedLocation == null)
+                    {
+                        <div id="missions-partial">
+                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
+                        </div>
+                        <div class="row justify-content-center mt-4 mb-5 pb-4">
+                            <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
+                        </div>
+                    }
+                    else
+                    {
+                        int firstCount = 0;
+                        int secondCount = 0;
+                        int count = Model.Missions.Count();
+                        @if (count < 4)
+                        {
+                            firstCount = 3;
+                        } 
+                        else if (count < 7)
+                        {
+                            firstCount = 3;
+                            secondCount = count - firstCount;
+                        }
+                        else if (count < 10)
+                        {
+                            firstCount = 6;
+                            secondCount = count - firstCount;
+                        }
+
+                        var missionsFirstHalf = @Model.Missions.Take(firstCount);
+                        var missionsSecondHalf = @Model.Missions.Skip(firstCount).Take(secondCount);
+
+                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+                        <div class="col-12 separator mb-4 mt-5"></div>
+
+                        <partial name="~/Views/Missions/_MissionsBanner.cshtml" for="@Model.Title" />
+                        @if (secondCount > 0)
+                        {
+                            <div class="col-12 separator mb-4 mt-"></div>
+                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+                        }
+
+                    }
+
+                </div>
+
+                <div role="tabpanel" id="missionideas" class="tab-pane missions-block mb-4">
+                    <div class="row mt-5 pt-4 pb-4">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                        </div>
+                        <div class="coml-md-4 col-sm-12">
+
+                        </div>
+                    </div>
+                    <div id="missionideas-partial">
+                        <partial name="~/Views/Missions/_MissionIdeasList.cshtml" for="@Model.MissionIdeas" />
+                    </div>
+                    <div id="more-missionideas"></div>
+                    <div class="row justify-content-center mt-4 mb-5 pb-4">
+                        <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+    </div>
+</div>
+
+@section script{
+    <script src="~/scripts/missions-load-more.js" type="text/javascript"></script>
+    <script src="~/scripts/missions-load-by-location.js" type="text/javascript"></script>
+}

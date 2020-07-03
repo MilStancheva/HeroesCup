@@ -36,9 +36,11 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IClubsService, ClubsService>();
             services.AddTransient<IImagesService, ImagesService>();
             services.AddTransient<IUserManager, UserManager>();
-            services.AddTransient<IMissionsService, MissionsService>();
+            services.AddScoped<IMissionsService, MissionsService>();
             services.AddTransient<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
+            services.AddScoped<IMissionIdeasService, MissionIdeasService>();
+            services.AddTransient<IMissionContentsService, MissionContentsService>();
 
             // Add localization service
             services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();
@@ -212,6 +214,48 @@ namespace HeroesCup.Modules.ClubsModule
                     policy.RequireClaim(Permissions.Stories, Permissions.Stories);
                     policy.RequireClaim(Permissions.StoriesPublish, Permissions.StoriesPublish);
                 });
+
+                // Mission Ideas policies
+                options.AddPolicy(Permissions.MissionIdeas, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasAdd, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasAdd, Permissions.MissionIdeasAdd);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasDelete, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasDelete, Permissions.MissionIdeasDelete);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasEdit, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasEdit, Permissions.MissionIdeasEdit);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasSave, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasSave, Permissions.MissionIdeasSave);
+                });
+
+                options.AddPolicy(Permissions.MissionIdeasPublish, policy =>
+                {
+                    policy.RequireClaim(Permission.Admin, Permission.Admin);
+                    policy.RequireClaim(Permissions.MissionIdeas, Permissions.MissionIdeas);
+                    policy.RequireClaim(Permissions.MissionIdeasPublish, Permissions.MissionIdeasPublish);
+                });
             });
 
             return services;
@@ -232,17 +276,8 @@ namespace HeroesCup.Modules.ClubsModule
                 endpoints.MapClubsModule();
             });
 
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");            
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
-            
-            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://unpkg.com/gijgo@1.9.13/js/messages/messages.bg-bg.js");
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-datetimepicker.js");
-
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/editor.js");
-
-            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/mission-multiselect.js");      
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

@@ -179,3 +179,25 @@ input.custom-option {
         background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
         border-radius: 32px;
     }
+
+
+.locations-button {
+    min-width: 166px;
+    min-height: 48px;
+    max-width: 258px;
+    max-height: 48px;
+    padding: 12px 24px;
+    border: none;
+    background-color: #EBE7FD;
+    border-radius: 32px;
+}
+
+    .locations-button:hover {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.08), rgba(55, 10, 235, 0.08)), #EBE7FD;
+        border-radius: 32px;
+    }
+
+    .locations-button:active {
+        background: linear-gradient(0deg, rgba(55, 10, 235, 0.16), rgba(55, 10, 235, 0.16)), #EBE7FD;
+        border-radius: 32px;
+    }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace HeroesCup.Data.Models
 {
@@ -9,8 +8,6 @@ namespace HeroesCup.Data.Models
         public Guid Id { get; set; }
 
         public string Title { get; set; }
-
-        public MissionType Type { get; set; }
 
         public string Location { get; set; }
 
@@ -29,23 +26,14 @@ namespace HeroesCup.Data.Models
 
         public ICollection<MissionImage> MissionImages { get; set; }
 
-        public string Content { get; set; }
-
-        public string TimeheroesUrl { get; set; }
+        public MissionContent Content { get; set; }
 
         public Guid OwnerId { get; set; }
 
         public bool IsPublished { get; set; }
 
+        public bool IsPinned { get; set; }
+
         public Story Story { get; set; }
-    }
-
-    public enum MissionType
-    {
-        [Display(Name = "Timeheroes Mission")]
-        TimeheroesMission = 0,
-
-        [Display(Name = "HeroesCup Mission")]
-        HeroesCupMission = 1
     }
 }

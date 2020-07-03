@@ -37,7 +37,7 @@
                 <th>@HeroesCupLocalizer.General["Published"]</th>
                 @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
                 {
-                    <th>@HeroesCupLocalizer.Mission["Type"]</th>
+                    <th>@HeroesCupLocalizer.Mission["Pinned"]</th>
                 }
                 <th class="actions one"></th>
             </tr>
@@ -78,9 +78,12 @@
                     </td>
                     @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
                     {
-                        <td>
-                            <span class="title">@mission.Type</span>
-                        </td>
+                <td>
+                    @if (@mission.IsPinned)
+                    {
+                        <span class="title"><i class="fas fa-check text-success"></i></span>
+                    }
+                </td>
                     }
                     <td class="actions one">
                         @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsDelete)).Succeeded)

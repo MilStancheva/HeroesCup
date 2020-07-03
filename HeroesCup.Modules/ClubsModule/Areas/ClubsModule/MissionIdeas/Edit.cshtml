@@ -1,0 +1,140 @@
+﻿@model ClubsModule.Models.MissionIdeaEditModel
+@inject IAuthorizationService Auth
+@inject ManagerLocalizer Localizer
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
+@{
+    ViewBag.Title = "Edit mission idea";
+    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Mission Ideas"];    
+}
+
+@section script{
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+}
+
+@using (var form = Html.BeginForm("Save", "MissionIdeas", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m.MissionIdea.Id)
+    @Html.HiddenFor(m => m.ImageSrc)
+
+    <div class="top">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">@HeroesCupLocalizer.MissionIdea["Mission Ideas"]</li>
+                <li class="breadcrumb-item" aria-current="page"><a href="@Url.Action("List")">@HeroesCupLocalizer.MissionIdea["Mission Ideas"]</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Localizer.General["Edit"]</li>
+            </ol>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="top-nav">
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded)
+                {
+                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                        <span class="btn-label">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        @Localizer.General["Save"]
+                    </button>
+                }
+
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                {
+                    @if (Model.MissionIdea.IsPublished == false)
+                    {
+                        <button asp-action="Publish" class="btn btn-labeled btn-success pull-right">
+                            <span class="btn-label">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            @Localizer.General["Publish"]
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <button asp-action="Unpublish" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <span class="title">@Localizer.General["General"]</span>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.General["Title"]</label>
+                            @Html.TextBoxFor(m => m.MissionIdea.Title, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Location"]</label>
+                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Mission Idea URL"]</label>
+                            @Html.TextBoxFor(m => m.MissionIdea.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.General["Image"]</label>
+                            <div class="row col-12">
+                                <div class="col-6">
+                                    @if (Model.ImageSrc != null)
+                                    {
+                                        <img src="@Model.ImageSrc" alt="Mission Image">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
+                                    }
+
+                                </div>
+                                <div class="col-6">
+                                    <input type="file" asp-for="Image" class="form-control-file" />
+                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.General["Content"]</label>
+                            @Html.TextAreaFor(m => m.MissionIdea.Content, new { @class = "form-control small", @id = "editor"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

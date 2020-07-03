@@ -101,5 +101,25 @@ namespace HeroesCup.Web.Services
                 await _api.Pages.SaveAsync<EventsArchive>(newEventsPage);
             }
         }
+
+        public async Task SeedMissionsPageAsync()
+        {
+            var site = await _api.Sites.GetDefaultAsync();
+            var pages = await _api.Pages.GetAllAsync();
+            var eventsPage = pages.ToList().FirstOrDefault(p => p.TypeId == "MissionsPage");
+            if (eventsPage == null)
+            {
+                var newMissionsPage = await MissionsPage.CreateAsync(_api);
+                newMissionsPage.Id = Guid.NewGuid();
+                newMissionsPage.SiteId = site.Id;
+                newMissionsPage.Title = this._configuration["MissionsPageSettings:Title"];
+                newMissionsPage.Slug = this._configuration["MissionsPageSettings:Slug"];
+                newMissionsPage.MetaKeywords = this._configuration["MissionsPageSettings:MetaKeywords"];
+                newMissionsPage.MetaDescription = this._configuration["MissionsPageSettings:MetaKeywords"];
+                newMissionsPage.NavigationTitle = this._configuration["MissionsPageSettings:NavigationTitle"];
+                newMissionsPage.Published = DateTime.Now;
+                await _api.Pages.SaveAsync<MissionsPage>(newMissionsPage);
+            }
+        }
     }
 }

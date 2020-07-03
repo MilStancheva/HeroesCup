@@ -68,7 +68,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Club["Organization Number"]</label>
+                            @Html.TextBoxFor(m => m.Club.OrganizationNumber, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.Club["Organization Number is mandatory."]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Type"]</label>
                             @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "" })
@@ -100,6 +109,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Logo"]</label>
+                            <p class="small"> @HeroesCupLocalizer.Club["Image Suggestion"]</p>
                             <div class="row col-12">
                                 <div class="col-6">
                                     @if (Model.LogoSrc != null)

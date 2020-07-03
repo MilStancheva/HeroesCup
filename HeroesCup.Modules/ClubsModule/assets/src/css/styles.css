@@ -16,3 +16,29 @@
     height: 100%;
     padding: 0 1rem;
 }
+
+.ui-menu-item {
+    display: block;
+    width: 20%;
+    padding: 1%;
+    background-color: white;
+}
+
+    .ui-menu-item:hover {
+        background-color: #3585F5;
+        color: white;
+        cursor: pointer;
+    }
+
+#heroes.multiselect {
+    display: none;
+}
+
+
+button.multiselect {
+    width: 120%;
+}
+
+.multiselect-container {
+    padding: 5%;
+}

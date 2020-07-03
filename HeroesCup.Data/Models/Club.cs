@@ -16,6 +16,8 @@ namespace HeroesCup.Data.Models
 
         public string OrganizationType { get; set; }
 
+        public string OrganizationNumber { get; set; }
+
         public string Location { get; set; }
 
         public string Description { get; set; }

@@ -11,5 +11,7 @@ namespace ClubsModule.Services.Contracts
         Task DeleteStoryImageAsync(StoryImage storyImage, bool commit = false);
 
         Task<StoryImage> GetStoryImage(Guid storyId);
+
+        string GetStoryImageSource(Story story);
     }
 }

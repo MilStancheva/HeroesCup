@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add Timeheroes Mission" xml:space="preserve">
+    <value>Добави Timeheroes мисия</value>
+  </data>
   <data name="Club Organizer" xml:space="preserve">
     <value>Клуб организатор</value>
   </data>
@@ -132,6 +135,15 @@
   <data name="End Date" xml:space="preserve">
     <value>Крайна дата</value>
   </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Нужна екипировка/умения/нещо друго?</value>
+  </data>
+  <data name="EquipmentSubtitle" xml:space="preserve">
+    <value>Нужно ли е да носят нещо доброволците, осигурени ли са всички материали, храна, транспорт, предпазни средства и други. Как ще реагирате при лошо време?</value>
+  </data>
+  <data name="Heroes Hint" xml:space="preserve">
+    <value>Отбележи кои герои участваха, след като мисията приключи.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Локация</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="Missions" xml:space="preserve">
     <value>Мисии</value>
+  </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Закачено на начална страница</value>
   </data>
   <data name="Stars" xml:space="preserve">
     <value>Звезди</value>
@@ -153,11 +168,17 @@
   <data name="The mission could not be found." xml:space="preserve">
     <value>Мисията не е намерена. </value>
   </data>
+  <data name="The mission could not be pinned to home page." xml:space="preserve">
+    <value>Мисията не е закачена към началната страница. Възникна грешка. </value>
+  </data>
   <data name="The mission could not be published." xml:space="preserve">
     <value>Мисията не е публикувана. Възникна грешка. </value>
   </data>
   <data name="The mission could not be saved." xml:space="preserve">
     <value>Мисията не е запазена. Възникна грешка.</value>
+  </data>
+  <data name="The mission could not be unpinned from home page." xml:space="preserve">
+    <value>Мисията не е откачена от началната страница. Възникна грешка.</value>
   </data>
   <data name="The mission could not be unpublished." xml:space="preserve">
     <value>Мисията все още е публична. Възникна грешка.</value>
@@ -165,11 +186,17 @@
   <data name="The mission has been deleted." xml:space="preserve">
     <value>Мисията е успешно изтрита.</value>
   </data>
+  <data name="The mission has been pinned to home page." xml:space="preserve">
+    <value>Мисията е успешно закачена към началната страница. </value>
+  </data>
   <data name="The mission has been published." xml:space="preserve">
     <value>Мисията е публикувана успешно.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
     <value>Мисията е запазена успешно.</value>
+  </data>
+  <data name="The mission has been unpinned from home page." xml:space="preserve">
+    <value>Мисията е успешно откачена от началната страница.</value>
   </data>
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>Мисията не е публична.</value>
@@ -179,5 +206,29 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Тип на мисията</value>
+  </data>
+  <data name="What" xml:space="preserve">
+    <value>Какво</value>
+  </data>
+  <data name="WhatSubtitle" xml:space="preserve">
+    <value>Каква инициатива организирате, каква е идеята и главната цел?</value>
+  </data>
+  <data name="When" xml:space="preserve">
+    <value>Кога</value>
+  </data>
+  <data name="WhenSubtitle" xml:space="preserve">
+    <value>Кога ще се проведе и колко време ще продължи (например, ще се проведе на 01.06 и 02.06 и ще отнеме общо 4 часа, по 2 часа всеки ден)?</value>
+  </data>
+  <data name="Where" xml:space="preserve">
+    <value>Къде</value>
+  </data>
+  <data name="WhereSubtitle" xml:space="preserve">
+    <value>Къде ще се проведе, плюс място на срещата, ако е различно от мястото на провеждане.</value>
+  </data>
+  <data name="Why" xml:space="preserve">
+    <value>Защо</value>
+  </data>
+  <data name="WhySubtitle" xml:space="preserve">
+    <value>Няколко думи, за да мотивирате доброволци да се включат в мисията</value>
   </data>
 </root>

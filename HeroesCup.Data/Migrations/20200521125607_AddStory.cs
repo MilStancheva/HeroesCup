@@ -8,7 +8,7 @@ namespace HeroesCup.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Stories",
+                name: "Story",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -18,9 +18,9 @@ namespace HeroesCup.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stories", x => x.Id);
+                    table.PrimaryKey("PK_Story", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Stories_Missions_MissionId",
+                        name: "FK_Story_Missions_MissionId",
                         column: x => x.MissionId,
                         principalTable: "Missions",
                         principalColumn: "Id",
@@ -44,16 +44,16 @@ namespace HeroesCup.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StoryImages_Stories_StoryId",
+                        name: "FK_StoryImages_Story_StoryId",
                         column: x => x.StoryId,
-                        principalTable: "Stories",
+                        principalTable: "Story",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Stories_MissionId",
-                table: "Stories",
+                name: "IX_Story_MissionId",
+                table: "Story",
                 column: "MissionId",
                 unique: true);
 
@@ -69,7 +69,7 @@ namespace HeroesCup.Data.Migrations
                 name: "StoryImages");
 
             migrationBuilder.DropTable(
-                name: "Stories");
+                name: "Story");
         }
     }
 }
