@@ -88,7 +88,28 @@ namespace HeroesCup
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
                 });
+
+                app.UseExceptionHandler("/error/500");
+                app.UseHsts();
             }
+            else
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+
+                if (ctx.Response.StatusCode == 404 && !ctx.Response.HasStarted)
+                {
+                    //Re-execute the request so the user gets the error page
+                    string originalPath = ctx.Request.Path.Value;
+                    ctx.Items["originalPath"] = originalPath;
+                    ctx.Request.Path = "/error/404";
+                    await next();
+                }
+            });
 
             app.UseSession();
             // Initialize Piranha
@@ -103,13 +124,9 @@ namespace HeroesCup
                 .Build()
                 .DeleteOrphans();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseSerilogRequestLogging();
             app.UseUnhandledExceptionLogging();
+
             SeedDefaultPages();
 
             // Middleware setup

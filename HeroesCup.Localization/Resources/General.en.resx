@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="404 - Page not found" xml:space="preserve">
+    <value>404 - Page not found</value>
+  </data>
   <data name="Choose file" xml:space="preserve">
     <value>Choose file</value>
   </data>
@@ -126,14 +129,23 @@
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
+  <data name="Internal server error" xml:space="preserve">
+    <value>We have a problem</value>
+  </data>
   <data name="Mandatory field" xml:space="preserve">
     <value>Mandatory field</value>
+  </data>
+  <data name="Oops, better check that URL." xml:space="preserve">
+    <value>Oops, better check that URL.</value>
   </data>
   <data name="Pin" xml:space="preserve">
     <value>Pin</value>
   </data>
   <data name="Published" xml:space="preserve">
     <value>Published</value>
+  </data>
+  <data name="Sorry, an error occurred while executing your request." xml:space="preserve">
+    <value>Sorry, an error occurred while executing your request.</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
