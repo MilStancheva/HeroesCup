@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="404 - Page not found" xml:space="preserve">
+    <value>Няма такава страница</value>
+  </data>
   <data name="Choose file" xml:space="preserve">
     <value>Избери файл</value>
   </data>
@@ -126,8 +129,14 @@
   <data name="Image" xml:space="preserve">
     <value>Изображение</value>
   </data>
+  <data name="Internal server error" xml:space="preserve">
+    <value>Възникна грешка :(</value>
+  </data>
   <data name="Mandatory field" xml:space="preserve">
     <value>Задължително поле</value>
+  </data>
+  <data name="Oops, better check that URL." xml:space="preserve">
+    <value>Страницата, която търсиш, не съществува. Шанс...</value>
   </data>
   <data name="Pin" xml:space="preserve">
     <value>Закачи за начална страница</value>
@@ -143,8 +152,5 @@
   </data>
   <data name="Unpin" xml:space="preserve">
     <value>Откачи от начална страница</value>
-  </data>
-  <data name="We have a problem" xml:space="preserve">
-    <value>Възникна грешка :(</value>
   </data>
 </root>

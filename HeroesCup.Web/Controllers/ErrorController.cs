@@ -17,17 +17,33 @@ namespace HeroesCup.Web.Controllers
         {
             var errorModel = new ErrorViewModel()
             { 
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier ,
+                Message = "Sorry, an error occurred while executing your request."
             };
             var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
             {
-               errorModel.Message = "File error thrown";
+               errorModel.Reason = "File error thrown";
             }
-            if (exceptionHandlerPathFeature?.Path == "/home")
+            else
             {
-                errorModel.Message += " from home page";
+                errorModel.Reason = "Internal server error";
             }
+
+            return View("Error", errorModel);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("404")]
+        public IActionResult PageNotFound()
+        {
+            var errorModel = new ErrorViewModel()
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Reason = "404 - Page not found",
+                Message = "Oops, better check that URL."
+            };
 
             return View("Error", errorModel);
         }
