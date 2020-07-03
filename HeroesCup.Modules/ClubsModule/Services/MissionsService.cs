@@ -208,6 +208,11 @@ namespace ClubsModule.Services
                 return null;
             }
 
+            if (mission.Content == null)
+            {
+                mission.Content = new MissionContent();
+            }
+
             var model = await CreateMissionEditModelAsync(ownerId);
             model.Mission = mission;
             model.ClubId = mission.Club.Id;
