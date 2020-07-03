@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.AspNetCore.Services;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HeroesCup.Controllers

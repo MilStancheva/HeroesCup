@@ -88,6 +88,13 @@ namespace HeroesCup
                 {
                     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
                 });
+
+                app.UseExceptionHandler("/error/500");
+                app.UseHsts();
+            }
+            else
+            {
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseSession();
@@ -103,13 +110,9 @@ namespace HeroesCup
                 .Build()
                 .DeleteOrphans();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseSerilogRequestLogging();
             app.UseUnhandledExceptionLogging();
+
             SeedDefaultPages();
 
             // Middleware setup
