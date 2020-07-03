@@ -354,7 +354,8 @@ namespace ClubsModule.Services
                 .ThenInclude(mi => mi.Image)
                 .Include(m => m.Story)
                 .ThenInclude(m => m.StoryImages)
-                .ThenInclude(m => m.Image);
+                .ThenInclude(m => m.Image)
+                .OrderByDescending(m => m.StartDate);
 
             return missions;
         }
