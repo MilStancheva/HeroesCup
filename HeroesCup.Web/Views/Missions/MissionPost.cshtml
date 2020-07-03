@@ -82,28 +82,48 @@
                             </div>
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
-                        <div class="col-12 mt-3 pt-3">
+                    <div class="col-12 mt-3 pt-3">
+                        @if (Model.Mission.Mission.Content.What != null)
+                        {
                             <div class="col-12 mt-2 pt-2 pr-2 body2">
                                 <p class="body2-bold">Какво?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.What)
                             </div>
+                        }
+
+                        @if (Model.Mission.Mission.Content.When != null)
+                        {
                             <div class="col-12 mt-2 pt-2 pr-2 body2">
                                 <p class="body2-bold">Кога?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.When)
                             </div>
+                        }
+
+                        @if (Model.Mission.Mission.Content.Where != null)
+                        {
                             <div class="col-12 mt-2 pt-2 pr-2 body2">
                                 <p class="body2-bold">Къде?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.Where)
                             </div>
+                        }
+
+                        @if (Model.Mission.Mission.Content.Equipment != null)
+                        {
                             <div class="col-12 mt-2 pt-2 pr-2 body2">
                                 <p class="body2-bold">Нужна екипировка/умения/нещо друго?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.Equipment)
                             </div>
+                        }
+
+                        @if (Model.Mission.Mission.Content.Why != null)
+                        {
                             <div class="col-12 mt-2 pt-2 pr-2 body2">
                                 <p class="body2-bold">Защо?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.Why)
                             </div>
-                        </div>
+                        }
+
+                    </div>
 
                     </div>
                 </div>

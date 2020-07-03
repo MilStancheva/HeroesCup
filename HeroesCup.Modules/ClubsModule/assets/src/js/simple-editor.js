@@ -1,6 +1,6 @@
 $(function () {
-    var clubsSelector = 'textarea#editor';
-    var height = 600;
+    var clubsSelector = 'textarea.editor';
+    var height = 200;
     var heroesCupContentCss = [
         "//fonts.googleapis.com/css?family=Montserrat:300,400,500",
         "/css/editor-styles.css"

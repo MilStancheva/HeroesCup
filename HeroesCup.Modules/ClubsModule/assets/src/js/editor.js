@@ -1,7 +1,7 @@
 $(function () {
-    var clubsSelector = 'textarea#editor';
+    var clubsSelector = 'textarea.editor';
     var quickbarsSelectionToolbar = 'bold italic | quicklink h2 h3 blockquote quickimage quicktable';
-    var height = 600;
+    var height = 200;
     var importCssAppend = false;
     var automaticUploads = true;
     var clubsFilePickerTypes = 'image';

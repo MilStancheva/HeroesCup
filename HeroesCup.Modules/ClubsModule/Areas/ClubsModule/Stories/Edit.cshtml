@@ -120,7 +120,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Content"]</label>
-                            @Html.TextAreaFor(m => m.Story.Content, new { @class = "form-control small", @id = "editor", required = "" })
+                            @Html.TextAreaFor(m => m.Story.Content, new { @class = "form-control small editor", @id = "editor", required = "" })
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
