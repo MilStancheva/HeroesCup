@@ -93,6 +93,12 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Name = "Hero",
                 IsCoordinator = false
             };
+            var missionContent = new MissionContent();
+            missionContent.What = "what";
+            missionContent.When = "When";
+            missionContent.Where = "Where";
+            missionContent.Why = "Why";
+            missionContent.Equipment = "Equipment";
             var mission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -101,7 +107,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Mission location",
                 Club = club,
                 ClubId = club.Id,
-                Content = "Mission content",
+                Content = missionContent,
                 SchoolYear = schoolYear,
                 Stars = 2,
                 IsPublished = true,
@@ -177,6 +183,12 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Name = "Second Hero",
                 IsCoordinator = true
             };
+            var missionContent = new MissionContent();
+            missionContent.What = "what";
+            missionContent.When = "When";
+            missionContent.Where = "Where";
+            missionContent.Why = "Why";
+            missionContent.Equipment = "Equipment";
             var mission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -185,13 +197,19 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Mission location",
                 Club = club,
                 ClubId = club.Id,
-                Content = "Mission content",
+                Content = missionContent,
                 SchoolYear = schoolYear,
                 Stars = 2,
                 IsPublished = true,
                 StartDate = new DateTime(2020, 5, 28).ToUnixMilliseconds(),
                 EndDate = new DateTime(2020, 6, 28).ToUnixMilliseconds()
             };
+            var secondMissionContent = new MissionContent();
+            secondMissionContent.What = "what";
+            secondMissionContent.When = "When";
+            secondMissionContent.Where = "Where";
+            secondMissionContent.Why = "Why";
+            secondMissionContent.Equipment = "Equipment";
             var secondMission = new Mission()
             {
                 Id = Guid.NewGuid(),
@@ -200,7 +218,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 Location = "Second mission location",
                 Club = secondClub,
                 ClubId = secondClub.Id,
-                Content = "Second mission content",
+                Content = secondMissionContent,
                 SchoolYear = schoolYear,
                 Stars = 3,
                 IsPublished = true,

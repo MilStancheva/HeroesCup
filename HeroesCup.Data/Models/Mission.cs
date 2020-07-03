@@ -26,7 +26,7 @@ namespace HeroesCup.Data.Models
 
         public ICollection<MissionImage> MissionImages { get; set; }
 
-        public string Content { get; set; }
+        public MissionContent Content { get; set; }
 
         public Guid OwnerId { get; set; }
 

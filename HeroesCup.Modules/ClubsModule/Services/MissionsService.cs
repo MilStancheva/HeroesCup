@@ -19,16 +19,19 @@ namespace ClubsModule.Services
         private readonly IImagesService imagesService;
         private readonly ISchoolYearService schoolYearService;
         private readonly IConfiguration configuration;
+        private readonly IMissionContentsService missionContentsService;
 
         public MissionsService(HeroesCupDbContext dbContext,
             IImagesService imagesService,
             ISchoolYearService schoolYearService,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IMissionContentsService missionContentsService)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
             this.schoolYearService = schoolYearService;
             this.configuration = configuration;
+            this.missionContentsService = missionContentsService;
         }
 
         public async Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId)
@@ -76,16 +79,19 @@ namespace ClubsModule.Services
                 heroes = await GetHeroes(null, ownerId);
             }
 
+            var newMission = new Mission();
+            newMission.Content = new MissionContent();
+            newMission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
+
             var model = new MissionEditModel()
             {
-                Mission = new Mission(),
+                Mission = newMission,
                 Heroes = heroes,
                 HeroesIds = new List<Guid>(),
                 Clubs = clubs,
                 ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid()
             };
 
-            model.Mission.OwnerId = ownerId.HasValue ? ownerId.Value : Guid.Empty;
             return model;
         }
 
@@ -95,6 +101,7 @@ namespace ClubsModule.Services
                 .Include(c => c.MissionImages)
                 .ThenInclude(m => m.Image)
                 .Include(m => m.Club)
+                .Include(m => m.Content)
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
             if (mission == null)
@@ -119,7 +126,7 @@ namespace ClubsModule.Services
             mission.StartDate = startDate.ToUnixMilliseconds();
             mission.EndDate = endDate.ToUnixMilliseconds();
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
-            mission.Content = model.Mission.Content;
+            await this.missionContentsService.SaveOrUpdateMissionContent(model.Mission.Content, mission);
 
             // set missions's heroes
             if (model.HeroesIds != null && model.HeroesIds.Any())
@@ -186,6 +193,7 @@ namespace ClubsModule.Services
             Mission mission = null;
             mission = await this.dbContext.Missions
                     .Include(m => m.Club)
+                    .Include(m => m.Content)
                     .Include(c => c.HeroMissions)
                     .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)

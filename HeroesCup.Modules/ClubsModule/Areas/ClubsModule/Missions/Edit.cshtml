@@ -239,7 +239,7 @@
                             </div>
                         </div>
                     }
-                </div>                
+                </div>
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -277,14 +277,31 @@
                     </div>
                 </div>
 
+                @*<div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label>@HeroesCupLocalizer.General["Content"]</label>
+                    </div>
+                    <div class="col-sm-12">
+                        @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor", required = "" })
+                    </div>
+                    <div class="invalid-feedback">
+                        @HeroesCupLocalizer.General["Mandatory field"]
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <label>@HeroesCupLocalizer.General["Content"]</label>
+                                <label>@HeroesCupLocalizer.Mission["What"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["WhatSubtitle"]</p>
                             </div>
                             <div class="col-sm-12">
-                                @Html.TextAreaFor(m => m.Mission.Content, new { @class = "form-control small", @id = "editor", required = "" })
+                                @Html.TextAreaFor(m => m.Mission.Content.What, new { @class = "form-control small", @id = "what", required = "" })
                             </div>
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
@@ -292,6 +309,75 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label>@HeroesCupLocalizer.Mission["When"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["WhenSubtitle"]</p>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(m => m.Mission.Content.When, new { @class = "form-control small", @id = "when", required = "" })
+                            </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label>@HeroesCupLocalizer.Mission["Where"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["WhereSubtitle"]</p>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(m => m.Mission.Content.Where, new { @class = "form-control small", @id = "where", required = "" })
+                            </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label>@HeroesCupLocalizer.Mission["Equipment"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["EquipmentSubtitle"]</p>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small", @id = "equipment", required = "" })
+                            </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label>@HeroesCupLocalizer.Mission["Why"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["WhySubtitle"]</p>
+                            </div>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(m => m.Mission.Content.Why, new { @class = "form-control small", @id = "why", required = "" })
+                            </div>
+                            <div class="invalid-feedback">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

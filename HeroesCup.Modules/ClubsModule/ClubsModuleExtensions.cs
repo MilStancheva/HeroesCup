@@ -40,6 +40,7 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddTransient<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
             services.AddScoped<IMissionIdeasService, MissionIdeasService>();
+            services.AddTransient<IMissionContentsService, MissionContentsService>();
 
             // Add localization service
             services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();
