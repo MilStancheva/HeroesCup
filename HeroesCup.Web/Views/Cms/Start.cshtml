@@ -124,14 +124,12 @@
                 {
                     selectItems.Add(new SelectListItem(year, year));
                 }
-                <div class="row justify-content-between">
-                    <h2 class="mb-5 heading2">Класация</h2>
-                    @*<form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                        <div class="btn btn-default school-years-button body2-bold">
-                            <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
-                        </div>
-                    </form>*@
-
+            <div class="row justify-content-between">
+                <div class="col-md-9 col-12">
+                    <h2 class="mb-5 heading2 d-none d-md-block d-sm-none d-xs-none">Класация</h2>
+                    <h3 class="heading3 d-sm-block d-md-none">Класация</h3>
+                </div>
+                <div class="col-md-3 col-12 mt-3 mt-md-0">
                     <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
                         <div class="custom-select-wrapper">
                             <div class="btn school-years-button custom-select">
@@ -156,51 +154,83 @@
                         </div>
                     </form>
                 </div>
+            </div>
 
-                <div class="row leaderboard-clubs">
-                    @{
-                        var index = 0;
-                    }
+            <div class="row leaderboard-clubs mt-4 pt-4 pt-md-0 mt-md-0">
+                @{
+                    var index = 0;
+                }
 
-                    @foreach (var club in Model.Clubs.Clubs)
-                    {
-                        index += 1;
-                        <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                            <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
-                                <div class="row col-md-9 col-sm-12 vertical-center mr-0">
-                                    <div class="col-1 body1-bold text-md-center">
-                                        <span>@index</span>
-                                    </div>
-                                    <div class="col-2 text-md-center">
-                                        <span class="body1-bold" data-letters="@club.ClubInitials"></span>
-                                    </div>
-                                    <div class="col-md-9 col-sm-9 body1">
-                                        <span>@club.Name</span>,
-                                        <span>@club.Location</span>
-                                    </div>
+                @foreach (var club in Model.Clubs.Clubs)
+                {
+                    index += 1;
+                    @*<a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
+                <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
+                    <div class="row col-md-9 col-sm-12 vertical-center mr-0">
+                        <div class="col-1 body1-bold text-md-center">
+                            <span>@index</span>
+                        </div>
+                        <div class="col-2 text-md-center">
+                            <span class="body1-bold" data-letters="@club.ClubInitials"></span>
+                        </div>
+                        <div class="col-md-9 col-sm-10 body1">
+                            <span>@club.Name</span>,
+                            <span>@club.Location</span>
+                        </div>
+                    </div>
+                    <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
+                        <div class="col-5 text-right body1 pr-0">
+                            <span>@club.Points точки</span>
+                        </div>
+                        <div class="col-1 text-center">
+                            <span class="points-heroes-separator"></span>
+                        </div>
+                        <div class="col-5 text-left body1 pl-2">
+                            <span>@club.HeroesCount герои</span>
+                        </div>
+                    </div>
+                </div>
+            </a>*@
+
+                    <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
+                        <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
+                            <div class="col-1">
+                                <div class="body1-bold text-md-center">
+                                    <span class="align-top">@index</span>
+                                </div>
+                            </div>
+                            <div class="row col-11 vertical-center">
+                                <div class="col-md-2 col-sm-12 text-md-center">
+                                    <span class="body1-bold" data-letters="@club.ClubInitials"></span>
+                                </div>
+                                <div class="col-md-7 col-sm-12 body1 p-3">
+                                    <span>@club.Name</span>,
+                                    <span>@club.Location</span>
                                 </div>
                                 <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
-                                    <div class="col-5 text-right body1 pr-0">
+                                    <div class="col-5 text-left body1 pr-0">
                                         <span>@club.Points точки</span>
                                     </div>
                                     <div class="col-1 text-center">
                                         <span class="points-heroes-separator"></span>
                                     </div>
-                                    <div class="col-5 text-left body1 pl-2">
+                                    <div class="col-5 text-right body1 pl-2">
                                         <span>@club.HeroesCount герои</span>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                           
+                        </div>
+                    </a>
 
-                        <hr />
+                    <hr />
 
-                        <!-- Club Modal -->
-                        @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
-                    }
-                </div>
-            }
-        </div>
+                    <!-- Club Modal -->
+                    @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
+                }
+            </div>
+                }
+            </div>
 
 
         @* Missions *@
