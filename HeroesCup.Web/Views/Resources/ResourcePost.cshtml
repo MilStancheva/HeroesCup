@@ -31,20 +31,20 @@
 <div class="main mt-md-5 pt-md-5">
     <div class="container mt-md-5 pt-md-5">
         <div class="row pt-4 pb-4">
-            <div class="col-md-8 col-sm-12 pt-4 pb-4">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="heading2">@Model.Title</h2>
-                    </div>
-                    <div class="col-12">
-                        <p class="body2">@Model.Subtitle.Value</p>
-                    </div>
-
+            <div class="col-12 pl-0 pb-4">
+                <div class="col-12">
+                    <h2 class="heading2">@Model.Title</h2>
                 </div>
+                <div class="col-12">
+                    <p class="body2">@Model.Subtitle.Value</p>
+                </div>
+
+            </div>
+            <div class="col-md-8 col-sm-12 pt-4 pb-4">
                 @if (Model.Hero.PrimaryImage.HasValue)
                 {
                     <div class="col-12 pl-0">
-                        <div class="col-sm">
+                        <div class="col-sm pl-0">
                             <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
                         </div>
                     </div>
