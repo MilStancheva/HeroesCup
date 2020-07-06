@@ -15,7 +15,7 @@
             <div class="row pt-5 pb-5">
                 <div class="col-sm-12 col-md-12">
                     <div id="corouselStart" class="carousel slide gallery-block" data-ride="carousel">
-                        <ol class="carousel-indicators justify-content-start">
+                        <ol class="carousel-indicators justify-content-md-start justify-content-center">
                             @{
                                 int indicatorIndex = 0;
                             }
@@ -42,12 +42,12 @@
                                 @if (imageIndex == 0)
                                 {
                                     <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 vertical-center">
+                                        <div class="row text-md-left text-center">
+                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2">
                                                 <h1 class="heading1">@hero.IngressTitle</h1>
                                                 <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="col-md-6 col-sm-6 order-md-2 order-1">
                                                 <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
                                             </div>
                                         </div>
@@ -56,12 +56,12 @@
                                 else
                                 {
                                     <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-6 vertical-center">
+                                        <div class="row text-md-left text-center">
+                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2">
                                                 <h2 class="heading1">@hero.IngressTitle</h2>
                                                 <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="col-md-6 col-sm-6 order-md-2 order-1">
                                                 <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
                                             </div>
                                         </div>
