@@ -951,7 +951,7 @@ a:hover .resource-icon-article {
     .home-background {
         top: 0;
         margin-top: 0;
-        background: url('../images/background/hero_home_top_center_small.svg') center -1.6% no-repeat, url('../images/background/hero_home_top_right_small.svg') right -1.7% no-repeat;
+        background: url('../images/background/hero_home_top_center_small.svg') 65% -1.6% no-repeat, url('../images/background/hero_home_top_right_small.svg') right -1.7% no-repeat;
         background-color: #FAF8F3;
     }
 }

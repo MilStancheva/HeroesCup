@@ -43,8 +43,9 @@
                                 {
                                     <div class="carousel-item active">
                                         <div class="row text-md-left text-center">
-                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2">
-                                                <h1 class="heading1">@hero.IngressTitle</h1>
+                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-3">
+                                                <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.IngressTitle</h1>
+                                                <h3 class="heading3 d-sm-block d-md-none">@hero.IngressTitle</h3>
                                                 <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
                                             <div class="col-md-6 col-sm-6 order-md-2 order-1">
@@ -57,8 +58,9 @@
                                 {
                                     <div class="carousel-item">
                                         <div class="row text-md-left text-center">
-                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2">
-                                                <h2 class="heading1">@hero.IngressTitle</h2>
+                                            <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-3">
+                                                <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.IngressTitle</h1>
+                                                <h3 class="heading3 d-sm-block d-md-none">@hero.IngressTitle</h3>
                                                 <p class="body2">@Html.Raw(hero.Ingress)</p>
                                             </div>
                                             <div class="col-md-6 col-sm-6 order-md-2 order-1">
@@ -81,36 +83,32 @@
         @if (Model.Clubs.Clubs.Count() > 0)
         {
             <div class="row justify-content-center block pt-5 pb-5">
-                <div class="col-6 row">
-                    <div class="col-md-6 col-sm-6 start-icon text-center">
-                        <img class="img-fluid m-1" src="~/images/User.svg" />
-                        <div class="m-3">
-                            <div class="m-1 heading3">@Model.HeroesCount+</div>
-                            <div class="m-1 body2">Герои</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 start-icon text-center">
-                        <img class="img-fluid m-1" src="~/images/School.svg">
-                        <div class="m-3">
-                            <div class="m-1 heading3">@Model.ClubsCount+</div>
-                            <div class="m-1 body2">Ученически клуба</div>
-                        </div>
+                <div class="col-md-3 col-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/User.svg" />
+                    <div class="m-3">
+                        <h3 class="m-1 heading3">@Model.HeroesCount+</h3>
+                        <div class="m-1 body2">Герои</div>
                     </div>
                 </div>
-                <div class="col-6 row">
-                    <div class="col-md-6 col-sm-6 start-icon text-center">
-                        <img class="img-fluid m-1" src="~/images/Heart.svg">
-                        <div class="m-3">
-                            <div class="m-1 heading3">@Model.MissionsCount</div>
-                            <div class="m-1 body2">Реализирани мисии</div>
-                        </div>
+                <div class="col-md-3 col-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/School.svg">
+                    <div class="m-3">
+                        <h3 class="m-1 heading3">@Model.ClubsCount+</h3>
+                        <div class="m-1 body2">Ученически клуба</div>
                     </div>
-                    <div class="col-md-6 col-sm-6 start-icon text-center">
-                        <img class="img-fluid m-1" src="~/images/Clock.svg">
-                        <div class="m-3">
-                            <div class="m-1 heading3">@hoursCount+</div>
-                            <div class="m-1 body2">Дарени часа</div>
-                        </div>
+                </div>
+                <div class="col-md-3 col-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/Heart.svg">
+                    <div class="m-3">
+                        <h3 class="m-1 heading3">@Model.MissionsCount</h3>
+                        <div class="m-1 body2">Реализирани мисии</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 start-icon text-center">
+                    <img class="img-fluid m-1" src="~/images/Clock.svg">
+                    <div class="m-3">
+                        <h3 class="m-1 heading3">@hoursCount+</h3>
+                        <div class="m-1 body2">Дарени часа</div>
                     </div>
                 </div>
             </div>
@@ -126,38 +124,38 @@
                 {
                     selectItems.Add(new SelectListItem(year, year));
                 }
-            <div class="row justify-content-between">
-                <h2 class="mb-5 heading2">Класация</h2>
-                @*<form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                    <div class="btn btn-default school-years-button body2-bold">
-                        <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
-                    </div>
-                </form>*@
+                <div class="row justify-content-between">
+                    <h2 class="mb-5 heading2">Класация</h2>
+                    @*<form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                        <div class="btn btn-default school-years-button body2-bold">
+                            <select onchange="this.form.submit()" class="custom-select" asp-for="SelectedSchoolYear" asp-items="selectItems"></select>
+                        </div>
+                    </form>*@
 
-            <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                <div class="custom-select-wrapper">
-                    <div class="btn school-years-button custom-select">
-                        <div class="custom-select__trigger">
-                            <span>@Model.SelectedSchoolYear</span>
-                            @*<div class="arrow"></div>*@
+                    <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                        <div class="custom-select-wrapper">
+                            <div class="btn school-years-button custom-select">
+                                <div class="custom-select__trigger">
+                                    <span>@Model.SelectedSchoolYear</span>
+                                    @*<div class="arrow"></div>*@
+                                </div>
+                                <div class="custom-options">
+                                    @foreach (var year in selectItems)
+                                    {
+                                        if (Model.SelectedSchoolYear == year.Value)
+                                        {
+                                            <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                        }
+                                    }
+                                </div>
+                            </div>
                         </div>
-                        <div class="custom-options">
-                            @foreach (var year in selectItems)
-                            {
-                                if (Model.SelectedSchoolYear == year.Value)
-                                {
-                                    <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
-                                }
-                                else
-                                {
-                                    <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
-                                }
-                            }
-                        </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
-            </div>
 
                 <div class="row leaderboard-clubs">
                     @{
