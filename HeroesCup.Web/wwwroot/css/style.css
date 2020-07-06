@@ -437,7 +437,7 @@ header {
 /* Missions List */
 
 .mission-body{
-    width: 320px;
+    max-width: 320px;
  
 }
 
