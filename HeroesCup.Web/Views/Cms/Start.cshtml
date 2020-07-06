@@ -194,7 +194,7 @@
 
                     <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
                         <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
-                            <div class="col-1">
+                            <div class="col-1 align-self-start">
                                 <div class="body1-bold text-md-center">
                                     <span class="align-top">@index</span>
                                 </div>
@@ -236,7 +236,7 @@
         @* Missions *@
         @if (Model.Missions.Count() > 0)
         {
-            <div class="pt-5 pb-5">
+            <div class="pt-md-5 pb-md-5">
                 <p class="heading2 mt-md-4 pt-4">Мисии</p>
                 <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
                 <div class="row mt-3 justify-content-center">
@@ -245,7 +245,7 @@
             </div>
         }
 
-        <div class="separator mt-5"></div>
+        <div class="separator mt-md-5 mt-5"></div>
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
 
         @if (Model.Blocks != null && Model.Blocks.Count > 0)
