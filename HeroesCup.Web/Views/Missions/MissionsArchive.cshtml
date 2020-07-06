@@ -18,22 +18,22 @@
 <div class="main">
     <div class="container">
         <div class="tabbable mt-md-5 pt-md-5">
-            <ul class="nav nav-tabs mt-5 pt-5" role="tablist">
-                <li class="nav-item mr-3">
+            <ul class="col-12 nav nav-tabs mt-md-5 pt-md-5" role="tablist">
+                <li class="row col-md-4 col-6 nav-item mr-3">
                     <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3 heading3" data-toggle="tab" href="#missions" role="tab">Ученически мисии</a>
                 </li>
-                <li class="nav-item">
+                <li class="row col-md-4 col-6 ml-sm-1 ml-0 nav-item">
                     <a class="nav-link tab-title pl-0 pr-0  ml-3 mr-3 heading3" data-toggle="tab" href="#missionideas" role="tab">Грабни идея</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active mb-4" id="missions">
-                    <div class="row mt-5 pt-4 pb-4">
-                        <div class="col-md-8 col-sm-12">
+                    <div class="row mt-5 pt-4">
+                        <div class="col-md-8 col-sm-12 pb-4">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <form asp-action="MissionsArchive" method="post" asp-for="SelectedLocation" id="location-form">
+                        <div class="col-md-4 col-sm-12 text-sm-center">
+                            <form asp-action="MissionsArchive" method="post" asp-for="SelectedLocation" id="location-form" class="float-md-right">
                                 <div class="custom-select-wrapper">
                                     <div class="btn locations-button custom-select">
                                         <div class="custom-select__trigger justify-content-center">
