@@ -1,19 +1,19 @@
-@{
+﻿@{
     var sitemap = WebApp.Site.Sitemap;
     var startPageTypeName = "Start page";
     var landingPageTypeName = "Landing page";
 }
 
 @*Not the best solution but meanwhile... class = d-sm-block d-md-none is hiding on md screen solution*@
-    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded d-sm-block d-md-none">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded d-sm-block d-md-none ml-3 mt-3 mr-3">
         <a class="navbar-brand" href="/">
             <img src="~/images/Logo.svg" />
         </a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+        <button class="navbar-toggler navbar-toggler-right icon-hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            @*<span class="icon-hamburger"></span>*@
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav justify-content-center">
                 @foreach (var item in sitemap)
                 {
                     @if (item.PageTypeName != startPageTypeName && item.PageTypeName != landingPageTypeName)
@@ -22,6 +22,10 @@
                     }
 
                 }
+                <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#participateModal">Участвай</button>
+
+                @*<form class="form-inline my-2 my-lg-0 col-md-2 col-sm-12 justify-content-md-start justify-content-sm-center">
+                </form>*@
             </div>
         </div>
     </nav>
@@ -31,16 +35,19 @@
         <a class="col-sm navbar-brand" href="/">
             <img src="~/images/Logo.svg" />
         </a>
-        <ul class="nav nav-site justify-content-right">
+        <ul class="nav nav-site justify-content-right pr-3">
             @foreach (var item in sitemap)
             {
-                <li class="nav-item @(item.Id == WebApp.PageId ? "active" : "")">
+                <li class="nav-item @(item.Id == WebApp.PageId ? "active" : "") mr-2">
                     @if (item.PageTypeName != startPageTypeName && item.PageTypeName != landingPageTypeName)
                     {
                         <a class="nav-link" href="@item.Permalink"><span>@item.MenuTitle</span></a>
                     }
                 </li>
             }
+            <li class="nav-item">
+                <button class="btn btn-heroes btn-lg my-2 my-sm-0" type="button" data-toggle="modal" data-target="#participateModal">Участвай</button>
+            </li>
         </ul>
     </nav>
 </div>

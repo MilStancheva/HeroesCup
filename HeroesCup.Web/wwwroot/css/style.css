@@ -928,6 +928,13 @@ a:hover .resource-icon-article {
         margin-top: 0;
         background: url('../images/background/hero_landing_left.svg') left top no-repeat, url('../images/background/hero_landing_right.svg') right top no-repeat;
     }
+
+    .home-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_home_top_center.svg') center top no-repeat, url('../images/background/hero_home_top_right.svg') right top no-repeat, url('../images/background/hero_home_left_center_top.svg') left 60% no-repeat, url('../images/background/hero_home_left_center_bottom.svg') left 68% no-repeat;
+        background-color: #FAF8F3;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -938,6 +945,13 @@ a:hover .resource-icon-article {
     #landing-main {
         margin-top: 0;
         background: url('../images/background/hero_landing_left_small.svg') left top no-repeat, url('../images/background/hero_landing_right_small.svg') right top no-repeat;
+    }
+
+    .home-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_home_top_center_small.svg') center -1.6% no-repeat, url('../images/background/hero_home_top_right_small.svg') right -1.7% no-repeat;
+        background-color: #FAF8F3;
     }
 }
 
@@ -1025,3 +1039,11 @@ img.expired-img {
         width: 348px;
         height: 484px;
     }
+
+.icon-hamburger {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-image: url('../images/hamburger.svg');
+    background-repeat: no-repeat;
+}
