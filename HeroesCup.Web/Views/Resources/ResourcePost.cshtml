@@ -82,13 +82,15 @@
         <hr />
 
         @* Other Resource Posts *@
-        <div class="row pt-5 mr-0">
+        <div class="row pt-5">
             @if (Model.OtherResources.Count() > 0)
             {
                 <div class="col-12">
                     <h2 class="heading2">Още ресурси</h2>
                 </div>
-                <partial name="~/Views/Resources/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                <div class="col-12">
+                    <partial name="~/Views/Resources/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                </div>
             }
 
         </div>
