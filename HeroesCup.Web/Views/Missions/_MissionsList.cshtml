@@ -8,9 +8,9 @@
     <div class="row">
         @foreach (var mission in missions)
         {
-            var now = DateTime.Now.ToLocalTime();
+            var today = DateTime.Now.ToLocalTime().Date;
             var expiredMission = false;
-            if (now > mission.EndDate)
+            if (today > mission.EndDate.Date)
             {
                 expiredMission = true;
             }

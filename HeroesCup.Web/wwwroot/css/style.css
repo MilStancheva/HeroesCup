@@ -560,6 +560,7 @@ header {
     padding: 0;
     align-content: start;
     text-align: start;
+    bottom: -50px;
 }
 
     .carousel-indicators li {
