@@ -521,13 +521,13 @@ header {
 }
 
 
-.club-image img {
+/*.club-image img {
     margin: 0;
     padding: 0;
-    /*min-width: 384px;
-    max-width: 384px*/;
+    min-width: 384px;
+    max-width: 384px;
     height: 100%;
-}
+}*/
 
 .center-cropped {
     object-fit: none; /* Do not scale the image */
@@ -691,12 +691,12 @@ a .tab-title {
 
 .club-modal .nav-link {
     border: none;
-    background: #FAF8F3;
+    background: transparent;
 }
 
     .club-modal .nav-link:hover {
         border: none;
-        background: #FAF8F3;
+        background: transparent;
     }
 
     .club-modal .nav-link.active {
@@ -938,8 +938,6 @@ a:hover .resource-icon-article {
     }
 
     .modal-lg {
-        min-width: 320px;
-        max-width: 1024px;
         height: 484px;
     }
 
@@ -968,11 +966,10 @@ a:hover .resource-icon-article {
         border-radius: 0;
     }
     .club-modal .modal-content {
-        max-width: 320px;
+        max-width: 100%;
     }
 
     .modal-lg {
-        max-width: 320px;
         height: 484px;
     }
 }
