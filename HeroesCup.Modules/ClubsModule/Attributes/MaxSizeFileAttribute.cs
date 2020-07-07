@@ -24,12 +24,23 @@ namespace ClubsModule.Attributes
                     size += file.Length;
                     if (size > this.maxSize)
                     {
-                        return new ValidationResult(string.Format(this.ErrorMessage, this.maxSize));
+                        return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), this.maxSize * 0.000001));
                     }
                 }
             }
 
             return ValidationResult.Success;
+        }
+
+        private string GetErrorMessage(ValidationContext validationContext)
+        {
+            if (string.IsNullOrEmpty(ErrorMessage))
+            {
+                return "Invalid error message";
+            }
+
+            HeroesCup.Localization.ManagerLocalizer localizer = validationContext.GetService(typeof(HeroesCup.Localization.ManagerLocalizer)) as HeroesCup.Localization.ManagerLocalizer;
+            return localizer.General[ErrorMessage];
         }
     }
 }

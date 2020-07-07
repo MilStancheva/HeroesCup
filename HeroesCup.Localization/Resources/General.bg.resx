@@ -120,6 +120,9 @@
   <data name="404 - Page not found" xml:space="preserve">
     <value>Няма такава страница</value>
   </data>
+  <data name="AllowedFileExtensionsErrorMessage" xml:space="preserve">
+    <value>Позволени разширения за файлове са: {0}</value>
+  </data>
   <data name="Choose file" xml:space="preserve">
     <value>Избери файл</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Mandatory field" xml:space="preserve">
     <value>Задължително поле</value>
+  </data>
+  <data name="MaxSizeErrorMessage" xml:space="preserve">
+    <value>Общо позволеният размер на файловете е {0:0.00} MB.</value>
   </data>
   <data name="Oops, better check that URL." xml:space="preserve">
     <value>Страницата, която търсиш, не съществува. Шанс...</value>

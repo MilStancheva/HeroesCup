@@ -27,12 +27,23 @@ namespace ClubsModule.Attributes
 
                     if (!this.extensions.Contains(extension.ToLower()))
                     {
-                        return new ValidationResult(string.Format(this.ErrorMessage, string.Join(", ", this.extensions)));
+                        return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), string.Join(", ", this.extensions)));
                     }
                 }                
             }
 
             return ValidationResult.Success;
+        }
+
+        private string GetErrorMessage(ValidationContext validationContext)
+        {
+            if (string.IsNullOrEmpty(ErrorMessage))
+            {
+                return "Invalid error message";
+            }
+
+            HeroesCup.Localization.ManagerLocalizer localizer = validationContext.GetService(typeof(HeroesCup.Localization.ManagerLocalizer)) as HeroesCup.Localization.ManagerLocalizer;
+            return localizer.General[ErrorMessage];
         }
     }
 }
