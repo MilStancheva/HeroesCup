@@ -3,11 +3,9 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Piranha.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 

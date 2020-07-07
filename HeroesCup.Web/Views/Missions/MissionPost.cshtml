@@ -64,13 +64,13 @@
                             @if (expiredMission)
                             {
                                 <div class="img-container">
-                                    <img class="img-fluid expired-img" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                    <img class="img-fluid expired-img center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
                                     <div class="top-left body3-bold">ИЗТЕКЛА</div>
                                 </div>
                             }
                             else
                             {
-                                <img class="img-fluid" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                <img class="img-fluid center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
                             }
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                                     <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
                                        data-image="@Url.Content(imageSource)"
                                        data-target="#image-gallery">
-                                        <img class="img-fluid img-thumbnail center-cropped"
+                                        <img class="img-fluid img-thumbnail center-cropped story-image"
                                              src="@Url.Content(imageSource)"
                                              alt="Another alt text">
                                     </a>
@@ -149,7 +149,7 @@
                     <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели тoзи ресурс:</span>
+                            <span class="text-regular">Сподели тази мисия:</span>
                         </div>
 
                         <div class="col-5 body2">

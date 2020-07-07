@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClubsModule.Attributes
@@ -14,12 +15,17 @@ namespace ClubsModule.Attributes
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var file = value as IFormFile;
-            if (file != null)
+            var files = value as IEnumerable<IFormFile>;
+            if (files != null)
             {
-                if (file.Length > this.maxSize)
+                long size = 0;
+                foreach (var file in files)
                 {
-                    return new ValidationResult(string.Format(this.ErrorMessage, this.maxSize));
+                    size += file.Length;
+                    if (size > this.maxSize)
+                    {
+                        return new ValidationResult(string.Format(this.ErrorMessage, this.maxSize));
+                    }
                 }
             }
 

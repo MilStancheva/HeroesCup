@@ -957,6 +957,16 @@ a:hover .resource-icon-article {
     border: none;
 }
 
+.mission-image {
+    width: 672px;
+    height: 416px;
+}
+
+.story-image {
+    width: 320px;
+    height: 198px;
+}
+
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1026,6 +1036,16 @@ a:hover .resource-icon-article {
         right: 16px;
         z-index: 999;
     }
+
+    .mission-image {
+        width: 672px;
+        height: 416px;
+    }
+
+    .story-image {
+        width: 320px;
+        height: 198px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1078,6 +1098,16 @@ a:hover .resource-icon-article {
         object-position: 50% 0;
         width: 100%;
         height: 196px;
+    }
+
+    .mission-image {
+        width: 100%;
+        height: 196px;
+    }
+
+    .story-image {
+        width: 327px;
+        height: 198px;
     }
 }
 
