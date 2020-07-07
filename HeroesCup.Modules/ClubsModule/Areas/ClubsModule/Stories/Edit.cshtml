@@ -26,7 +26,7 @@
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.Story.Id)
-    @Html.HiddenFor(m => m.ImageSrc)
+    @Html.HiddenFor(m => m.ImageSources)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -96,23 +96,30 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Image"]</label>
                             <div class="row col-12">
-                                <div class="col-6">
-                                    @if (Model.ImageSrc != null)
-                                    {
-                                        <img src="@Model.ImageSrc" alt="Mission Image">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
-                                    }
 
-                                </div>
+                                @if (Model.ImageSources != null)
+                                {
+                                    foreach (var source in Model.ImageSources)
+                                    {
+
+                                        <div class="col-6">
+                                            <img src="@source" alt="Mission Image">
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-6">
+                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
+                                    </div>
+                                }
+
                                 <div class="col-6">
-                                    <input type="file" asp-for="UploadedImage" class="form-control-file" />
-                                    @Html.ValidationMessageFor(model => model.UploadedImage, "", new { @class = "text-danger" })
+                                    <input type="file" multiple asp-for="UploadedImages" class="form-control-file" />
+                                    @Html.ValidationMessageFor(model => model.UploadedImages, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
+                                </div>
                     </div>
                 </div>
 

@@ -98,8 +98,15 @@ namespace ClubsModule.Services
 
             if (story.StoryImages != null && story.StoryImages.Count > 0)
             {
-                var storyImage = await this.imagesService.GetStoryImage(story.Id);
-                model.ImageSrc = this.imagesService.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes);
+                var storyImages = await this.imagesService.GetStoryImages(story.Id);
+                if (model.ImageSources == null)
+                {
+                    model.ImageSources = new List<string>();
+                }
+                foreach (var storyImage in storyImages)
+                {
+                    model.ImageSources.Add(this.imagesService.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes));
+                }
             }
 
             return model;
@@ -155,17 +162,23 @@ namespace ClubsModule.Services
             story.Content = model.Story.Content;
 
             // set story image
-            if (model.UploadedImage != null)
+            if (model.UploadedImages != null)
             {
-                var image = new Image();
-                var bytes = this.imagesService.GetByteArrayFromImage(model.UploadedImage);
-                var filename = this.imagesService.GetFilename(model.UploadedImage);
-                var contentType = this.imagesService.GetFileContentType(model.UploadedImage);
-                image.Bytes = bytes;
-                image.Filename = filename;
-                image.ContentType = contentType;
+                var images = new List<Image>();
+                foreach (var uploadedImage in model.UploadedImages)
+                {
+                    var image = new Image();
+                    var bytes = this.imagesService.GetByteArrayFromImage(uploadedImage);
+                    var filename = this.imagesService.GetFilename(uploadedImage);
+                    var contentType = this.imagesService.GetFileContentType(uploadedImage);
+                    image.Bytes = bytes;
+                    image.Filename = filename;
+                    image.ContentType = contentType;
 
-                await this.imagesService.CreateStoryImageAsync(image, story);
+                    images.Add(image);
+                }
+
+                await this.imagesService.CreateStoryImagesAsync(images, story);
             }
 
             await dbContext.SaveChangesAsync();

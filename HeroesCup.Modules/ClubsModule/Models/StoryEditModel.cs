@@ -13,8 +13,8 @@ namespace ClubsModule.Models
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} bytes.")]
         [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "Allowed file exensions: {0}")]
-        public IFormFile UploadedImage { get; set; }
+        public ICollection<IFormFile> UploadedImages { get; set; }
 
-        public string ImageSrc { get; set; }
+        public ICollection<string> ImageSources { get; set; }
     }
 }

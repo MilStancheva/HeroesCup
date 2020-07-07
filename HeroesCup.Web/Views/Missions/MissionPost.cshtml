@@ -86,25 +86,18 @@
                             </div>
                         </div>
                         <div class="row col-12 post-body pr-0 mr-0">
-                            <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
-                                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                   data-image="@Url.Content(Model.Mission.Story.ImageSrc)"
-                                   data-target="#image-gallery">
-                                    <img class="img-fluid img-thumbnail center-cropped"
-                                         src="@Url.Content(Model.Mission.Story.ImageSrc)"
-                                         alt="Another alt text">
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
-                                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                   data-image="@Url.Content(Model.Mission.Story.ImageSrc)"
-                                   data-target="#image-gallery">
-                                    <img class="img-fluid img-thumbnail center-cropped"
-                                         src="@Url.Content(Model.Mission.Story.ImageSrc)"
-                                         alt="Another alt text">
-                                </a>
-                            </div>
-                            @*<img class="img-fluid" src="@Url.Content(Model.Mission.Story.ImageSrc)" width="672">*@
+                            @foreach (var imageSource in Model.Mission.Story.ImageSources)
+                            {
+                                <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
+                                    <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                                       data-image="@Url.Content(imageSource)"
+                                       data-target="#image-gallery">
+                                        <img class="img-fluid img-thumbnail center-cropped"
+                                             src="@Url.Content(imageSource)"
+                                             alt="Another alt text">
+                                    </a>
+                                </div>
+                            }
                         </div>
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
