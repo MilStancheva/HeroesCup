@@ -941,6 +941,11 @@ a:hover .resource-icon-article {
         height: 484px;
     }
 
+    .club {
+        height: 242px;
+        overflow-y: auto;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -969,8 +974,9 @@ a:hover .resource-icon-article {
         max-width: 100%;
     }
 
-    .modal-lg {
-        height: 484px;
+    .club {
+        height: 100%;
+        overflow-y: auto;
     }
 }
 
