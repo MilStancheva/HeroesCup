@@ -47,7 +47,7 @@ namespace HeroesCup.Web.Services
                 Story = new StoryViewModel()
                 {
                     Content = m.Story != null ? m.Story.Content : null,
-                    ImageSrc = this.imageService.GetStoryImageSource(m.Story)
+                    ImageSources = this.imageService.GetStoryImageSources(m.Story)
                 }
             });
         }
@@ -93,7 +93,7 @@ namespace HeroesCup.Web.Services
                     Story = new StoryViewModel()
                     {
                         Content = m.Story != null ? m.Story.Content : null,
-                        ImageSrc = this.imageService.GetStoryImageSource(m.Story)
+                        ImageSources = this.imageService.GetStoryImageSources(m.Story)
                     }
                 });
         }
@@ -113,7 +113,7 @@ namespace HeroesCup.Web.Services
                 Story = new StoryViewModel()
                 {
                     Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
-                    ImageSrc = this.imageService.GetStoryImageSource(result.Mission.Story)
+                    ImageSources = this.imageService.GetStoryImageSources(result.Mission.Story)
                 }
             };
 

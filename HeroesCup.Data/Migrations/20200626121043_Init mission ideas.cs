@@ -7,9 +7,9 @@ namespace HeroesCup.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Id",
-                table: "HeroMissions");
+            //migrationBuilder.DropColumn(
+            //    name: "Id",
+            //    table: "HeroMissions");
 
             migrationBuilder.CreateTable(
                 name: "MissionIdeas",
@@ -65,12 +65,12 @@ namespace HeroesCup.Data.Migrations
             migrationBuilder.DropTable(
                 name: "MissionIdeas");
 
-            migrationBuilder.AddColumn<Guid>(
-                name: "Id",
-                table: "HeroMissions",
-                type: "char(36)",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+            //migrationBuilder.AddColumn<Guid>(
+            //    name: "Id",
+            //    table: "HeroMissions",
+            //    type: "char(36)",
+            //    nullable: false,
+            //    defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
         }
     }
 }

@@ -4,6 +4,7 @@ using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -128,7 +129,7 @@ namespace ClubsModule.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task CreateStoryImageAsync(Image image, Story story)
+        public async Task CreateStoryImagesAsync(IEnumerable<Image> images, Story story)
         {
             var oldStoryImages = this.dbContext.StoryImages.Where(si => si.StoryId == story.Id)
                 .Include(si => si.Image);
@@ -141,12 +142,15 @@ namespace ClubsModule.Services
                 }
             }
 
-            this.dbContext.Images.Add(image);
-            this.dbContext.StoryImages.Add(new StoryImage()
+            foreach (var image in images)
             {
-                Story = story,
-                Image = image
-            });
+                this.dbContext.Images.Add(image);
+                this.dbContext.StoryImages.Add(new StoryImage()
+                {
+                    Story = story,
+                    Image = image
+                });
+            }            
 
             await this.dbContext.SaveChangesAsync();
         }
@@ -161,9 +165,9 @@ namespace ClubsModule.Services
             }
         }
 
-        public async Task<StoryImage> GetStoryImage(Guid storyId)
+        public async Task<IEnumerable<StoryImage>> GetStoryImages(Guid storyId)
         {
-            return await this.dbContext.StoryImages.Where(si => si.StoryId == storyId).FirstOrDefaultAsync();
+            return await this.dbContext.StoryImages.Where(si => si.StoryId == storyId).ToListAsync();
         }
 
         public async Task CreateMissionIdeaImageAsync(Image image, MissionIdea missionIdea)
@@ -221,18 +225,18 @@ namespace ClubsModule.Services
             return String.Empty;
         }
 
-        public string GetStoryImageSource(Story story)
+        public IEnumerable<string> GetStoryImageSources(Story story)
         {
             if (story == null)
             {
-                return String.Empty;
+                return null;
             }
             else
             {
-                var storyImage = story.StoryImages.FirstOrDefault();
-                string imageSrc = this.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes);
+                var storyImages = story.StoryImages;
+                var imageSources = storyImages.Select(si => this.GetImageSource(si.Image.ContentType, si.Image.Bytes)).ToList();
 
-                return imageSrc;
+                return imageSources;
             }
         }
 

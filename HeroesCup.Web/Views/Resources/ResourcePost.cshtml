@@ -28,36 +28,38 @@
     <meta property="og:image" content="/images/Logo.svg" />
 }
 
-<div class="main mt-md-5 pt-md-5">
+<div class="main mt-md-5 pt-md-5 mb-0">
     <div class="container mt-md-5 pt-md-5">
         <div class="row pt-4 pb-4">
-            <div class="col-md-8 col-sm-12 pt-4 pb-4">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="heading2">@Model.Title</h2>
-                    </div>
-                    <div class="col-12">
-                        <p class="body2">@Model.Subtitle.Value</p>
-                    </div>
-
+            <div class="col-12 pl-0 pb-md-4 pb-3">
+                <div class="col-12">
+                    <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
+                    <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
                 </div>
+                <div class="col-12">
+                    <p class="body2">@Model.Subtitle.Value</p>
+                </div>
+
+            </div>
+            <div class="col-md-8 col-sm-12 pt-md-4 pt-3 pb-4 mb-md-4">
                 @if (Model.Hero.PrimaryImage.HasValue)
                 {
-                    <div class="col-12 pl-0">
-                        <div class="col-sm">
+                    <div class="col-12 pl-0 pr-0 pb-md-4 pb-4 mb-md-4">
+                        <div class="col-sm-12 pl-0 pr-0">
                             <img class="img-fluid" src="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))">
                         </div>
                     </div>
                 }
                 <div class="row justify-content-start">
-                    <div class="col-12 post-body body2">
+                    <div class="col-12 body2">
                         @Html.DisplayFor(m => m.Blocks)
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12 justify-content-start pt-4 pb-4">
-                <div class="row share-buttons ml-2">
-                    <div class="col-12">
+            <div class="col-md-4 col-sm-12 pt-4 pb-4">
+                <div class="separator d-sm-block d-md-none mb-5"></div>
+                <div class="row share-buttons ml-2 justify-content-start">
+                    <div class="col-12 text-left">
                         <span class="text-regular">Сподели тoзи ресурс:</span>
                     </div>
 
@@ -79,16 +81,18 @@
                 </div>
             </div>
         </div>
-        <hr />
+        <div class="col-12 separator"></div>
 
         @* Other Resource Posts *@
-        <div class="row pt-5 mr-0">
+        <div class="row pt-5">
             @if (Model.OtherResources.Count() > 0)
             {
                 <div class="col-12">
                     <h2 class="heading2">Още ресурси</h2>
                 </div>
-                <partial name="~/Views/Resources/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                <div class="col-12">
+                    <partial name="~/Views/Resources/_ResourcesList.cshtml" for="@Model.OtherResources" />
+                </div>
             }
 
         </div>

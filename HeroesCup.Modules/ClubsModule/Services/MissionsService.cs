@@ -418,7 +418,10 @@ namespace ClubsModule.Services
                     .ThenInclude(si => si.Image)
                     .ToListAsync();
 
-                missions.AddRange(latestMissions);
+                var selectedIds = missions.Select(x => x.Id).ToList();
+                var missionsToAdd = latestMissions.Where(m => !selectedIds.Contains(m.Id));
+
+                missions.AddRange(missionsToAdd);
             }
 
             return missions.Take(countOfPinnedMissionsOnHomePage);

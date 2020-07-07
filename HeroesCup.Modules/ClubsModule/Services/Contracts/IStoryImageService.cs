@@ -1,17 +1,18 @@
 ﻿using HeroesCup.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
 {
     public interface IStoryImageService
     {
-        Task CreateStoryImageAsync(Image image, Story story);
+        Task CreateStoryImagesAsync(IEnumerable<Image> images, Story story);
 
         Task DeleteStoryImageAsync(StoryImage storyImage, bool commit = false);
 
-        Task<StoryImage> GetStoryImage(Guid storyId);
+        Task<IEnumerable<StoryImage>> GetStoryImages(Guid storyId);
 
-        string GetStoryImageSource(Story story);
+        IEnumerable<string> GetStoryImageSources(Story story);
     }
 }

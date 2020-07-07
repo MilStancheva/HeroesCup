@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
@@ -17,18 +18,32 @@ namespace ClubsModule.Attributes
         protected override ValidationResult IsValid(
         object value, ValidationContext validationContext)
         {
-            var file = value as IFormFile;
-            if (file != null)
+            var files = value as IEnumerable<IFormFile>;
+            if (files != null)
             {
-                var extension = Path.GetExtension(file.FileName);
-
-                if (!this.extensions.Contains(extension.ToLower()))
+                foreach (var file in files)
                 {
-                    return new ValidationResult(string.Format(this.ErrorMessage, string.Join(", ", this.extensions)));
-                }
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (!this.extensions.Contains(extension.ToLower()))
+                    {
+                        return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), string.Join(", ", this.extensions)));
+                    }
+                }                
             }
 
             return ValidationResult.Success;
+        }
+
+        private string GetErrorMessage(ValidationContext validationContext)
+        {
+            if (string.IsNullOrEmpty(ErrorMessage))
+            {
+                return "Invalid error message";
+            }
+
+            HeroesCup.Localization.ManagerLocalizer localizer = validationContext.GetService(typeof(HeroesCup.Localization.ManagerLocalizer)) as HeroesCup.Localization.ManagerLocalizer;
+            return localizer.General[ErrorMessage];
         }
     }
 }

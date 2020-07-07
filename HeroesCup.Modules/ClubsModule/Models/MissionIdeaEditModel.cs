@@ -8,8 +8,8 @@ namespace ClubsModule.Models
     {
         public MissionIdea MissionIdea { get; set; }
 
-        [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is {0} bytes.")]
-        [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "Allowed file exensions: {0}")]
+        [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
+        [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile Image { get; set; }
 
         public string ImageSrc { get; set; }

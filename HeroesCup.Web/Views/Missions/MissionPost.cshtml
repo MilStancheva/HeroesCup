@@ -12,9 +12,9 @@
     var startDateAsLocalString = Model.Mission.StartDate.ToString("d MMMM yyyy", culture);
     var endDateAsLocalString = Model.Mission.EndDate.ToString("d MMMM yyyy", culture);
 
-    var now = DateTime.Now;
+    var today = DateTime.Now.Date;
     var expiredMission = false;
-    if (now > Model.Mission.EndDate)
+    if (today > Model.Mission.EndDate.Date)
     {
         expiredMission = true;
     }
@@ -24,6 +24,7 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&autoLogAppEvents=1&version=v7.0&appId=@Configuration["FacebookAppId"]"></script>
     <script src="~/scripts/share-buttons.js" type="text/javascript"></script>
+    <script src="~/scripts/image-gallery.js" type="text/javascript"></script>
 }
 
 @section head {
@@ -42,10 +43,11 @@
 <div class="main mt-md-5 pt-md-5">
     <div class="container mt-md-5 pt-md-5">
         <div class="row mb-5">
-            <div class="row col-12 justify-content-center">
+            <div class="row col-12 justify-content-center pr-md-2 pr-0">
                 <div class="col-12 pt-4 pb-4">
-                    <h2 class="heading2">@Model.Title</h2>
-                    <div class="body2"><span>от @Model.Mission.Club.Name в @Model.Mission.Mission.Location </span></div>
+                    <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
+                    <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
+                    <div class="body2"><span>от @Model.Mission.Club.Name, @Model.Mission.Mission.Location </span></div>
                     @if (expiredMission)
                     {
                         <div class="body2"><span>публикувана на @startDateAsLocalString, изтекла на @endDateAsLocalString</span></div>
@@ -56,81 +58,98 @@
                     }
                 </div>
 
-                <div class="col-md-8 col-sm-12 pl-0 mt-5">
-                    <div class="col-12 pl-0">
-                        <div class="col-sm">
+                <div class="col-md-8 col-sm-12 mt-5 pl-0 pr-0">
+                    <div class="col-12 pr-0">
+                        <div class="col-sm-12 pl-0 pr-0">
                             @if (expiredMission)
                             {
                                 <div class="img-container">
-                                    <img class="img-fluid expired-img" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                    <img class="img-fluid expired-img center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
                                     <div class="top-left body3-bold">ИЗТЕКЛА</div>
                                 </div>
                             }
                             else
                             {
-                                <img class="img-fluid" src="@Url.Content(Model.Mission.ImageSrc)" width="672">
+                                <img class="img-fluid center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
                             }
                         </div>
                     </div>
-                    <div class="col-12 justify-content-start pl-0">
-                        @if (expiredMission && Model.Mission.Story != null && Model.Mission.Story.Content != null)
+                    <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
+                        @if (Model.Mission.Story != null && Model.Mission.Story.Content != null)
                         {
-                            <div class="col-12 post-body pr-2">
-                                <p class="body2-bold">Как премина мисията?</p>
-                                @Html.Raw(Model.Mission.Story.Content)
-                                <img class="img-fluid" src="@Url.Content(Model.Mission.Story.ImageSrc)" width="672">
+                        <div class="row col-12 post-body pr-2">
+                            <div class="col-12 body2-bold">
+                                <p>Как премина мисията?</p>
                             </div>
+                            <div class="col-12">
+                                @Html.Raw(Model.Mission.Story.Content)
+                            </div>
+                        </div>
+                        <div class="row col-12 post-body pr-0 mr-0">
+                            @foreach (var imageSource in Model.Mission.Story.ImageSources)
+                            {
+                                <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
+                                    <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                                       data-image="@Url.Content(imageSource)"
+                                       data-target="#image-gallery">
+                                        <img class="img-fluid img-thumbnail center-cropped story-image"
+                                             src="@Url.Content(imageSource)"
+                                             alt="Another alt text">
+                                    </a>
+                                </div>
+                            }
+                        </div>
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
-                    <div class="col-12 mt-3 pt-3">
-                        @if (Model.Mission.Mission.Content.What != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 pr-2 body2">
-                                <p class="body2-bold">Какво?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.What)
-                            </div>
-                        }
+                        <div class="col-12 mt-3 pt-3 pl-0 pr-0 pr-md-2">
+                            @if (Model.Mission.Mission.Content.What != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Какво?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.What)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.When != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 pr-2 body2">
-                                <p class="body2-bold">Кога?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.When)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.When != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Кога?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.When)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Where != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 pr-2 body2">
-                                <p class="body2-bold">Къде?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Where)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Where != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Къде?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Where)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Equipment != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 pr-2 body2">
-                                <p class="body2-bold">Нужна екипировка/умения/нещо друго?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Equipment)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Equipment != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Нужна екипировка/умения/нещо друго?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Equipment)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Why != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 pr-2 body2">
-                                <p class="body2-bold">Защо?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Why)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Why != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Защо?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Why)
+                                </div>
+                            }
 
-                    </div>
-
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 justify-content-start mt-5 pb-4">
+                    <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели тoзи ресурс:</span>
+                            <span class="text-regular">Сподели тази мисия:</span>
                         </div>
 
                         <div class="col-5 body2">
@@ -154,5 +173,20 @@
         </div>
         <div class="separator"></div>
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Mission.Title" />
+    </div>
+
+
+    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <img id="image-gallery-image" class="img-fluid col-md-12 pl-0 pr-0" src="">
+                <div class="col-12 text-right modal-close-div pr-0">
+                    <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
+                </div>
+                <button type="button" class="btn button-left float-left" id="show-previous-image" />
+
+                <button type="button" id="show-next-image" class="btn button-right float-right" />
+            </div>
+        </div>
     </div>
 </div>
