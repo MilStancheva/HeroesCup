@@ -926,6 +926,13 @@ a:hover .resource-icon-article {
         background-color: #FAF8F3;
     }
 
+    .resources-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_resources_top_center.svg') 78% top no-repeat;
+        background-color: #FAF8F3;
+    }
+
     .modal-content {
         width: 120%;
         background-color: #faf8f3;
@@ -962,6 +969,13 @@ a:hover .resource-icon-article {
         top: 0;
         margin-top: 0;
         background: url('../images/background/hero_home_top_center_small.svg') 65% -1.6% no-repeat, url('../images/background/hero_home_top_right_small.svg') right -1.7% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .resources-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_resources_top_right_small.svg') right -2.5% no-repeat;
         background-color: #FAF8F3;
     }
 
