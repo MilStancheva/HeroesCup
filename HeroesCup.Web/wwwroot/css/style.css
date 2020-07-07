@@ -512,6 +512,7 @@ header {
     background: url('../images/cross.svg') center no-repeat;
     background-color: white;
     align-content: center;
+    opacity: unset;
 }
 
 /* Club Modal */
@@ -953,6 +954,16 @@ a:hover .resource-icon-article {
         overflow-y: auto;
     }
 
+    .modal-close {
+        display: block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: url('../images/cross.svg') center no-repeat;
+        background-color: white;
+        align-content: center;
+        opacity: unset;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -991,6 +1002,13 @@ a:hover .resource-icon-article {
     .club {
         height: 100%;
         overflow-y: auto;
+    }
+
+    .modal-close-div {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 999;
     }
 }
 
