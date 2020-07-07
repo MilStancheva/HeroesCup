@@ -910,6 +910,13 @@ a:hover .resource-icon-article {
     box-shadow: none;
 }
 
+.img-container .club-img {
+    object-fit: cover;
+    object-position: 50% 0;
+    width: 100%;
+    height: 484px;
+}
+
 @media screen and (max-width: 1060px) {
     body {
         font-size: 1rem;
@@ -964,6 +971,13 @@ a:hover .resource-icon-article {
         align-content: center;
         opacity: unset;
     }
+
+    .img-container .club-img {
+        object-fit: cover;
+        object-position: 50% 0;
+        width: 100%;
+        height: 484px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1009,6 +1023,13 @@ a:hover .resource-icon-article {
         top: 16px;
         right: 16px;
         z-index: 999;
+    }
+
+        .img-container .club-img {
+        object-fit: cover;
+        object-position: 50% 0;
+        width: 100%;
+        height: 196px;
     }
 }
 
@@ -1090,12 +1111,7 @@ img.expired-img {
         height: 148px;
     }
 
-    .img-container .club-img {
-        object-fit: cover;
-        object-position: 50% 0;
-        width: 100%;
-        height: 484px;
-    }
+
 
 .icon-hamburger {
     width: 24px;
