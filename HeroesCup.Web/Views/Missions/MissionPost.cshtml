@@ -40,11 +40,11 @@
     <meta property="og:image" content="~/images/Logo.svg" />
 }
 
-<div class="main mt-md-5 pt-md-5">
-    <div class="container mt-md-5 pt-md-5">
-        <div class="row mb-5">
+<div class="main mt-md-5 pt-md-5 pb-5 pb-md-0">
+    <div class="container mt-md-5 pt-md-5 pl-4 pr-4">
+        <div class="row mb-md-5 mb-4">
             <div class="row col-12 justify-content-center pr-md-2 pr-0">
-                <div class="col-12 pt-4 pb-4">
+                <div class="col-12 pt-md-4 pt-3 pb-md-4 pb-3">
                     <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
                     <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
                     <div class="body2"><span>от @Model.Mission.Club.Name, @Model.Mission.Mission.Location </span></div>
@@ -58,7 +58,7 @@
                     }
                 </div>
 
-                <div class="col-md-8 col-sm-12 mt-5 pl-0 pr-0">
+                <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
                             @if (expiredMission)
@@ -99,7 +99,7 @@
                         </div>
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
-                        <div class="col-12 mt-3 pt-3 pl-0 pr-0 pr-md-2">
+                        <div class="col-12 mt-md-3 pt-3 pl-0 pr-0 pr-md-2">
                             @if (Model.Mission.Mission.Content.What != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 justify-content-start mt-5 pb-4">
+                <div class="col-md-4 col-sm-12 justify-content-start mt-md-5 mt-4 pb-4">
                     <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
