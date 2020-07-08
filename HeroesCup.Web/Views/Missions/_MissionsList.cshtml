@@ -15,14 +15,14 @@
                 expiredMission = true;
             }
 
-            <div class="col-sm-6 col-md-4 mt-4 pt-4">
+            <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
                 <div class="mission-body">
                     <a href="/mission/@mission.Id" target="_blank">
                         @if (expiredMission)
                         {
                         <div class="img-container text-left">
                             <img class="img-fluid expired-img mission-img-list" src="@Url.Content(mission.ImageSrc)"  />
-                            <div class="top-left body3-bold">ВИЖ РАЗКАЗ</div>
+                            <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                         </div>
                         }
                         else
