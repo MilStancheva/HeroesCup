@@ -971,6 +971,11 @@ a:hover .resource-icon-article {
     height: 198px;
 }
 
+.about-image {
+    width: 496px;
+    height: 380px;
+}
+
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1057,6 +1062,18 @@ a:hover .resource-icon-article {
         width: 320px;
         height: 198px;
     }
+
+    .about-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 10% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .about-image {
+        width: 496px;
+        height: 380px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1126,6 +1143,18 @@ a:hover .resource-icon-article {
     .story-image {
         width: 327px;
         height: 198px;
+    }
+
+    .about-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_about_top_right_small.svg') right -2% no-repeat, url('../images/background/hero_about_top_right_bellow_small.svg') right 2.5% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .about-image {
+        width: 327px;
+        height: 250px;
     }
 }
 

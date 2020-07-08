@@ -6,32 +6,32 @@
 }
 
 <div class="main mt-md-5 pt-md-5">
-    <div class="container mt-md-5 pt-md-5 pb-4">
-        <div class="row col-12 justify-content-start pb-5 pt-5 vertical-center">
+    <div class="container mt-md-5 pt-md-5 pb-4 pl-4 pr-4 text-md-left text-center">
+        <div class="row justify-content-md-start justify-content-center pb-5 pt-5 vertical-center">
             <div class="col-md-6 col-sm-12">
                 @Html.Raw(Model.Introduction)
             </div>
         </div>
         <div class="separator"></div>
-        <div class="row col-12 justify-content-start pb-5 pt-5 vertical-center">
-            <div class="col-md-6 col-sm-12 order-md-1 order-2">
-                <img src="~/images/about/about-1.svg" width="496" />
+        <div class="row justify-content-start pb-5 pt-5 vertical-center">
+            <div class="col-md-6 col-sm-12 pb-5 pb-md-0">
+                <img class="img-fluid about-image" src="~/images/about/about-1.svg" width="496" />
             </div>
-            <div class="col-md-6 col-sm-12 order-md-2 order-1">
+            <div class="col-md-6 col-sm-12">
                 @Html.Raw(Model.FirstContent)
             </div>
         </div>
         <div class="separator"></div>
-        <div class="row col-12 justify-content-start pb-5 pt-5 vertical-center">
-            <div class="col-md-6 col-sm-12">
+        <div class="row justify-content-start pb-md-5 pb-0 pt-5 vertical-center">
+            <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-2 order-md-1">
                 @Html.Raw(Model.SecondContent)
             </div>
-            <div class="col-md-6 col-sm-12">
-                <img src="~/images/about/about-2.svg" width="496" />
+            <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-1 order-md-2">
+                <img  class="img-fluid about-image" src="~/images/about/about-2.svg" width="496" />
             </div>
         </div>
         <div class="separator"></div>
-        @if (Model.Blocks.Count > 0)
+        @*@if (Model.Blocks.Count > 0)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="separator"></div>
-        }
+        }*@
 
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>
