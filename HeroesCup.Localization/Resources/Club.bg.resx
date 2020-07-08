@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add Club" xml:space="preserve">
+    <value>Добави клуб</value>
+  </data>
   <data name="Add Hero" xml:space="preserve">
     <value>Добави герой</value>
   </data>
@@ -191,5 +194,8 @@
   </data>
   <data name="The club has been saved." xml:space="preserve">
     <value>Клубът е запазен успешно.</value>
+  </data>
+  <data name="Type Suggestion" xml:space="preserve">
+    <value>ОУ / СУ / Сдружение / Фондация</value>
   </data>
 </root>
