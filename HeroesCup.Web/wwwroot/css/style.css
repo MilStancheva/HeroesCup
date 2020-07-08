@@ -1074,6 +1074,12 @@ a:hover .resource-icon-article {
         width: 496px;
         height: 380px;
     }
+
+    #image-gallery .modal-close-div {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1112,6 +1118,7 @@ a:hover .resource-icon-article {
         background-color: #faf8f3;
         border-radius: 0;
     }
+
     .club-modal .modal-content {
         max-width: 100%;
     }
@@ -1128,7 +1135,7 @@ a:hover .resource-icon-article {
         z-index: 999;
     }
 
-        .img-container .club-img {
+    .img-container .club-img {
         object-fit: cover;
         object-position: 50% 0;
         width: 100%;
@@ -1155,6 +1162,26 @@ a:hover .resource-icon-article {
     .about-image {
         width: 327px;
         height: 250px;
+    }
+
+    .modal {
+        background-color: black;
+    }
+
+    #image-gallery .modal-content {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        z-index: 99999;
+        overflow: auto;
+        overflow-y: auto;
+    }
+
+    #image-gallery .modal-close-div {
+        position: fixed;
+        top: 16px;
+        right: 16px;
     }
 }
 
