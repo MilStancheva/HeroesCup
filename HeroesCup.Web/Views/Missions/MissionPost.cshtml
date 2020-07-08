@@ -63,10 +63,8 @@
                         <div class="col-sm-12 pl-0 pr-0">
                             @if (expiredMission)
                             {
-                                <div class="img-container">
-                                    <img class="img-fluid expired-img mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
-                                    <div class="top-left body3-bold">ИЗТЕКЛА</div>
-                                </div>
+                                <img class="img-fluid expired-img mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
+                                <div class="top-left body3-bold">ИЗТЕКЛА</div>
                             }
                             else
                             {

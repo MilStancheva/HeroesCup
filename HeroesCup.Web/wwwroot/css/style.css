@@ -713,6 +713,10 @@ a .tab-title {
         background: #FAF8F3;
     }
 
+    .nav-link.active span {
+        color: #FE5E17;
+    }
+
 
 .no-border {
     border: none;
@@ -992,6 +996,13 @@ a:hover .resource-icon-article {
         background-color: #FAF8F3;
     }
 
+    .missions-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_missions_left.svg') left top no-repeat, url('../images/background/hero_missions_right.svg') right top no-repeat;
+        background-color: #FAF8F3;
+    }
+
     .modal-content {
         width: 120%;
         background-color: #faf8f3;
@@ -1069,6 +1080,13 @@ a:hover .resource-icon-article {
         top: 0;
         margin-top: 0;
         background: url('../images/background/hero_resources_top_right_small.svg') right -2.5% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .missions-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_missions_left_small.svg') left 1% no-repeat, url('../images/background/hero_missions_right_small.svg') right top no-repeat;
         background-color: #FAF8F3;
     }
 
