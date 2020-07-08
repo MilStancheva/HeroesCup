@@ -40,7 +40,7 @@
     <meta property="og:image" content="~/images/Logo.svg" />
 }
 
-<div class="main mt-md-5 pt-md-5 pb-5 pb-md-0">
+<div class="main mt-md-5 pt-md-5">
     <div class="container mt-md-5 pt-md-5 pl-4 pr-4">
         <div class="row mb-md-5 mb-4">
             <div class="row col-12 justify-content-center pr-md-2 pr-0">
@@ -75,7 +75,7 @@
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
                         @if (Model.Mission.Story != null && Model.Mission.Story.Content != null)
                         {
-                        <div class="row col-12 post-body pr-2">
+                        <div class="row col-12 pt-md-5 pt-4 pr-2">
                             <div class="col-12 body2-bold">
                                 <p>Как премина мисията?</p>
                             </div>
@@ -83,7 +83,7 @@
                                 @Html.Raw(Model.Mission.Story.Content)
                             </div>
                         </div>
-                        <div class="row col-12 post-body pr-0 mr-0">
+                        <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
                             @foreach (var imageSource in Model.Mission.Story.ImageSources)
                             {
                                 <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">

@@ -90,7 +90,7 @@ var filePickerCallback = function (callback, value, meta) {
             callback(data.publicUrl, {
                 title: meta.filename,
                 alt: meta.filename,
-                width: '496'
+                width: '672'
             })
         }, "image");
     }

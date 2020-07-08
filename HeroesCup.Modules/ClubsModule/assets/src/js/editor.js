@@ -25,7 +25,7 @@ $(function () {
                 cb(blobInfo.blobUri(), {
                     title: meta.filename,
                     alt: file.name,
-                    width: '496'
+                    width: '672'
                 });
             };
             reader.readAsDataURL(file);
