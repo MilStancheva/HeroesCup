@@ -190,10 +190,10 @@
     <value>Мисията е успешно закачена към началната страница. </value>
   </data>
   <data name="The mission has been published." xml:space="preserve">
-    <value>Мисията е публикувана успешно.</value>
+    <value>Мисията е публикувана успешно. </value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
-    <value>Мисията е запазена успешно.</value>
+    <value>Мисията е запазена успешно. Ще бъде прегледана и публикувана от TimeHeroes.</value>
   </data>
   <data name="The mission has been unpinned from home page." xml:space="preserve">
     <value>Мисията е успешно откачена от началната страница.</value>

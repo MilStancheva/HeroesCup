@@ -193,7 +193,7 @@
     <value>The mission has been published.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
-    <value>The mission has been saved.</value>
+    <value>The mission has been saved. It will be reviewed and published by a Timeheroes administrator.</value>
   </data>
   <data name="The mission has been unpinned from home page." xml:space="preserve">
     <value>The mission has been unpinned from home page.</value>
