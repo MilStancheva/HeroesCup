@@ -126,7 +126,10 @@
   <data name="Create a club" xml:space="preserve">
     <value>Create a club</value>
   </data>
-  <data name="days" xml:space="preserve">
+  <data name="Day" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="Days" xml:space="preserve">
     <value>days</value>
   </data>
   <data name="Duration" xml:space="preserve">
