@@ -15,6 +15,8 @@ namespace HeroesCup.Data.Models
 
         public long EndDate { get; set; }
 
+        public int DurationInHours { get; set; }
+
         public string SchoolYear { get; set; }
 
         public int Stars { get; set; }

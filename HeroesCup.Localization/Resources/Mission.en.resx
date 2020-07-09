@@ -132,6 +132,12 @@
   <data name="Duration" xml:space="preserve">
     <value>Duration</value>
   </data>
+  <data name="DurationInHours" xml:space="preserve">
+    <value>Duration In Hours</value>
+  </data>
+  <data name="DurationInHoursSuggestion" xml:space="preserve">
+    <value>Contact Timeheroes administratior for more information and support.</value>
+  </data>
   <data name="End Date" xml:space="preserve">
     <value>End Date</value>
   </data>

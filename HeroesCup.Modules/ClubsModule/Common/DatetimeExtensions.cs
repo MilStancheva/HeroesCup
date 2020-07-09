@@ -15,6 +15,7 @@ namespace ClubsModule.Common
                     .Subtract(UnixTimeStartUtc)
                     .TotalMilliseconds;
         }
+
         public static DateTime ToUniversalDateTime(
             this long unixTimestamp)
         {

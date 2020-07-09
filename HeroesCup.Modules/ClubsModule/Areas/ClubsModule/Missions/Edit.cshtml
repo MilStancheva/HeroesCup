@@ -25,6 +25,13 @@
     {
         Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
     }
+
+    var today = DateTime.Now.Date;
+    var expiredMission = false;
+    if (Model.Mission.EndDate != 0  && today > Model.Mission.EndDate.ToUniversalDateTime())
+    {
+        expiredMission = true;
+    }
 }
 
 
@@ -230,6 +237,18 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (expiredMission)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
+                                @Html.TextBoxFor(m => m.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
+                            </div>
+                        </div>
+                    }
+
                     @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
                     {
                         <div class="col-sm-6">

@@ -125,6 +125,7 @@ namespace ClubsModule.Services
             var endDate = DateTime.ParseExact(model.UploadedEndDate, dateFormat, CultureInfo.InvariantCulture);
             mission.StartDate = startDate.ToUnixMilliseconds();
             mission.EndDate = endDate.ToUnixMilliseconds();
+            mission.DurationInHours = model.Mission.DurationInHours;
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
             await this.missionContentsService.SaveOrUpdateMissionContent(model.Mission.Content, mission);
 
