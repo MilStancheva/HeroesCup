@@ -129,10 +129,17 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        @if (heroesSelectList.Count() > 0 && Model.CoordinatorId != Guid.Empty)
+                        @if (heroesSelectList.Count() > 0)
                         {
                             <div class="form-group">
-                                <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
+                                @if (Model.CoordinatorId != Guid.Empty)
+                                {
+                                    <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
+                                }
+                                else
+                                {
+                                    <label>@HeroesCupLocalizer.Club["SelectCoordinator"]</label>
+                                }
                                 @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
                             </div>
                         }

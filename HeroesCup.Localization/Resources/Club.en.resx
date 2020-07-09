@@ -177,6 +177,9 @@
   <data name="Organization Type is mandatory." xml:space="preserve">
     <value>Organization Type is mandatory.</value>
   </data>
+  <data name="SelectCoordinator" xml:space="preserve">
+    <value>Please select a coordinator first.</value>
+  </data>
   <data name="The club could not be deleted." xml:space="preserve">
     <value>The club could not be deleted.</value>
   </data>
