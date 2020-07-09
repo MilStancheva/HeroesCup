@@ -126,11 +126,20 @@
   <data name="Create a club" xml:space="preserve">
     <value>Създай клуб</value>
   </data>
-  <data name="days" xml:space="preserve">
+  <data name="Day" xml:space="preserve">
+    <value>ден</value>
+  </data>
+  <data name="Days" xml:space="preserve">
     <value>дни</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Продължителност</value>
+  </data>
+  <data name="DurationInHours" xml:space="preserve">
+    <value>Ако мисията ти е приключила въведи продължителността й в часове. </value>
+  </data>
+  <data name="DurationInHoursSuggestion" xml:space="preserve">
+    <value>Ако се затрудняваш да оцениш часовете за дадена мисия, свържи с координатор на TimeHeroes.</value>
   </data>
   <data name="End Date" xml:space="preserve">
     <value>Крайна дата</value>
@@ -190,10 +199,10 @@
     <value>Мисията е успешно закачена към началната страница. </value>
   </data>
   <data name="The mission has been published." xml:space="preserve">
-    <value>Мисията е публикувана успешно.</value>
+    <value>Мисията е публикувана успешно. </value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
-    <value>Мисията е запазена успешно.</value>
+    <value>Мисията е запазена успешно. Ако все още не е публикувана ще бъде прегледана и публикувана от TimeHeroes.</value>
   </data>
   <data name="The mission has been unpinned from home page." xml:space="preserve">
     <value>Мисията е успешно откачена от началната страница.</value>

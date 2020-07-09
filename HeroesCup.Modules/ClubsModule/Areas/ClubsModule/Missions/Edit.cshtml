@@ -25,6 +25,19 @@
     {
         Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
     }
+
+    var today = DateTime.Now.Date;
+    var expiredMission = false;
+    if (Model.Mission.EndDate != 0 && today > Model.Mission.EndDate.ToUniversalDateTime())
+    {
+        expiredMission = true;
+    }
+
+    var daysString = @HeroesCupLocalizer.Mission["Days"];
+    if (Math.Round(Model.Duration.TotalDays) == 1)
+    {
+        daysString = @HeroesCupLocalizer.Mission["Day"];
+    }
 }
 
 
@@ -230,12 +243,24 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (expiredMission)
+                    {
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
+                                @Html.TextBoxFor(m => m.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
+                            </div>
+                        </div>
+                    }
+
                     @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
                     {
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>@HeroesCupLocalizer.Mission["Duration"]</label>
-                                <p>@Model.Duration.TotalDays @HeroesCupLocalizer.Mission["days"]</p>
+                                <p>@string.Format("{0:0}", Model.Duration.TotalDays) @daysString</p>
                             </div>
                         </div>
                     }
@@ -285,7 +310,7 @@
                             @Html.TextAreaFor(m => m.Mission.Content.What, new { @class = "form-control small editor", @id = "what", required = "" })
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
-                            </div>                          
+                            </div>
                         </div>
                     </div>
                 </div>

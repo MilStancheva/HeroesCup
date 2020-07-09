@@ -71,16 +71,13 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Number"]</label>
-                            @Html.TextBoxFor(m => m.Club.OrganizationNumber, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
-                                @HeroesCupLocalizer.Club["Organization Number is mandatory."]
-                            </div>
+                            @Html.TextBoxFor(m => m.Club.OrganizationNumber, new { @class = "form-control small", maxlength = 128 })
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Type"]</label>
-                            @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "" })
+                            @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "", placeholder= @HeroesCupLocalizer.Club["Type Suggestion"] })
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.Club["Organization Type is mandatory."]
                             </div>
@@ -132,24 +129,38 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
-                            @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
-                        </div>
+                        @if (heroesSelectList.Count() > 0)
+                        {
+                            <div class="form-group">
+                                @if (Model.CoordinatorId != Guid.Empty)
+                                {
+                                    <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
+                                }
+                                else
+                                {
+                                    <label>@HeroesCupLocalizer.Club["SelectCoordinator"]</label>
+                                }
+                                @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
+                            </div>
+                        }
                     </div>
                     <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Club["Heroes"]</label>
-                            @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
-                        </div>
-                        <div class="text-right">
-                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded)
-                            {
-                                <a href="@Url.Action("Add", "Heroes")" class="btn btn-labeled btn-primary pull-right">
-                                    <i class="fas fa-plus"></i>@HeroesCupLocalizer.Club["Add Hero"]
-                                </a>
-                            }
-                        </div>
+                        @if (heroesSelectList.Count() > 0)
+                        {
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Club["Heroes"]</label>
+                                @Html.DropDownListFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "form-control small", multiple = "multiple" })
+                            </div>
+
+                            <div class="text-right">
+                                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded)
+                                {
+                                    <a href="@Url.Action("Add", "Heroes")" class="btn btn-labeled btn-primary pull-right">
+                                        <i class="fas fa-plus"></i>@HeroesCupLocalizer.Club["Add Hero"]
+                                    </a>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

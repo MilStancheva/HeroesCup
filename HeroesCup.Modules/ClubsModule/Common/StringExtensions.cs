@@ -4,7 +4,12 @@
     {
         public static string TrimInput(this string input)
         {
-            return input.Trim(new char[] { '\"', '\'', '.', ' ', '“', '”' });
+            if (input != null)
+            {
+                return input.Trim(new char[] { '\"', '\'', '.', ' ', '“', '”' });
+            }
+
+            return null;
         }
     }
 }

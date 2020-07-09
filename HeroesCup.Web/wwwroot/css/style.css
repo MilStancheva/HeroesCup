@@ -531,8 +531,8 @@ header {
 }*/
 
 .center-cropped {
-    object-fit: none; /* Do not scale the image */
-    object-position: center; /* Center the image within the element */
+    object-fit: cover; /* Do not scale the image */
+    /*object-position: center;*/ /* Center the image within the element */
     /*height: 100px;
     width: 100px;*/
 }
@@ -711,6 +711,10 @@ a .tab-title {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         background: #FAF8F3;
+    }
+
+    .nav-link.active span {
+        color: #FE5E17;
     }
 
 
@@ -967,6 +971,45 @@ a:hover .resource-icon-article {
     height: 198px;
 }
 
+.about-image {
+    width: 496px;
+    height: 380px;
+}
+
+
+.img-container {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+    .img-container .mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 320px;
+        height: 198px;
+    }
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 100%;
+        height: 148px;
+    }
+
+.events-image {
+    width: 672px;
+    height: 416px;
+    object-fit: cover;
+}
+
+.illustration-image {
+    width: 496px;
+    height: 380px;
+    object-fit: cover;
+}
+
 
 @media screen and (max-width: 1060px) {
     body {
@@ -989,6 +1032,13 @@ a:hover .resource-icon-article {
         top: 0;
         margin-top: 0;
         background: url('../images/background/hero_resources_top_center.svg') 78% top no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .missions-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_missions_left.svg') left top no-repeat, url('../images/background/hero_missions_right.svg') right top no-repeat;
         background-color: #FAF8F3;
     }
 
@@ -1046,6 +1096,43 @@ a:hover .resource-icon-article {
         width: 320px;
         height: 198px;
     }
+
+    .about-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_about_top_right.svg') right top no-repeat, url('../images/background/hero_about_top_right_bellow.svg') right 10% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .about-image {
+        width: 496px;
+        height: 380px;
+    }
+
+    #image-gallery .modal-close-div {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    .img-container .mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 320px;
+        height: 198px;
+    }
+
+    .events-image {
+        width: 672px;
+        height: 416px;
+        object-fit: cover;
+    }
+
+    .illustration-image {
+        width: 496px;
+        height: 380px;
+        object-fit: cover;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1072,11 +1159,19 @@ a:hover .resource-icon-article {
         background-color: #FAF8F3;
     }
 
+    .missions-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_missions_left_small.svg') left 1% no-repeat, url('../images/background/hero_missions_right_small.svg') right top no-repeat;
+        background-color: #FAF8F3;
+    }
+
     .modal-content {
         max-width: 100%;
         background-color: #faf8f3;
         border-radius: 0;
     }
+
     .club-modal .modal-content {
         max-width: 100%;
     }
@@ -1093,7 +1188,7 @@ a:hover .resource-icon-article {
         z-index: 999;
     }
 
-        .img-container .club-img {
+    .img-container .club-img {
         object-fit: cover;
         object-position: 50% 0;
         width: 100%;
@@ -1108,6 +1203,61 @@ a:hover .resource-icon-article {
     .story-image {
         width: 327px;
         height: 198px;
+    }
+
+    .about-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_about_top_right_small.svg') right -2% no-repeat, url('../images/background/hero_about_top_right_bellow_small.svg') right 2.5% no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .about-image {
+        width: 327px;
+        height: 250px;
+    }
+
+    .modal {
+        background-color: black;
+    }
+
+    #image-gallery .modal-content {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        z-index: 99999;
+        overflow: auto;
+        overflow-y: auto;
+    }
+
+    #image-gallery .modal-close-div {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+    }
+
+    .navbar-toggleable-sm .btn-heroes {
+        width: 128px;
+    }
+
+    .img-container .mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 327px;
+        height: 198px;
+    }
+
+    .events-image {
+        width: 327px;
+        height: 196px;
+        object-fit: cover;
+    }
+
+    .illustration-image {
+        width: 327px;
+        height: 250px;
+        object-fit: cover;
     }
 }
 
@@ -1163,31 +1313,11 @@ img.expired-img {
     display: flex;
     flex-direction: row;
     padding: 4px 12px;
-    background: #E2232E;
+    background: #FE5E17;
     border-radius: 32px;
     color: white;
 }
 
-.img-container {
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    color: white;
-}
-
-.img-container .mission-img-list {
-    object-fit: cover;
-    object-position: 100% 0;
-    width: 100%;
-    height: 198px;
-}
-
-    .img-container .club-mission-img-list {
-        object-fit: cover;
-        object-position: 100% 0;
-        width: 100%;
-        height: 148px;
-    }
 
 
 
@@ -1210,3 +1340,28 @@ img.expired-img {
 #image-gallery .modal-content{
     padding:0;
 }
+
+.heroes-nav {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    background-color: #FAF8F3;
+    z-index: 99;
+    background-color: #FAF8F3;
+}
+
+.nav-items-container{
+    padding-top: 120px;
+    padding-bottom: 50%;
+}
+
+button.modal-close {
+    border: none;
+    outline: none;
+}
+
+button.icon-hamburger {
+    border: none;
+    outline: none;
+}
+

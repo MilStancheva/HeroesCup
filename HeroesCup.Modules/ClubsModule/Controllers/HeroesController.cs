@@ -66,7 +66,7 @@ namespace ClubsModule.Controllers
             if (heroId != null && heroId != Guid.Empty)
             {
                 SuccessMessage(this.heroesCupLocalizer.Hero["The hero has been saved."]);
-                return RedirectToAction("Edit", new { id = heroId });
+                return RedirectToAction("List");
             }
 
             ErrorMessage(this.heroesCupLocalizer.Hero["The hero could not be saved."], false);

@@ -6,8 +6,8 @@ $(function () {
         "/css/editor-styles.css"
     ];
     var importCssAppend = false;
-    var simple_plugins = "preview paste autolink link";
-    var simple_toolbar = "undo redo | bold italic | numlist bullist |  removeformat  |  preview | link ";
+    var simple_plugins = "paste autolink link lists";
+    var simple_toolbar = "undo redo | bold italic | numlist bullist |  removeformat | link ";
 
     tinymce.init({
         selector: clubsSelector,

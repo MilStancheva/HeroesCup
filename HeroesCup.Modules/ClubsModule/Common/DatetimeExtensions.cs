@@ -15,6 +15,7 @@ namespace ClubsModule.Common
                     .Subtract(UnixTimeStartUtc)
                     .TotalMilliseconds;
         }
+
         public static DateTime ToUniversalDateTime(
             this long unixTimestamp)
         {
@@ -23,9 +24,21 @@ namespace ClubsModule.Common
                 .ToUniversalTime();
         }
 
-        public static DateTime ConvertToLocalDateTime(this long date)
+        public static DateTime ConvertToLocalDateTime(this long timestamp)
         {
-            return date.ToUniversalDateTime().ToLocalTime();
+            return timestamp.ToUniversalDateTime().ToLocalTime();
         }
+
+        public static DateTime StartOfTheDay(this DateTime dateTime) => new DateTime(
+                dateTime.Year,
+                dateTime.Month,
+                dateTime.Day,
+                0, 0, 0, 0, dateTime.Kind);
+
+        public static DateTime EndOfTheDay(this DateTime dateTime) => new DateTime(
+                dateTime.Year,
+                dateTime.Month,
+                dateTime.Day,
+                23, 59, 59, 0, dateTime.Kind);
     }
 }

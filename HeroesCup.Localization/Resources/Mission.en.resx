@@ -126,11 +126,20 @@
   <data name="Create a club" xml:space="preserve">
     <value>Create a club</value>
   </data>
-  <data name="days" xml:space="preserve">
+  <data name="Day" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="Days" xml:space="preserve">
     <value>days</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Duration</value>
+  </data>
+  <data name="DurationInHours" xml:space="preserve">
+    <value>Duration In Hours</value>
+  </data>
+  <data name="DurationInHoursSuggestion" xml:space="preserve">
+    <value>Contact Timeheroes administratior for more information and support.</value>
   </data>
   <data name="End Date" xml:space="preserve">
     <value>End Date</value>
@@ -193,7 +202,7 @@
     <value>The mission has been published.</value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
-    <value>The mission has been saved.</value>
+    <value>The mission has been saved. It will be reviewed and published by a Timeheroes administrator.</value>
   </data>
   <data name="The mission has been unpinned from home page." xml:space="preserve">
     <value>The mission has been unpinned from home page.</value>

@@ -157,12 +157,11 @@ namespace ClubsModule.Services
             // set clubs coordinator
             if (model.CoordinatorId != null && model.CoordinatorId != Guid.Empty)
             {
-                var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == model.CoordinatorId);
                 foreach (var hero in club.Heroes)
                 {
                     hero.IsCoordinator = false;
                 }
-
+                var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == model.CoordinatorId);
                 newCoordinator.IsCoordinator = true;
             }
 
