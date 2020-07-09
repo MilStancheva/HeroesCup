@@ -998,6 +998,18 @@ a:hover .resource-icon-article {
         height: 148px;
     }
 
+.events-image {
+    width: 672px;
+    height: 416px;
+    object-fit: cover;
+}
+
+.illustration-image {
+    width: 496px;
+    height: 380px;
+    object-fit: cover;
+}
+
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1108,6 +1120,18 @@ a:hover .resource-icon-article {
         object-position: 100% 0;
         width: 320px;
         height: 198px;
+    }
+
+    .events-image {
+        width: 672px;
+        height: 416px;
+        object-fit: cover;
+    }
+
+    .illustration-image {
+        width: 496px;
+        height: 380px;
+        object-fit: cover;
     }
 }
 
@@ -1223,6 +1247,18 @@ a:hover .resource-icon-article {
         width: 327px;
         height: 198px;
     }
+
+    .events-image {
+        width: 327px;
+        height: 196px;
+        object-fit: cover;
+    }
+
+    .illustration-image {
+        width: 327px;
+        height: 250px;
+        object-fit: cover;
+    }
 }
 
 .fixed-top.scrolled {
@@ -1328,3 +1364,4 @@ button.icon-hamburger {
     border: none;
     outline: none;
 }
+

@@ -25,8 +25,8 @@ $(function () {
                 cb(blobInfo.blobUri(), {
                     title: meta.filename,
                     alt: file.name,
-                    width: '672',
-                    height: '416' 
+                    //width: '672',
+                    //height: '416' 
                 });
             };
             reader.readAsDataURL(file);
@@ -58,7 +58,7 @@ $(function () {
         autoresize_min_height: autoresizeMinHeight,
         toolbar: toolbar,
         toolbar_mode: toolbarMode,
-        contextmenu: contextMenu,
+        //contextmenu: contextMenu,
         extended_valid_elements: extendedValidElements,
         block_formats: blockFormats,
         formats: formats,
@@ -78,5 +78,6 @@ $(function () {
         //quickbars_selection_toolbar: quickbarsSelectionToolbar,
         import_css_append: importCssAppend,
         automatic_uploads: automaticUploads,
+        image_class_list: imageClassList
     });
 })

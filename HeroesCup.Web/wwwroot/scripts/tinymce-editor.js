@@ -25,7 +25,7 @@ var imageAdvtab = true;
 var autoresizeMinHeight = 0;
 var toolbar = piranha.editorconfig.toolbar;
 var toolbarMode = "sliding";
-var contextMenu = "link image imagetools table";
+//var contextMenu = "link image imagetools table";
 var extendedValidElements = piranha.editorconfig.extended_valid_elements;
 var blockFormats = piranha.editorconfig.block_formats;
 var formats = {
@@ -89,9 +89,7 @@ var filePickerCallback = function (callback, value, meta) {
         piranha.mediapicker.openCurrentFolder(function (data) {
             callback(data.publicUrl, {
                 title: meta.filename,
-                alt: meta.filename,
-                width: '672',
-                height: '416'
+                alt: meta.filename
             })
         }, "image");
     }
@@ -137,7 +135,8 @@ var setUp = function (editor) {
 };
 var imageTitle = true;
 var imageClassList = [
-    { title: 'center-cropped', value: 'center-cropped' },
+    { title: 'Blog Image', value: 'events-image' },
+    { title: 'Illustration Image', value: 'illustration-image' },
 ];
 
 piranha.editor.addInline = function (id, toolbarId) {
@@ -161,7 +160,7 @@ piranha.editor.addInline = function (id, toolbarId) {
         autoresize_min_height: autoresizeMinHeight,
         toolbar: toolbar,
         toolbar_mode: toolbarMode,
-        contextmenu: contextMenu,
+        //contextmenu: contextMenu,
         extended_valid_elements: extendedValidElements,
         block_formats: blockFormats,
         formats: formats,
