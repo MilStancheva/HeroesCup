@@ -1217,7 +1217,7 @@ a:hover .resource-icon-article {
         height: 250px;
     }
 
-    .modal {
+    .image-gallery-modal {
         background-color: black;
     }
 
@@ -1317,9 +1317,6 @@ img.expired-img {
     border-radius: 32px;
     color: white;
 }
-
-
-
 
 .icon-hamburger {
     width: 24px;
