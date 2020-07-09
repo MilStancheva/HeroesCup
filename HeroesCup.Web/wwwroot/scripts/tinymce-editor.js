@@ -137,6 +137,7 @@ var imageTitle = true;
 var imageClassList = [
     { title: 'Blog Image', value: 'events-image' },
     { title: 'Illustration Image', value: 'illustration-image' },
+    { title: 'No styles', value: '' },
 ];
 
 piranha.editor.addInline = function (id, toolbarId) {
