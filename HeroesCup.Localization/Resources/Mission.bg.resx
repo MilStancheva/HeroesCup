@@ -202,7 +202,7 @@
     <value>Мисията е публикувана успешно. </value>
   </data>
   <data name="The mission has been saved." xml:space="preserve">
-    <value>Мисията е запазена успешно. Ще бъде прегледана и публикувана от TimeHeroes.</value>
+    <value>Мисията е запазена успешно. Ако все още не е публикувана ще бъде прегледана и публикувана от TimeHeroes.</value>
   </data>
   <data name="The mission has been unpinned from home page." xml:space="preserve">
     <value>Мисията е успешно откачена от началната страница.</value>
