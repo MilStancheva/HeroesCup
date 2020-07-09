@@ -1,7 +1,7 @@
 $(function () {
     var clubsSelector = 'textarea.editor';
-    var quickbarsSelectionToolbar = 'bold italic | quicklink h2 h3 blockquote quickimage quicktable';
-    var height = 200;
+    //var quickbarsSelectionToolbar = 'bold italic | quicklink h2 h3 blockquote quickimage quicktable';
+    var height = 400;
     var importCssAppend = false;
     var automaticUploads = true;
     var clubsFilePickerTypes = 'image';
@@ -25,7 +25,8 @@ $(function () {
                 cb(blobInfo.blobUri(), {
                     title: meta.filename,
                     alt: file.name,
-                    width: '672'
+                    width: '672',
+                    height: '416' 
                 });
             };
             reader.readAsDataURL(file);
@@ -70,8 +71,11 @@ $(function () {
         fontsize_formats: fontsizeFormats,
         setup: setUp,
         image_title: imageTitle,
+        image_class_list: [
+            { title: 'center-cropped', value: 'object-fit: cover; height: 416px;' },
+        ],
         height: height,
-        quickbars_selection_toolbar: quickbarsSelectionToolbar,
+        //quickbars_selection_toolbar: quickbarsSelectionToolbar,
         import_css_append: importCssAppend,
         automatic_uploads: automaticUploads,
     });

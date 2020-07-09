@@ -90,7 +90,8 @@ var filePickerCallback = function (callback, value, meta) {
             callback(data.publicUrl, {
                 title: meta.filename,
                 alt: meta.filename,
-                width: '672'
+                width: '672',
+                height: '416'
             })
         }, "image");
     }
@@ -135,6 +136,9 @@ var setUp = function (editor) {
     });
 };
 var imageTitle = true;
+var imageClassList = [
+    { title: 'center-cropped', value: 'center-cropped' },
+];
 
 piranha.editor.addInline = function (id, toolbarId) {
     tinymce.init({
@@ -169,7 +173,8 @@ piranha.editor.addInline = function (id, toolbarId) {
         font_formats: fontFormats,
         fontsize_formats: fontsizeFormats,
         setup: setUp,
-        image_title: imageTitle
+        image_title: imageTitle,
+        image_class_list: imageClassList,
     });
 };
 
