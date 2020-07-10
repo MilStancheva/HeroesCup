@@ -27,7 +27,7 @@
                 </div>
                     }
                 </div>
-                <div class="col-md-7 col-sm-12 pl-0">
+                <div class="col-md-7 col-sm-12 pl-md-0 pl-1">
                     <div class="modal-header no-border pt-5 pr-0 pr-md-3">
                         <div class="row col-12 pl-md-0 pl-4 pr-0 pr-md-3">
                             <div class="col-12 text-right d-none d-md-block d-sm-none d-xs-none">
@@ -72,7 +72,7 @@
                             </li>
                         </ul>
                         @* Club Information *@
-                        <div class="tab-content no-border pr-3 pl-4">
+                        <div class="tab-content no-border pr-2 pl-3">
                             <div role="tabpanel" class="tab-pane active pl-3 pt-3 pr-3 pb-0" id="club_information_{@club.Id.ToString()}">
                                 <div class="row club body2 mt-3">
                                     <div class="col-12">
@@ -109,7 +109,7 @@
                                 <div class="club row mt-3">
                                     @foreach (var mission in club.Missions)
                                     {
-                                        <div class="col-sm-12 col-md-6">
+                                        <div class="col-sm-12 col-md-6 mt-3">
                                             <div class="club-mission-body">
                                                 <a href="/mission/@mission.Id" target="_blank">
                                                     <div class="img-container text-left">

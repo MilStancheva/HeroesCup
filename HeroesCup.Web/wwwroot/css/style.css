@@ -918,7 +918,7 @@ a:hover .resource-icon-article {
 .img-container .club-img {
     object-fit: cover;
     object-position: 50% 0;
-    width: 100%;
+    width: 384px;
     height: 484px;
 }
 
@@ -994,7 +994,7 @@ a:hover .resource-icon-article {
     .img-container .club-mission-img-list {
         object-fit: cover;
         object-position: 100% 0;
-        width: 100%;
+        width: 256px;
         height: 148px;
     }
 
@@ -1076,7 +1076,7 @@ a:hover .resource-icon-article {
     .img-container .club-img {
         object-fit: cover;
         object-position: 50% 0;
-        width: 100%;
+        width: 384px;
         height: 484px;
     }
 
@@ -1120,6 +1120,13 @@ a:hover .resource-icon-article {
         object-position: 100% 0;
         width: 320px;
         height: 198px;
+    }
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 256px;
+        height: 148px;
     }
 
     .events-image {
@@ -1246,6 +1253,13 @@ a:hover .resource-icon-article {
         object-position: 100% 0;
         width: 327px;
         height: 198px;
+    }
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 327px;
+        height: 196px;
     }
 
     .events-image {
