@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Hero["Name"]</label>
                             @Html.TextBoxFor(m => m.Hero.Name, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Hero["Name is mandatory."]
                             </div>
                         </div>

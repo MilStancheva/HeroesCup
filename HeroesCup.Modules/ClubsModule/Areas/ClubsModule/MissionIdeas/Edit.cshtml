@@ -38,7 +38,7 @@
                     </button>
                 }
 
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded && Model.MissionIdea.Id != Guid.Empty)
                 {
                     @if (Model.MissionIdea.IsPublished == false)
                     {
@@ -76,27 +76,30 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.MissionIdea.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
                     @*<div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Mission["Location"]</label>
-                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
-                                @HeroesCupLocalizer.General["Mandatory field"]
-                            </div>
-                        </div>
-                    </div>*@
+            <div class="form-group">
+                <label>@HeroesCupLocalizer.Mission["Location"]</label>
+                @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                <div class="invalid-tooltip">
+                    @HeroesCupLocalizer.General["Mandatory field"]
+                </div>
+            </div>
+        </div>*@
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Mission Idea URL"]</label>
-                            @Html.TextBoxFor(m => m.MissionIdea.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
+                            @Html.TextBoxFor(m => m.MissionIdea.TimeheroesUrl, new { @class = "form-control small", @type = "text", required = "" })
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +122,10 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="file" asp-for="Image" class="form-control-file" />
-                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger invalid-tooltip", required = "" })
+                                    <div class="invalid-tooltip">
+                                        @HeroesCupLocalizer.General["Mandatory field"]
+                                    </div>
                                 </div>
                             </div>
                         </div>

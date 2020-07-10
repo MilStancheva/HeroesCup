@@ -12,9 +12,6 @@
 
 @section script{
     <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        setTimeout(function () { $('.invalid-tooltip').focus() }, 3000);
-    </script>
 }
 
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -85,10 +82,24 @@
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
+                    </div>                   
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
                         <div class="form-group">
-                            <label>@HeroesCupLocalizer.General["Image"]</label>
+                            <label>@HeroesCupLocalizer.General["Content"]</label>
+                            @Html.TextAreaFor(m => m.Story.Content, new { @class = "form-control small editor", @id = "editor", required = "" })
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.General["Images"]</label>
                             <div class="row col-12">
 
                                 @if (Model.ImageSources != null)
@@ -97,7 +108,7 @@
                                     {
 
                                         <div class="col-6 mb-1">
-                                            <img src="@source" alt="Mission Image">
+                                            <img src="@source" alt="Mission Image" width="200">
                                         </div>
                                     }
                                 }
@@ -112,18 +123,6 @@
                                     <input type="file" multiple asp-for="UploadedImages" class="form-control-file" />
                                     @Html.ValidationMessageFor(model => model.UploadedImages, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.General["Content"]</label>
-                            @Html.TextAreaFor(m => m.Story.Content, new { @class = "form-control small editor", @id = "editor", required = "" })
-                            <div class="invalid-tooltip">
-                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>

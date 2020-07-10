@@ -132,6 +132,9 @@
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
   <data name="Internal server error" xml:space="preserve">
     <value>We have a problem</value>
   </data>

@@ -167,7 +167,7 @@
                             }
 
                             @Html.HiddenFor(m => m.ClubId)
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -188,7 +188,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Location"]</label>
                             @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "", @id = "location" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -298,7 +298,7 @@
                             <label>@HeroesCupLocalizer.Mission["What"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhatSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.What, new { @class = "form-control small editor", @id = "what", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -311,7 +311,7 @@
                             <label>@HeroesCupLocalizer.Mission["When"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhenSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.When, new { @class = "form-control small editor", @id = "when", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -324,7 +324,7 @@
                             <label>@HeroesCupLocalizer.Mission["Where"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhereSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Where, new { @class = "form-control small editor", @id = "where", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -337,7 +337,7 @@
                             <label>@HeroesCupLocalizer.Mission["Equipment"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["EquipmentSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small editor", @id = "equipment", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -350,7 +350,7 @@
                             <label>@HeroesCupLocalizer.Mission["Why"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhySubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Why, new { @class = "form-control small editor", @id = "why", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -363,7 +363,7 @@
                             <label>@HeroesCupLocalizer.Mission["Contact"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["ContactSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Contact, new { @class = "form-control small editor", @id = "contact", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
