@@ -341,7 +341,6 @@ header {
     }
 
         .custom-footer > div a {
-            text-decoration: underline;
             color: white;
         }
 
@@ -1393,4 +1392,16 @@ button.icon-hamburger {
 
 .center {
     margin: 0 auto
+}
+
+a {
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }
