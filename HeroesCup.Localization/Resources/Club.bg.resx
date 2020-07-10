@@ -145,7 +145,7 @@
     <value>Ако искаш смени картинката с ваша, препоръчителен размер 384 px ширина/ 484 px дължина.</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Локация</value>
+    <value>Населено място</value>
   </data>
   <data name="Location is mandatory." xml:space="preserve">
     <value>Локацията на клуба е задължително поле.</value>

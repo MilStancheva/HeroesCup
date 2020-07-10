@@ -278,6 +278,7 @@ namespace HeroesCup.Modules.ClubsModule
 
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

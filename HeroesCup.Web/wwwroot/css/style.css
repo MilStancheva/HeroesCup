@@ -1010,6 +1010,9 @@ a:hover .resource-icon-article {
     object-fit: cover;
 }
 
+#participateModal .modal-content {
+}
+
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1139,6 +1142,9 @@ a:hover .resource-icon-article {
         width: 496px;
         height: 380px;
         object-fit: cover;
+    }
+
+    #participateModal .modal-content {
     }
 }
 
@@ -1272,6 +1278,16 @@ a:hover .resource-icon-article {
         width: 327px;
         height: 250px;
         object-fit: cover;
+    }
+
+    #participateModal .modal-content {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
+        z-index: 99999;
+        overflow: auto;
+        overflow-y: auto;
     }
 }
 
