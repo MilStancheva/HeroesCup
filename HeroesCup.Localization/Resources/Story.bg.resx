@@ -133,7 +133,7 @@
     <value>Разказът не е публикуван. Възникна грешка. </value>
   </data>
   <data name="The story could not be saved." xml:space="preserve">
-    <value>Разказът не е запазен. Възникна грешка.</value>
+    <value>Разказът не е запазен. Моля попълнете коректно всички задължителни полета.</value>
   </data>
   <data name="The story could not be unpublished." xml:space="preserve">
     <value>Разказът все още е публичен. Възникна грешка. </value>

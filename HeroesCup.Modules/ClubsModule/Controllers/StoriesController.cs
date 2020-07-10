@@ -50,7 +50,8 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Edit", model);
+                ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."]);
+                return RedirectToAction("Edit", new { id = model.Story.Id });
             }
 
             var storyId = await this.storiesService.SaveStoryEditModelAsync(model);
@@ -60,8 +61,8 @@ namespace ClubsModule.Controllers
                 return RedirectToAction("Edit", new { id = storyId });
             }
 
-            ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."], false);
-            return View("Edit", model);
+            ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."]);
+            return RedirectToAction("Edit", new { id = model.Story.Id });
         }
 
         [HttpGet]
