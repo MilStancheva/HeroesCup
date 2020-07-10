@@ -168,7 +168,6 @@ namespace HeroesCup
             EditorConfig.FromFile("editorconfig.json");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add(Piranha.Manager.Editor.EditorScripts.MainScriptUrl);
             Piranha.Manager.Editor.EditorScripts.EditorScriptUrl = "~/scripts/tinymce-editor.js";
-            //App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/scripts/tinymce-editor.js");
         }
 
         private void RegisterPiranhaCustomBlocks()
