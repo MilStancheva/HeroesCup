@@ -1394,13 +1394,13 @@ button.icon-hamburger {
     margin: 0 auto
 }
 
-a {
+.custom-footer > div a {
     text-decoration: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
-a:hover {
+.custom-footer > div a {
     text-decoration: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;
