@@ -50,8 +50,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
 
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+    @*<script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
+    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>*@
     @if (User.IsInRole("Coordinator"))
     {
         <script src="/manager/clubsmodule/js/simple-editor.js" type="text/javascript"></script>
@@ -67,9 +67,7 @@
 
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script>
-    
-
+    <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script> 
 }
 
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -91,7 +89,7 @@
             <div class="top-nav">
                 @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded && Model.Mission.Club != null)
                 {
-                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                    <button asp-action="Save" type="submit" class="btn btn-labeled btn-success pull-right">
                         <span class="btn-label">
                             <i class="fas fa-check"></i>
                         </span>
