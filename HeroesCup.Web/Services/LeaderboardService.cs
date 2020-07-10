@@ -106,7 +106,7 @@ namespace HeroesCup.Web.Services
 
         private string GetClubName(Club club)
         {
-            return $"{club.Name} {club.OrganizationNumber } {club.OrganizationType } \"{club.OrganizationName }\"";
+            return $"Клуб \"{club.Name}\", {club.OrganizationNumber } {club.OrganizationType } \"{club.OrganizationName }\"";
         }
 
         private string GetClubInitials(string organizationName)

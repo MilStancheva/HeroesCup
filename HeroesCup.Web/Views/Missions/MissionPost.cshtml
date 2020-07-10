@@ -19,8 +19,14 @@
         expiredMission = true;
     }
 
+    var missionIsSeveralDays = true;
+    if (Model.Mission.EndDate.Date == Model.Mission.StartDate.Date)
+    {
+        missionIsSeveralDays = false;
+    }
+
     var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Mission.Club.OrganizationNumber} " : string.Empty;
-    var clubName = $"{Model.Mission.Club.Name} {clubNumber} {Model.Mission.Club.OrganizationType} {Model.Mission.Club.OrganizationName}";
+    var clubName = $"\"{Model.Mission.Club.Name}\" {clubNumber} {Model.Mission.Club.OrganizationType} {Model.Mission.Club.OrganizationName}";
 }
 
 @section script{
@@ -51,13 +57,13 @@
                     <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
                     <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
                     <div class="body2"><span>Клуб @clubName, @Model.Mission.Club.Location </span></div>
-                    @if (expiredMission)
+                    @if (missionIsSeveralDays)
                     {
-                        <div class="body2"><span>публикувана на @startDateAsLocalString, изтекла на @endDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията е от @startDateAsLocalString до @endDateAsLocalString</span></div>
                     }
                     else
                     {
-                        <div class="body2"><span>публикувана на @startDateAsLocalString, продължителност до @endDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията на @startDateAsLocalString</span></div>
                     }
                 </div>
 

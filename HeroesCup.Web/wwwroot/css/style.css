@@ -1010,9 +1010,14 @@ a:hover .resource-icon-article {
     object-fit: cover;
 }
 
-#participateModal .modal-content {
-}
 
+.club-modal .modal-content {
+    position: absolute;
+    right: 0;
+    left:0;
+    margin-left: -90px;
+    width: 1024px;
+}
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1049,11 +1054,6 @@ a:hover .resource-icon-article {
         width: 120%;
         background-color: #faf8f3;
         border-radius: 0;
-    }
-
-    .club-modal .modal-content {
-        min-width: 320px;
-        max-width: 1024px;
     }
 
     .modal-lg {
@@ -1144,7 +1144,12 @@ a:hover .resource-icon-article {
         object-fit: cover;
     }
 
-    #participateModal .modal-content {
+    .club-modal .modal-content {
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: 0px;
+        width: 1024px;
     }
 }
 
@@ -1187,6 +1192,10 @@ a:hover .resource-icon-article {
 
     .club-modal .modal-content {
         max-width: 100%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: 0px;
     }
 
     .club {
@@ -1278,16 +1287,6 @@ a:hover .resource-icon-article {
         width: 327px;
         height: 250px;
         object-fit: cover;
-    }
-
-    #participateModal .modal-content {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        left: 0;
-        z-index: 99999;
-        overflow: auto;
-        overflow-y: auto;
     }
 }
 
@@ -1392,3 +1391,6 @@ button.icon-hamburger {
     outline: none;
 }
 
+.center {
+    margin: 0 auto
+}
