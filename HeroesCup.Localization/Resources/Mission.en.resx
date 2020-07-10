@@ -123,6 +123,12 @@
   <data name="Club Organizer" xml:space="preserve">
     <value>Club Organizer</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>How to participate if hero is not in the club?</value>
+  </data>
+  <data name="ContactSubtitle" xml:space="preserve">
+    <value>Add a Facebook link or point a contact person from the organization.</value>
+  </data>
   <data name="Create a club" xml:space="preserve">
     <value>Create a club</value>
   </data>

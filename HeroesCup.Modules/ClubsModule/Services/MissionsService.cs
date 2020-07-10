@@ -184,6 +184,7 @@ namespace ClubsModule.Services
             }
 
             mission.IsPublished = false;
+            mission.IsPinned = false;
             await this.dbContext.SaveChangesAsync();
 
             return true;
