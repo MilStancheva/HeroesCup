@@ -918,7 +918,7 @@ a:hover .resource-icon-article {
 .img-container .club-img {
     object-fit: cover;
     object-position: 50% 0;
-    width: 100%;
+    width: 384px;
     height: 484px;
 }
 
@@ -994,7 +994,7 @@ a:hover .resource-icon-article {
     .img-container .club-mission-img-list {
         object-fit: cover;
         object-position: 100% 0;
-        width: 100%;
+        width: 256px;
         height: 148px;
     }
 
@@ -1010,6 +1010,14 @@ a:hover .resource-icon-article {
     object-fit: cover;
 }
 
+
+.club-modal .modal-content {
+    position: absolute;
+    right: 0;
+    left:0;
+    margin-left: -90px;
+    width: 1024px;
+}
 
 @media screen and (max-width: 1060px) {
     body {
@@ -1048,11 +1056,6 @@ a:hover .resource-icon-article {
         border-radius: 0;
     }
 
-    .club-modal .modal-content {
-        min-width: 320px;
-        max-width: 1024px;
-    }
-
     .modal-lg {
         height: 484px;
     }
@@ -1076,7 +1079,7 @@ a:hover .resource-icon-article {
     .img-container .club-img {
         object-fit: cover;
         object-position: 50% 0;
-        width: 100%;
+        width: 384px;
         height: 484px;
     }
 
@@ -1122,6 +1125,13 @@ a:hover .resource-icon-article {
         height: 198px;
     }
 
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 256px;
+        height: 148px;
+    }
+
     .events-image {
         width: 672px;
         height: 416px;
@@ -1132,6 +1142,14 @@ a:hover .resource-icon-article {
         width: 496px;
         height: 380px;
         object-fit: cover;
+    }
+
+    .club-modal .modal-content {
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: 0px;
+        width: 1024px;
     }
 }
 
@@ -1174,6 +1192,10 @@ a:hover .resource-icon-article {
 
     .club-modal .modal-content {
         max-width: 100%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin-left: 0px;
     }
 
     .club {
@@ -1217,7 +1239,7 @@ a:hover .resource-icon-article {
         height: 250px;
     }
 
-    .modal {
+    .image-gallery-modal {
         background-color: black;
     }
 
@@ -1246,6 +1268,13 @@ a:hover .resource-icon-article {
         object-position: 100% 0;
         width: 327px;
         height: 198px;
+    }
+
+    .img-container .club-mission-img-list {
+        object-fit: cover;
+        object-position: 100% 0;
+        width: 327px;
+        height: 196px;
     }
 
     .events-image {
@@ -1318,9 +1347,6 @@ img.expired-img {
     color: white;
 }
 
-
-
-
 .icon-hamburger {
     width: 24px;
     height: 24px;
@@ -1365,3 +1391,6 @@ button.icon-hamburger {
     outline: none;
 }
 
+.center {
+    margin: 0 auto
+}

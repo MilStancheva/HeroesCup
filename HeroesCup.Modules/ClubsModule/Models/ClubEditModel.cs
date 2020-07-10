@@ -15,7 +15,7 @@ namespace ClubsModule.Models
         public Guid CoordinatorId { get; set; }
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
-        [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpеg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile UploadedLogo { get; set; }
 
         public string LogoSrc { get; set; }

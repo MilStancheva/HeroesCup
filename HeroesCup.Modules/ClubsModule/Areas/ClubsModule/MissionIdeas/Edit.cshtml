@@ -4,12 +4,11 @@
 @inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
 @{
     ViewBag.Title = "Edit mission idea";
-    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Mission Ideas"];    
+    ViewBag.MenuItem = HeroesCupLocalizer.Mission["Mission Ideas"];
 }
 
 @section script{
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
+    <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
 }
 
 @using (var form = Html.BeginForm("Save", "MissionIdeas", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -38,7 +37,7 @@
                     </button>
                 }
 
-                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded)
+                @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsPublish)).Succeeded && Model.MissionIdea.Id != Guid.Empty)
                 {
                     @if (Model.MissionIdea.IsPublished == false)
                     {
@@ -76,27 +75,30 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.MissionIdea.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
                     </div>
                     @*<div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Mission["Location"]</label>
-                            @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
-                                @HeroesCupLocalizer.General["Mandatory field"]
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Mission["Location"]</label>
+                                @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                                <div class="invalid-tooltip">
+                                    @HeroesCupLocalizer.General["Mandatory field"]
+                                </div>
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Mission Idea URL"]</label>
-                            @Html.TextBoxFor(m => m.MissionIdea.TimeheroesUrl, new { @class = "form-control small", @type = "text" })
+                            @Html.TextBoxFor(m => m.MissionIdea.TimeheroesUrl, new { @class = "form-control small", @type = "text", required = "" })
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +121,10 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="file" asp-for="Image" class="form-control-file" />
-                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger invalid-tooltip", required = "" })
+                                    <div class="invalid-tooltip">
+                                        @HeroesCupLocalizer.General["Mandatory field"]
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +135,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Content"]</label>
-                            @Html.TextAreaFor(m => m.MissionIdea.Content, new { @class = "form-control small", @id = "editor"})
+                            @Html.TextAreaFor(m => m.MissionIdea.Content, new { @class = "form-control small editor", @id = "editor" })
                         </div>
                     </div>
                 </div>

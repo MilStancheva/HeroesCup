@@ -35,6 +35,7 @@ namespace ClubsModule.Services
                 mission.Content.Where = missionContent.Where;
                 mission.Content.Equipment = missionContent.Equipment;
                 mission.Content.Why = missionContent.Why;
+                mission.Content.Contact = missionContent.Contact;
             }
 
             if (commit)

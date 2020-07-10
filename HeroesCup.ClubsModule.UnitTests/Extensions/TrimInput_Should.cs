@@ -96,7 +96,7 @@ namespace HeroesCup.ClubsModule.UnitTests.Extensions
         }
 
         [Fact]
-        public void Return_Empty_String_When_Input_Strinf_Is_Empty()
+        public void Return_Empty_String_When_Input_String_Is_Empty()
         {
             var input = "";
             var trimmedInput = input.TrimInput();
@@ -106,13 +106,22 @@ namespace HeroesCup.ClubsModule.UnitTests.Extensions
         }
 
         [Fact]
-        public void Return_Empty_String_When_Input_Strinf_Is_White_Space()
+        public void Return_Empty_String_When_Input_String_Is_White_Space()
         {
             var input = " ";
             var trimmedInput = input.TrimInput();
             var expected = string.Empty;
 
             Assert.Equal(expected, trimmedInput);
+        }
+
+        [Fact]
+        public void Return_Null_When_Input_String_Is_Null()
+        {
+            string input = null;
+            var trimmedInput = input.TrimInput();
+
+            Assert.Null(trimmedInput);
         }
     }
 }

@@ -123,6 +123,12 @@
   <data name="Club Organizer" xml:space="preserve">
     <value>Клуб организатор</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Как да се включат герои, които не са част от клуба?</value>
+  </data>
+  <data name="ContactSubtitle" xml:space="preserve">
+    <value>Сложи линк към Facebook страница/група на клуба, ако ученици, които не са част от клуба, искат да се свържа с теб и да се включат в мисията. Ако нямате страница или група, може да напишеш “Свържи се с Петра Б. от 9А”.</value>
+  </data>
   <data name="Create a club" xml:space="preserve">
     <value>Създай клуб</value>
   </data>
@@ -148,13 +154,13 @@
     <value>Нужна екипировка/умения/нещо друго?</value>
   </data>
   <data name="EquipmentSubtitle" xml:space="preserve">
-    <value>Нужно ли е да носят нещо доброволците, осигурени ли са всички материали, храна, транспорт, предпазни средства и други. Как ще реагирате при лошо време?</value>
+    <value>Нужно ли е да носят нещо доброволците, осигурени ли са всички материали, храна, предпазни средства и други. Как ще реагирате при лошо време?</value>
   </data>
   <data name="Heroes Hint" xml:space="preserve">
     <value>Отбележи кои герои участваха, след като мисията приключи.</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Локация</value>
+    <value>Населено място</value>
   </data>
   <data name="Mission" xml:space="preserve">
     <value>Мисия</value>
@@ -220,24 +226,24 @@
     <value>Какво</value>
   </data>
   <data name="WhatSubtitle" xml:space="preserve">
-    <value>Каква инициатива организирате, каква е идеята и главната цел?</value>
+    <value>Каква инициатива организирате? Как ви хрумна идеята за нея? Опишете  стъпка по стъпка какво ще правят доброволците.</value>
   </data>
   <data name="When" xml:space="preserve">
     <value>Кога</value>
   </data>
   <data name="WhenSubtitle" xml:space="preserve">
-    <value>Кога ще се проведе и колко време ще продължи (например, ще се проведе на 01.06 и 02.06 и ще отнеме общо 4 часа, по 2 часа всеки ден)?</value>
+    <value>Дата, начален и краен час на мисията (например, ще се проведе на 01.06 и 02.06, от 16:00ч. до 18:00ч.)?</value>
   </data>
   <data name="Where" xml:space="preserve">
     <value>Къде</value>
   </data>
   <data name="WhereSubtitle" xml:space="preserve">
-    <value>Къде ще се проведе, плюс място на срещата, ако е различно от мястото на провеждане.</value>
+    <value>Къде ще се проведе и има ли организиран транспорт, ако е необходим.</value>
   </data>
   <data name="Why" xml:space="preserve">
     <value>Защо</value>
   </data>
   <data name="WhySubtitle" xml:space="preserve">
-    <value>Няколко думи, за да мотивирате доброволци да се включат в мисията</value>
+    <value>Няколко думи, за да мотивирате доброволци да се включат в мисията.</value>
   </data>
 </root>

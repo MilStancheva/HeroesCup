@@ -45,21 +45,11 @@
 
 @section script{
     @*<link src="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>*@
+    <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
-
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.MainScriptUrl)"></script>
-    <script src="@Url.Content(Piranha.Manager.Editor.EditorScripts.EditorScriptUrl)"></script>
-    @if (User.IsInRole("Coordinator"))
-    {
-        <script src="/manager/clubsmodule/js/simple-editor.js" type="text/javascript"></script>
-    }
-    else
-    {
-        <script src="/manager/clubsmodule/js/editor.js" type="text/javascript"></script>
-    }
 
     @*<link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />*@
     <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
@@ -68,7 +58,6 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script>
-
 }
 
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -90,7 +79,7 @@
             <div class="top-nav">
                 @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsSave)).Succeeded && Model.Mission.Club != null)
                 {
-                    <button type="submit" class="btn btn-labeled btn-success pull-right">
+                    <button asp-action="Save" type="submit" class="btn btn-labeled btn-success pull-right">
                         <span class="btn-label">
                             <i class="fas fa-check"></i>
                         </span>
@@ -112,30 +101,31 @@
                     else
                     {
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                <button asp-action="Unpublish" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
+                                <button asp-action="Unpublish" class="dropdown-item" name="Unpublish"><i class="fas fa-undo"></i> @Localizer.General["Unpublish"]</button>
                             </div>
                         </div>
-                    }
 
-                    @if (Model.Mission.IsPinned == false)
-                    {
-                        <button asp-action="Pin" class="btn btn-labeled btn-success pull-right">
-                            <span class="btn-label">
-                                <i class="fas fa-check"></i>
-                            </span>
-                            @HeroesCupLocalizer.General["Pin"]
-                        </button>
-                    }
-                    else
-                    {
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                <button asp-action="Unpin" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @HeroesCupLocalizer.General["Unpin"]</button>
+
+                        @if (Model.Mission.IsPinned == false)
+                        {
+                            <button asp-action="Pin" class="btn btn-labeled btn-success pull-right">
+                                <span class="btn-label">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                @HeroesCupLocalizer.General["Pin"]
+                            </button>
+                        }
+                        else
+                        {
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                    <button asp-action="Unpin" class="dropdown-item" href="#"><i class="fas fa-undo"></i> @HeroesCupLocalizer.General["Unpin"]</button>
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
                 }
 
@@ -177,7 +167,7 @@
                             }
 
                             @Html.HiddenFor(m => m.ClubId)
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -198,7 +188,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Title"]</label>
                             @Html.TextBoxFor(m => m.Mission.Title, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -207,7 +197,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Location"]</label>
                             @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "", @id = "location" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -224,7 +214,7 @@
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -238,7 +228,7 @@
                                     <span class="glyphicon glyphicon-th"></span>
                                 </div>
                             </div>
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -278,7 +268,7 @@
                                     }
                                     else
                                     {
-                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
+                                        <img src="~/manager/clubsmodule/images/no_image.png" width="200" alt="Mission Image">
                                     }
 
                                 </div>
@@ -308,7 +298,7 @@
                             <label>@HeroesCupLocalizer.Mission["What"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhatSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.What, new { @class = "form-control small editor", @id = "what", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -321,7 +311,7 @@
                             <label>@HeroesCupLocalizer.Mission["When"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhenSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.When, new { @class = "form-control small editor", @id = "when", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -334,7 +324,7 @@
                             <label>@HeroesCupLocalizer.Mission["Where"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhereSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Where, new { @class = "form-control small editor", @id = "where", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -347,7 +337,7 @@
                             <label>@HeroesCupLocalizer.Mission["Equipment"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["EquipmentSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small editor", @id = "equipment", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
@@ -360,7 +350,20 @@
                             <label>@HeroesCupLocalizer.Mission["Why"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhySubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Why, new { @class = "form-control small editor", @id = "why", required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Contact"]</label>
+                            <p class="small">@HeroesCupLocalizer.Mission["ContactSubtitle"]</p>
+                            @Html.TextAreaFor(m => m.Mission.Content.Contact, new { @class = "form-control small editor", @id = "contact", required = "" })
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>

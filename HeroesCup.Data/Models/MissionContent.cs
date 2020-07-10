@@ -16,6 +16,8 @@ namespace HeroesCup.Data.Models
         
         public string Why { get; set; }
 
+        public string Contact { get; set; }
+
         public Guid MissionId { get; set; }
         public Mission Mission { get; set; }
     }

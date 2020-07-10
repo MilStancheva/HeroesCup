@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Name"]</label>
                             @Html.TextBoxFor(m => m.Club.Name, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Name is mandatory."]
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Location"]</label>
                             @Html.TextBoxFor(m => m.Club.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Location is mandatory."]
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Type"]</label>
                             @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "", placeholder= @HeroesCupLocalizer.Club["Type Suggestion"] })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Organization Type is mandatory."]
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Name"]</label>
                             @Html.TextBoxFor(m => m.Club.OrganizationName, new { @class = "form-control small", maxlength = 128, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Organization Name is mandatory."]
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Description"]</label>
                             @Html.TextAreaFor(m => m.Club.Description, new { @class = "form-control small", maxlength = 500, required = "" })
-                            <div class="invalid-feedback">
+                            <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Description is mandatory."]
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-6">
                                     <input type="file" asp-for="UploadedLogo" class="form-control-file" contextmenu="@HeroesCupLocalizer.General["Choose file"]" placeholder="@HeroesCupLocalizer.General["Choose file"]" />
-                                    @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.UploadedLogo, "", new { @class = "text-danger invalid-tooltip" })
                                 </div>
                             </div>
 

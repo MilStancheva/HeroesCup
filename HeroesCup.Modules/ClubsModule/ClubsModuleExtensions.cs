@@ -278,6 +278,8 @@ namespace HeroesCup.Modules.ClubsModule
 
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("~/manager/clubsmodule/js/components/blocks/clubs.js");
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("~/manager/clubsmodule/css/styles.css");
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js");
 
             return builder.UseStaticFiles(new StaticFileOptions
             {

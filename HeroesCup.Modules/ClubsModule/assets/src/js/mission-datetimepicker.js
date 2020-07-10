@@ -4,7 +4,7 @@
 
     start_date_config = {
         format: 'dd mm yyyy',
-        minDate: today,
+        //minDate: today,
         maxDate: function () {
             return $('#end_date').val();
         }

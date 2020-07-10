@@ -132,6 +132,9 @@
   <data name="Image" xml:space="preserve">
     <value>Изображение</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>Изображения</value>
+  </data>
   <data name="Internal server error" xml:space="preserve">
     <value>Възникна грешка :(</value>
   </data>
