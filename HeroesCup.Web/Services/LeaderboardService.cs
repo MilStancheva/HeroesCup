@@ -62,7 +62,7 @@ namespace HeroesCup.Web.Services
                         Id = c.Club.Id,
                         Name = GetClubName(c.Club),
                         Location = c.Club.Location,
-                        ClubInitials = GetClubInitials(c.Club.OrganizationName),
+                        ClubInitials = GetClubInitials(c.Club.Name),
                         ClubImageSrc = GetClubImageSource(c.Club),
                         HeroesCount = GetHeroesCount(c.Club),
                         Points = getClubPoints(c.Missions),
