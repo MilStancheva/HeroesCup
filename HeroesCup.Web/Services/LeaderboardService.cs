@@ -112,7 +112,7 @@ namespace HeroesCup.Web.Services
         private string GetClubInitials(string organizationName)
         {
             Regex initials = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
-            organizationName = organizationName.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' });
+            organizationName = organizationName.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
             return initials.Replace(organizationName, "$1");
         }
 
