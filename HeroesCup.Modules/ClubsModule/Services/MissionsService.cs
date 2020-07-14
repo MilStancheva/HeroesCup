@@ -135,6 +135,10 @@ namespace ClubsModule.Services
                 await DeleteHeroMissions(mission);
                 await AddHeroesToMission(mission, model.HeroesIds, false);
             }
+            else
+            {
+                await DeleteHeroMissions(mission);
+            }
 
             // set mission organizer
             if (model.ClubId != null && model.ClubId != Guid.Empty)
