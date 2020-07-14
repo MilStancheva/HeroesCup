@@ -94,14 +94,21 @@
                                                 </div>
                                             </div>
                                             <div class="separator mt-3"></div>
-                                            <div class="row col-sm-6 vertical-center pt-3">
+                                            <div class="row col-sm-12 pt-3">
                                                 <div class="col-12">
-                                                    <p class="body2">Координатор:</p>
+                                                    <p class="body2">Координатори:</p>
                                                 </div>
-                                                <div class="col-4">
-                                                    <span class="body1-bold" data-letters="@club.Coordinator.HeroInitials"></span>
+                                                <div class="row col-12 mt-3 align-top">
+                                                    @foreach (var coordinator in club.Coordinators)
+                                                    {
+                                                    <div class="row col-sm-6 vertical-center p-1">
+                                                        <div class="col-3 body1-bold mr-2">
+                                                            <span class="body1-bold" data-letters="@coordinator.HeroInitials"></span>
+                                                        </div>
+                                                        <div class="col-8 body2"><span>@coordinator.Name</span></div>
+                                                    </div>
+                                                    }
                                                 </div>
-                                                <div class="col-8 body2">@club.Coordinator.Name</div>
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +135,7 @@
 
                                     @* Club Heroes *@
                                     <div role="tabpanel" class="tab-pane pl-3 pt-3 pr-3 pb-0" id="club_heroes_{@club.Id.ToString()}">
-                                        <div class="club row mt-3">
+                                        <div class="row mt-3">
                                             @foreach (var hero in club.Heroes)
                                             {
                                                 <div class="row col-sm-6 p-1 vertical-center">

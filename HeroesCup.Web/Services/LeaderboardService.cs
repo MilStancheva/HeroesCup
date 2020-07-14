@@ -69,7 +69,7 @@ namespace HeroesCup.Web.Services
                         Club = c.Club,
                         Missions = clubMissions,
                         Heroes = clubHeroes,
-                        Coordinator = clubHeroes.FirstOrDefault(h => h.IsCoordinator)
+                        Coordinators = clubHeroes.Where(h => h.IsCoordinator)
                     };
                 })
                 .OrderByDescending(c => c.Points);

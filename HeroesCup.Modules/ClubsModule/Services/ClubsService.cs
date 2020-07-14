@@ -13,14 +13,15 @@ namespace ClubsModule.Services
 {
     public class ClubsService : IClubsService
     {
-
         private readonly HeroesCupDbContext dbContext;
         private readonly IImagesService imagesService;
+        private readonly IHeroesService heroesService;
 
-        public ClubsService(HeroesCupDbContext dbContext, IImagesService imagesService)
+        public ClubsService(HeroesCupDbContext dbContext, IImagesService imagesService, IHeroesService heroesService)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
+            this.heroesService = heroesService;
         }
 
         public async Task<ClubEditModel> CreateClubEditModelAsync(Guid? ownerId)
@@ -70,11 +71,11 @@ namespace ClubsModule.Services
 
             var model = await CreateClubEditModelAsync(ownerId);
             model.Club = club;
-            var coordinator = await this.GetClubCoordinatorAsync(club.Id);
-            if (coordinator != null)
+            var coordinators = await this.GetClubCoordinatorsAsync(club.Id);
+            if (coordinators != null)
             {
-                model.Coordinator = coordinator;
-                model.CoordinatorId = model.Coordinator.Id;
+                model.Coordinators = coordinators;
+                model.CoordinatorsIds = coordinators.Select(c => c.Id).ToArray();
             }
 
             if (club.ClubImages != null && club.ClubImages.Count > 0)
@@ -154,15 +155,10 @@ namespace ClubsModule.Services
                 }
             }
 
-            // set clubs coordinator
-            if (model.CoordinatorId != null && model.CoordinatorId != Guid.Empty)
+            // set club coordinators
+            if (model.CoordinatorsIds != null && model.CoordinatorsIds.All(c => c != Guid.Empty))
             {
-                foreach (var hero in club.Heroes)
-                {
-                    hero.IsCoordinator = false;
-                }
-                var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == model.CoordinatorId);
-                newCoordinator.IsCoordinator = true;
+                await this.heroesService.SaveCoordinatorsAsync(model.CoordinatorsIds, club, false);            
             }
 
             // set club's missions
@@ -194,9 +190,9 @@ namespace ClubsModule.Services
             return club.Id;
         }
 
-        public async Task<Hero> GetClubCoordinatorAsync(Guid clubId)
+        public async Task<IEnumerable<Hero>> GetClubCoordinatorsAsync(Guid clubId)
         {
-            Hero coordinator = null;
+            IEnumerable<Hero> coordinators = null;
             var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == clubId);
             if (club == null)
             {
@@ -205,10 +201,10 @@ namespace ClubsModule.Services
 
             if (club.Heroes != null && club.Heroes.Count > 0)
             {
-                coordinator = club.Heroes.FirstOrDefault(c => c.IsCoordinator);
+                coordinators = club.Heroes.Where(c => c.IsCoordinator);
             }
 
-            return coordinator;
+            return coordinators;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

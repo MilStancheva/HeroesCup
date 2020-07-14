@@ -1,5 +1,7 @@
 ﻿using ClubsModule.Models;
+using HeroesCup.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
@@ -15,5 +17,7 @@ namespace ClubsModule.Services.Contracts
         Task<Guid> SaveHeroEditModelAsync(HeroEditModel model);
 
         Task<bool> DeleteAsync(Guid id);
+
+        Task SaveCoordinatorsAsync(IEnumerable<Guid> newCoordinatorsIds, Club club, bool commit);
     }
 }

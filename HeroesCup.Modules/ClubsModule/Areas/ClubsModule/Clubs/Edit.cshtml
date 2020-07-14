@@ -11,6 +11,12 @@
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
 }
 
+@section script{
+    @*<link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />*@
+    <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="/manager/clubsmodule/js/multiselect.js"></script>
+}
+
 @using (var form = Html.BeginForm("Save", "Clubs", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.Club.Id)
@@ -77,7 +83,7 @@
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Club["Organization Type"]</label>
-                            @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "", placeholder= @HeroesCupLocalizer.Club["Type Suggestion"] })
+                            @Html.TextBoxFor(m => m.Club.OrganizationType, new { @class = "form-control small", maxlength = 128, required = "", placeholder = @HeroesCupLocalizer.Club["Type Suggestion"] })
                             <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.Club["Organization Type is mandatory."]
                             </div>
@@ -131,17 +137,17 @@
                     <div class="col-sm-6">
                         @if (heroesSelectList.Count() > 0)
                         {
-                            <div class="form-group">
-                                @if (Model.CoordinatorId != Guid.Empty)
-                                {
-                                    <label>@HeroesCupLocalizer.Club["Coordinator"]</label>
-                                }
-                                else
-                                {
-                                    <label>@HeroesCupLocalizer.Club["SelectCoordinator"]</label>
-                                }
-                                @Html.DropDownListFor(m => m.CoordinatorId, heroesSelectList, new { @class = "form-control small" })
-                            </div>
+                        <div class="form-group">
+                            @if (Model.CoordinatorsIds != null)
+                            {
+                                <label>@HeroesCupLocalizer.Club["Coordinators"]</label>
+                            }
+                            else
+                            {
+                                <label>@HeroesCupLocalizer.Club["SelectCoordinators"]</label>
+                            }
+                            @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control small", multiple = "multiple" })
+                        </div>
                         }
                     </div>
                     <div class="col-sm-6">
