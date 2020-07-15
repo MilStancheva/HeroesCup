@@ -201,5 +201,30 @@ namespace ClubsModule.Services
                 await this.dbContext.SaveChangesAsync();
             }
         }
+
+
+        public async Task<ICollection<Hero>> GetHeroes(Guid? clubId, Guid? ownerId)
+        {
+            var heroes = this.dbContext.Heroes
+                     .Include(h => h.Club)
+                     .Select(x => x);
+
+            if (clubId.HasValue)
+            {
+                heroes = heroes.Where(h => h.ClubId == clubId);
+            }
+
+            if (ownerId.HasValue)
+            {
+                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value);
+            }
+
+            return await heroes.ToListAsync();
+        }
+
+        public async Task<Hero> GetHeroById(Guid id)
+        {
+            return await this.dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
+        }
     }
 }

@@ -19,5 +19,9 @@ namespace ClubsModule.Services.Contracts
         Task<bool> DeleteAsync(Guid id);
 
         Task SaveCoordinatorsAsync(IEnumerable<Guid> newCoordinatorsIds, Club club, bool commit);
+
+        Task<ICollection<Hero>> GetHeroes(Guid? clubId, Guid? ownerId);
+
+        Task<Hero> GetHeroById(Guid id);
     }
 }

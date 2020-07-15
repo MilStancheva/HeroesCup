@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="NoMissionsModalBody" xml:space="preserve">
+    <value>За да добавиш разказ е необходимо да има добавени мисии.
+                    Ако вече имаш въведени мисии, то всяка мисия има добавен разказ. Необходимо е или да допълниш вече съществуващ такъв, или да го изтриеш и добавиш наново.</value>
+  </data>
+  <data name="NoMissionsModalTitle" xml:space="preserve">
+    <value>Всяка мисия има въведен разказ или все още няма въведени мисии</value>
+  </data>
   <data name="Stories" xml:space="preserve">
     <value>Разкази</value>
   </data>

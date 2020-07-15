@@ -9,16 +9,52 @@
     var missions = Model.Missions != null && Model.Missions.Count() > 0 ? Model.Missions.ToList() : new List<HeroesCup.Data.Models.Mission>();
     var missionsSelectList = new SelectList(missions, "Id", "Title");
 
-    //var today = DateTime.Now.Date;
-    //var expiredMission = false;
-    //if (Model.Story.Mission != null && Model.Story.Mission.EndDate != 0 && today > Model.Story.Mission.EndDate.ToUniversalDateTime())
-    //{
-    //    expiredMission = true;
-    //}
+    var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes.ToList() : new List<HeroesCup.Data.Models.Hero>();
+    var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
+    foreach (var heroSelectItem in heroesMultipleSelectList)
+    {
+        if (Model.HeroesIds.Contains(Guid.Parse(heroSelectItem.Value)))
+        {
+            heroSelectItem.Selected = true;
+        }
+    }
+
+    var heroesSelectList = new SelectList(heroes, "Id", "Name");
+
+    var noMissionWithoutStory = Model.Missions == null || !Model.Missions.Any();
 }
 
 @section script{
     <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
+
+    @*<link src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />*@
+    <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="/manager/clubsmodule/js/multiselect.js"></script>
+
+    <script src="/manager/clubsmodule/js/story-modal.js"></script>
+}
+
+@if (noMissionWithoutStory)
+{
+    <!-- Modal -->
+    <div class="modal fade justify-content-center" id="noMissionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">@HeroesCupLocalizer.Story["NoMissionsModalTitle"]</h2>
+                    <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
+                </div>
+                <div class="modal-body">
+                    @HeroesCupLocalizer.Story["NoMissionsModalBody"]
+                </div>
+                <div class="modal-footer row text-right">
+                    <div class="col-12 mb-4">
+                        <button class="btn btn-primary mr-auto" data-dismiss="modal" aria-label="Close">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -84,12 +120,21 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Mission"]</label>
-                            @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control", required = "" })
+                            @if (Model.Story.Id != Guid.Empty)
+                            {
+                                @Html.TextBoxFor(m => m.Story.Mission.Title, new { @class = "form-control misson-field", disabled = true })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => m.Story.MissionId, missionsSelectList, new { @class = "form-control misson-field", required = "" })
+                            }
+
+                            @Html.HiddenFor(m => m.Story.MissionId)
                             <div class="invalid-feedback">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -109,6 +154,14 @@
                             <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
                             @Html.TextBoxFor(m => m.Story.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Hero["Heroes"]</label>
+                            <p class="small">@HeroesCupLocalizer.Mission["Heroes Hint"]</p>
+                            @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
                         </div>
                     </div>
                 </div>

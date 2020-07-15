@@ -37,5 +37,7 @@ namespace ClubsModule.Services.Contracts
         Task<IEnumerable<Mission>> GetPinnedMissions();
 
         Task SaveMissionDurationHours(Mission mission, int durationHours, bool commit = false);
+
+        Task SaveMissionHeroes(Mission mission, IEnumerable<Guid> ids, bool commit = false);
     }
 }

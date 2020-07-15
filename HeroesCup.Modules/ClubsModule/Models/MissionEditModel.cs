@@ -23,10 +23,6 @@ namespace ClubsModule.Models
 
         public string ImageSrc { get; set; }
 
-        public ICollection<Hero> Heroes { get; set; }
-
-        public ICollection<Guid> HeroesIds { get; set; }
-
         public IEnumerable<Club> Clubs { get; set; }
 
         public Guid ClubId { get; set; }
