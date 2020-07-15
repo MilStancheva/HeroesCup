@@ -125,7 +125,10 @@ namespace ClubsModule.Services
             var endDate = DateTime.ParseExact(model.UploadedEndDate, dateFormat, CultureInfo.InvariantCulture);
             mission.StartDate = startDate.StartOfTheDay().ToUnixMilliseconds();
             mission.EndDate = endDate.EndOfTheDay().ToUnixMilliseconds();
-            mission.DurationInHours = model.Mission.DurationInHours;
+            if (model.Mission.DurationInHours != 0)
+            {
+                mission.DurationInHours = model.Mission.DurationInHours;
+            }
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
             await this.missionContentsService.SaveOrUpdateMissionContent(model.Mission.Content, mission);
 
@@ -431,6 +434,15 @@ namespace ClubsModule.Services
             }
 
             return missions.Take(countOfPinnedMissionsOnHomePage);
+        }
+
+        public async Task SaveMissionDurationHours(Mission mission, int durationHours, bool commit)
+        {
+            mission.DurationInHours = durationHours;
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
         }
     }
 }

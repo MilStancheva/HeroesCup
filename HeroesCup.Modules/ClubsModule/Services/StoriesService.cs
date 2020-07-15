@@ -15,11 +15,13 @@ namespace ClubsModule.Services
     {
         private readonly HeroesCupDbContext dbContext;
         private readonly IImagesService imagesService;
+        private readonly IMissionsService missionsService;
 
-        public StoriesService(HeroesCupDbContext dbContext, IImagesService imagesService)
+        public StoriesService(HeroesCupDbContext dbContext, IImagesService imagesService, IMissionsService missionsService)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
+            this.missionsService = missionsService;
         }
 
         public async Task<StoryListModel> GetStoryListModelAsync(Guid? ownerId)
@@ -158,6 +160,7 @@ namespace ClubsModule.Services
             }
 
             story.Content = model.Story.Content;
+            await this.missionsService.SaveMissionDurationHours(story.Mission, model.Story.Mission.DurationInHours);
 
             // set story image
             if (model.UploadedImages != null)

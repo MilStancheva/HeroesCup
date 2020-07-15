@@ -8,6 +8,13 @@
 
     var missions = Model.Missions != null && Model.Missions.Count() > 0 ? Model.Missions.ToList() : new List<HeroesCup.Data.Models.Mission>();
     var missionsSelectList = new SelectList(missions, "Id", "Title");
+
+    //var today = DateTime.Now.Date;
+    //var expiredMission = false;
+    //if (Model.Story.Mission != null && Model.Story.Mission.EndDate != 0 && today > Model.Story.Mission.EndDate.ToUniversalDateTime())
+    //{
+    //    expiredMission = true;
+    //}
 }
 
 @section script{
@@ -92,6 +99,16 @@
                             <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
+                            <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
+                            @Html.TextBoxFor(m => m.Story.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
                         </div>
                     </div>
                 </div>
