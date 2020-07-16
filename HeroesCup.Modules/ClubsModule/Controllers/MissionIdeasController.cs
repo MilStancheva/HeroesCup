@@ -46,7 +46,7 @@ namespace ClubsModule.Controllers
             var model = await this.missionIdeasService.GetMissionIdeaEditModelByIdAsync(id);
             if (model == null)
             {
-                ErrorMessage(this.heroesCupLocalizer.Mission["The mission idea could not be found."], false);
+                ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be found."], false);
                 return RedirectToAction("List");
             }
 
@@ -67,11 +67,11 @@ namespace ClubsModule.Controllers
             var missionId = await this.missionIdeasService.SaveMissionIdeaEditModelAsync(model);
             if (missionId != null && missionId != Guid.Empty)
             {
-                SuccessMessage(this.heroesCupLocalizer.Mission["The mission idea has been saved."]);
+                SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been saved."]);
                 return RedirectToAction("Edit", new { id = missionId });
             }
 
-            ErrorMessage(this.heroesCupLocalizer.Mission["The mission idea could not be saved."], false);
+            ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be saved."], false);
             return View("Edit", model);
         }
 

@@ -95,6 +95,21 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
+        [Route("mission-idea/{id}")]
+        public async Task<IActionResult> MissionIdeaPost(Guid id, bool draft = false)
+        {
+            var missionIdea = await this.missionsService.GetMissionIdeaViewModelByIdAsync(id);
+            var model = new MissionIdeaPost()
+            {
+                MissionIdea = missionIdea,
+                Title = missionIdea.MissionIdea.Title,
+                Slug = missionIdea.MissionIdea.Title,
+                Category = "mission-idea",
+            };
+
+            return View(model);
+        }
+
         [Route("missions/load-missions")]
         public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)

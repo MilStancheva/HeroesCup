@@ -28,6 +28,7 @@ namespace HeroesCup.Web.Services
             var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
             return timeheroesMissions.Select(mi => new MissionIdeaViewModel()
             {
+                Id = mi.Id,
                 MissionIdea = mi,
                 ImageSrc = this.imageService.GetMissionIdeaImageSource(mi)
             });
@@ -115,6 +116,21 @@ namespace HeroesCup.Web.Services
                     Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
                     ImageSources = this.imageService.GetStoryImageSources(result.Mission.Story)
                 }
+            };
+
+            return model;
+        }
+
+        public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id)
+        {
+            var result = await this.missionIdeasService.GetMissionIdeaEditModelByIdAsync(id);
+            var model = new MissionIdeaViewModel()
+            {
+                Id = result.MissionIdea.Id,
+                ImageSrc = result.ImageSrc,
+                MissionIdea = result.MissionIdea,
+                StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
+                EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
             };
 
             return model;
