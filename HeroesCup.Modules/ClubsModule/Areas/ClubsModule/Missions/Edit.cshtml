@@ -48,12 +48,14 @@
     @*<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>*@
     <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    @*<script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>*@
 
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script>
+
+    <script src="/manager/clubsmodule/js/validation-modal.js"></script>
 }
 
 @using (var form = Html.BeginForm("Save", "Missions", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -231,15 +233,15 @@
                     </div>
 
                     @*@if (expiredMission)
-                    {
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
-                                <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
-                                @Html.TextBoxFor(m => m.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
+                        {
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>@HeroesCupLocalizer.Mission["DurationInHours"]</label>
+                                    <p class="small">@HeroesCupLocalizer.Mission["DurationInHoursSuggestion"]</p>
+                                    @Html.TextBoxFor(m => m.Mission.DurationInHours, new { @class = "form-control small", @type = "number" })
+                                </div>
                             </div>
-                        </div>
-                    }*@
+                        }*@
 
                     @if ((User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin")) && Model.Duration != null)
                     {
@@ -277,12 +279,12 @@
                     </div>
 
                     @*<div class="col-sm-6">
-                        <div class="form-group">
-                            <label>@HeroesCupLocalizer.Hero["Heroes"]</label>
-                            <p class="small">@HeroesCupLocalizer.Mission["Heroes Hint"]</p>
-                            @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
-                        </div>
-                    </div>*@
+                            <div class="form-group">
+                                <label>@HeroesCupLocalizer.Hero["Heroes"]</label>
+                                <p class="small">@HeroesCupLocalizer.Mission["Heroes Hint"]</p>
+                                @Html.ListBoxFor(m => m.HeroesIds, heroesMultipleSelectList, new { @class = "multiselect form-control", multiple = "multiple", @id = "heroes" })
+                            </div>
+                        </div>*@
                 </div>
 
                 <div class="row">
@@ -366,4 +368,5 @@
             </div>
         </div>
     </div>
+    <partial name="_ValidationModal" model="null" />
 }

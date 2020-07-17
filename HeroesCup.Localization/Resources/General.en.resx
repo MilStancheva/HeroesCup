@@ -162,4 +162,10 @@
   <data name="Unpin" xml:space="preserve">
     <value>Unpin</value>
   </data>
+  <data name="ValidationModalBody" xml:space="preserve">
+    <value>There are required fields that are not filled in yet. </value>
+  </data>
+  <data name="ValidationModalTitle" xml:space="preserve">
+    <value>Please fill in all required fields.</value>
+  </data>
 </root>

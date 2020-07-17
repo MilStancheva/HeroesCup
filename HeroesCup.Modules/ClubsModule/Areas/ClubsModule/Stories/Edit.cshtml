@@ -32,29 +32,18 @@
     <script src="/manager/clubsmodule/js/multiselect.js"></script>
 
     <script src="/manager/clubsmodule/js/story-modal.js"></script>
+    <script src="/manager/clubsmodule/js/validation-modal.js"></script>
 }
 
 @if (noMissionWithoutStory)
 {
+    var validationModal = new ClubsModule.Models.ValidationModal()
+    {
+        Title = HeroesCupLocalizer.Story["NoMissionsModalTitle"],
+        Body = HeroesCupLocalizer.Story["NoMissionsModalBody"]
+    };
     <!-- Modal -->
-    <div class="modal fade justify-content-center" id="noMissionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content p-4">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">@HeroesCupLocalizer.Story["NoMissionsModalTitle"]</h2>
-                    <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
-                </div>
-                <div class="modal-body">
-                    @HeroesCupLocalizer.Story["NoMissionsModalBody"]
-                </div>
-                <div class="modal-footer row text-right">
-                    <div class="col-12 mb-4">
-                        <button class="btn btn-primary mr-auto" data-dismiss="modal" aria-label="Close">ОК</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <partial name="_ValidationModal" model="validationModal" />
 }
 
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -200,4 +189,5 @@
             </div>
         </div>
     </div>
+    <partial name="_ValidationModal" model="null" />
 }

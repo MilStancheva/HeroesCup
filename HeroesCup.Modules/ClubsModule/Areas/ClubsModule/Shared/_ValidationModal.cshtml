@@ -1,0 +1,32 @@
+﻿@model ClubsModule.Models.ValidationModal
+@inject HeroesCup.Localization.ManagerLocalizer HeroesCupLocalizer
+@{ 
+    ClubsModule.Models.ValidationModal modal = Model;
+    if (Model == null)
+    {
+        modal = new ClubsModule.Models.ValidationModal()
+        {
+            Title = HeroesCupLocalizer.General["ValidationModalTitle"],
+            Body = HeroesCupLocalizer.General["ValidationModalBody"],
+        };
+    }
+}
+<!-- Modal -->
+<div class="modal fade justify-content-center" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="validationModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content p-4">
+            <div class="modal-header">
+                <h2 class="modal-title" id="validationModalLabel">@modal.Title</h2>
+                <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                @modal.Body
+            </div>
+            <div class="modal-footer row text-right">
+                <div class="col-12 mb-4">
+                    <button class="btn btn-primary mr-auto" data-dismiss="modal" aria-label="Close">ОК</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
