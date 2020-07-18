@@ -1310,7 +1310,8 @@ a:hover .resource-icon-article {
     }
 
     .leaderboard-clubs {
-        padding-right: 8px;
+        padding-right: 0;
+        overflow-y: visible;
     }
 }
 
