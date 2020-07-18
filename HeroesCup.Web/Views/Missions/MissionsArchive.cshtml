@@ -26,9 +26,15 @@
                     </a>
                 </li>
                 <li class="row col-md-4 col-6 ml-md-0 ml-2 nav-item">
-                    <a class="nav-link tab-title pl-0 pr-0  ml-md-0  mr-3" data-toggle="tab" href="#missionideas" role="tab">
+                    <a class="nav-link tab-title pl-0 pr-0  ml-md-0" data-toggle="tab" href="#missionideas" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Грабни идея</span>
                         <span class="heading5 d-sm-block d-md-none">Грабни идея</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab-title" data-toggle="tab" href="#stories" role="tab">
+                        <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Героите разказват</span>
+                        <span class="heading5 d-sm-block d-md-none">Героите разказват</span>
                     </a>
                 </li>
             </ul>
@@ -88,7 +94,7 @@
                         @if (count < 4)
                         {
                             firstCount = 3;
-                        } 
+                        }
                         else if (count < 7)
                         {
                             firstCount = 3;
@@ -129,6 +135,21 @@
                     <div id="more-missionideas"></div>
                     <div class="row justify-content-center mt-4 mb-5 pb-4">
                         <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
+                    </div>
+                </div>
+
+                <div role="tabpanel" id="stories" class="tab-pane missions-block mb-4">
+                    <div class="row mt-md-5 mt-3 pt-4 pb-4">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="col-12 pl-0 body2">Всяка успешна мисия е история с щастлив край. Тук можеш да какво разказват ученици, участвали в успешни мисии из цялата страна.</div>
+                        </div>
+                    </div>
+                    <div id="missionideas-partial">
+                        <partial name="~/Views/Missions/_StoriesList.cshtml" for="@Model.Stories" />
+                    </div>
+                    <div id="more-stories"></div>
+                    <div class="row justify-content-center mt-4 mb-5 pb-4">
+                        <button id="load-stories" class="btn btn-default btn-heroes">Покажи още</button>
                     </div>
                 </div>
             </div>

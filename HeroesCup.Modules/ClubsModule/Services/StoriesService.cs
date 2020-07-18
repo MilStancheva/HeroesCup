@@ -249,5 +249,31 @@ namespace ClubsModule.Services
         {
             return htmlString.Substring(0, Math.Min(htmlString.Length, length));
         }
+
+        public IEnumerable<Story> GetAllPublishedStories()
+        {
+            return this.dbContext.Stories
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.Club)
+                .Include(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
+                .Where(s => s.IsPublished == true);
+        }
+
+        public async Task<Story> GetStoryByIdAsync(Guid id)
+        {
+            return await this.dbContext.Stories
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.Club)
+                .Include(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
+                .FirstOrDefaultAsync(s => s.Id == id);
+        }
     }
 }

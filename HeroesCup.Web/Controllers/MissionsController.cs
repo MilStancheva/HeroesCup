@@ -16,6 +16,7 @@ namespace HeroesCup.Controllers
     {
         private const string MissionsPageCountKey = "missionsPageCount";
         private const string MissionIdeasPageCountKey = "missionIdeasPageCount";
+        private const string StoriesPageCountKey = "storiesPageCount";
         private readonly IApi api;
         private readonly IModelLoader loader;
         private readonly IMissionsService missionsService;
@@ -61,6 +62,7 @@ namespace HeroesCup.Controllers
 
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
+            int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
 
             if (selectedLocation != null)
             {
@@ -73,6 +75,7 @@ namespace HeroesCup.Controllers
             }
 
             model.MissionIdeas = this.missionsService.GetMissionIdeaViewModels().Take((int)missionIdeasCurrentPageCount * _missionsCount);
+            model.Stories = this.missionsService.GetAllPublishedStoryViewModels().Take((int)storiesCurrentPageCount * _missionsCount);
 
             model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
             model.MissionsCount = this.missionsService.GetAllMissionsCount();
@@ -105,6 +108,21 @@ namespace HeroesCup.Controllers
                 Title = missionIdea.MissionIdea.Title,
                 Slug = missionIdea.MissionIdea.Title,
                 Category = "mission-idea",
+            };
+
+            return View(model);
+        }
+
+        [Route("story/{id}")]
+        public async Task<IActionResult> StoryPost(Guid id, bool draft = false)
+        {
+            var story = await this.missionsService.GetStoryViewModelByIdAsync(id);
+            var model = new StoryPost()
+            {
+                Story = story,
+                Title = story.Mission.Title,
+                Slug = story.Mission.Title,
+                Category = "story",
             };
 
             return View(model);

@@ -1,5 +1,7 @@
 ﻿using ClubsModule.Models;
+using HeroesCup.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
@@ -19,5 +21,9 @@ namespace ClubsModule.Services.Contracts
         Task<StoryEditModel> GetStoryEditModelByIdAsync(Guid id, Guid? ownerId);
 
         Task<bool> DeleteAsync(Guid id);
+
+        IEnumerable<Story> GetAllPublishedStories();
+
+        Task<Story> GetStoryByIdAsync(Guid id);
     }
 }
