@@ -5,7 +5,7 @@ using Piranha.Models;
 
 namespace HeroesCup.Web.Models
 {
-    [PageType(Title = "About page")]
+    [PageType(Title = "About page", UsePrimaryImage = false, UseExcerpt = false)]
     [PageTypeRoute(Title = "About", Route = "/about")]
     public class AboutPage: Page<AboutPage>
     {
