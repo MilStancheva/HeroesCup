@@ -714,15 +714,27 @@ a .tab-title {
     border: none;
 }
 
+.missions-background .nav-tabs .nav-item {
+    margin-right: 1.2rem;
+    align-content: baseline;
+}
+
 
 .missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     border: none;
     background: none;
-    margin-left: 0px;
-    margin-right: 0px;
     color: #FE5E17;
     border-bottom: 3px solid #FE5E17;
 }
+
+    .missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+        border: none;
+        background: none;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 1.2rem;
+    }
 
 /* Items List */
 .item-body > a {
