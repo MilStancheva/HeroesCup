@@ -1150,6 +1150,13 @@ a:hover .resource-icon-article {
         margin-left: 0px;
         width: 1024px;
     }
+
+    .leaderboard-clubs {
+        padding-right: 8px;
+        min-height: 90px;
+        max-height: 600px;
+        overflow-y: auto;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1286,6 +1293,10 @@ a:hover .resource-icon-article {
         width: 327px;
         height: 250px;
         object-fit: cover;
+    }
+
+    .leaderboard-clubs {
+        padding-right: 8px;
     }
 }
 
