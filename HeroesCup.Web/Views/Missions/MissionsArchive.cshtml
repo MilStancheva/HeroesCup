@@ -78,17 +78,51 @@
                             </form>
                         </div>
                     </div>
-                    @if (Model.SelectedLocation == null)
-                    {
-                        <div id="missions-partial">
-                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
-                        </div>
-                        <div class="row justify-content-center mt-md-4 mt-5 mb-5 pb-4">
-                            <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
-                        </div>
-                    }
-                    else
-                    {
+                    @*@if (Model.SelectedLocation == null)
+        {
+            <div id="missions-partial">
+                <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
+            </div>
+            <div class="row justify-content-center mt-md-4 mt-5 mb-5 pb-4">
+                <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
+            </div>
+        }
+        else
+        {
+            int firstCount = 0;
+            int secondCount = 0;
+            int count = Model.Missions.Count();
+            @if (count < 4)
+            {
+                firstCount = 3;
+            }
+            else if (count < 7)
+            {
+                firstCount = 3;
+                secondCount = count - firstCount;
+            }
+            else if (count < 10)
+            {
+                firstCount = 6;
+                secondCount = count - firstCount;
+            }
+
+            var missionsFirstHalf = @Model.Missions.Take(firstCount);
+            var missionsSecondHalf = @Model.Missions.Skip(firstCount).Take(secondCount);
+
+            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+            <div class="col-12 separator mb-4 mt-5"></div>
+
+            <partial name="~/Views/Missions/_MissionsBanner.cshtml" for="@Model.Title" />
+            @if (secondCount > 0)
+            {
+                <div class="col-12 separator mb-4 mt-"></div>
+                <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+            }
+
+        }*@
+
+                    @{
                         int firstCount = 0;
                         int secondCount = 0;
                         int count = Model.Missions.Count();
