@@ -264,18 +264,6 @@ header {
     color: #FE5E17;
 }
 
-/*.nav-site li.active a {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-/*text-align: right;
-    color: #FE5E17;
-    text-transform: capitalize;
-}*/
-
 .header-bg.header-bg-empty a:hover span {
     border-color: #000;
 }
@@ -1404,4 +1392,33 @@ button.icon-hamburger {
     text-decoration: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+
+.tabbable .nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+}
+
+    .tabbable .nav-tabs .nav-link {
+        white-space: nowrap;
+    }
+
+.nav-tabs {
+    padding-bottom:0;
 }

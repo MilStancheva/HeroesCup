@@ -17,29 +17,30 @@
 
 <div class="main">
     <div class="container pl-4 pr-4">
+        
         <div class="tabbable mt-md-5 pt-md-5">
-            <ul class="col-12 nav nav-tabs mt-md-5 pt-md-5" role="tablist">
-                <li class="row col-md-4 col-6 nav-item mr-3 mr-md-0">
-                    <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3" data-toggle="tab" href="#missions" role="tab">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active tab-title" data-toggle="tab" data-index="0" href="#missions" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Ученически мисии</span>
                         <span class="heading5 d-sm-block d-md-none">Ученически мисии</span>
                     </a>
                 </li>
-                <li class="row col-md-4 col-6 ml-md-0 ml-2 nav-item">
-                    <a class="nav-link tab-title pl-0 pr-0  ml-md-0" data-toggle="tab" href="#missionideas" role="tab">
+                <li class="nav-item">
+                    <a class="nav-link tab-title" data-toggle="tab" data-index="1" href="#missionideas" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Грабни идея</span>
                         <span class="heading5 d-sm-block d-md-none">Грабни идея</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link tab-title" data-toggle="tab" href="#stories" role="tab">
+                    <a class="nav-link tab-title" data-toggle="tab" data-index="2" href="#stories" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Героите разказват</span>
                         <span class="heading5 d-sm-block d-md-none">Героите разказват</span>
                     </a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active mb-4" id="missions">
+                <div role="tabpanel" class="tab-pane fade active show mb-4" id="missions">
                     <div class="row mt-md-5 mt-3 pt-4">
                         <div class="col-md-8 col-sm-12 pb-4">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
@@ -123,7 +124,7 @@
 
                 </div>
 
-                <div role="tabpanel" id="missionideas" class="tab-pane missions-block mb-4">
+                <div role="tabpanel" id="missionideas" class="tab-pane fade missions-block mb-4">
                     <div class="row mt-md-5 mt-3 pt-4 pb-4">
                         <div class="col-md-8 col-sm-12">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
@@ -138,7 +139,7 @@
                     </div>
                 </div>
 
-                <div role="tabpanel" id="stories" class="tab-pane missions-block mb-4">
+                <div role="tabpanel" id="stories" class="tab-pane fade missions-block mb-4">
                     <div class="row mt-md-5 mt-3 pt-4 pb-4">
                         <div class="col-md-8 col-sm-12">
                             <div class="col-12 pl-0 body2">Всяка успешна мисия е история с щастлив край. Тук можеш да какво разказват ученици, участвали в успешни мисии из цялата страна.</div>
@@ -154,9 +155,9 @@
                 </div>
             </div>
         </div>
-        <div class="separator"></div>
-        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
-    </div>
+            <div class="separator"></div>
+            <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+        </div>
 </div>
 
 @section script{
