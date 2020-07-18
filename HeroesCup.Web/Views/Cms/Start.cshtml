@@ -116,7 +116,7 @@
         }
 
         @* Leaderboard *@
-        <div class="pt-5 pb-5 pl-3 pr-3">
+        <div class="pt-5 pb-5 pl-md-3 pr-md-3 pl-0 pr-0">
             @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
@@ -166,11 +166,11 @@
                     index += 1;
 
                     <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                        <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
-                            <div class="col-1 align-self-start">
-                                <div class="body1-bold text-md-center">
-                                    <span class="align-top">@index</span>
-                                </div>
+                        <div class="row vertical-center leaderboard-club">
+                            <div class="col-1 align-self-start mt-3">
+                                <div>
+                                    <span class="body1-bold align-top">@index</span>
+                                </div>                                
                             </div>
                             <div class="row col-11 vertical-center">
                                 <div class="col-md-2 col-sm-12 text-md-center">
