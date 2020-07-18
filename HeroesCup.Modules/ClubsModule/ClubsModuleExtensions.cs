@@ -281,7 +281,8 @@ namespace HeroesCup.Modules.ClubsModule
             App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js");
             App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js");
-            
+            App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css");
+            App.Modules.Get<Piranha.Manager.Module>().Scripts.Add("https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js");
             return builder.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new EmbeddedFileProvider(typeof(ClubsModuleExtensions).Assembly, "ClubsModule.assets.src"),
