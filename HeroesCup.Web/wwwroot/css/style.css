@@ -694,7 +694,7 @@ a .tab-title {
         font-weight: bold;
         font-size: 16px;
         line-height: 24px;
-        border-bottom: 2px solid #FE5E17;
+        border-bottom: 3px solid #FE5E17;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         background: #FAF8F3;
@@ -721,7 +721,7 @@ a .tab-title {
     margin-left: 0px;
     margin-right: 0px;
     color: #FE5E17;
-    border-bottom: 2px solid #FE5E17;
+    border-bottom: 3px solid #FE5E17;
 }
 
 /* Items List */
