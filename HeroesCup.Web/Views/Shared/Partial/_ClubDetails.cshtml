@@ -118,12 +118,30 @@
                                         <div class="club row mt-3">
                                             @foreach (var mission in club.Missions)
                                             {
+                                                var today = DateTime.Now.ToLocalTime().Date;
+                                                var expiredMission = false;
+                                                if (today > mission.EndDate.Date)
+                                                {
+                                                    expiredMission = true;
+                                                }
+
                                                 <div class="col-sm-12 col-md-6 mt-3">
                                                     <div class="club-mission-body">
                                                         <a href="/mission/@mission.Id" target="_blank">
-                                                            <div class="img-container text-left">
-                                                                <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
-                                                            </div>
+                                                            @if (expiredMission)
+                                                            {
+                                                                <div class="img-container text-left">
+                                                                    <img class="img-fluid expired-img club-mission-img-list" src="@mission.ImageSrc" />
+                                                                    <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="img-container text-left">
+                                                                    <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
+                                                                </div>
+                                                            }
+
                                                             <h4 class="mission-title body2-bold">@mission.Title</h4>
                                                             <p class="body3">от клуб "@mission.Club.Name"</p>
                                                         </a>
