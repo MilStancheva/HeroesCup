@@ -21,6 +21,8 @@ namespace HeroesCup.Models
 
         public IEnumerable<StoryViewModel> Stories { get; set; }
 
+        public bool IsLoadMoreMissionsRequest { get; set; }
+
         public MissionsPage()
         {
             Missions = new HashSet<MissionViewModel>();

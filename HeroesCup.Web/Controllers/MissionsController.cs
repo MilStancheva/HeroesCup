@@ -29,8 +29,8 @@ namespace HeroesCup.Controllers
         /// </summary>
         /// <param name="api">The current api</param>
         public MissionsController(
-            IApi api, 
-            IModelLoader loader, 
+            IApi api,
+            IModelLoader loader,
             IMissionsService missionsService,
             ISessionService sessionService,
             IConfiguration configuration)
@@ -58,7 +58,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> MissionsArchive(Guid id, bool loadRequest, string selectedLocation, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);           
+            var model = await this.loader.GetPageAsync<MissionsPage>(id, HttpContext.User, draft);
 
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
@@ -67,7 +67,12 @@ namespace HeroesCup.Controllers
             if (selectedLocation != null)
             {
                 model.SelectedLocation = selectedLocation.Trim();
-                model.Missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation); ;
+                model.Missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation); 
+            }
+            else if (loadRequest)
+            {
+                model.IsLoadMoreMissionsRequest = true;
+                model.Missions = this.missionsService.GetMissionViewModels().ToList();
             }
             else
             {
@@ -93,7 +98,7 @@ namespace HeroesCup.Controllers
                 Title = mission.Mission.Title,
                 Slug = mission.Mission.Title,
                 Category = "mission",
-        };
+            };
 
             return View(model);
         }
@@ -132,10 +137,9 @@ namespace HeroesCup.Controllers
         public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
-            var missions = this.missionsService.GetMissionViewModels()
-                .Take(missionsCurrentPageCount * _missionsCount);
+            var missions = this.missionsService.GetMissionViewModels();
+            //.Take(missionsCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionsList", missions);
         }
@@ -151,6 +155,18 @@ namespace HeroesCup.Controllers
                 .Take((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
+        }
+
+        [Route("missions/load-stories")]
+        public IActionResult LoadStories(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
+            Guid? category = null, Guid? tag = null, bool draft = false)
+        {
+
+            int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
+            var stories = this.missionsService.GetAllPublishedStoryViewModels()
+                .Take((int)storiesCurrentPageCount * _missionsCount);
+
+            return PartialView("_StoriesList", stories);
         }
     }
 }

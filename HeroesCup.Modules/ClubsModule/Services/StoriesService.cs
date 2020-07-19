@@ -260,7 +260,8 @@ namespace ClubsModule.Services
                 .ThenInclude(m => m.Club)
                 .Include(s => s.StoryImages)
                 .ThenInclude(si => si.Image)
-                .Where(s => s.IsPublished == true);
+                .Where(s => s.IsPublished == true)
+                .OrderByDescending(s => s.Mission.StartDate);
         }
 
         public async Task<Story> GetStoryByIdAsync(Guid id)
