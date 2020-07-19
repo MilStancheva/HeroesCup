@@ -8,11 +8,21 @@
     <div class="row">
         @foreach (var story in stories)
         {
+            var imageSrc = "";
+            if (story.ImageSources != null && story.ImageSources.Any())
+            {
+                imageSrc = story.ImageSources.ToArray()[0];
+            }
+            else
+            {
+                imageSrc = story.Mission.ImageSrc;
+            }
+
             <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
                 <div class="mission-body">
                     <a href="/story/@story.Id" target="_blank">
                         <div class="img-container text-left">
-                            <img class="img-fluid mission-img-list" src="@Url.Content(story.ImageSources.ToArray()[0])" />
+                            <img class="img-fluid mission-img-list" src="@Url.Content(imageSrc)" />
                         </div>
                         <p class="body2 mt-4">Разказ за:</p>
                         <p class="mission-title body1-bold pr-md-4 pr-1">@story.Mission.Title</p>
