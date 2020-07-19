@@ -1,5 +1,5 @@
 {
-  "plugins": "print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount image imagetools textpattern noneditable help charmap quickbars",
+  "plugins": "print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount image imagetools textpattern noneditable help charmap",
   "toolbar": "undo redo | bold italic underline | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap | fullscreen  preview print | insertfile image media template link anchor codesample | ltr rtl | heroButton top_padding bottom_padding",
   "blockformats": "Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Content=div;Quote=blockquote",
   "styleformats": [
