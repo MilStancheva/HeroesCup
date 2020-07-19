@@ -2,8 +2,8 @@
 @model String
 @{
     var title = ViewBag.Title == "Home" ? "Искаш да спечелиш купата?" : "Запиши се сега!";
-    var anchorTag = "<a href=\"/about\" class=\"btn btn-heroes\">Разбери повече</a>";
-    var buttonTag = "<button  type=\"button\" data-toggle=\"modal\" data-target=\"#participateModal\" class=\"btn btn-heroes\">Участвай</a>";
+    var anchorTag = "<button  type=\"button\" data-toggle=\"modal\" data-target=\"#participateModal\" class=\"btn btn-heroes\">Разбери повече</button>";
+    var buttonTag = "<button  type=\"button\" data-toggle=\"modal\" data-target=\"#participateModal\" class=\"btn btn-heroes\">Участвай</button>";
     var button = ViewBag.Title == "About" ? buttonTag : anchorTag;
 }
 

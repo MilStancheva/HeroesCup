@@ -264,18 +264,6 @@ header {
     color: #FE5E17;
 }
 
-/*.nav-site li.active a {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-/*text-align: right;
-    color: #FE5E17;
-    text-transform: capitalize;
-}*/
-
 .header-bg.header-bg-empty a:hover span {
     border-color: #000;
 }
@@ -341,7 +329,6 @@ header {
     }
 
         .custom-footer > div a {
-            text-decoration: underline;
             color: white;
         }
 
@@ -465,7 +452,6 @@ header {
 
 .mission-title {
     display: inline-block;
-    margin-top: 24px;
 }
 
     .mission-title:hover {
@@ -618,7 +604,7 @@ header {
 .leaderboard-clubs {
     padding-right: 8px;
     min-height: 90px;
-    max-height: 600px;
+    max-height: 800px;
     overflow-y: auto;
 }
 
@@ -658,6 +644,7 @@ a.leaderboard-club {
     margin-right: 3rem;
     color: #370AEB;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .initials > [data-letters]:before {
@@ -707,7 +694,7 @@ a .tab-title {
         font-weight: bold;
         font-size: 16px;
         line-height: 24px;
-        border-bottom: 2px solid #FE5E17;
+        border-bottom: 3px solid #FE5E17;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         background: #FAF8F3;
@@ -727,15 +714,27 @@ a .tab-title {
     border: none;
 }
 
+.missions-background .nav-tabs .nav-item {
+    margin-right: 1.2rem;
+    align-content: baseline;
+}
+
 
 .missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     border: none;
     background: none;
-    margin-left: 0px;
-    margin-right: 0px;
     color: #FE5E17;
-    border-bottom: 2px solid #FE5E17;
+    border-bottom: 3px solid #FE5E17;
 }
+
+    .missions-background .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+        border: none;
+        background: none;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 1.2rem;
+    }
 
 /* Items List */
 .item-body > a {
@@ -1050,6 +1049,13 @@ a:hover .resource-icon-article {
         background-color: #FAF8F3;
     }
 
+    .events-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_events_top_left.svg') left 2% no-repeat, url('../images/background/hero_events_top_right.svg') right top no-repeat;
+        background-color: #FAF8F3;
+    }
+
     .modal-content {
         width: 120%;
         background-color: #faf8f3;
@@ -1151,6 +1157,13 @@ a:hover .resource-icon-article {
         margin-left: 0px;
         width: 1024px;
     }
+
+    .leaderboard-clubs {
+        padding-right: 8px;
+        min-height: 90px;
+        max-height: 800px;
+        overflow-y: auto;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1181,6 +1194,13 @@ a:hover .resource-icon-article {
         top: 0;
         margin-top: 0;
         background: url('../images/background/hero_missions_left_small.svg') left 1% no-repeat, url('../images/background/hero_missions_right_small.svg') right top no-repeat;
+        background-color: #FAF8F3;
+    }
+
+    .events-background {
+        top: 0;
+        margin-top: 0;
+        background: url('../images/background/hero_events_top_left_small.svg') left -1.2% no-repeat, url('../images/background/hero_events_top_right_small.svg') right -2% no-repeat;
         background-color: #FAF8F3;
     }
 
@@ -1288,6 +1308,13 @@ a:hover .resource-icon-article {
         height: 250px;
         object-fit: cover;
     }
+
+    .leaderboard-clubs {
+        padding-right: 0;
+        min-height: 100%;
+        max-height: 100%;
+        overflow-y: visible;
+    }
 }
 
 .fixed-top.scrolled {
@@ -1394,3 +1421,41 @@ button.icon-hamburger {
 .center {
     margin: 0 auto
 }
+
+.underline-offset {
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.underline-offset:hover {
+    text-decoration: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+
+.tabbable .nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+}
+
+    .tabbable .nav-tabs .nav-link {
+        white-space: nowrap;
+    }
+

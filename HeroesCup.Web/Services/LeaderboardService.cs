@@ -69,7 +69,7 @@ namespace HeroesCup.Web.Services
                         Club = c.Club,
                         Missions = clubMissions,
                         Heroes = clubHeroes,
-                        Coordinator = clubHeroes.FirstOrDefault(h => h.IsCoordinator)
+                        Coordinators = clubHeroes.Where(h => h.IsCoordinator)
                     };
                 })
                 .OrderByDescending(c => c.Points);
@@ -112,7 +112,7 @@ namespace HeroesCup.Web.Services
         private string GetClubInitials(string organizationName)
         {
             Regex initials = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
-            organizationName = organizationName.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' });
+            organizationName = organizationName.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
             return initials.Replace(organizationName, "$1");
         }
 

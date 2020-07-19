@@ -13,27 +13,35 @@
     }
 
     var defaultLocationText = $"Цяла България ({Model.MissionsCount})";
+    var isLoadMoreRequested = Model.IsLoadMoreMissionsRequest;
 }
 
 <div class="main">
     <div class="container pl-4 pr-4">
+        
         <div class="tabbable mt-md-5 pt-md-5">
-            <ul class="col-12 nav nav-tabs mt-md-5 pt-md-5" role="tablist">
-                <li class="row col-md-4 col-6 nav-item mr-3 mr-md-0">
-                    <a class="nav-link active tab-title pl-0 pr-0  ml-0 mr-3" data-toggle="tab" href="#missions" role="tab">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active tab-title" data-toggle="tab" data-index="0" href="#missions" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Ученически мисии</span>
                         <span class="heading5 d-sm-block d-md-none">Ученически мисии</span>
                     </a>
                 </li>
-                <li class="row col-md-4 col-6 ml-md-0 ml-2 nav-item">
-                    <a class="nav-link tab-title pl-0 pr-0  ml-md-0  mr-3" data-toggle="tab" href="#missionideas" role="tab">
+                <li class="nav-item">
+                    <a class="nav-link tab-title" data-toggle="tab" data-index="1" href="#missionideas" role="tab">
                         <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Грабни идея</span>
                         <span class="heading5 d-sm-block d-md-none">Грабни идея</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link tab-title" data-toggle="tab" data-index="2" href="#stories" role="tab">
+                        <span class="heading3 d-none d-md-block d-sm-none d-xs-none">Героите разказват</span>
+                        <span class="heading5 d-sm-block d-md-none">Героите разказват</span>
+                    </a>
+                </li>
             </ul>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active mb-4" id="missions">
+                <div role="tabpanel" class="tab-pane fade active show mb-4" id="missions">
                     <div class="row mt-md-5 mt-3 pt-4">
                         <div class="col-md-8 col-sm-12 pb-4">
                             <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
@@ -71,43 +79,42 @@
                             </form>
                         </div>
                     </div>
-                    @if (Model.SelectedLocation == null)
+                    @if (isLoadMoreRequested == false && Model.SelectedLocation == null)
                     {
-                        <div id="missions-partial">
-                            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
-                        </div>
+                        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@Model.Missions" />
                         <div class="row justify-content-center mt-md-4 mt-5 mb-5 pb-4">
-                            <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
+                            <a href="@Url.Action("MissionsArchive","Missions",new{ loadRequest = true })" id="load-missions" class="btn btn-default btn-heroes">Покажи още</a>
                         </div>
                     }
                     else
                     {
+
                         int firstCount = 0;
                         int secondCount = 0;
                         int count = Model.Missions.Count();
-                        @if (count < 4)
+                        if (count < 4)
                         {
                             firstCount = 3;
-                        } 
+                        }
                         else if (count < 7)
                         {
                             firstCount = 3;
                             secondCount = count - firstCount;
                         }
-                        else if (count < 10)
+                        else if (count >= 7)
                         {
                             firstCount = 6;
                             secondCount = count - firstCount;
                         }
 
-                        var missionsFirstHalf = @Model.Missions.Take(firstCount);
-                        var missionsSecondHalf = @Model.Missions.Skip(firstCount).Take(secondCount);
+                        var missionsFirstHalf = Model.Missions.Take(firstCount);
+                        var missionsSecondHalf = Model.Missions.Skip(firstCount).Take(secondCount);
 
                         <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
                         <div class="col-12 separator mb-4 mt-5"></div>
 
                         <partial name="~/Views/Missions/_MissionsBanner.cshtml" for="@Model.Title" />
-                        @if (secondCount > 0)
+                        if (secondCount > 0)
                         {
                             <div class="col-12 separator mb-4 mt-"></div>
                             <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
@@ -117,25 +124,40 @@
 
                 </div>
 
-                <div role="tabpanel" id="missionideas" class="tab-pane missions-block mb-4">
-                    <div class="row mt-md-5 mt-3 pt-4 pb-4">
-                        <div class="col-md-8 col-sm-12">
-                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                        <div role="tabpanel" id="missionideas" class="tab-pane fade missions-block mb-4">
+                            <div class="row mt-md-5 mt-3 pt-4 pb-4">
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                                </div>
+                            </div>
+                            <div id="missionideas-partial">
+                                <partial name="~/Views/Missions/_MissionIdeasList.cshtml" for="@Model.MissionIdeas" />
+                            </div>
+                            <div id="more-missionideas"></div>
+                            <div class="row justify-content-center mt-4 mb-5 pb-4">
+                                <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" id="stories" class="tab-pane fade missions-block mb-4">
+                            <div class="row mt-md-5 mt-3 pt-4 pb-4">
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="col-12 pl-0 body2">Всяка успешна мисия е история с щастлив край. Тук можеш да какво разказват ученици, участвали в успешни мисии из цялата страна.</div>
+                                </div>
+                            </div>
+                            <div id="stories-partial">
+                                <partial name="~/Views/Missions/_StoriesList.cshtml" for="@Model.Stories" />
+                            </div>
+                            <div id="more-stories"></div>
+                            <div class="row justify-content-center mt-4 mb-5 pb-4">
+                                <button id="load-stories" class="btn btn-default btn-heroes">Покажи още</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="missionideas-partial">
-                        <partial name="~/Views/Missions/_MissionIdeasList.cshtml" for="@Model.MissionIdeas" />
-                    </div>
-                    <div id="more-missionideas"></div>
-                    <div class="row justify-content-center mt-4 mb-5 pb-4">
-                        <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="separator"></div>
-        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
-    </div>
+            <div class="separator"></div>
+            <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
+        </div>
 </div>
 
 @section script{

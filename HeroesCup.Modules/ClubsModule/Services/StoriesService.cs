@@ -15,11 +15,18 @@ namespace ClubsModule.Services
     {
         private readonly HeroesCupDbContext dbContext;
         private readonly IImagesService imagesService;
+        private readonly IMissionsService missionsService;
+        private readonly IHeroesService heroesService;
 
-        public StoriesService(HeroesCupDbContext dbContext, IImagesService imagesService)
+        public StoriesService(HeroesCupDbContext dbContext,
+            IImagesService imagesService,
+            IMissionsService missionsService,
+            IHeroesService heroesService)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
+            this.missionsService = missionsService;
+            this.heroesService = heroesService;
         }
 
         public async Task<StoryListModel> GetStoryListModelAsync(Guid? ownerId)
@@ -54,19 +61,30 @@ namespace ClubsModule.Services
         public async Task<StoryEditModel> CreateStoryEditModelAsync(Guid? ownerId)
         {
             var missions = new List<Mission>();
+            ICollection<Hero> heroes = new List<Hero>();
+
             if (ownerId.HasValue)
             {
-                missions = await this.dbContext.Missions.Where(m => m.OwnerId == ownerId.Value).ToListAsync();
+                missions = await this.dbContext.Missions
+                    .Include(m => m.Story)
+                    .Where(m => m.OwnerId == ownerId.Value && m.Story == null)
+                    .ToListAsync();
+                heroes = await this.heroesService.GetHeroes(null, ownerId);
             }
             else
             {
-                missions = await this.dbContext.Missions.ToListAsync();
+                missions = await this.dbContext.Missions
+                    .Include(m => m.Story)
+                    .Where(m => m.Story == null)
+                    .ToListAsync();
             }
 
             var model = new StoryEditModel()
             {
                 Story = new Story(),
-                Missions = missions != null ? missions : new List<Mission>()
+                Missions = missions != null ? missions : new List<Mission>(),
+                Heroes = heroes,
+                HeroesIds = new List<Guid>()
             };
 
             return model;
@@ -77,6 +95,9 @@ namespace ClubsModule.Services
             var story = await this.dbContext.Stories
                    .Include(s => s.Mission)
                    .ThenInclude(m => m.Club)
+                   .Include(s => s.Mission)
+                   .ThenInclude(m => m.HeroMissions)
+                   .ThenInclude(m => m.Hero)
                    .Include(c => c.StoryImages)
                    .ThenInclude(ci => ci.Image)
                    .FirstOrDefaultAsync(c => c.Id == id);
@@ -91,8 +112,12 @@ namespace ClubsModule.Services
                 return null;
             }
 
-            var model = await CreateStoryEditModelAsync(ownerId);
+            // var model = await CreateStoryEditModelAsync(ownerId);
+            var model = new StoryEditModel();
             model.Story = story;
+            model.Missions = new List<Mission>() { story.Mission };
+            model.Heroes = await this.heroesService.GetHeroes(story.Mission.Club.Id, ownerId);
+            model.HeroesIds = new List<Guid>();
 
             if (story.StoryImages != null && story.StoryImages.Count > 0)
             {
@@ -104,6 +129,15 @@ namespace ClubsModule.Services
                 foreach (var storyImage in storyImages)
                 {
                     model.ImageSources.Add(this.imagesService.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes));
+                }
+            }
+
+            if (story.Mission.HeroMissions != null && story.Mission.HeroMissions.Count > 0)
+            {
+                foreach (var heroMission in story.Mission.HeroMissions)
+                {
+                    var hero = await this.heroesService.GetHeroById(heroMission.HeroId);
+                    model.HeroesIds.Add(hero.Id);
                 }
             }
 
@@ -158,6 +192,8 @@ namespace ClubsModule.Services
             }
 
             story.Content = model.Story.Content;
+            await this.missionsService.SaveMissionDurationHours(story.Mission, model.Story.Mission.DurationInHours);
+            await this.missionsService.SaveMissionHeroes(story.Mission, model.HeroesIds);
 
             // set story image
             if (model.UploadedImages != null)
@@ -212,6 +248,33 @@ namespace ClubsModule.Services
         private string GetShortTextFromString(string htmlString, int length)
         {
             return htmlString.Substring(0, Math.Min(htmlString.Length, length));
+        }
+
+        public IEnumerable<Story> GetAllPublishedStories()
+        {
+            return this.dbContext.Stories
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.Club)
+                .Include(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
+                .Where(s => s.IsPublished == true)
+                .OrderByDescending(s => s.Mission.StartDate);
+        }
+
+        public async Task<Story> GetStoryByIdAsync(Guid id)
+        {
+            return await this.dbContext.Stories
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.Club)
+                .Include(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
+                .FirstOrDefaultAsync(s => s.Id == id);
         }
     }
 }

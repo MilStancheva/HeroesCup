@@ -31,6 +31,6 @@ namespace HeroesCup.Web.Models
 
         public IEnumerable<HeroViewModel> Heroes { get; set; }
 
-        public HeroViewModel Coordinator { get; set; }
+        public IEnumerable<HeroViewModel> Coordinators { get; set; }
     }
 }

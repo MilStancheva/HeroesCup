@@ -1,10 +1,13 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Common;
+using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,12 +16,14 @@ namespace ClubsModule.Services
     public class MissionIdeasService : IMissionIdeasService
     {
         private readonly HeroesCupDbContext dbContext;
+        private readonly IConfiguration configuration;
         private readonly IImagesService imagesService;
 
-        public MissionIdeasService(HeroesCupDbContext dbContext, IImagesService imagesService)
+        public MissionIdeasService(HeroesCupDbContext dbContext, IImagesService imagesService, IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
+            this.configuration = configuration;
         }
 
         public async Task<MissionIdeaListModel> GetMissionIdeasListModelAsync()
@@ -76,6 +81,9 @@ namespace ClubsModule.Services
 
             var model = CreateMissionIdeaEditModel();
             model.MissionIdea = missionIdea;
+            var dateFormat = this.configuration["DateFormat"];
+            model.UploadedStartDate = missionIdea.StartDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+            model.UploadedEndDate = missionIdea.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
 
             if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
             {
@@ -101,8 +109,15 @@ namespace ClubsModule.Services
             }
 
             missionIdea.Title = model.MissionIdea.Title;
+            missionIdea.Organization = model.MissionIdea.Organization;
+            missionIdea.Location = model.MissionIdea.Location;
             missionIdea.Content = model.MissionIdea.Content;
             missionIdea.TimeheroesUrl = model.MissionIdea.TimeheroesUrl;
+            var dateFormat = this.configuration["DateFormat"];
+            var startDate = DateTime.ParseExact(model.UploadedStartDate, dateFormat, CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact(model.UploadedEndDate, dateFormat, CultureInfo.InvariantCulture);
+            missionIdea.StartDate = startDate.StartOfTheDay().ToUnixMilliseconds();
+            missionIdea.EndDate = endDate.EndOfTheDay().ToUnixMilliseconds();
 
             // set missionIdea image
             if (model.Image != null)

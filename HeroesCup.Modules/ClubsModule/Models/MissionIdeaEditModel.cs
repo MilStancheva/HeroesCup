@@ -1,6 +1,7 @@
 ﻿using ClubsModule.Attributes;
 using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClubsModule.Models
 {
@@ -9,9 +10,15 @@ namespace ClubsModule.Models
         public MissionIdea MissionIdea { get; set; }
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
-        [AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpеg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile Image { get; set; }
 
         public string ImageSrc { get; set; }
+
+        [Required]
+        public string UploadedStartDate { get; set; }
+
+        [Required]
+        public string UploadedEndDate { get; set; }
     }
 }

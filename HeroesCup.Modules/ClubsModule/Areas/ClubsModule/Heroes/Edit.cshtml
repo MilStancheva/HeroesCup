@@ -9,6 +9,10 @@
     var clubsSelectList = new SelectList(clubs, "Id", "Name");
 }
 
+@section script{
+    <script src="/manager/clubsmodule/js/validation-modal.js"></script>
+}
+
 @using (var form = Html.BeginForm("Save", "Heroes", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "" }))
 {
     @Html.HiddenFor(m => m.Hero.Id)
@@ -96,4 +100,5 @@
             </div>
         </div>
     </div>
+    <partial name="_ValidationModal" model="null" />
 }

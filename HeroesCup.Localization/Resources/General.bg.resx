@@ -162,4 +162,10 @@
   <data name="Unpin" xml:space="preserve">
     <value>Откачи от начална страница</value>
   </data>
+  <data name="ValidationModalBody" xml:space="preserve">
+    <value>Останали са задължителни полета, които все още не са попълнени. </value>
+  </data>
+  <data name="ValidationModalTitle" xml:space="preserve">
+    <value>Моля попълнете всички задължителни полета. </value>
+  </data>
 </root>

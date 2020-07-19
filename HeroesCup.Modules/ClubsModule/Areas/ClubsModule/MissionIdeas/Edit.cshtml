@@ -9,6 +9,14 @@
 
 @section script{
     <script src="/manager/clubsmodule/js/summernote-editor.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/manager/clubsmodule/js/mission-location-autocomplete.js" type="text/javascript"></script>
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <script src="/manager/clubsmodule/js/mission-datetimepicker.js" type="text/javascript"></script>
+
+    <script src="/manager/clubsmodule/js/validation-modal.js"></script>
 }
 
 @using (var form = Html.BeginForm("Save", "MissionIdeas", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
@@ -80,18 +88,28 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-sm-6">
-                            <div class="form-group">
-                                <label>@HeroesCupLocalizer.Mission["Location"]</label>
-                                @Html.TextBoxFor(m => m.Mission.Location, new { @class = "form-control small", maxlength = 128, required = "" })
-                                <div class="invalid-tooltip">
-                                    @HeroesCupLocalizer.General["Mandatory field"]
-                                </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Location"]</label>
+                            @Html.TextBoxFor(m => m.MissionIdea.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
-                        </div>*@
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Club Organizer"]</label>
+                            @Html.TextBoxFor(m => m.MissionIdea.Organization, new { @class = "form-control small", required = "" })
+                            @Html.HiddenFor(m => m.MissionIdea.Organization)
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Mission Idea URL"]</label>
@@ -129,6 +147,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["Start Date"]</label>
+                            <div class="input-group date">
+                                <input asp-for="UploadedStartDate" class="form-control" type="text" id='start_date' name="UploadedStartDate" required="required" data-provide="datepicker" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>@HeroesCupLocalizer.Mission["End Date"]</label>
+                            <div class="input-group date">
+                                <input asp-for="UploadedEndDate" class="form-control" type="text" id='end_date' name="UploadedEndDate" required="required" data-provide="datepicker" />
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -142,4 +188,5 @@
             </div>
         </div>
     </div>
+    <partial name="_ValidationModal" model="null" />
 }

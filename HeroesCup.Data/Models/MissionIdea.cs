@@ -11,6 +11,12 @@ namespace HeroesCup.Data.Models
 
         public string Location { get; set; }
 
+        public long StartDate { get; set; }
+
+        public long EndDate { get; set; }
+
+        public string Organization { get; set; }
+
         public ICollection<MissionIdeaImage> MissionIdeaImages { get; set; }
 
         public string Content { get; set; }

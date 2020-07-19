@@ -141,11 +141,11 @@ namespace ClubsModule.Services
 
             if (model.Hero.IsCoordinator)
             {
-                var heroesFromClub = await this.dbContext.Heroes.Where(h => h.ClubId == hero.ClubId).ToListAsync();
-                foreach (var h in heroesFromClub)
-                {
-                    h.IsCoordinator = false;
-                }
+                //var heroesFromClub = await this.dbContext.Heroes.Where(h => h.ClubId == hero.ClubId).ToListAsync();
+                //foreach (var h in heroesFromClub)
+                //{
+                //    h.IsCoordinator = false;
+                //}
 
                 hero.IsCoordinator = model.Hero.IsCoordinator;
             }
@@ -176,6 +176,55 @@ namespace ClubsModule.Services
             this.dbContext.Heroes.Remove(hero);
             await this.dbContext.SaveChangesAsync();
             return true;
+        }
+
+        public async Task SaveCoordinatorsAsync(IEnumerable<Guid> newCoordinatorsIds, Club club, bool commit)
+        {
+            if (club == null)
+            {
+                throw new ArgumentNullException("Club cannot be null.");
+            }
+
+            foreach (var hero in club.Heroes)
+            {
+                hero.IsCoordinator = false;
+            }
+
+            newCoordinatorsIds.ToList().ForEach(id =>
+            {
+                var newCoordinator = this.dbContext.Heroes.FirstOrDefault(h => h.Id == id);
+                newCoordinator.IsCoordinator = true;
+            });
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+
+        public async Task<ICollection<Hero>> GetHeroes(Guid? clubId, Guid? ownerId)
+        {
+            var heroes = this.dbContext.Heroes
+                     .Include(h => h.Club)
+                     .Select(x => x);
+
+            if (clubId.HasValue)
+            {
+                heroes = heroes.Where(h => h.ClubId == clubId);
+            }
+
+            if (ownerId.HasValue)
+            {
+                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value);
+            }
+
+            return await heroes.ToListAsync();
+        }
+
+        public async Task<Hero> GetHeroById(Guid id)
+        {
+            return await this.dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == id);
         }
     }
 }

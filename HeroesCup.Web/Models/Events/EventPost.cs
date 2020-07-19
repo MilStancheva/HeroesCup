@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace HeroesCup.Web.Models.Events
 {
-    [PostType(Title = "Events post")]
+    [PostType(Title = "Events post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/event")]
     public class EventPost : Post<EventPost>
     {

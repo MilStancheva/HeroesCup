@@ -11,15 +11,18 @@ namespace HeroesCup.Web.Services
     {
         private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
         private readonly ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService;
+        private readonly ClubsModule.Services.Contracts.IStoriesService storiesService;
         private readonly ClubsModule.Services.Contracts.IImagesService imageService;
 
         public MissionsService(
             ClubsModule.Services.Contracts.IMissionsService missionsService,
             ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService,
+            ClubsModule.Services.Contracts.IStoriesService storiesService,
             ClubsModule.Services.Contracts.IImagesService imageService)
         {
             this.missionsService = missionsService;
             this.missionIdeasService = missionIdeasService;
+            this.storiesService = storiesService;
             this.imageService = imageService;
         }
 
@@ -28,6 +31,7 @@ namespace HeroesCup.Web.Services
             var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
             return timeheroesMissions.Select(mi => new MissionIdeaViewModel()
             {
+                Id = mi.Id,
                 MissionIdea = mi,
                 ImageSrc = this.imageService.GetMissionIdeaImageSource(mi)
             });
@@ -114,6 +118,62 @@ namespace HeroesCup.Web.Services
                 {
                     Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
                     ImageSources = this.imageService.GetStoryImageSources(result.Mission.Story)
+                }
+            };
+
+            return model;
+        }
+
+        public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id)
+        {
+            var result = await this.missionIdeasService.GetMissionIdeaEditModelByIdAsync(id);
+            var model = new MissionIdeaViewModel()
+            {
+                Id = result.MissionIdea.Id,
+                ImageSrc = result.ImageSrc,
+                MissionIdea = result.MissionIdea,
+                StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
+                EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
+            };
+
+            return model;
+        }
+
+        public IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels()
+        {
+            return this.storiesService.GetAllPublishedStories().Select(s => new StoryViewModel()
+            {
+                Id = s.Id,
+                Content = s.Content,
+                ImageSources = this.imageService.GetStoryImageSources(s),
+                Mission = new MissionViewModel()
+                {
+                    Id = s.Mission.Id,
+                    Title = s.Mission.Title,
+                    Club = s.Mission.Club,
+                    ImageSrc = this.imageService.GetMissionImageSource(s.Mission),
+                    StartDate = s.Mission.StartDate.ConvertToLocalDateTime(),
+                    EndDate = s.Mission.EndDate.ConvertToLocalDateTime(),
+                }
+            });
+        }
+
+        public async Task<StoryViewModel> GetStoryViewModelByIdAsync(Guid id)
+        {
+            var story = await this.storiesService.GetStoryByIdAsync(id);
+            var model = new StoryViewModel()
+            {
+                Id = story.Id,
+                Content = story.Content,
+                ImageSources = this.imageService.GetStoryImageSources(story),
+                Mission = new MissionViewModel()
+                {
+                    Id = story.Mission.Id,
+                    Title = story.Mission.Title,
+                    Club = story.Mission.Club,
+                    ImageSrc = this.imageService.GetMissionImageSource(story.Mission),
+                    StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
+                    EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
                 }
             };
 

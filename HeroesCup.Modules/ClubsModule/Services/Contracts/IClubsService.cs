@@ -17,7 +17,7 @@ namespace ClubsModule.Services.Contracts
 
         Task<Guid> SaveClubEditModelAsync(ClubEditModel model);
 
-        Task<Hero> GetClubCoordinatorAsync(Guid clubId);
+        Task<IEnumerable<Hero>> GetClubCoordinatorsAsync(Guid clubId);
 
         Task<bool> DeleteAsync(Guid id);
 

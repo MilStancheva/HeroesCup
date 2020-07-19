@@ -71,12 +71,10 @@ namespace ClubsModule.Services
         {
             var clubs = new List<Club>();
             clubs = await this.dbContext.Clubs.ToListAsync();
-            ICollection<Hero> heroes = new List<Hero>();
 
             if (ownerId.HasValue)
             {
                 clubs = clubs.Where(c => c.OwnerId == ownerId.Value).ToList();
-                heroes = await GetHeroes(null, ownerId);
             }
 
             var newMission = new Mission();
@@ -86,8 +84,6 @@ namespace ClubsModule.Services
             var model = new MissionEditModel()
             {
                 Mission = newMission,
-                Heroes = heroes,
-                HeroesIds = new List<Guid>(),
                 Clubs = clubs,
                 ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid()
             };
@@ -125,16 +121,12 @@ namespace ClubsModule.Services
             var endDate = DateTime.ParseExact(model.UploadedEndDate, dateFormat, CultureInfo.InvariantCulture);
             mission.StartDate = startDate.StartOfTheDay().ToUnixMilliseconds();
             mission.EndDate = endDate.EndOfTheDay().ToUnixMilliseconds();
-            mission.DurationInHours = model.Mission.DurationInHours;
+            if (model.Mission.DurationInHours != 0)
+            {
+                mission.DurationInHours = model.Mission.DurationInHours;
+            }
             mission.SchoolYear = this.schoolYearService.CalculateSchoolYear(startDate);
             await this.missionContentsService.SaveOrUpdateMissionContent(model.Mission.Content, mission);
-
-            // set missions's heroes
-            if (model.HeroesIds != null && model.HeroesIds.Any())
-            {
-                await DeleteHeroMissions(mission);
-                await AddHeroesToMission(mission, model.HeroesIds, false);
-            }
 
             // set mission organizer
             if (model.ClubId != null && model.ClubId != Guid.Empty)
@@ -218,7 +210,6 @@ namespace ClubsModule.Services
             var model = await CreateMissionEditModelAsync(ownerId);
             model.Mission = mission;
             model.ClubId = mission.Club.Id;
-            model.Heroes = await GetHeroes(mission.Club.Id, ownerId);
 
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
@@ -231,36 +222,7 @@ namespace ClubsModule.Services
             model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
             model.Duration = GetMissionDuration(mission.StartDate, mission.EndDate);
 
-            if (mission.HeroMissions != null && mission.HeroMissions.Count > 0)
-            {
-                foreach (var heroMission in mission.HeroMissions)
-                {
-                    var hero = await this.dbContext.Heroes.FirstOrDefaultAsync(h => h.Id == heroMission.HeroId);
-                    model.HeroesIds.Add(hero.Id);
-                }
-            }
-
-
             return model;
-        }
-
-        private async Task<ICollection<Hero>> GetHeroes(Guid? clubId, Guid? ownerId)
-        {
-            var heroes = this.dbContext.Heroes
-                     .Include(h => h.Club)
-                     .Select(x => x);                     
-
-            if (clubId.HasValue)
-            {
-                heroes = heroes.Where(h => h.ClubId == clubId);
-            }
-
-            if (ownerId.HasValue)
-            {
-                heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value);
-            }
-
-            return await heroes.ToListAsync();
         }
 
         public TimeSpan GetMissionDuration(long startDate, long endDate)
@@ -279,41 +241,6 @@ namespace ClubsModule.Services
             this.dbContext.Missions.Remove(mission);
             await this.dbContext.SaveChangesAsync();
             return true;
-        }
-
-        private async Task DeleteHeroMissions(Mission mission, bool commit = false)
-        {
-            var heroMissions = this.dbContext.HeroMissions.Where(hm => hm.MissionId == mission.Id);
-            foreach (var heroMission in heroMissions)
-            {
-                this.dbContext.HeroMissions.Remove(heroMission);
-            }
-
-            if (commit)
-            {
-                await this.dbContext.SaveChangesAsync();
-            }
-        }
-
-        private async Task AddHeroesToMission(Mission mission, IEnumerable<Guid> heroesIds, bool commit = false)
-        {
-            var heroMissions = new List<HeroMission>();
-            foreach (var heroId in heroesIds)
-            {
-                var hero = this.dbContext.Heroes.FirstOrDefault(h => h.Id == heroId);
-                heroMissions.Add(new HeroMission()
-                {
-                    Hero = hero,
-                    Mission = mission
-                });
-            }
-
-            mission.HeroMissions = heroMissions;
-
-            if (commit)
-            {
-                await this.dbContext.SaveChangesAsync();
-            }
         }
 
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
@@ -427,6 +354,69 @@ namespace ClubsModule.Services
             }
 
             return missions.Take(countOfPinnedMissionsOnHomePage);
+        }
+
+        public async Task SaveMissionDurationHours(Mission mission, int durationHours, bool commit)
+        {
+            mission.DurationInHours = durationHours;
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task SaveMissionHeroes(Mission mission, IEnumerable<Guid> heroesIds, bool commit = false)
+        {
+            // set missions's heroes
+            if (heroesIds != null && heroesIds.Any())
+            {
+                await DeleteHeroMissions(mission);
+                await AddHeroesToMission(mission, heroesIds, false);
+            }
+            else
+            {
+                await DeleteHeroMissions(mission);
+            }
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task DeleteHeroMissions(Mission mission, bool commit = false)
+        {
+            var heroMissions = this.dbContext.HeroMissions.Where(hm => hm.MissionId == mission.Id);
+            foreach (var heroMission in heroMissions)
+            {
+                this.dbContext.HeroMissions.Remove(heroMission);
+            }
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task AddHeroesToMission(Mission mission, IEnumerable<Guid> heroesIds, bool commit = false)
+        {
+            var heroMissions = new List<HeroMission>();
+            foreach (var heroId in heroesIds)
+            {
+                var hero = this.dbContext.Heroes.FirstOrDefault(h => h.Id == heroId);
+                heroMissions.Add(new HeroMission()
+                {
+                    Hero = hero,
+                    Mission = mission
+                });
+            }
+
+            mission.HeroMissions = heroMissions;
+
+            if (commit)
+            {
+                await this.dbContext.SaveChangesAsync();
+            }
         }
     }
 }

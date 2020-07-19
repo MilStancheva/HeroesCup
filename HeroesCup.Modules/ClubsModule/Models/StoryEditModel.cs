@@ -1,6 +1,7 @@
 ﻿using ClubsModule.Attributes;
 using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 
 namespace ClubsModule.Models
@@ -16,5 +17,9 @@ namespace ClubsModule.Models
         public ICollection<IFormFile> UploadedImages { get; set; }
 
         public ICollection<string> ImageSources { get; set; }
+
+        public ICollection<Hero> Heroes { get; set; }
+
+        public ICollection<Guid> HeroesIds { get; set; }
     }
 }

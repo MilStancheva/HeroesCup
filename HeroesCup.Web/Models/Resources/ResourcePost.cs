@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace HeroesCup.Web.Models.Resources
 {
-    [PostType(Title = "Resource post")]
+    [PostType(Title = "Resource post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/resource")]
     public class ResourcePost : Post<ResourcePost>
     {

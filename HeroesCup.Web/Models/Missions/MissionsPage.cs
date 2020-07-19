@@ -1,5 +1,4 @@
-﻿using ClubsModule.Models;
-using HeroesCup.Web.Models;
+﻿using HeroesCup.Web.Models;
 using Piranha.AttributeBuilder;
 using Piranha.Models;
 using System.Collections.Generic;
@@ -20,11 +19,16 @@ namespace HeroesCup.Models
 
         public string SelectedLocation { get; set; }
 
+        public IEnumerable<StoryViewModel> Stories { get; set; }
+
+        public bool IsLoadMoreMissionsRequest { get; set; }
+
         public MissionsPage()
         {
-            Missions = new List<MissionViewModel>();
-            MissionIdeas = new List<MissionIdeaViewModel>();
+            Missions = new HashSet<MissionViewModel>();
+            MissionIdeas = new HashSet<MissionIdeaViewModel>();
             MissionsPerLocation = new Dictionary<string, int>();
+            Stories = new HashSet<StoryViewModel>();
         }
     }
 }

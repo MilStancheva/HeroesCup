@@ -10,9 +10,9 @@ namespace ClubsModule.Models
     {
         public Club Club { get; set; }
 
-        public Hero Coordinator { get; set; }
+        public IEnumerable<Hero> Coordinators { get; set; }
 
-        public Guid CoordinatorId { get; set; }
+        public IEnumerable<Guid> CoordinatorsIds { get; set; }
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
         [AllowedExtensions(new string[] { ".jpg", ".jpеg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]

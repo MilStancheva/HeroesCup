@@ -26,7 +26,7 @@
     }
 
     var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Mission.Club.OrganizationNumber} " : string.Empty;
-    var clubName = $"\"{Model.Mission.Club.Name}\" {clubNumber} {Model.Mission.Club.OrganizationType} {Model.Mission.Club.OrganizationName}";
+    var clubName = $"\"{Model.Mission.Club.Name}\", {clubNumber} {Model.Mission.Club.OrganizationType} \"{Model.Mission.Club.OrganizationName}\"";
 }
 
 @section script{
@@ -63,7 +63,7 @@
                     }
                     else
                     {
-                        <div class="body2"><span>Мисията на @startDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията е на @startDateAsLocalString</span></div>
                     }
                 </div>
 
@@ -88,7 +88,7 @@
                             <div class="col-12 body2-bold">
                                 <p>Как премина мисията?</p>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 body2">
                                 @Html.Raw(Model.Mission.Story.Content)
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                         @if (Model.Mission.Mission.Content.Equipment != null)
                         {
                             <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Нужна екипировка/умения/нещо друго?</p>
+                                <p class="body2-bold">Нужна екипировка?</p>
                                 @Html.Raw(Model.Mission.Mission.Content.Equipment)
                             </div>
                         }

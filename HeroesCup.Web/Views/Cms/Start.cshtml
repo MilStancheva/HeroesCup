@@ -46,9 +46,9 @@
                                             <div class="col-md-6 col-sm-6 vertical-center order-md-1 order-2 pt-3">
                                                 <h1 class="heading1 d-none d-md-block d-sm-none d-xs-none">@hero.IngressTitle</h1>
                                                 <h3 class="heading3 d-sm-block d-md-none">@hero.IngressTitle</h3>
-                                                <p class="body2">@Html.Raw(hero.Ingress)</p>
+                                                <p class="body2 pt-3">@Html.Raw(hero.Ingress)</p>
                                             </div>
-                                            <div class="col-md-6 col-sm-6 order-md-2 order-1">
+                                            <div class="col-md-6 col-sm-6 order-md-2 order-1 body2">
                                                 <img class="img-fluid" src="@Url.Content(hero.PrimaryImage.Resize(WebApp.Api, 496, 380))" alt="First slide">
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
         }
 
         @* Leaderboard *@
-        <div class="pt-5 pb-5 pl-3 pr-3">
+        <div class="pt-5 pb-5 pl-md-3 pr-md-3 pl-0 pr-0">
             @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
@@ -164,46 +164,19 @@
                 @foreach (var club in Model.Clubs.Clubs)
                 {
                     index += 1;
-                    @*<a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
-                    <div class="row col-md-9 col-sm-12 vertical-center mr-0">
-                        <div class="col-1 body1-bold text-md-center">
-                            <span>@index</span>
-                        </div>
-                        <div class="col-2 text-md-center">
-                            <span class="body1-bold" data-letters="@club.ClubInitials"></span>
-                        </div>
-                        <div class="col-md-9 col-sm-10 body1">
-                            <span>@club.Name</span>,
-                            <span>@club.Location</span>
-                        </div>
-                    </div>
-                    <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
-                        <div class="col-5 text-right body1 pr-0">
-                            <span>@club.Points точки</span>
-                        </div>
-                        <div class="col-1 text-center">
-                            <span class="points-heroes-separator"></span>
-                        </div>
-                        <div class="col-5 text-left body1 pl-2">
-                            <span>@club.HeroesCount герои</span>
-                        </div>
-                    </div>
-                </div>
-            </a>*@
 
-                    <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                        <div class="row col-12 vertical-center leaderboard-club mr-0 pr-0">
-                            <div class="col-1 align-self-start">
-                                <div class="body1-bold text-md-center">
-                                    <span class="align-top">@index</span>
-                                </div>
+                    <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-md-2 p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
+                        <div class="row vertical-center">
+                            <div class="col-1 align-self-start mt-3">
+                                <div class="text-center">
+                                    <span class="body1-bold align-top">@index</span>
+                                </div>                                
                             </div>
-                            <div class="row col-11 vertical-center">
-                                <div class="col-md-2 col-sm-12 text-md-center">
+                            <div class="row col-11 vertical-center pl-md-0 pl-3">
+                                <div class="col-md-1 col-sm-12 text-md-center">
                                     <span class="body1-bold" data-letters="@club.ClubInitials"></span>
                                 </div>
-                                <div class="col-md-7 col-sm-12 body1 p-3">
+                                <div class="col-md-8 col-sm-12 body1 pt-3 pb-3">
                                     <span>@club.Name</span>,
                                     <span>@club.Location</span>
                                 </div>
