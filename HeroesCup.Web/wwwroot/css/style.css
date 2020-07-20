@@ -1193,7 +1193,7 @@ a:hover .resource-icon-article {
     .missions-background {
         top: 0;
         margin-top: 0;
-        background: url('../images/background/hero_missions_left_small.svg') left 1% no-repeat, url('../images/background/hero_missions_right_small.svg') right top no-repeat;
+        background: url('../images/background/hero_missions_left_small.svg') left top no-repeat, url('../images/background/hero_missions_right_small.svg') right -1.5% no-repeat;
         background-color: #FAF8F3;
     }
 
@@ -1250,7 +1250,7 @@ a:hover .resource-icon-article {
     .about-background {
         top: 0;
         margin-top: 0;
-        background: url('../images/background/hero_about_top_right_small.svg') right -2% no-repeat, url('../images/background/hero_about_top_right_bellow_small.svg') right 2.5% no-repeat;
+        background: url('../images/background/hero_about_top_right_small.svg') right -2.8% no-repeat, url('../images/background/hero_about_top_right_bellow_small.svg') right 2.5% no-repeat;
         background-color: #FAF8F3;
     }
 
@@ -1314,6 +1314,21 @@ a:hover .resource-icon-article {
         min-height: 100%;
         max-height: 100%;
         overflow-y: visible;
+    }
+
+    .navbar {
+        position: fixed;
+        right: 0;
+        left: 0;
+        border-radius: 0;
+        top: 0;
+        z-index: 99;
+    }
+
+    .fixed-top.scrolled .navbar {
+        box-shadow: inset 0px -2px 0px #EEECE6;
+        background-color: #FAF8F3 !important;
+        transition: background-color 150ms linear;
     }
 }
 
@@ -1397,10 +1412,9 @@ img.expired-img {
 .heroes-nav {
     padding: 0;
     margin: 0;
-    position: relative;
+    position: fixed;
     background-color: #FAF8F3;
     z-index: 99;
-    background-color: #FAF8F3;
 }
 
 .nav-items-container{

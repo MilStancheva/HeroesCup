@@ -1,4 +1,9 @@
 $(function () {
+    $(document).scroll(function () {
+        var $shareButtons = $(".share-buttons");
+        $shareButtons.toggleClass('sticky', $(this).scrollTop() > $nav.height());
+    });
+
     $(document).ready(function () {
         var getWindowOptions = function () {
             var width = 500;

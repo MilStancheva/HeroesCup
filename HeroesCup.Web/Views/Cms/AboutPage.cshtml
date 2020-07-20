@@ -5,11 +5,13 @@
     ViewBag.TypeId = Model.TypeId;
 }
 
-<div class="main mt-md-5 pt-md-5">
+<div class="main mt-md-5 pt-md-4 mt-5 pt-4">
     <div class="container mt-md-5 pt-md-5 pb-4 pl-4 pr-4 text-md-left text-center">
         <div class="row justify-content-md-start justify-content-center pb-5 pt-5 vertical-center">
-            <div class="col-md-6 col-sm-12">
-                @Html.Raw(Model.Introduction)
+            <div class="col-md-6 col-sm-12 body2">
+                <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Introduction.Title</h2>
+                <h3 class="heading3 d-sm-block d-md-none">@Model.Introduction.Title</h3>
+                @Html.Raw(Model.Introduction.Body)
             </div>
         </div>
         <div class="separator"></div>
@@ -17,14 +19,18 @@
             <div class="col-md-6 col-sm-12 pb-5 pb-md-0">
                 <img class="img-fluid about-image" src="~/images/about/about-1.svg" width="496" />
             </div>
-            <div class="col-md-6 col-sm-12">
-                @Html.Raw(Model.FirstContent)
+            <div class="col-md-6 col-sm-12 body2">
+                <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.FirstContent.Title</h2>
+                <h3 class="heading3 d-sm-block d-md-none">@Model.FirstContent.Title</h3>
+                @Html.Raw(Model.FirstContent.Body)
             </div>
         </div>
         <div class="separator"></div>
         <div class="row justify-content-start pb-md-5 pb-0 pt-5 vertical-center">
-            <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-2 order-md-1">
-                @Html.Raw(Model.SecondContent)
+            <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-2 order-md-1 body2">
+                <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.SecondContent.Title</h2>
+                <h3 class="heading3 d-sm-block d-md-none">@Model.SecondContent.Title</h3>
+                @Html.Raw(Model.SecondContent.Body)
             </div>
             <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-1 order-md-2">
                 <img  class="img-fluid about-image" src="~/images/about/about-2.svg" width="496" />
