@@ -399,6 +399,11 @@ header {
 
 /* Button */
 .btn-heroes {
+    flex: none;
+    order: 4;
+    align-self: flex-start;
+    margin: 32px 0px;
+    height: 48px;
     padding: 12px 24px;
     background: #FE5E17;
     color: white;
@@ -407,6 +412,7 @@ header {
     text-decoration: none;
     text-underline-position: unset;
     text-decoration-style: none;
+    font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
@@ -1281,6 +1287,7 @@ a:hover .resource-icon-article {
 
     .navbar-toggleable-sm .btn-heroes {
         width: 128px;
+        height: 48px;
     }
 
     .img-container .mission-img-list {
@@ -1473,3 +1480,8 @@ html {
         white-space: nowrap;
     }
 
+.btn-participate {
+    /*        width: 128px;*/
+    font-size: 17px;
+    font-weight: 600;
+}
