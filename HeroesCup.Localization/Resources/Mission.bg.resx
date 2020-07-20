@@ -151,7 +151,7 @@
     <value>Крайна дата</value>
   </data>
   <data name="Equipment" xml:space="preserve">
-    <value>Нужна екипировка/умения/нещо друго?</value>
+    <value>Нужна екипировка?</value>
   </data>
   <data name="EquipmentSubtitle" xml:space="preserve">
     <value>Нужно ли е да носят нещо доброволците, осигурени ли са всички материали, храна, предпазни средства и други. Как ще реагирате при лошо време?</value>

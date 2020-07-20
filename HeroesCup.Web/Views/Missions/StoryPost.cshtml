@@ -28,7 +28,18 @@
     var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Story.Mission.Club.Name}\", {clubNumber} {Model.Story.Mission.Club.OrganizationType} \"{Model.Story.Mission.Club.OrganizationName}\"";
 
-    var imageSources = Model.Story.ImageSources.ToArray();
+    var heroImageSrc = "";
+    var imageSources = new List<string>();
+
+    if (Model.Story.ImageSources != null && Model.Story.ImageSources.Any())
+    {
+        imageSources = Model.Story.ImageSources.ToList();
+        heroImageSrc = imageSources[0];
+    }
+    else
+    {
+        heroImageSrc = Model.Story.Mission.ImageSrc;
+    }
 }
 
 @section script{
@@ -51,7 +62,7 @@
     <meta property="og:image" content="~/images/Logo.svg" />
 }
 
-<div class="main mt-md-5 pt-md-5">
+<div class="main mt-md-5 pt-md-4 mt-5 pt-5">
     <div class="container mt-md-5 pt-md-5 pl-4 pr-4">
         <div class="row mb-md-5 mb-4">
             <div class="row col-12 justify-content-center pr-md-2 pr-0">
@@ -80,7 +91,7 @@
                 <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
-                            <img class="img-fluid center-cropped mission-image" src="@Url.Content(imageSources[0])">
+                            <img class="img-fluid center-cropped mission-image" src="@Url.Content(heroImageSrc)">
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
