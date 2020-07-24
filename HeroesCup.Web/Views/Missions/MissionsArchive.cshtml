@@ -1,5 +1,6 @@
 ﻿@model MissionsPage
 @inject IApi Api
+@inject IConfiguration Configuration;
 
 @{
     ViewBag.Title = Model.Title;
@@ -14,6 +15,7 @@
 
     var defaultLocationText = $"Цяла България ({Model.MissionsCount})";
     var isLoadMoreRequested = Model.IsLoadMoreMissionsRequest;
+    var missionsCountPerPage = int.Parse(Configuration["MissionsCount"]);
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -92,18 +94,13 @@
                         int firstCount = 0;
                         int secondCount = 0;
                         int count = Model.Missions.Count();
-                        if (count < 4)
+                        if (count <= missionsCountPerPage)
                         {
-                            firstCount = 3;
+                            firstCount = count;
                         }
-                        else if (count < 7)
+                        else if (count > missionsCountPerPage)
                         {
-                            firstCount = 3;
-                            secondCount = count - firstCount;
-                        }
-                        else if (count >= 7)
-                        {
-                            firstCount = 6;
+                            firstCount = missionsCountPerPage;
                             secondCount = count - firstCount;
                         }
 
