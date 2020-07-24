@@ -163,9 +163,9 @@
     <value>Откачи от начална страница</value>
   </data>
   <data name="ValidationModalBody" xml:space="preserve">
-    <value>Останали са задължителни полета, които все още не са попълнени. </value>
+    <value>Попълни го и пробвай отново!</value>
   </data>
   <data name="ValidationModalTitle" xml:space="preserve">
-    <value>Моля попълнете всички задължителни полета. </value>
+    <value>Упс! Изглежда е изпуснато задължително поле.</value>
   </data>
 </root>
