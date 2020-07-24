@@ -25,7 +25,7 @@
         missionIsSeveralDays = false;
     }
 
-    var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Mission.Club.OrganizationNumber} " : string.Empty;
+    var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Mission.Club.Name}\", {clubNumber} {Model.Mission.Club.OrganizationType} \"{Model.Mission.Club.OrganizationName}\"";
 }
 
