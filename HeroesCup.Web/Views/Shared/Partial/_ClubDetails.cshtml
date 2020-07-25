@@ -54,7 +54,7 @@
                                 <ul class="nav nav-tabs body2 pr-3 pl-3 ml-3" role="tablist">
                                     <li class="nav-item active">
                                         <a class="nav-link active tab-title pl-0 pr-0  ml-3 mr-3" href="#club_information_{@club.Id.ToString()}" data-toggle="tab">
-                                            Информация
+                                            За клуба
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -69,7 +69,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link tab-title pl-0 pr-0 ml-3 mr-3" href="#club_coordinators_{@club.Id.ToString()}" data-toggle="tab">
-                                            За координатори
+                                            Вход за координатори
                                         </a>
                                     </li>
                                 </ul>
@@ -127,7 +127,7 @@
 
                                                 <div class="col-sm-12 col-md-6 mt-3">
                                                     <div class="club-mission-body">
-                                                        <a href="/mission/@mission.Id" target="_blank">
+                                                        <a href="/mission/@mission.Id">
                                                             @if (expiredMission)
                                                             {
                                                                 <div class="img-container text-left">
@@ -171,7 +171,7 @@
                                         <div class="club row mt-3 body2">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</p>
                                             <p>
-                                                <a class="btn btn-heroes text-white" href="/manager" target="_blank">Вход</a>
+                                                <a class="btn btn-heroes text-white" href="/manager">Вход</a>
                                             </p>
                                         </div>
                                     </div>

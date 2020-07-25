@@ -83,21 +83,24 @@
     <!-- Modal -->
     <div class="modal fade justify-content-center" id="participateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content p-4">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">Направете геройски клуб и спечелете купата!</h2>
-                    <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
-                </div>
-                <div class="modal-body">
-                    Изпрати e-mail на hello@timeheroes.org
-                </div>
-                <div class="modal-footer row">
-                    <div class="col-12 mb-4">
-                        <a class="btn btn-heroes mr-auto" href="mailto:hello@timeheroes.org" target="_blank">hello@timeheroes.org</a>
+            <div class="modal-content p-md-4 p-2">
+                <div class="row modal-header">
+                    <div class="col-12">
+                        <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
                     </div>
                     <div class="col-12">
-                        Вече имаш клуб?<a href="/manager" target="_blank">Вход за координатори</a>
+                        <h2 class="heading2 modal-title d-none d-md-block d-sm-none d-xs-none" id="exampleModalLabel">Направете геройски клуб и спечелете Купата!</h2>
+                        <h3 class="heading3 modal-title d-sm-block d-md-none" id="exampleModalLabel">Направете геройски клуб и спечелете Купата!</h3>
                     </div>
+                </div>
+                <div class="modal-body body2">
+                    <p>Пишете ни, за да грабнете стартовия си пакет.</p>
+                    <p>
+                        <a class="btn btn-heroes mr-auto mt-3 mb-3" href="mailto:hello@timeheroes.org" target="_blank">hello@timeheroes.org</a>
+                    </p>
+                    <p>
+                        Вече имате клуб?<a href="/manager"> Вход за координатори</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -107,9 +110,6 @@
     <partial name="Partial/_Footer.cshtml" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>*@
-    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/scripts/navbar.js" type="text/javascript"></script>

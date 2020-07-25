@@ -162,7 +162,7 @@
                         }
 
                         <div class="text-right">
-                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded)
+                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.HeroesAdd)).Succeeded && Model.Club.Id != Guid.Empty)
                             {
                                 <a href="@Url.Action("Add", "Heroes")" class="btn btn-labeled btn-primary pull-right">
                                     <i class="fas fa-plus"></i>@HeroesCupLocalizer.Club["Add Hero"]

@@ -12,7 +12,7 @@
         var author = post.Author.Value != null && post.Author.Value != string.Empty ? post.Author.Value : "TimeHeroes";
 
     <div class="col-md-6 col-sm-12 item-body pt-5">
-        <a href="@post.Permalink" target="_blank">
+        <a href="@post.Permalink">
             <div class="col-12 justify-content-start">
                 <img src="@Url.Content(post.Hero.PrimaryImage.Resize(WebApp.Api, 496, 256))" />
             </div>

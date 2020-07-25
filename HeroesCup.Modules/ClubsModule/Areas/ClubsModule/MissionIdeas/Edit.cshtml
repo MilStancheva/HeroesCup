@@ -91,7 +91,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Location"]</label>
-                            @Html.TextBoxFor(m => m.MissionIdea.Location, new { @class = "form-control small", maxlength = 128, required = "" })
+                            @Html.TextBoxFor(m => m.MissionIdea.Location, new { @class = "form-control small", maxlength = 128, required = "", @id = "location" })
                             <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
@@ -181,7 +181,10 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.General["Content"]</label>
-                            @Html.TextAreaFor(m => m.MissionIdea.Content, new { @class = "form-control small editor", @id = "editor" })
+                            @Html.TextAreaFor(m => m.MissionIdea.Content, new { @class = "form-control small editor", @id = "editor", required = "" })
+                            <div class="invalid-tooltip">
+                                @HeroesCupLocalizer.General["Mandatory field"]
+                            </div>
                         </div>
                     </div>
                 </div>

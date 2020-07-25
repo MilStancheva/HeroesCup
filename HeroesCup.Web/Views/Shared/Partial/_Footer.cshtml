@@ -1,5 +1,5 @@
 ﻿<footer class="border-top text-muted custom-footer">
-    <div class="container ">
+    <div class="container">
         @{
             var currentSite = await WebApp.Site.GetContentAsync<HeroesCupSite>();
             var hasParnerLogos = currentSite.FooterContents.PartnerLogo1.HasValue ||
@@ -10,32 +10,32 @@
                 currentSite.FooterContents.PartnerLogo6.HasValue;
 
             var partnerImages = new Dictionary<Piranha.Extend.Fields.ImageField, Piranha.Extend.Fields.StringField>();
-            if (currentSite.FooterContents.PartnerLogo1.HasValue)
+            if (currentSite.FooterContents.PartnerLogo1 != null && currentSite.FooterContents.PartnerLogo1.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo1, currentSite.FooterContents.PartnerUrl1.Value);
             }
 
-            if (currentSite.FooterContents.PartnerLogo2.HasValue)
+            if (currentSite.FooterContents.PartnerLogo2 != null && currentSite.FooterContents.PartnerLogo2.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo2, currentSite.FooterContents.PartnerUrl2.Value);
             }
 
-            if (currentSite.FooterContents.PartnerLogo3.HasValue)
+            if (currentSite.FooterContents.PartnerLogo3 != null && currentSite.FooterContents.PartnerLogo3.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo3, currentSite.FooterContents.PartnerUrl3.Value);
             }
 
-            if (currentSite.FooterContents.PartnerLogo4.HasValue)
+            if (currentSite.FooterContents.PartnerLogo4 != null && currentSite.FooterContents.PartnerLogo4.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo4, currentSite.FooterContents.PartnerUrl4.Value);
             }
 
-            if (currentSite.FooterContents.PartnerLogo5.HasValue)
+            if (currentSite.FooterContents.PartnerLogo5 != null && currentSite.FooterContents.PartnerLogo5.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo5, currentSite.FooterContents.PartnerUrl5.Value);
             }
 
-            if (currentSite.FooterContents.PartnerLogo6.HasValue)
+            if (currentSite.FooterContents.PartnerLogo6 != null && currentSite.FooterContents.PartnerLogo6.HasValue)
             {
                 partnerImages.Add(currentSite.FooterContents.PartnerLogo6, currentSite.FooterContents.PartnerUrl6.Value);
             }
@@ -52,7 +52,7 @@
                     @Html.Raw(currentSite.FooterContents.MainPartnerInfoBox)
                 </div>
             </div>
-            @if (hasParnerLogos)
+            @if (partnerImages.Count > 0)
             {
                 <div class="separator-footer"></div>
                 <div class="container-fluid">
@@ -71,7 +71,7 @@
 
             <div class="separator-footer"></div>
             <div class="footer-bottom row pt-4 pb-4 mr-0 body2 text-white justify-content-md-between">
-                <div class="col-md-9 col-sm-12 mt-2 d-none d-md-block pt-1 pb-1">Проект на <a class="underline-offset" href="https://super.timeheroes.org">Timeheroes.org</a><span> | </span>Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/">Саорса ООД</a><span> | </span><a class="underline-offset text-white" href="/manager" target="_blank">Вход за координатори</a> </div>
+                <div class="col-md-9 col-sm-12 mt-2 d-none d-md-block pt-1 pb-1">Проект на <a class="underline-offset" href="https://super.timeheroes.org">Timeheroes.org</a><span> | </span>Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/">Саорса ООД</a><span> | </span><a class="underline-offset text-white" href="/manager">Вход за координатори</a> </div>
                 <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Проект на <a class="underline-offset" href="https://super.timeheroes.org">Timeheroes.org</a></div>
                 <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/">Саорса ООД </a> </div>
                 <div class="row col-md-3 col-10 pr-0 pt-2 pb-2 justify-content-md-end">

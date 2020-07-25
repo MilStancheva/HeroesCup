@@ -1,5 +1,6 @@
 ﻿@model MissionsPage
 @inject IApi Api
+@inject IConfiguration Configuration;
 
 @{
     ViewBag.Title = Model.Title;
@@ -14,6 +15,7 @@
 
     var defaultLocationText = $"Цяла България ({Model.MissionsCount})";
     var isLoadMoreRequested = Model.IsLoadMoreMissionsRequest;
+    var missionsCountPerPage = int.Parse(Configuration["MissionsCount"]);
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -44,7 +46,7 @@
                 <div role="tabpanel" class="tab-pane fade active show mb-4" id="missions">
                     <div class="row mt-md-5 mt-3 pt-4">
                         <div class="col-md-8 col-sm-12 pb-4">
-                            <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                            <div class="col-12 pl-0 body2">Актуални и приключили инициативи, създадени от доброволчески клубове в Купата на героите.</div>
                         </div>
                         <div class="col-md-4 col-sm-12 text-sm-center">
                             <form asp-action="MissionsArchive" method="post" asp-for="SelectedLocation" id="location-form" class="float-md-right">
@@ -92,18 +94,13 @@
                         int firstCount = 0;
                         int secondCount = 0;
                         int count = Model.Missions.Count();
-                        if (count < 4)
+                        if (count <= missionsCountPerPage)
                         {
-                            firstCount = 3;
+                            firstCount = count;
                         }
-                        else if (count < 7)
+                        else if (count > missionsCountPerPage)
                         {
-                            firstCount = 3;
-                            secondCount = count - firstCount;
-                        }
-                        else if (count >= 7)
-                        {
-                            firstCount = 6;
+                            firstCount = missionsCountPerPage;
                             secondCount = count - firstCount;
                         }
 
@@ -127,7 +124,9 @@
                         <div role="tabpanel" id="missionideas" class="tab-pane fade missions-block mb-4">
                             <div class="row mt-md-5 mt-3 pt-4 pb-4">
                                 <div class="col-md-8 col-sm-12">
-                                    <div class="col-12 pl-0 body2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in egestas mi, eget ultricies ligula. Praesent eu blandit odio, eget vehicula sem.</div>
+                                    <div class="col-12 pl-0 body2">
+                                        Супер идеи за мисии, които може да организирате с вашия клуб.
+                                    </div>
                                 </div>
                             </div>
                             <div id="missionideas-partial">
@@ -142,7 +141,7 @@
                         <div role="tabpanel" id="stories" class="tab-pane fade missions-block mb-4">
                             <div class="row mt-md-5 mt-3 pt-4 pb-4">
                                 <div class="col-md-8 col-sm-12">
-                                    <div class="col-12 pl-0 body2">Всяка успешна мисия е история с щастлив край. Тук можеш да какво разказват ученици, участвали в успешни мисии из цялата страна.</div>
+                                    <div class="col-12 pl-0 body2">Как преминаха мисиите досега или истории от сърцето на надпреварата.</div>
                                 </div>
                             </div>
                             <div id="stories-partial">

@@ -25,7 +25,7 @@
         missionIsSeveralDays = false;
     }
 
-    var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Mission.Club.OrganizationNumber} " : string.Empty;
+    var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Mission.Club.Name}\", {clubNumber} {Model.Mission.Club.OrganizationType} \"{Model.Mission.Club.OrganizationName}\"";
 }
 
@@ -41,7 +41,7 @@
     <meta name="twitter:site" content="@currentUrlBase" />
     <meta name="twitter:creator" content="@currentUrlBase" />
 
-    <meta property="og:url" content="@currentUrlBase/@Model.Category.Title/@Model.Slug" />
+    <meta property="og:url" content="@currentUrlBase/mission/@Model.Mission.Id" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
@@ -164,7 +164,7 @@
                     <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели тази мисия:</span>
+                            <span class="text-regular">Супер мисия? Сподели я:</span>
                         </div>
 
                         <div class="col-5 body2">

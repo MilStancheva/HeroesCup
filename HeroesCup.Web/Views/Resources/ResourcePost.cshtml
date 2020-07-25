@@ -20,7 +20,7 @@
     <meta name="twitter:site" content="@currentUrlBase" />
     <meta name="twitter:creator" content="@currentUrlBase" />
 
-    <meta property="og:url" content="@currentUrlBase/@Model.Category.Title/@Model.Slug" />
+    <meta property="og:url" content="@currentUrlBase/resources/@Model.Slug" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Subtitle.Value" />
@@ -60,7 +60,7 @@
                 <div class="separator d-sm-block d-md-none mb-5"></div>
                 <div class="row share-buttons ml-2 justify-content-start">
                     <div class="col-12 text-left">
-                        <span class="text-regular">Сподели тoзи ресурс:</span>
+                        <span class="text-regular">Полезен ресурс? Сподели го:</span>
                     </div>
 
                     <div class="col-5 body2">
@@ -72,7 +72,7 @@
 
                     <div class="col-5 body2">
                         <a class="btn btn-share" id="twitter-share-button"
-                           href="https://twitter.com/intent/tweet?url=@currentUrlBase/@Model.Category.Title/@Model.Slug&text=@Model.Title">
+                           href="https://twitter.com/intent/tweet?url=@currentUrlBase/resources/@Model.Slug&text=@Model.Title">
                             <span class="m-1">Tweet</span>
                             <i class="fa fa-twitter"></i>
                         </a>
