@@ -25,7 +25,7 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Subtitle.Value" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="/images/Logo.svg" />
+    <meta property="og:image" content="@Url.Content(Model.Hero.PrimaryImage.Resize(WebApp.Api, 672, 416))" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4 mb-0">
