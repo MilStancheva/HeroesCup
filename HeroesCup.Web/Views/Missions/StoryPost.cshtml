@@ -25,7 +25,7 @@
         missionIsSeveralDays = false;
     }
 
-    var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
+    var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Story.Mission.Club.Name}\", {clubNumber} {Model.Story.Mission.Club.OrganizationType} \"{Model.Story.Mission.Club.OrganizationName}\"";
 
     var heroImageSrc = "";
@@ -54,7 +54,7 @@
     <meta name="twitter:site" content="@currentUrlBase" />
     <meta name="twitter:creator" content="@currentUrlBase" />
 
-    <meta property="og:url" content="@currentUrlBase/@Model.Category.Title/@Model.Slug" />
+    <meta property="og:url" content="@currentUrlBase/story/@Model.Story.Id" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
@@ -135,7 +135,7 @@
                     <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели този разказ:</span>
+                            <span class="text-regular">Супер история? Сподели я.</span>
                         </div>
 
                         <div class="col-5 body2">

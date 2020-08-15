@@ -258,7 +258,7 @@ namespace ClubsModule.Services
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
-                .Where(m => now > m.EndDate && m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
+                .Where(m => m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
                 .OrderByDescending(c => c.StartDate)
                 .ToListAsync();
         }

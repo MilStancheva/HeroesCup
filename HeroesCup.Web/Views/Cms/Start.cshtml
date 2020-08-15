@@ -117,7 +117,7 @@
 
         @* Leaderboard *@
         <div class="pt-5 pb-5 pl-md-3 pr-md-3 pl-0 pr-0">
-            @if (Model.Clubs.Clubs.Count() > 0 && Model.SchoolYears.Count() > 0)
+            @if (Model.Clubs.Clubs.Count() > 0 || Model.SchoolYears.Count() > 0)
             {
                 var selectItems = new List<SelectListItem>();
                 @foreach (var year in Model.SchoolYears)
