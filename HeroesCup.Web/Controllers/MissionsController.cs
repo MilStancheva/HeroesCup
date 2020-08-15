@@ -138,10 +138,16 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
-            var missions = this.missionsService.GetMissionViewModels();
-            //.Take(missionsCurrentPageCount * _missionsCount);
+            var missions = this.missionsService.GetMissionViewModels()
+                 .Skip(_missionsCount);
 
-            return PartialView("_MissionsList", missions);
+            var missionsWithBanner = new MissionsWithBannerViewModel()
+            {
+                Missions = missions,
+                MissionsCountPerPage = _missionsCount
+            };
+
+            return PartialView("_MissionsListWithBanner", missionsWithBanner);
         }
 
 
@@ -151,8 +157,8 @@ namespace HeroesCup.Controllers
         {
 
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
-            var missionIdeas = this.missionsService.GetMissionIdeaViewModels()
-                .Take((int)missionIdeasCurrentPageCount * _missionsCount);
+            var missionIdeas = this.missionsService.GetMissionIdeaViewModels();
+                //.Skip((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
         }
@@ -163,8 +169,8 @@ namespace HeroesCup.Controllers
         {
 
             int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
-            var stories = this.missionsService.GetAllPublishedStoryViewModels()
-                .Take((int)storiesCurrentPageCount * _missionsCount);
+            var stories = this.missionsService.GetAllPublishedStoryViewModels();
+                //.Skip((int)storiesCurrentPageCount * _missionsCount);
 
             return PartialView("_StoriesList", stories);
         }

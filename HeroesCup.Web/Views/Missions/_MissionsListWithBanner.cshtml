@@ -1,0 +1,35 @@
+﻿@model HeroesCup.Web.Models.Missions.MissionsWithBannerViewModel
+@{
+    var missions = Model.Missions.ToList();
+}
+
+@if (missions.Count > 0)
+{
+
+    int firstCount = 0;
+    int secondCount = 0;
+    int count = missions.Count();
+    if (count <= Model.MissionsCountPerPage)
+    {
+        firstCount = count;
+    }
+    else if (count > Model.MissionsCountPerPage)
+    {
+        firstCount = Model.MissionsCountPerPage;
+        secondCount = count - firstCount;
+    }
+
+    var missionsFirstHalf = missions.Take(firstCount);
+    var missionsSecondHalf = Model.Missions.Skip(firstCount).Take(secondCount);
+
+    <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+    <div class="col-12 separator mb-4 mt-5"></div>
+
+    <partial name="~/Views/Missions/_MissionsBanner.cshtml" />
+    if (secondCount > 0)
+    {
+        <div class="col-12 separator mb-4 mt-"></div>
+        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+    }
+}
+

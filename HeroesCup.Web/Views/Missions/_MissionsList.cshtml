@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<HeroesCup.Web.Models.MissionViewModel>
 @{
     var missions = Model.ToList();    
+    var isLoadMoreRequest = HttpAccess.HttpContext.Request.Query["loadRequest"].ToString();
 }
 
 @if (missions.Count > 0)
