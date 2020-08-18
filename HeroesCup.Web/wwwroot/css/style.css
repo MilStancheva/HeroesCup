@@ -608,7 +608,7 @@ header {
 .leaderboard-clubs {
     padding-right: 8px;
     min-height: 90px;
-    max-height: 800px;
+    max-height: 1200px;
     overflow-y: auto;
 }
 
@@ -1183,7 +1183,7 @@ a:hover .resource-icon-article {
     .leaderboard-clubs {
         padding-right: 8px;
         min-height: 90px;
-        max-height: 800px;
+        max-height: 1200px;
         overflow-y: auto;
     }
 }
