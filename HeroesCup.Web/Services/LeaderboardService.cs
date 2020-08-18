@@ -131,9 +131,10 @@ namespace HeroesCup.Web.Services
             return this.missionsService.GetMissionSchoolYears().OrderBy(x => x);
         }
 
-        public string GetCurrentSchoolYear()
+        public string GetLatestSchoolYear()
         {
-            return this.schoolYearService.GetCurrentSchoolYear();
+            var latestSchoolYear = this.GetSchoolYears().OrderByDescending(x => x).FirstOrDefault();
+            return latestSchoolYear;
         }
     }
 }
