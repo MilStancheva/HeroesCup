@@ -119,15 +119,30 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
-        [Route("mission-idea/{id}")]
-        public async Task<IActionResult> MissionIdeaPost(Guid id, bool draft = false)
+        //[Route("mission-idea/{id}")]
+        //public async Task<IActionResult> MissionIdeaPost(Guid id, bool draft = false)
+        //{
+        //    var missionIdea = await this.missionsService.GetMissionIdeaViewModelByIdAsync(id);
+        //    var model = new MissionIdeaPost()
+        //    {
+        //        MissionIdea = missionIdea,
+        //        Title = missionIdea.MissionIdea.Title,
+        //        Slug = missionIdea.MissionIdea.Title,
+        //        Category = "mission-idea",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("mission-idea/{slug}")]
+        public async Task<IActionResult> MissionIdeaPost(string slug, bool draft = false)
         {
-            var missionIdea = await this.missionsService.GetMissionIdeaViewModelByIdAsync(id);
+            var missionIdea = await this.missionsService.GetMissionIdeaViewModelBySlugAsync(slug);
             var model = new MissionIdeaPost()
             {
                 MissionIdea = missionIdea,
                 Title = missionIdea.MissionIdea.Title,
-                Slug = missionIdea.MissionIdea.Title,
+                Slug = missionIdea.MissionIdea.Slug,
                 Category = "mission-idea",
             };
 
@@ -150,7 +165,7 @@ namespace HeroesCup.Controllers
         //}
 
         [Route("story/{slug}")]
-        public async Task<IActionResult> StoryPost(String slug, bool draft = false)
+        public async Task<IActionResult> StoryPost(string slug, bool draft = false)
         {
             var story = await this.missionsService.GetStoryViewModelByMissionSlugAsync(slug);
             var model = new StoryPost()

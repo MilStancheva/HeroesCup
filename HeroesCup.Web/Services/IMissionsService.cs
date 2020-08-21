@@ -21,14 +21,16 @@ namespace HeroesCup.Web.Services
 
         Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id);
 
-        Task<MissionViewModel> GetMissionViewModelBySlugAsync(String slug);
+        Task<MissionViewModel> GetMissionViewModelBySlugAsync(string slug);
 
         Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id);
+
+        Task<MissionIdeaViewModel> GetMissionIdeaViewModelBySlugAsync(string slug);
 
         IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels();
 
         Task<StoryViewModel> GetStoryViewModelByIdAsync(Guid id);
 
-        Task<StoryViewModel> GetStoryViewModelByMissionSlugAsync(String missionSlug);
+        Task<StoryViewModel> GetStoryViewModelByMissionSlugAsync(string missionSlug);
     }
 }

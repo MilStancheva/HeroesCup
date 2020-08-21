@@ -12,7 +12,7 @@
             var organization = idea.MissionIdea.Organization != null && idea.MissionIdea.Organization != String.Empty ? idea.MissionIdea.Organization : "TimeHeroes";
             <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
                 <div class="mission-body">
-                    <a href="/mission-idea/@idea.Id">
+                    <a href="/mission-idea/@idea.MissionIdea.Slug">
                         <div class="img-container text-left">
                             <img class="img-fluid mission-img-list" src="@Url.Content(idea.ImageSrc)" />
                         </div>

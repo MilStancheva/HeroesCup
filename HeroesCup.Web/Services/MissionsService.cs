@@ -32,6 +32,7 @@ namespace HeroesCup.Web.Services
             return timeheroesMissions.Select(mi => new MissionIdeaViewModel()
             {
                 Id = mi.Id,
+                Slug = mi.Slug,
                 MissionIdea = mi,
                 ImageSrc = this.imageService.GetMissionIdeaImageSource(mi)
             });
@@ -134,6 +135,7 @@ namespace HeroesCup.Web.Services
             var model = new MissionIdeaViewModel()
             {
                 Id = result.MissionIdea.Id,
+                Slug = result.MissionIdea.Slug,
                 ImageSrc = result.ImageSrc,
                 MissionIdea = result.MissionIdea,
                 StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
@@ -227,6 +229,22 @@ namespace HeroesCup.Web.Services
                     StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
                     EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
                 }
+            };
+
+            return model;
+        }
+
+        public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelBySlugAsync(string slug)
+        {
+            var result = await this.missionIdeasService.GetMissionIdeaEditModelBySlugAsync(slug);
+            var model = new MissionIdeaViewModel()
+            {
+                Id = result.MissionIdea.Id,
+                Slug = result.MissionIdea.Slug,
+                ImageSrc = result.ImageSrc,
+                MissionIdea = result.MissionIdea,
+                StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
+                EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
             };
 
             return model;

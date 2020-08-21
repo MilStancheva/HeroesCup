@@ -7,6 +7,8 @@ namespace HeroesCup.Web.Models
     {
         public Guid Id { get; set; }
 
+        public string Slug { get; set; }
+
         public MissionIdea MissionIdea { get; set; }
 
         public string ImageSrc { get; set; }

@@ -129,7 +129,7 @@ namespace HeroesCup.Data
                 .IsUnique(unique: true);
 
             modelBuilder.Entity<MissionIdea>()
-                .HasIndex(m => m.Title)
+                .HasIndex(m => m.Slug)
                 .IsUnique(unique: true);
         }
     }
