@@ -1,4 +1,5 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Exceptions;
+using ClubsModule.Models;
 using ClubsModule.Security;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Localization;
@@ -60,12 +61,21 @@ namespace ClubsModule.Controllers
                 return View("Edit", model);
             }
 
-            var missionId = await this.missionsService.SaveMissionEditModelAsync(model);
-            if (missionId != null && missionId != Guid.Empty)
+            try
             {
-                SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been saved."]);
-                return RedirectToAction("Edit", new { id = missionId });
+                var missionId = await this.missionsService.SaveMissionEditModelAsync(model);
+                if (missionId != null && missionId != Guid.Empty)
+                {
+                    SuccessMessage(this.heroesCupLocalizer.Mission["The mission has been saved."]);
+                    return RedirectToAction("Edit", new { id = missionId });
+                }
             }
+            catch (ExistingItemException)
+            {
+                ErrorMessage(this.heroesCupLocalizer.Mission["There is already a mission with the same title."]);
+                return View("Edit", model);
+            }
+           
 
             ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."]);
             return View("Edit", model);

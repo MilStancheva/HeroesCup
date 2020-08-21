@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -88,15 +89,30 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
-        [Route("mission/{id}")]
-        public async Task<IActionResult> MissionPost(Guid id, bool draft = false)
+        //[Route("mission/{id}")]
+        //public async Task<IActionResult> MissionPost(Guid id, bool draft = false)
+        //{
+        //    var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
+        //    var model = new MissionPost()
+        //    {
+        //        Mission = mission,
+        //        Title = mission.Mission.Title,
+        //        Slug = mission.Mission.Title,
+        //        Category = "mission",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("mission/{slug}")]
+        public async Task<IActionResult> MissionPost(String slug, bool draft = false)
         {
-            var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
+            var mission = await this.missionsService.GetMissionViewModelBySlugAsync(slug);
             var model = new MissionPost()
             {
                 Mission = mission,
                 Title = mission.Mission.Title,
-                Slug = mission.Mission.Title,
+                Slug = mission.Mission.Slug,
                 Category = "mission",
             };
 
@@ -118,15 +134,30 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
-        [Route("story/{id}")]
-        public async Task<IActionResult> StoryPost(Guid id, bool draft = false)
+        //[Route("story/{id}")]
+        //public async Task<IActionResult> StoryPost(Guid id, bool draft = false)
+        //{
+        //    var story = await this.missionsService.GetStoryViewModelByIdAsync(id);
+        //    var model = new StoryPost()
+        //    {
+        //        Story = story,
+        //        Title = story.Mission.Title,
+        //        Slug = story.Mission.Title,
+        //        Category = "story",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("story/{slug}")]
+        public async Task<IActionResult> StoryPost(String slug, bool draft = false)
         {
-            var story = await this.missionsService.GetStoryViewModelByIdAsync(id);
+            var story = await this.missionsService.GetStoryViewModelByMissionSlugAsync(slug);
             var model = new StoryPost()
             {
                 Story = story,
                 Title = story.Mission.Title,
-                Slug = story.Mission.Title,
+                Slug = story.Mission.Slug,
                 Category = "story",
             };
 

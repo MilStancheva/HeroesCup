@@ -9,6 +9,8 @@ namespace HeroesCup.Data.Models
 
         public string Title { get; set; }
 
+        public string Slug { get; set; }
+
         public string Location { get; set; }
 
         public long StartDate { get; set; }

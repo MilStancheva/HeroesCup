@@ -20,6 +20,8 @@ namespace ClubsModule.Services.Contracts
 
         Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId = null);
 
+        Task<MissionEditModel> GetMissionEditModelBySlugAsync(String slug);
+
         Task<bool> DeleteAsync(Guid id);
 
         TimeSpan GetMissionDuration(long startDate, long endDate);
