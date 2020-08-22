@@ -5,11 +5,6 @@ namespace ClubsModule.Services
 {
     public class SchoolYearService : ISchoolYearService
     {
-        public string GetCurrentSchoolYear()
-        {
-            return CalculateSchoolYear(DateTime.UtcNow);
-        }
-
         public string CalculateSchoolYear(DateTime startDate)
         {
             var startYear = getStartSchoolYear(startDate);

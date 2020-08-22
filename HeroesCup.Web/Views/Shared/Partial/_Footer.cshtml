@@ -49,10 +49,10 @@
                     <h3 class="heading3 text-white d-sm-block d-md-none">С подкрепата на</h3>
                 </div>
                 <div class="col-md-7 col-sm-12 mt-3 mt-md-0 text-white body3">
-                    @Html.Raw(currentSite.FooterContents.MainPartnerInfoBox)
+                    @Html.Raw(currentSite.FooterContents.MainPartnerInfoBox.Value)
                 </div>
             </div>
-            @if (partnerImages.Count > 0)
+            @if (hasParnerLogos)
             {
                 <div class="separator-footer"></div>
                 <div class="container-fluid">
@@ -71,26 +71,26 @@
 
             <div class="separator-footer"></div>
             <div class="footer-bottom row pt-4 pb-4 mr-0 body2 text-white justify-content-md-between">
-                <div class="col-md-9 col-sm-12 mt-2 d-none d-md-block pt-1 pb-1">Проект на <a class="underline-offset" href="https://super.timeheroes.org">Timeheroes.org</a><span> | </span>Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/">Саорса ООД</a><span> | </span><a class="underline-offset text-white" href="/manager">Вход за координатори</a> </div>
-                <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Проект на <a class="underline-offset" href="https://super.timeheroes.org">Timeheroes.org</a></div>
-                <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/">Саорса ООД </a> </div>
+                <div class="col-md-9 col-sm-12 mt-2 d-none d-md-block pt-1 pb-1">Проект на <a class="underline-offset" href="https://timeheroes.org" target="_blank">TimeHeroes.org</a><span> | </span>Проектът е реализиран от <a class="underline-offset" href="https://saorsa.bg/"  target="_blank">Саорса ООД</a><span> | </span><a class="underline-offset text-white" href="/manager" target="_blank">Вход за координатори</a> </div>
+                <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Проект на <a class="underline-offset" href="https://timeheroes.org" target="_blank">TimeHeroes.org</a></div>
+                <div class="col-sm-12 d-sm-block d-md-none pt-1 pb-1">Уеб дизайн и разработка <a class="underline-offset" href="https://saorsa.bg/" target="_blank">Саорса ООД </a> </div>
                 <div class="row col-md-3 col-10 pr-0 pt-2 pb-2 justify-content-md-end">
                     <div class="col-2 justify-content-md-end text-sm-center">
-                        <a href="https://www.facebook.com/TimeHeroes/">
+                        <a href="https://www.facebook.com/TimeHeroes/" target="_blank">
                             <span class="icon icon-facebook"></span>
                         </a>
                     </div>
                     <div class="col-2 justify-content-md-end justify-content-sm-center">
-                        <a href="https://twitter.com/timeheroesorg?lang=en">
+                        <a href="https://twitter.com/timeheroesorg?lang=en" target="_blank">
                             <span class="icon icon-twitter"></span>
                         </a>
                     </div>
                     <div class="col-2 justify-content-md-end justify-content-sm-center">
-                        <a href="https://www.youtube.com/channel/UC7l1t9MKG2uwcU1TXP7rhZQ">
+                        <a href="https://www.youtube.com/channel/UC7l1t9MKG2uwcU1TXP7rhZQ" target="_blank">
                             <span class="icon icon-youtube"></span>
                         </a>
                     </div>
-                    <div class="col-2 pr-0 justify-content-md-end justify-content-sm-center">
+                    <div class="col-2 pr-0 justify-content-md-end justify-content-sm-center" target="_blank">
                         <a href="https://www.instagram.com/time.heroes/?hl=en">
                             <span class="icon icon-instagram"></span>
                         </a>

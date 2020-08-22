@@ -1,4 +1,4 @@
-using ClubsModule;
+﻿using ClubsModule;
 using HeroesCup.Modules.ClubsModule.Blocks;
 using Piranha;
 using Piranha.Extend;
@@ -95,13 +95,13 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items.Insert(2, new MenuItem
             {
                 InternalId = "ClubsModule",
-                Name = "Clubs",
+                Name = "Клубове",
                 Css = "fas fa-fish"
             });
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "Clubs",
-                Name = "Clubs",
+                Name = "Твоят клуб",
                 Route = "~/manager/clubs",
                 Policy = Permissions.Clubs,
                 Css = "fas fa-brain"
@@ -110,7 +110,7 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "Heroes",
-                Name = "Heroes",
+                Name = "Герои",
                 Route = "~/manager/heroes",
                 Policy = Permissions.Heroes,
                 Css = "fas fa-users"
@@ -119,7 +119,7 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "Missions",
-                Name = "Missions",
+                Name = "Мисии",
                 Route = "~/manager/missions",
                 Policy = Permissions.Missions,
                 Css = "far fa-calendar-alt"
@@ -128,7 +128,7 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "Stories",
-                Name = "Stories",
+                Name = "Разкази",
                 Route = "~/manager/stories",
                 Policy = Permissions.Stories,
                 Css = "fas fa-history"
@@ -137,7 +137,7 @@ namespace HeroesCup.Modules.ClubsModule
             Menu.Items["ClubsModule"].Items.Add(new MenuItem
             {
                 InternalId = "MissionIdeas",
-                Name = "Mission Ideas",
+                Name = "Идеи за мисии",
                 Route = "~/manager/missionideas",
                 Policy = Permissions.MissionIdeas,
                 Css = "far fa-lightbulb"

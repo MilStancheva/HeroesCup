@@ -6,7 +6,7 @@ namespace HeroesCup.Web.Services
 {
     public interface ILeaderboardService
     {
-        string GetCurrentSchoolYear();
+        string GetLatestSchoolYear();
 
         IEnumerable<string> GetSchoolYears();
 

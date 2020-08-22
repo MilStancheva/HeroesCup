@@ -400,7 +400,7 @@ header {
     flex: none;
     order: 4;
     align-self: flex-start;
-    margin: 32px 0px;
+    margin: 4px 0px;
     height: 48px;
     padding: 12px 24px;
     background: #FE5E17;
@@ -550,7 +550,7 @@ header {
     padding: 0;
     align-content: start;
     text-align: start;
-    bottom: -50px;
+    bottom: -10px;
 }
 
     .carousel-indicators li {
@@ -608,7 +608,7 @@ header {
 .leaderboard-clubs {
     padding-right: 8px;
     min-height: 90px;
-    max-height: 800px;
+    max-height: 1200px;
     overflow-y: auto;
 }
 
@@ -1183,7 +1183,7 @@ a:hover .resource-icon-article {
     .leaderboard-clubs {
         padding-right: 8px;
         min-height: 90px;
-        max-height: 800px;
+        max-height: 1200px;
         overflow-y: auto;
     }
 }
@@ -1311,7 +1311,7 @@ a:hover .resource-icon-article {
     }
 
     .navbar-toggleable-sm .btn-heroes {
-        width: 128px;
+       /* width: 128px;*/
         height: 48px;
     }
 
@@ -1506,7 +1506,6 @@ html {
     }
 
 .btn-participate {
-    /*        width: 128px;*/
     font-size: 17px;
     font-weight: 600;
 }

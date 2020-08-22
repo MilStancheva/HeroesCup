@@ -276,5 +276,18 @@ namespace ClubsModule.Services
                 .ThenInclude(si => si.Image)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
+
+        public async Task<Story> GetStoryByMissionSlugAsync(string missionSlug)
+        {
+            return await this.dbContext.Stories
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.MissionImages)
+                .ThenInclude(mi => mi.Image)
+                .Include(s => s.Mission)
+                .ThenInclude(m => m.Club)
+                .Include(s => s.StoryImages)
+                .ThenInclude(si => si.Image)
+                .FirstOrDefaultAsync(s => s.Mission.Slug == missionSlug);
+        }
     }
 }

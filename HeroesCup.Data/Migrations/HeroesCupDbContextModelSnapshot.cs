@@ -156,6 +156,9 @@ namespace HeroesCup.Data.Migrations
                     b.Property<string>("SchoolYear")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Slug")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.Property<int>("Stars")
                         .HasColumnType("int");
 
@@ -168,6 +171,9 @@ namespace HeroesCup.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClubId");
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
 
                     b.ToTable("Missions");
                 });
@@ -228,6 +234,9 @@ namespace HeroesCup.Data.Migrations
                     b.Property<string>("Organization")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Slug")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.Property<long>("StartDate")
                         .HasColumnType("bigint");
 
@@ -238,6 +247,9 @@ namespace HeroesCup.Data.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
 
                     b.ToTable("MissionIdeas");
                 });

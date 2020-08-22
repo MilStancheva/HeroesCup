@@ -74,24 +74,18 @@ namespace ClubsModule.Services
                     .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (missionIdea == null)
-            {
-                return null;
-            }
+            return await MapMissionIdeaToMissionIdeaEditModel(missionIdea);
+        }
 
-            var model = CreateMissionIdeaEditModel();
-            model.MissionIdea = missionIdea;
-            var dateFormat = this.configuration["DateFormat"];
-            model.UploadedStartDate = missionIdea.StartDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
-            model.UploadedEndDate = missionIdea.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+        public async Task<MissionIdeaEditModel> GetMissionIdeaEditModelBySlugAsync(string slug)
+        {
+            MissionIdea missionIdea = null;
+            missionIdea = await this.dbContext.MissionIdeas
+                    .Include(c => c.MissionIdeaImages)
+                    .ThenInclude(ci => ci.Image)
+                    .FirstOrDefaultAsync(c => c.Slug == slug);
 
-            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
-            {
-                var missionIdeaImage = await this.imagesService.GetMissionIdeaImageAsync(missionIdea.Id);
-                model.ImageSrc = this.imagesService.GetImageSource(missionIdeaImage.Image.ContentType, missionIdeaImage.Image.Bytes);
-            }
-
-            return model;
+            return await MapMissionIdeaToMissionIdeaEditModel(missionIdea);
         }
 
         public async Task<Guid> SaveMissionIdeaEditModelAsync(MissionIdeaEditModel model)
@@ -109,6 +103,7 @@ namespace ClubsModule.Services
             }
 
             missionIdea.Title = model.MissionIdea.Title;
+            missionIdea.Slug = model.MissionIdea.Title.ToSlug();
             missionIdea.Organization = model.MissionIdea.Organization;
             missionIdea.Location = model.MissionIdea.Location;
             missionIdea.Content = model.MissionIdea.Content;
@@ -176,6 +171,28 @@ namespace ClubsModule.Services
             await this.dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        private async Task<MissionIdeaEditModel> MapMissionIdeaToMissionIdeaEditModel(MissionIdea missionIdea)
+        {
+            if (missionIdea == null)
+            {
+                return null;
+            }
+
+            var model = CreateMissionIdeaEditModel();
+            model.MissionIdea = missionIdea;
+            var dateFormat = this.configuration["DateFormat"];
+            model.UploadedStartDate = missionIdea.StartDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+            model.UploadedEndDate = missionIdea.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+
+            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
+            {
+                var missionIdeaImage = await this.imagesService.GetMissionIdeaImageAsync(missionIdea.Id);
+                model.ImageSrc = this.imagesService.GetImageSource(missionIdeaImage.Image.ContentType, missionIdeaImage.Image.Bytes);
+            }
+
+            return model;
         }
     }
 }

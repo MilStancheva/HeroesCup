@@ -18,6 +18,7 @@ using Piranha.Data.EF.MySql;
 using Piranha.Manager.Editor;
 using Serilog;
 using System;
+using System.Text;
 
 namespace HeroesCup
 {
@@ -43,6 +44,7 @@ namespace HeroesCup
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(20);

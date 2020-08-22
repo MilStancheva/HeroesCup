@@ -141,10 +141,12 @@
                                 if (Model.ClubId != Guid.Empty && Model.Mission.ClubId != Guid.Empty)
                                 {
                                     @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
+                                    @Html.HiddenFor(m => m.Mission.Club.Name)
                                 }
                                 else
                                 {
                                     @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
+                                    @Html.HiddenFor(m => m.ClubId)
                                 }
                             }
                             else
@@ -152,6 +154,8 @@
                                 if (Model.ClubId != Guid.Empty && Model.Mission.Club != null)
                                 {
                                     @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
+                                    @Html.HiddenFor(m => m.ClubId)
+                                    @Html.HiddenFor(m => m.Mission.Club.Name)
                                 }
                                 else
                                 {
@@ -159,7 +163,6 @@
                                 }
                             }
 
-                            @Html.HiddenFor(m => m.ClubId)
                             <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>

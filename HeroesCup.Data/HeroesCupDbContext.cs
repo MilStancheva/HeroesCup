@@ -123,6 +123,14 @@ namespace HeroesCup.Data
                 .HasOne(hm => hm.Image)
                 .WithMany(m => m.StoryImages)
                 .HasForeignKey(hm => hm.ImageId);
+
+            modelBuilder.Entity<Mission>()
+                .HasIndex(m => m.Slug)
+                .IsUnique(unique: true);
+
+            modelBuilder.Entity<MissionIdea>()
+                .HasIndex(m => m.Slug)
+                .IsUnique(unique: true);
         }
     }
 }

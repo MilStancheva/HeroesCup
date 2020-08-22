@@ -216,6 +216,9 @@
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>Мисията не е публична.</value>
   </data>
+  <data name="There is already a mission with the same title." xml:space="preserve">
+    <value>Вече съществува мисия с това заглавие. </value>
+  </data>
   <data name="Timeheroes Mission URL" xml:space="preserve">
     <value>URL към мисията в Timeheroes</value>
   </data>

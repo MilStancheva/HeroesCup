@@ -216,6 +216,9 @@
   <data name="The mission has been unpublished." xml:space="preserve">
     <value>The mission has been unpublished.</value>
   </data>
+  <data name="There is already a mission with the same title." xml:space="preserve">
+    <value>There is already a mission with the same title.</value>
+  </data>
   <data name="Timeheroes Mission URL" xml:space="preserve">
     <value>Timeheroes Mission URL</value>
   </data>

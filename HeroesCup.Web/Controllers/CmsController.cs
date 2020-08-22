@@ -88,13 +88,21 @@ namespace HeroesCup.Controllers
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
         [Route("/")]
-        public async Task<IActionResult> Start(Guid id, bool draft = false)
+        public async Task<IActionResult> Start(Guid id, String selectedSchoolYear = null, bool draft = false)
         {
             var model = await this.loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
 
             // Leaderboard
             model.SchoolYears = this.leaderboardService.GetSchoolYears();
-            model.SelectedSchoolYear = this.leaderboardService.GetCurrentSchoolYear();
+            if (selectedSchoolYear != null)
+            {
+                model.SelectedSchoolYear = selectedSchoolYear;
+            }
+            else
+            {
+                model.SelectedSchoolYear = this.leaderboardService.GetLatestSchoolYear();
+            }
+
             var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(model.SelectedSchoolYear);
             model.Clubs = clubsListModel;
 
@@ -108,34 +116,6 @@ namespace HeroesCup.Controllers
 
             return View(model);
         }
-
-        /// <summary>
-        /// Gets the startpage with the given id.
-        /// </summary>
-        /// <param name="id">The unique page id</param>
-        /// <param name="draft">If a draft is requested</param>
-        [HttpPost]
-        [Route("/")]
-        public async Task<IActionResult> Start(Guid id, String selectedSchoolYear, bool draft = false)
-        {
-            var model = await this.loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
-
-            // Leaderboard
-            model.SchoolYears = this.leaderboardService.GetSchoolYears();
-            model.SelectedSchoolYear = selectedSchoolYear;
-            var clubsListModel = await this.leaderboardService.GetClubsBySchoolYearAsync(selectedSchoolYear);
-            model.Clubs = clubsListModel;
-
-            // Statistics
-            model.MissionsCount = this.statisticsService.GetAllMissionsCount();
-            model.ClubsCount = this.statisticsService.GetAllClubsCount();
-            model.HeroesCount = this.statisticsService.GetAllHeroesCount();
-            model.HoursCount = this.statisticsService.GetAllHoursCount();
-
-            model.Missions = await this.missionsService.GetPinnedMissionViewModels();
-
-            return View(model);
-        }       
 
         /// <summary>
         /// Gets the landing page with the given id.

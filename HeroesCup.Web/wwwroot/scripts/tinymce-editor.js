@@ -140,6 +140,8 @@ var imageClassList = [
     { title: 'No styles', value: '' },
 ];
 
+var pasteAsText = true;
+
 piranha.editor.addInline = function (id, toolbarId) {
     tinymce.init({
         selector: "#" + id,
@@ -175,6 +177,7 @@ piranha.editor.addInline = function (id, toolbarId) {
         setup: setUp,
         image_title: imageTitle,
         image_class_list: imageClassList,
+        paste_as_text: pasteAsText
     });
 };
 

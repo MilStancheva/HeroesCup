@@ -25,7 +25,7 @@
         missionIsSeveralDays = false;
     }
 
-    var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $"- {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
+    var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Story.Mission.Club.Name}\", {clubNumber} {Model.Story.Mission.Club.OrganizationType} \"{Model.Story.Mission.Club.OrganizationName}\"";
 
     var heroImageSrc = "";
@@ -54,12 +54,12 @@
     <meta name="twitter:site" content="@currentUrlBase" />
     <meta name="twitter:creator" content="@currentUrlBase" />
 
-    <meta property="og:url" content="@currentUrlBase/@Model.Category.Title/@Model.Slug" />
+    <meta property="og:url" content="@currentUrlBase/story/@Model.Story.Mission.Slug" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="~/images/Logo.svg" />
+    <meta property="og:image" content="@Url.Content(heroImageSrc)" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-5">
@@ -123,7 +123,7 @@
                             <div class="row col-12 pt-md-5 pt-4 mt-4 pr-2">
                                 <div class="col-12 body2-bold">
                                     <p>
-                                        <a class="body2-bold mission-title" href="/mission/@Model.Story.Mission.Id">Виж мисията тук</a>
+                                        <a class="body2-bold mission-title" href="/mission/@Model.Story.Mission.Slug">Виж мисията тук</a>
                                     </p>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                     <div class="separator d-sm-block d-md-none mb-5"></div>
                     <div class="row share-buttons">
                         <div class="col-12">
-                            <span class="text-regular">Сподели този разказ:</span>
+                            <span class="text-regular">Супер история? Сподели я.</span>
                         </div>
 
                         <div class="col-5 body2">
@@ -147,7 +147,7 @@
 
                         <div class="col-5 body2">
                             <a class="btn btn-share" id="twitter-share-button"
-                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/story/@Model.Story.Id&text=@Model.Title">
+                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/story/@Model.Story.Mission.Slug&text=@Model.Title">
                                 <span class="m-1">Tweet</span>
                                 <i class="fa fa-twitter"></i>
                             </a>
@@ -158,7 +158,7 @@
             </div>
         </div>
         <div class="separator"></div>
-        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Story.Mission.Title" />
+        <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Story.Mission.Slug" />
     </div>
 
     <div class="modal fade image-gallery-modal" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,4 +1,5 @@
 ﻿using ClubsModule.Common;
+using ClubsModule.Exceptions;
 using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
@@ -100,6 +101,12 @@ namespace ClubsModule.Services
                 .Include(m => m.Content)
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
+            var missionWithSameTitle = await this.dbContext.Missions.Where(m => m.Title == model.Mission.Title && m.Id != model.Mission.Id).FirstOrDefaultAsync();
+            if (missionWithSameTitle != null)
+            {
+                throw new ExistingItemException();
+            }
+
             if (mission == null)
             {
                 mission = new Mission();
@@ -110,6 +117,7 @@ namespace ClubsModule.Services
             }
 
             mission.Title = model.Mission.Title;
+            mission.Slug = model.Mission.Title.ToSlug();
             mission.Location = model.Mission.Location;
             if (model.Mission.Stars != 0)
             {
@@ -197,32 +205,7 @@ namespace ClubsModule.Services
                     .ThenInclude(s => s.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (mission == null)
-            {
-                return null;
-            }
-
-            if (mission.Content == null)
-            {
-                mission.Content = new MissionContent();
-            }
-
-            var model = await CreateMissionEditModelAsync(ownerId);
-            model.Mission = mission;
-            model.ClubId = mission.Club.Id;
-
-            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
-            {
-                var missionImage = await this.imagesService.GetMissionImage(mission.Id);
-                model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-            }
-
-            var dateFormat = this.configuration["DateFormat"];
-            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
-            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
-            model.Duration = GetMissionDuration(mission.StartDate, mission.EndDate);
-
-            return model;
+            return await MapMissionToMissionEditModel(mission);
         }
 
         public TimeSpan GetMissionDuration(long startDate, long endDate)
@@ -258,7 +241,7 @@ namespace ClubsModule.Services
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
-                .Where(m => now > m.EndDate && m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
+                .Where(m => m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
                 .OrderByDescending(c => c.StartDate)
                 .ToListAsync();
         }
@@ -417,6 +400,54 @@ namespace ClubsModule.Services
             {
                 await this.dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<MissionEditModel> GetMissionEditModelBySlugAsync(string slug)
+        {
+            Mission mission = null;
+            mission = await this.dbContext.Missions
+                    .Include(m => m.Club)
+                    .Include(m => m.Content)
+                    .Include(c => c.HeroMissions)
+                    .ThenInclude(m => m.Hero)
+                    .Include(c => c.MissionImages)
+                    .ThenInclude(ci => ci.Image)
+                    .Include(m => m.Story)
+                    .ThenInclude(s => s.StoryImages)
+                    .ThenInclude(s => s.Image)
+                    .FirstOrDefaultAsync(c => c.Slug == slug);
+
+            return await MapMissionToMissionEditModel(mission);
+        }
+
+        private async Task<MissionEditModel> MapMissionToMissionEditModel(Mission mission)
+        {
+            if (mission == null)
+            {
+                return null;
+            }
+
+            if (mission.Content == null)
+            {
+                mission.Content = new MissionContent();
+            }
+
+            var model = await CreateMissionEditModelAsync(null);
+            model.Mission = mission;
+            model.ClubId = mission.Club.Id;
+
+            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
+            {
+                var missionImage = await this.imagesService.GetMissionImage(mission.Id);
+                model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+            }
+
+            var dateFormat = this.configuration["DateFormat"];
+            model.UploadedStartDate = mission.StartDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+            model.UploadedEndDate = mission.EndDate.ToUniversalDateTime().ToLocalTime().ToString(dateFormat);
+            model.Duration = GetMissionDuration(mission.StartDate, mission.EndDate);
+
+            return model;
         }
     }
 }

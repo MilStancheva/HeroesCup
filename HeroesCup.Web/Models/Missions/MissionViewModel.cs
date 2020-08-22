@@ -9,6 +9,8 @@ namespace HeroesCup.Web.Models
 
         public string Title { get; set; }
 
+        public string Slug { get; set; }
+
         public Club Club { get; set; }
 
         public Mission Mission { get; set; }

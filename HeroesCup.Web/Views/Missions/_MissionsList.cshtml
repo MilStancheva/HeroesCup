@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<HeroesCup.Web.Models.MissionViewModel>
 @{
     var missions = Model.ToList();    
+    var isLoadMoreRequest = HttpAccess.HttpContext.Request.Query["loadRequest"].ToString();
 }
 
 @if (missions.Count > 0)
@@ -17,7 +18,7 @@
 
             <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
                 <div class="mission-body">
-                    <a href="/mission/@mission.Id">
+                    <a href="/mission/@mission.Slug">
                         @if (expiredMission)
                         {
                         <div class="img-container text-left">

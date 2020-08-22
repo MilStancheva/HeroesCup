@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -88,45 +89,90 @@ namespace HeroesCup.Controllers
             return View(model);
         }
 
-        [Route("mission/{id}")]
-        public async Task<IActionResult> MissionPost(Guid id, bool draft = false)
+        //[Route("mission/{id}")]
+        //public async Task<IActionResult> MissionPost(Guid id, bool draft = false)
+        //{
+        //    var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
+        //    var model = new MissionPost()
+        //    {
+        //        Mission = mission,
+        //        Title = mission.Mission.Title,
+        //        Slug = mission.Mission.Title,
+        //        Category = "mission",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("mission/{slug}")]
+        public async Task<IActionResult> MissionPost(String slug, bool draft = false)
         {
-            var mission = await this.missionsService.GetMissionViewModelByIdAsync(id);
+            var mission = await this.missionsService.GetMissionViewModelBySlugAsync(slug);
             var model = new MissionPost()
             {
                 Mission = mission,
                 Title = mission.Mission.Title,
-                Slug = mission.Mission.Title,
+                Slug = mission.Mission.Slug,
                 Category = "mission",
             };
 
             return View(model);
         }
 
-        [Route("mission-idea/{id}")]
-        public async Task<IActionResult> MissionIdeaPost(Guid id, bool draft = false)
+        //[Route("mission-idea/{id}")]
+        //public async Task<IActionResult> MissionIdeaPost(Guid id, bool draft = false)
+        //{
+        //    var missionIdea = await this.missionsService.GetMissionIdeaViewModelByIdAsync(id);
+        //    var model = new MissionIdeaPost()
+        //    {
+        //        MissionIdea = missionIdea,
+        //        Title = missionIdea.MissionIdea.Title,
+        //        Slug = missionIdea.MissionIdea.Title,
+        //        Category = "mission-idea",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("mission-idea/{slug}")]
+        public async Task<IActionResult> MissionIdeaPost(string slug, bool draft = false)
         {
-            var missionIdea = await this.missionsService.GetMissionIdeaViewModelByIdAsync(id);
+            var missionIdea = await this.missionsService.GetMissionIdeaViewModelBySlugAsync(slug);
             var model = new MissionIdeaPost()
             {
                 MissionIdea = missionIdea,
                 Title = missionIdea.MissionIdea.Title,
-                Slug = missionIdea.MissionIdea.Title,
+                Slug = missionIdea.MissionIdea.Slug,
                 Category = "mission-idea",
             };
 
             return View(model);
         }
 
-        [Route("story/{id}")]
-        public async Task<IActionResult> StoryPost(Guid id, bool draft = false)
+        //[Route("story/{id}")]
+        //public async Task<IActionResult> StoryPost(Guid id, bool draft = false)
+        //{
+        //    var story = await this.missionsService.GetStoryViewModelByIdAsync(id);
+        //    var model = new StoryPost()
+        //    {
+        //        Story = story,
+        //        Title = story.Mission.Title,
+        //        Slug = story.Mission.Title,
+        //        Category = "story",
+        //    };
+
+        //    return View(model);
+        //}
+
+        [Route("story/{slug}")]
+        public async Task<IActionResult> StoryPost(string slug, bool draft = false)
         {
-            var story = await this.missionsService.GetStoryViewModelByIdAsync(id);
+            var story = await this.missionsService.GetStoryViewModelByMissionSlugAsync(slug);
             var model = new StoryPost()
             {
                 Story = story,
                 Title = story.Mission.Title,
-                Slug = story.Mission.Title,
+                Slug = story.Mission.Slug,
                 Category = "story",
             };
 
@@ -138,10 +184,16 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
             int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
-            var missions = this.missionsService.GetMissionViewModels();
-            //.Take(missionsCurrentPageCount * _missionsCount);
+            var missions = this.missionsService.GetMissionViewModels()
+                 .Skip(_missionsCount);
 
-            return PartialView("_MissionsList", missions);
+            var missionsWithBanner = new MissionsWithBannerViewModel()
+            {
+                Missions = missions,
+                MissionsCountPerPage = _missionsCount
+            };
+
+            return PartialView("_MissionsListWithBanner", missionsWithBanner);
         }
 
 
@@ -151,8 +203,8 @@ namespace HeroesCup.Controllers
         {
 
             int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
-            var missionIdeas = this.missionsService.GetMissionIdeaViewModels()
-                .Take((int)missionIdeasCurrentPageCount * _missionsCount);
+            var missionIdeas = this.missionsService.GetMissionIdeaViewModels();
+                //.Skip((int)missionIdeasCurrentPageCount * _missionsCount);
 
             return PartialView("_MissionIdeasList", missionIdeas);
         }
@@ -163,8 +215,8 @@ namespace HeroesCup.Controllers
         {
 
             int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
-            var stories = this.missionsService.GetAllPublishedStoryViewModels()
-                .Take((int)storiesCurrentPageCount * _missionsCount);
+            var stories = this.missionsService.GetAllPublishedStoryViewModels();
+                //.Skip((int)storiesCurrentPageCount * _missionsCount);
 
             return PartialView("_StoriesList", stories);
         }
