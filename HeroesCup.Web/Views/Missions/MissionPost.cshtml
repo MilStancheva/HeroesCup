@@ -46,7 +46,7 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:caption" content="@Url.Content(Model.Mission.ImageSrc)" />
+    <meta property="og:image" content="data:image/png;base64,[base64-encoded @Url.Content(Model.Mission.ImageSrc)]" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
