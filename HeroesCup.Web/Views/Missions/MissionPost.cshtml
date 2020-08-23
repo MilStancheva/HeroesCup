@@ -27,6 +27,7 @@
 
     var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Mission.Club.Name}\", {clubNumber} {Model.Mission.Club.OrganizationType} \"{Model.Mission.Club.OrganizationName}\"";
+    var sharePostImage = System.Text.Encoding.Unicode.GetBytes(Model.Mission.ImageSrc).ConvertByteArrayToImage();
 }
 
 @section script{
@@ -46,7 +47,7 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="@System.Text.Encoding.Unicode.GetBytes(Model.Mission.ImageSrc).ConvertByteArrayToImage()" />
+    <meta property="og:image" content="@sharePostImage" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">

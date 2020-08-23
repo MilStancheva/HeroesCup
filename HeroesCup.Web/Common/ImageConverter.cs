@@ -1,14 +1,17 @@
-﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+﻿using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace HeroesCup.Web.Common
 {
     public static class ImageConverter
     {
-        public static Image ConvertByteArrayToImage(this byte[] byteArray)
+        public static IFormFile ConvertByteArrayToImage(this byte[] byteArray)
         {
-            var image = Image.LoadPixelData<Rgba32>(byteArray, 10, 10);            
-            return image;
+            using (var stream = new MemoryStream(byteArray))
+            {
+                IFormFile file = new FormFile(stream, 0, byteArray.Length, "name", "image.png");
+                return file;
+            }
         }
     }
 }
