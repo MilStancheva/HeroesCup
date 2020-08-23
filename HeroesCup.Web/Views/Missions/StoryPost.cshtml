@@ -60,6 +60,7 @@
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
     <meta property="og:image" content="@heroImageSrc" />
+    <meta property="og:image:width" content="600" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-5">
@@ -97,14 +98,14 @@
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
                         @if (Model.Story != null && Model.Story.Content != null)
                         {
-                        <div class="row col-12 pt-md-5 pt-4 pr-2">
-                            <div class="col-12 body2-bold">
-                                <p>Как премина мисията?</p>
+                            <div class="row col-12 pt-md-5 pt-4 pr-2">
+                                <div class="col-12 body2-bold">
+                                    <p>Как премина мисията?</p>
+                                </div>
+                                <div class="col-12 body2">
+                                    @Html.Raw(Model.Story.Content)
+                                </div>
                             </div>
-                            <div class="col-12 body2">
-                                @Html.Raw(Model.Story.Content)
-                            </div>
-                        </div>
                             <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
                                 @foreach (var imageSource in imageSources)
                                 {

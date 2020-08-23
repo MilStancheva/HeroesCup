@@ -47,6 +47,7 @@
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
     <meta property="og:image" content="@Model.Mission.ImageSrc" />
+    <meta property="og:image:width" content="600" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -84,80 +85,80 @@
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
                         @if (Model.Mission.Story != null && Model.Mission.Story.Content != null)
                         {
-                        <div class="row col-12 pt-md-5 pt-4 pr-2">
-                            <div class="col-12 body2-bold">
-                                <p>Как премина мисията?</p>
-                            </div>
-                            <div class="col-12 body2">
-                                @Html.Raw(Model.Mission.Story.Content)
-                            </div>
-                        </div>
-                        <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                            @foreach (var imageSource in Model.Mission.Story.ImageSources)
-                            {
-                                <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
-                                    <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                       data-image="@Url.Content(imageSource)"
-                                       data-target="#image-gallery">
-                                        <img class="img-fluid img-thumbnail center-cropped story-image"
-                                             src="@Url.Content(imageSource)"
-                                             alt="Another alt text">
-                                    </a>
+                            <div class="row col-12 pt-md-5 pt-4 pr-2">
+                                <div class="col-12 body2-bold">
+                                    <p>Как премина мисията?</p>
                                 </div>
-                            }
-                        </div>
+                                <div class="col-12 body2">
+                                    @Html.Raw(Model.Mission.Story.Content)
+                                </div>
+                            </div>
+                            <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
+                                @foreach (var imageSource in Model.Mission.Story.ImageSources)
+                                {
+                                    <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
+                                        <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                                           data-image="@Url.Content(imageSource)"
+                                           data-target="#image-gallery">
+                                            <img class="img-fluid img-thumbnail center-cropped story-image"
+                                                 src="@Url.Content(imageSource)"
+                                                 alt="Another alt text">
+                                        </a>
+                                    </div>
+                                }
+                            </div>
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
-                    <div class="col-12 mt-md-3 pt-3 pl-0 pr-0 pr-md-2">
-                        @if (Model.Mission.Mission.Content.What != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Какво?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.What)
-                            </div>
-                        }
+                        <div class="col-12 mt-md-3 pt-3 pl-0 pr-0 pr-md-2">
+                            @if (Model.Mission.Mission.Content.What != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Какво?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.What)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.When != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Кога?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.When)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.When != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Кога?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.When)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Where != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Къде?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Where)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Where != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Къде?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Where)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Equipment != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Нужна екипировка?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Equipment)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Equipment != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Нужна екипировка?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Equipment)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Why != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Защо?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Why)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Why != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Защо?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Why)
+                                </div>
+                            }
 
-                        @if (Model.Mission.Mission.Content.Contact != null)
-                        {
-                            <div class="col-12 mt-2 pt-2 body2">
-                                <p class="body2-bold">Как да се включат герои, които не са част от клуба?</p>
-                                @Html.Raw(Model.Mission.Mission.Content.Contact)
-                            </div>
-                        }
+                            @if (Model.Mission.Mission.Content.Contact != null)
+                            {
+                                <div class="col-12 mt-2 pt-2 body2">
+                                    <p class="body2-bold">Как да се включат герои, които не са част от клуба?</p>
+                                    @Html.Raw(Model.Mission.Mission.Content.Contact)
+                                </div>
+                            }
 
-                    </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 justify-content-start mt-md-5 mt-4 pb-4">
