@@ -138,6 +138,7 @@ namespace HeroesCup.Web.Services
                 Id = result.MissionIdea.Id,
                 Slug = result.MissionIdea.Slug,
                 ImageSrc = result.ImageSrc,
+                ImageBytes = result.ImageBytes,
                 MissionIdea = result.MissionIdea,
                 StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
                 EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()

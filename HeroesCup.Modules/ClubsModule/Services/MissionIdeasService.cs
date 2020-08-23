@@ -190,6 +190,7 @@ namespace ClubsModule.Services
             {
                 var missionIdeaImage = await this.imagesService.GetMissionIdeaImageAsync(missionIdea.Id);
                 model.ImageSrc = this.imagesService.GetImageSource(missionIdeaImage.Image.ContentType, missionIdeaImage.Image.Bytes);
+                model.ImageBytes = missionIdeaImage.Image.Bytes;
             }
 
             return model;
