@@ -23,6 +23,8 @@ namespace ClubsModule.Models
 
         public string ImageSrc { get; set; }
 
+        public byte[] ImageBytes { get; set; }
+
         public IEnumerable<Club> Clubs { get; set; }
 
         public Guid ClubId { get; set; }

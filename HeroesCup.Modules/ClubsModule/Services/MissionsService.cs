@@ -440,6 +440,7 @@ namespace ClubsModule.Services
             {
                 var missionImage = await this.imagesService.GetMissionImage(mission.Id);
                 model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+                model.ImageBytes = missionImage.Image.Bytes;
             }
 
             var dateFormat = this.configuration["DateFormat"];

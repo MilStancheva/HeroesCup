@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
 
 namespace HeroesCup.Web.Common
 {
     public static class ImageConverter
     {
-        public static byte[] GetBase64Blob(this string base64string)
+        public static IFormFile ToFormFile(byte[] byteArray)
         {
-            byte[] blob = Convert.FromBase64String(base64string);
-            return blob;
+            using (var stream = new MemoryStream(byteArray))
+            {
+                IFormFile file = new FormFile(stream, 0, byteArray.Length, "name", "fileName");
+                return file;
+            }
         }
     }
 }
