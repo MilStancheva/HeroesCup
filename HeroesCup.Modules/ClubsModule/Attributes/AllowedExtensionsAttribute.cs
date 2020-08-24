@@ -19,17 +19,42 @@ namespace ClubsModule.Attributes
         object value, ValidationContext validationContext)
         {
             var files = value as IEnumerable<IFormFile>;
+            ValidationResult validationResult = ValidationResult.Success;
             if (files != null)
             {
                 foreach (var file in files)
                 {
                     var extension = Path.GetExtension(file.FileName);
-
-                    if (!this.extensions.Contains(extension.ToLower()))
+                    validationResult = this.GetValidationResult(validationContext, file);
+                    if (validationResult != ValidationResult.Success)
                     {
-                        return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), string.Join(", ", this.extensions)));
+                        return validationResult;
                     }
-                }                
+                }
+            }
+            else
+            {
+                var file = value as IFormFile;
+                if (file != null)
+                {
+                    validationResult = this.GetValidationResult(validationContext, file);
+                    if (validationResult != ValidationResult.Success)
+                    {
+                        return validationResult;
+                    }
+                }
+            }
+
+            return validationResult;
+        }
+
+        private ValidationResult GetValidationResult(ValidationContext validationContext, IFormFile file)
+        {
+            var extension = Path.GetExtension(file.FileName);
+
+            if (!this.extensions.Contains(extension.ToLower()))
+            {
+                return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), string.Join(", ", this.extensions)));
             }
 
             return ValidationResult.Success;

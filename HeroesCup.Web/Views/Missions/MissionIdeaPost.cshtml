@@ -26,7 +26,6 @@
     }
 
     var organization = Model.MissionIdea.MissionIdea.Organization != null && Model.MissionIdea.MissionIdea.Organization != String.Empty ? Model.MissionIdea.MissionIdea.Organization : "TimeHeroes";
-    var bytes = Model.MissionIdea.ImageBytes;
 }
 
 @section script{
@@ -46,10 +45,9 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="@Url.Content(Model.MissionIdea.ImageSrc)" />
+    <meta property="og:image" content="@currentUrlBase/img/@Model.MissionIdea.ImageFilename" />
     <meta property="og:image:width" content="672" />
     <meta property="og:image:height" content="416" />
-    @*<meta property="og:file" content="@ImageConverter.ToFormFile(bytes)" />*@
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">

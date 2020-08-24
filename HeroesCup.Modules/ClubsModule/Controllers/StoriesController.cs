@@ -50,8 +50,9 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var validModel = await this.storiesService.GetStoryEditModelByIdAsync(model.Story.Id, this.loggedInUserId);
                 ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."]);
-                return RedirectToAction("Edit", new { id = model.Story.Id });
+                return View("Edit", validModel);
             }
 
             var storyId = await this.storiesService.SaveStoryEditModelAsync(model);

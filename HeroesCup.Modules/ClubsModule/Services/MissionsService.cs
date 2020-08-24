@@ -146,14 +146,7 @@ namespace ClubsModule.Services
             // set mission image
             if (model.Image != null)
             {
-                var image = new Image();
-                var bytes = this.imagesService.GetByteArrayFromImage(model.Image);
-                var filename = this.imagesService.GetFilename(model.Image);
-                var contentType = this.imagesService.GetFileContentType(model.Image);
-                image.Bytes = bytes;
-                image.Filename = filename;
-                image.ContentType = contentType;
-
+                var image = this.imagesService.MapFormFileToImage(model.Image);
                 await this.imagesService.CreateMissionImageAsync(image, mission);
             }
 
@@ -440,7 +433,7 @@ namespace ClubsModule.Services
             {
                 var missionImage = await this.imagesService.GetMissionImage(mission.Id);
                 model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-                model.ImageBytes = missionImage.Image.Bytes;
+                model.ImageFilename = missionImage.Image.Filename;
             }
 
             var dateFormat = this.configuration["DateFormat"];

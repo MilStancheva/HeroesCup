@@ -115,7 +115,7 @@ namespace HeroesCup.Web.Services
                 Title = result.Mission.Title,
                 Slug = result.Mission.Slug,
                 ImageSrc = result.ImageSrc,
-                ImageBytes = result.ImageBytes,
+                ImageFilename = result.ImageFilename,
                 Mission = result.Mission,
                 Club = result.Mission.Club,
                 StartDate = result.Mission.StartDate.ConvertToLocalDateTime(),
@@ -138,7 +138,7 @@ namespace HeroesCup.Web.Services
                 Id = result.MissionIdea.Id,
                 Slug = result.MissionIdea.Slug,
                 ImageSrc = result.ImageSrc,
-                ImageBytes = result.ImageBytes,
+                ImageFilename = result.ImageFilename,
                 MissionIdea = result.MissionIdea,
                 StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
                 EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
@@ -193,13 +193,18 @@ namespace HeroesCup.Web.Services
         public async Task<MissionViewModel> GetMissionViewModelBySlugAsync(string slug)
         {
             var result = await this.missionsService.GetMissionEditModelBySlugAsync(slug);
+            if (result == null)
+            {
+                return null;
+            }
+
             var model = new MissionViewModel()
             {
                 Id = result.Mission.Id,
                 Title = result.Mission.Title,
                 Slug = result.Mission.Slug,
                 ImageSrc = result.ImageSrc,
-                ImageBytes = result.ImageBytes,
+                ImageFilename = result.ImageFilename,
                 Mission = result.Mission,
                 Club = result.Mission.Club,
                 StartDate = result.Mission.StartDate.ConvertToLocalDateTime(),
@@ -217,6 +222,11 @@ namespace HeroesCup.Web.Services
         public async Task<StoryViewModel> GetStoryViewModelByMissionSlugAsync(string missionSlug)
         {
             var story = await this.storiesService.GetStoryByMissionSlugAsync(missionSlug);
+            if (story == null)
+            {
+                return null;
+            }
+
             var model = new StoryViewModel()
             {
                 Id = story.Id,
@@ -229,6 +239,7 @@ namespace HeroesCup.Web.Services
                     Slug = story.Mission.Slug,
                     Club = story.Mission.Club,
                     ImageSrc = this.imageService.GetMissionImageSource(story.Mission),
+                    ImageFilename = story.Mission.MissionImages.FirstOrDefault().Image.Filename,
                     StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
                     EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
                 }
@@ -240,11 +251,17 @@ namespace HeroesCup.Web.Services
         public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelBySlugAsync(string slug)
         {
             var result = await this.missionIdeasService.GetMissionIdeaEditModelBySlugAsync(slug);
+            if (result == null)
+            {
+                return null;
+            }
+
             var model = new MissionIdeaViewModel()
             {
                 Id = result.MissionIdea.Id,
                 Slug = result.MissionIdea.Slug,
                 ImageSrc = result.ImageSrc,
+                ImageFilename = result.ImageFilename,
                 MissionIdea = result.MissionIdea,
                 StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
                 EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
