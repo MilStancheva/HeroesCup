@@ -152,7 +152,7 @@ namespace HeroesCup.Controllers
         public IActionResult LoadMissions(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
+            //int missionsCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionsPageCountKey);
             var missions = this.missionsService.GetMissionViewModels()
                  .Skip(_missionsCount);
 
@@ -171,7 +171,7 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
 
-            int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
+            //int missionIdeasCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, MissionIdeasPageCountKey);
             var missionIdeas = this.missionsService.GetMissionIdeaViewModels();
                 //.Skip((int)missionIdeasCurrentPageCount * _missionsCount);
 
@@ -183,7 +183,7 @@ namespace HeroesCup.Controllers
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
 
-            int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
+            //int storiesCurrentPageCount = sessionService.GetCurrentPageCount(HttpContext, loadRequest, StoriesPageCountKey);
             var stories = this.missionsService.GetAllPublishedStoryViewModels();
                 //.Skip((int)storiesCurrentPageCount * _missionsCount);
 
