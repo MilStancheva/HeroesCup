@@ -3,6 +3,11 @@
     var missions = Model.Missions.ToList();
 }
 
+@if (missions.Count == 0)
+{
+    <partial name="~/Views/Missions/_MissionsBanner.cshtml" />
+}
+
 @if (missions.Count > 0)
 {
 
@@ -23,9 +28,8 @@
     var missionsSecondHalf = Model.Missions.Skip(firstCount).Take(secondCount);
 
     <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
-    <div class="col-12 separator mb-4 mt-5"></div>
-
     <partial name="~/Views/Missions/_MissionsBanner.cshtml" />
+
     if (secondCount > 0)
     {
         <div class="col-12 separator mb-4 mt-"></div>

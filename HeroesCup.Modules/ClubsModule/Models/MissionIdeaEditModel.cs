@@ -15,6 +15,8 @@ namespace ClubsModule.Models
 
         public string ImageSrc { get; set; }
 
+        public string ImageFilename { get; set; }
+
         [Required]
         public string UploadedStartDate { get; set; }
 

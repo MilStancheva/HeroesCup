@@ -9,12 +9,16 @@ namespace ClubsModule.Services.Contracts
     {
         Task<Image> GetImage(Guid id);
 
+        Task<Image> GetImageByFileName(string filename);
+
         string GetImageSource(string contentType, byte[] bytes);
 
         byte[] GetByteArrayFromImage(IFormFile file);
 
-        string GetFilename(IFormFile file);
+        string GetFilename(IFormFile file, Guid imageId);
 
         string GetFileContentType(IFormFile file);
+
+        Image MapFormFileToImage(IFormFile file);
     }
 }

@@ -269,8 +269,24 @@
 
                                 </div>
                                 <div class="col-6">
-                                    <input type="file" asp-for="Image" class="form-control-file" />
-                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                
+                                    @if (Model.ImageSrc != null)
+                                    {
+                                        <input type="file" asp-for="Image" class="form-control-file" />
+                                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        <div class="invalid-tooltip">
+                                            @HeroesCupLocalizer.General["Mandatory field"]
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input type="file" asp-for="Image" class="form-control-file" required />
+                                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        <div class="invalid-tooltip">
+                                            @HeroesCupLocalizer.General["Mandatory field"]
+                                        </div>
+                                    }
+
                                 </div>
                             </div>
                         </div>

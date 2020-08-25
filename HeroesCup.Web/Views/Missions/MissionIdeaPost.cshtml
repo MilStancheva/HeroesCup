@@ -45,7 +45,9 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="@Url.Content(Model.MissionIdea.ImageSrc)" />
+    <meta property="og:image" content="@currentUrlBase/img/@Model.MissionIdea.ImageFilename" />
+    <meta property="og:image:width" content="672" />
+    <meta property="og:image:height" content="416" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -110,7 +112,7 @@
 
                         <div class="col-5 body2">
                             <a class="btn btn-share" id="twitter-share-button"
-                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/@Model.MissionIdea.Slug&text=@Model.Title">
+                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/mission-idea/@Model.MissionIdea.Slug&text=@Model.Title">
                                 <span class="m-1">Tweet</span>
                                 <i class="fa fa-twitter"></i>
                             </a>

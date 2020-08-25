@@ -175,14 +175,7 @@ namespace ClubsModule.Services
             // set club logo
             if (model.UploadedLogo != null)
             {
-                var image = new Image();
-                var bytes = this.imagesService.GetByteArrayFromImage(model.UploadedLogo);
-                var filename = this.imagesService.GetFilename(model.UploadedLogo);
-                var contentType = this.imagesService.GetFileContentType(model.UploadedLogo);
-                image.Bytes = bytes;
-                image.Filename = filename;
-                image.ContentType = contentType;
-
+                var image = this.imagesService.MapFormFileToImage(model.UploadedLogo);
                 await this.imagesService.CreateClubImageAsync(image, club);
             }
 

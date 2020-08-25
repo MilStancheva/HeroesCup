@@ -201,14 +201,7 @@ namespace ClubsModule.Services
                 var images = new List<Image>();
                 foreach (var uploadedImage in model.UploadedImages)
                 {
-                    var image = new Image();
-                    var bytes = this.imagesService.GetByteArrayFromImage(uploadedImage);
-                    var filename = this.imagesService.GetFilename(uploadedImage);
-                    var contentType = this.imagesService.GetFileContentType(uploadedImage);
-                    image.Bytes = bytes;
-                    image.Filename = filename;
-                    image.ContentType = contentType;
-
+                    var image = this.imagesService.MapFormFileToImage(uploadedImage);
                     images.Add(image);
                 }
 

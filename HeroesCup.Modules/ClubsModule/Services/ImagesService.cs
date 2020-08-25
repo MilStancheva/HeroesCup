@@ -78,9 +78,12 @@ namespace ClubsModule.Services
             }
         }
 
-        public string GetFilename(IFormFile file)
+        public string GetFilename(IFormFile file, Guid imageId)
         {
-            return Path.GetFileName(file.FileName);
+            var filename = Path.GetFileName(file.FileName);
+            var formatIndex = filename.LastIndexOf(".");
+            var fileFormat = filename.Substring(formatIndex);
+            return $"{imageId}{fileFormat}";
         }
 
         public string GetFileContentType(IFormFile file)
@@ -251,6 +254,25 @@ namespace ClubsModule.Services
             }
 
             return String.Empty;
+        }
+
+        public async Task<Image> GetImageByFileName(string filename)
+        {
+            return await this.dbContext.Images.FirstOrDefaultAsync(i => i.Filename == filename);
+        }
+
+        public Image MapFormFileToImage(IFormFile file)
+        {
+            var image = new Image();
+            image.Id = Guid.NewGuid();
+            var bytes = this.GetByteArrayFromImage(file);
+            var filename = this.GetFilename(file, image.Id);
+            var contentType = this.GetFileContentType(file);
+            image.Bytes = bytes;
+            image.Filename = filename;
+            image.ContentType = contentType;
+
+            return image;
         }
     }
 }

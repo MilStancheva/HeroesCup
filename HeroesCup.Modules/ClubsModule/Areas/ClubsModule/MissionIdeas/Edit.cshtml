@@ -129,20 +129,32 @@
                                 <div class="col-6">
                                     @if (Model.ImageSrc != null)
                                     {
-                                        <img src="@Model.ImageSrc" alt="Mission Image">
+                                        <img src="@Model.ImageSrc" alt="Mission Idea Image">
                                     }
                                     else
                                     {
-                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Image">
+                                        <img src="~/manager/clubsmodule/images/no_image.png" alt="Mission Idea Image">
                                     }
 
                                 </div>
                                 <div class="col-6">
-                                    <input type="file" asp-for="Image" class="form-control-file" />
-                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger invalid-tooltip", required = "" })
-                                    <div class="invalid-tooltip">
-                                        @HeroesCupLocalizer.General["Mandatory field"]
-                                    </div>
+
+                                    @if (Model.ImageSrc != null)
+                                    {
+                                        <input type="file" asp-for="Image" class="form-control-file" />
+                                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        <div class="invalid-tooltip">
+                                            @HeroesCupLocalizer.General["Mandatory field"]
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <input type="file" asp-for="Image" class="form-control-file" required />
+                                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                        <div class="invalid-tooltip">
+                                            @HeroesCupLocalizer.General["Mandatory field"]
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>

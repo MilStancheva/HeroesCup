@@ -117,14 +117,7 @@ namespace ClubsModule.Services
             // set missionIdea image
             if (model.Image != null)
             {
-                var image = new Image();
-                var bytes = this.imagesService.GetByteArrayFromImage(model.Image);
-                var filename = this.imagesService.GetFilename(model.Image);
-                var contentType = this.imagesService.GetFileContentType(model.Image);
-                image.Bytes = bytes;
-                image.Filename = filename;
-                image.ContentType = contentType;
-
+                var image = this.imagesService.MapFormFileToImage(model.Image);
                 await this.imagesService.CreateMissionIdeaImageAsync(image, missionIdea);
             }
 
@@ -190,6 +183,7 @@ namespace ClubsModule.Services
             {
                 var missionIdeaImage = await this.imagesService.GetMissionIdeaImageAsync(missionIdea.Id);
                 model.ImageSrc = this.imagesService.GetImageSource(missionIdeaImage.Image.ContentType, missionIdeaImage.Image.Bytes);
+                model.ImageFilename = missionIdeaImage.Image.Filename;
             }
 
             return model;
