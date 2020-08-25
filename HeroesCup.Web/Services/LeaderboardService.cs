@@ -47,7 +47,8 @@ namespace HeroesCup.Web.Services
                         Id = m.Id,
                         Title = m.Title,
                         Club = m.Club,
-                        ImageSrc = GetMissionImageSource(m)
+                        ImageSrc = GetMissionImageSource(m),
+                        Slug = m.Slug
                     });
 
                     IEnumerable<HeroViewModel> clubHeroes = c.Club.Heroes.Select(h => new HeroViewModel()
