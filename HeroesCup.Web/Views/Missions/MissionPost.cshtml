@@ -1,6 +1,6 @@
 ﻿@model HeroesCup.Web.Models.Missions.MissionPost
 @{
-    ViewBag.Title = Model.Title;
+    //ViewBag.Title = Model.Title;
 
     var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
     var site = await WebApp.Api.Sites.GetDefaultAsync();
