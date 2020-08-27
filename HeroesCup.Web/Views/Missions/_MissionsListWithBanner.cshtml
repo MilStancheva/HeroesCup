@@ -11,29 +11,33 @@
 @if (missions.Count > 0)
 {
 
-    int firstCount = 0;
-    int secondCount = 0;
-    int count = missions.Count();
-    if (count <= Model.MissionsCountPerPage)
-    {
-        firstCount = count;
-    }
-    else if (count > Model.MissionsCountPerPage)
-    {
-        firstCount = Model.MissionsCountPerPage;
-        secondCount = count - firstCount;
-    }
+    @*int firstCount = 0;
+        int secondCount = 0;
+        int count = missions.Count();
+        if (count <= Model.MissionsCountPerPage)
+        {
+            firstCount = count;
+        }
+        else if (count > Model.MissionsCountPerPage)
+        {
+            firstCount = Model.MissionsCountPerPage;
+            secondCount = count - firstCount;
+        }
 
-    var missionsFirstHalf = missions.Take(firstCount);
-    var missionsSecondHalf = Model.Missions.Skip(firstCount).Take(secondCount);
+        var missionsFirstHalf = missions.Take(firstCount);
+        var missionsSecondHalf = Model.Missions.Skip(firstCount).Take(secondCount);
 
-    <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsFirstHalf" />
+        <partial name="~/Views/Missions/_MissionsBanner.cshtml" />
+
+        if (secondCount > 0)
+        {
+            <div class="col-12 separator mb-4 mt-"></div>
+            <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
+        }*@
+
     <partial name="~/Views/Missions/_MissionsBanner.cshtml" />
-
-    if (secondCount > 0)
-    {
-        <div class="col-12 separator mb-4 mt-"></div>
-        <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missionsSecondHalf" />
-    }
+    <div class="col-12 separator mb-4 mt-"></div>
+    <partial name="~/Views/Missions/_MissionsList.cshtml" for="@missions" />
 }
 
