@@ -234,13 +234,11 @@ namespace ClubsModule.Services
             {
                 return null;
             }
-            else
-            {
-                var storyImages = story.StoryImages;
-                var imageSources = storyImages.Select(si => this.GetImageSource(si.Image.ContentType, si.Image.Bytes)).ToList();
 
-                return imageSources;
-            }
+            var storyImages = story.StoryImages;
+            var imageSources = storyImages.Select(si => this.GetImageSource(si.Image.ContentType, si.Image.Bytes)).ToList();
+
+            return imageSources;
         }
 
         public string GetMissionIdeaImageSource(MissionIdea missionIdea)

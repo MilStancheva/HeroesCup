@@ -27,19 +27,6 @@
 
     var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
     var clubName = $"\"{Model.Story.Mission.Club.Name}\", {clubNumber} {Model.Story.Mission.Club.OrganizationType} \"{Model.Story.Mission.Club.OrganizationName}\"";
-
-    var heroImageSrc = "";
-    var imageSources = new List<string>();
-
-    if (Model.Story.ImageSources != null && Model.Story.ImageSources.Any())
-    {
-        imageSources = Model.Story.ImageSources.ToList();
-        heroImageSrc = imageSources[0];
-    }
-    else
-    {
-        heroImageSrc = Model.Story.Mission.ImageSrc;
-    }
 }
 
 @section script{
@@ -59,7 +46,7 @@
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description" content="@Model.Title" />
     <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="@currentUrlBase/img/@Model.Story.Mission.ImageFilename" />
+    <meta property="og:image" content="@currentUrlBase/img/@Model.Story.HeroImageFilename" />
     <meta property="og:image:width" content="672" />
     <meta property="og:image:height" content="416" />
 }
@@ -93,7 +80,7 @@
                 <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
-                            <img class="img-fluid center-cropped mission-image" src="@Url.Content(heroImageSrc)">
+                            <img class="img-fluid center-cropped mission-image" src="@Url.Content(Model.Story.HeroImageSource)">
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
@@ -108,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                                @foreach (var imageSource in imageSources)
+                                @foreach (var imageSource in Model.Story.ImageSources)
                                 {
                                     <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
                                         <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
