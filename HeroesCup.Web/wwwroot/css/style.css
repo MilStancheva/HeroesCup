@@ -1509,3 +1509,16 @@ html {
     font-size: 17px;
     font-weight: 600;
 }
+
+
+#load-missions-container {
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+#load-missionideas-container {
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+#load-stories-container {
+    transition: visibility 0s linear 0s, opacity 300ms;
+}

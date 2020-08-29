@@ -5,12 +5,13 @@ using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace HeroesCup.Web.Models.Resources
 {
     [PostType(Title = "Resource post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/resource")]
-    public class ResourcePost : Post<ResourcePost>
+    public class ResourcePost : Post<ResourcePost>, IHeroesCupPost
     {
         /// <summary>
         /// Gets/sets the post hero.
@@ -25,6 +26,10 @@ namespace HeroesCup.Web.Models.Resources
         public SelectField<ResourcePostType> Type { get; set; }
 
         public IEnumerable<ResourcePost> OtherResources { get; set; }
+
+        public string CurrentUrlBase { get; set; }
+
+        public CultureInfo SiteCulture { get; set; }
 
         public ResourcePost()
         {

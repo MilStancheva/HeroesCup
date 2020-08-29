@@ -4,12 +4,13 @@ using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace HeroesCup.Web.Models.Events
 {
     [PostType(Title = "Events post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/event")]
-    public class EventPost : Post<EventPost>
+    public class EventPost : Post<EventPost>, IHeroesCupPost
     {
 
         /// <summary>
@@ -25,6 +26,10 @@ namespace HeroesCup.Web.Models.Events
         public StringField Author { get; set; } = "TimeHeroes";
 
         public IEnumerable<EventPost> OtherEvents { get; set; }
+
+        public string CurrentUrlBase { get; set; }
+
+        public CultureInfo SiteCulture { get; set; }
 
         public EventPost()
         {

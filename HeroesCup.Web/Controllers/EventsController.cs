@@ -1,4 +1,5 @@
-﻿using HeroesCup.Web.Models.Events;
+﻿using HeroesCup.Web.Common;
+using HeroesCup.Web.Models.Events;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,17 +14,19 @@ namespace HeroesCup.Web.Controllers
     public class EventsController : Controller
     {
         private const string PageCountKey = "pageCount";
-        private readonly IApi _api;
-        private readonly IModelLoader _loader;
-        private readonly IConfiguration _configuration;
-        private int _eventsCount;
+        private readonly IApi api;
+        private readonly IModelLoader loader;
+        private readonly IConfiguration configuration;
+        private readonly IWebUtils webUtils;
+        private int eventsCount;
 
-        public EventsController(IApi api, IModelLoader loader, IConfiguration configuration)
+        public EventsController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils)
         {
-            _api = api;
-            _loader = loader;
-            _configuration = configuration;
-            int.TryParse(_configuration["EventsCount"], out _eventsCount);
+            this.api = api;
+            this.loader = loader;
+            this.configuration = configuration;
+            int.TryParse(this.configuration["EventsCount"], out eventsCount);
+            this.webUtils = webUtils;
         }
 
         // <summary>
@@ -41,7 +44,7 @@ namespace HeroesCup.Web.Controllers
         public async Task<IActionResult> EventsArchive(Guid id, bool loadRequest, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<EventsArchive>(id, HttpContext.User, draft);
+            var model = await loader.GetPageAsync<EventsArchive>(id, HttpContext.User, draft);
             int? currentPageCount = null;
 
             if (loadRequest == true)
@@ -63,8 +66,8 @@ namespace HeroesCup.Web.Controllers
                 HttpContext.Session.SetInt32(PageCountKey, (int)currentPageCount);
             }
 
-            var eventsArchive = await _api.Archives.GetByIdAsync<EventPost>(id, page, category, tag, year, month);
-            var posts = eventsArchive.Posts.OrderByDescending(p => p.Published.Value).Take((int)currentPageCount * _eventsCount).ToList();
+            var eventsArchive = await api.Archives.GetByIdAsync<EventPost>(id, page, category, tag, year, month);
+            var posts = eventsArchive.Posts.OrderByDescending(p => p.Published.Value).Take((int)currentPageCount * eventsCount).ToList();
 
             model.Archive = eventsArchive;
             model.Archive.Posts = posts;
@@ -80,16 +83,18 @@ namespace HeroesCup.Web.Controllers
         [Route("event")]
         public async Task<IActionResult> EventPost(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPostAsync<EventPost>(id, HttpContext.User, draft);
-            var pages = await _api.Pages.GetAllAsync();
+            var model = await loader.GetPostAsync<EventPost>(id, HttpContext.User, draft);
+            var pages = await api.Pages.GetAllAsync();
             var eventsArchive = pages.FirstOrDefault(p => p.TypeId == "EventsArchive");
             if (eventsArchive != null)
             {
                 var eventsArchiveId = eventsArchive.Id;
-                var eventsPosts = await _api.Posts.GetAllAsync<EventPost>(eventsArchiveId);
+                var eventsPosts = await api.Posts.GetAllAsync<EventPost>(eventsArchiveId);
                 int othersCount = 0;
-                int.TryParse(_configuration["EventsDetailsOthersCount"], out othersCount);
+                int.TryParse(configuration["EventsDetailsOthersCount"], out othersCount);
                 model.OtherEvents = eventsPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
+                model.CurrentUrlBase = webUtils.GetUrlBase(HttpContext);
+                model.SiteCulture = await webUtils.GetCulture(this.api);
             }
 
             return View(model);

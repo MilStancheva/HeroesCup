@@ -13,7 +13,7 @@ namespace ClubsModule.Models
         public IEnumerable<Mission> Missions { get; set; }
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
-        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public ICollection<IFormFile> UploadedImages { get; set; }
 
         public ICollection<string> ImageSources { get; set; }

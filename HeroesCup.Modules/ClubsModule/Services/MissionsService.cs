@@ -242,7 +242,7 @@ namespace ClubsModule.Services
         public IEnumerable<string> GetMissionSchoolYears()
         {
             var schoolYears = this.dbContext.Missions
-               .Where(m => m.IsPublished)
+               .Where(m => m.IsPublished && m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
                .GroupBy(m => m.SchoolYear)
                .Select(sy => sy.Key);
 

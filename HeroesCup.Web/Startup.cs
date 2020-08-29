@@ -1,6 +1,7 @@
 ﻿using HeroesCup.Data;
 using HeroesCup.Identity;
 using HeroesCup.Modules.ClubsModule;
+using HeroesCup.Web.Common;
 using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Models.Blocks;
 using HeroesCup.Web.Services;
@@ -75,6 +76,7 @@ namespace HeroesCup
             services.AddTransient<IStatisticsService, StatisticsService>();
             services.AddScoped<IMissionsService, MissionsService>();
             services.AddTransient<ISessionService, SessionService>();
+            services.AddTransient<IWebUtils, WebUtils>();
             services.AddControllersWithViews();
 
             Services = services;
@@ -139,6 +141,7 @@ namespace HeroesCup
             });
             app.UsePiranhaStartPage();
             app.UseClubsModule();
+            Piranha.App.MediaTypes.Images.Add(".svg", "image/svg+xml", false);
 
             ConfigurePiranhaEditor();
 

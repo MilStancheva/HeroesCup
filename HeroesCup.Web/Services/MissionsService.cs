@@ -1,4 +1,6 @@
 ﻿using ClubsModule.Common;
+using ClubsModule.Models;
+using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -29,48 +31,19 @@ namespace HeroesCup.Web.Services
         public IEnumerable<MissionIdeaViewModel> GetMissionIdeaViewModels()
         {
             var timeheroesMissions = this.missionIdeasService.GetAllPublishedMissionIdeas();
-            return timeheroesMissions.Select(mi => new MissionIdeaViewModel()
-            {
-                Id = mi.Id,
-                Slug = mi.Slug,
-                MissionIdea = mi,
-                ImageSrc = this.imageService.GetMissionIdeaImageSource(mi)
-            });
+            return timeheroesMissions.Select(mi => this.MapMissionIdeaToMissionIdeaViewModel(mi));
         }
 
         public IEnumerable<MissionViewModel> GetMissionViewModels()
         {
             var missions = this.missionsService.GetAllPublishedMissions();
-            return missions.Select(m => new MissionViewModel()
-            {
-                Id = m.Id,
-                Title = m.Title,
-                Slug = m.Slug,
-                Club = m.Club,
-                ImageSrc = this.imageService.GetMissionImageSource(m),
-                StartDate = m.StartDate.ConvertToLocalDateTime(),
-                EndDate = m.EndDate.ConvertToLocalDateTime(),
-                Story = new StoryViewModel()
-                {
-                    Content = m.Story != null ? m.Story.Content : null,
-                    ImageSources = this.imageService.GetStoryImageSources(m.Story)
-                }
-            });
+            return missions.Select(m => this.MapMissionToMissionViewModel(m));
         }
 
         public async Task<IEnumerable<MissionViewModel>> GetPinnedMissionViewModels()
         {
             var pinnedMissions = await this.missionsService.GetPinnedMissions();
-            return pinnedMissions.Select(m => new MissionViewModel()
-            {
-                Id = m.Id,
-                Title = m.Title,
-                Slug = m.Slug,
-                Club = m.Club,
-                ImageSrc = this.imageService.GetMissionImageSource(m),
-                StartDate = m.StartDate.ConvertToLocalDateTime(),
-                EndDate = m.EndDate.ConvertToLocalDateTime(),
-            });
+            return pinnedMissions.Select(m => this.MapMissionToMissionViewModel(m));
         }
 
         public int GetAllMissionsCount()
@@ -89,43 +62,18 @@ namespace HeroesCup.Web.Services
         {
             return this.missionsService.GetAllPublishedMissions()
                 .Where(m => m.Location.Contains(location) || location.Contains(m.Location))
-                .Select(m => new MissionViewModel()
-                {
-                    Id = m.Id,
-                    Title = m.Title,
-                    Slug = m.Slug,
-                    Club = m.Club,
-                    ImageSrc = this.imageService.GetMissionImageSource(m),
-                    StartDate = m.StartDate.ConvertToLocalDateTime(),
-                    EndDate = m.EndDate.ConvertToLocalDateTime(),
-                    Story = new StoryViewModel()
-                    {
-                        Content = m.Story != null ? m.Story.Content : null,
-                        ImageSources = this.imageService.GetStoryImageSources(m.Story)
-                    }
-                });
+                .Select(m => this.MapMissionToMissionViewModel(m));
         }
 
         public async Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id)
         {
             var result = await this.missionsService.GetMissionEditModelByIdAsync(id, null);
-            var model = new MissionViewModel()
+            if (result == null)
             {
-                Id = result.Mission.Id,
-                Title = result.Mission.Title,
-                Slug = result.Mission.Slug,
-                ImageSrc = result.ImageSrc,
-                ImageFilename = result.ImageFilename,
-                Mission = result.Mission,
-                Club = result.Mission.Club,
-                StartDate = result.Mission.StartDate.ConvertToLocalDateTime(),
-                EndDate = result.Mission.EndDate.ConvertToLocalDateTime(),
-                Story = new StoryViewModel()
-                {
-                    Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
-                    ImageSources = this.imageService.GetStoryImageSources(result.Mission.Story)
-                }
-            };
+                return null;
+            }
+
+            var model = this.MapMissionEditModelToMissionViewModel(result);
 
             return model;
         }
@@ -133,59 +81,30 @@ namespace HeroesCup.Web.Services
         public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id)
         {
             var result = await this.missionIdeasService.GetMissionIdeaEditModelByIdAsync(id);
-            var model = new MissionIdeaViewModel()
+            if (result == null)
             {
-                Id = result.MissionIdea.Id,
-                Slug = result.MissionIdea.Slug,
-                ImageSrc = result.ImageSrc,
-                ImageFilename = result.ImageFilename,
-                MissionIdea = result.MissionIdea,
-                StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
-                EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
-            };
+                return null;
+            }
+
+            var model = this.MapMissionIdeaEditModelToMissionIdeaViewModel(result);
 
             return model;
         }
 
         public IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels()
         {
-            return this.storiesService.GetAllPublishedStories().Select(s => new StoryViewModel()
-            {
-                Id = s.Id,
-                Content = s.Content,
-                ImageSources = this.imageService.GetStoryImageSources(s),
-                Mission = new MissionViewModel()
-                {
-                    Id = s.Mission.Id,
-                    Title = s.Mission.Title,
-                    Slug = s.Mission.Slug,
-                    Club = s.Mission.Club,
-                    ImageSrc = this.imageService.GetMissionImageSource(s.Mission),
-                    StartDate = s.Mission.StartDate.ConvertToLocalDateTime(),
-                    EndDate = s.Mission.EndDate.ConvertToLocalDateTime(),
-                }
-            });
+            return this.storiesService.GetAllPublishedStories().Select(s => this.MapStoryToStoryViewModel(s));
         }
 
         public async Task<StoryViewModel> GetStoryViewModelByIdAsync(Guid id)
         {
             var story = await this.storiesService.GetStoryByIdAsync(id);
-            var model = new StoryViewModel()
+            if (story == null)
             {
-                Id = story.Id,
-                Content = story.Content,
-                ImageSources = this.imageService.GetStoryImageSources(story),
-                Mission = new MissionViewModel()
-                {
-                    Id = story.Mission.Id,
-                    Title = story.Mission.Title,
-                    Slug = story.Mission.Slug,
-                    Club = story.Mission.Club,
-                    ImageSrc = this.imageService.GetMissionImageSource(story.Mission),
-                    StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
-                    EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
-                }
-            };
+                return null;
+            }
+
+            var model = this.MapStoryToStoryViewModel(story);
 
             return model;
         }
@@ -198,23 +117,7 @@ namespace HeroesCup.Web.Services
                 return null;
             }
 
-            var model = new MissionViewModel()
-            {
-                Id = result.Mission.Id,
-                Title = result.Mission.Title,
-                Slug = result.Mission.Slug,
-                ImageSrc = result.ImageSrc,
-                ImageFilename = result.ImageFilename,
-                Mission = result.Mission,
-                Club = result.Mission.Club,
-                StartDate = result.Mission.StartDate.ConvertToLocalDateTime(),
-                EndDate = result.Mission.EndDate.ConvertToLocalDateTime(),
-                Story = new StoryViewModel()
-                {
-                    Content = result.Mission.Story != null ? result.Mission.Story.Content : null,
-                    ImageSources = this.imageService.GetStoryImageSources(result.Mission.Story)
-                }
-            };
+            var model = this.MapMissionEditModelToMissionViewModel(result);
 
             return model;
         }
@@ -227,23 +130,7 @@ namespace HeroesCup.Web.Services
                 return null;
             }
 
-            var model = new StoryViewModel()
-            {
-                Id = story.Id,
-                Content = story.Content,
-                ImageSources = this.imageService.GetStoryImageSources(story),
-                Mission = new MissionViewModel()
-                {
-                    Id = story.Mission.Id,
-                    Title = story.Mission.Title,
-                    Slug = story.Mission.Slug,
-                    Club = story.Mission.Club,
-                    ImageSrc = this.imageService.GetMissionImageSource(story.Mission),
-                    ImageFilename = story.Mission.MissionImages.FirstOrDefault().Image.Filename,
-                    StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
-                    EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
-                }
-            };
+            var model = this.MapStoryToStoryViewModel(story);
 
             return model;
         }
@@ -256,18 +143,137 @@ namespace HeroesCup.Web.Services
                 return null;
             }
 
-            var model = new MissionIdeaViewModel()
-            {
-                Id = result.MissionIdea.Id,
-                Slug = result.MissionIdea.Slug,
-                ImageSrc = result.ImageSrc,
-                ImageFilename = result.ImageFilename,
-                MissionIdea = result.MissionIdea,
-                StartDate = result.MissionIdea.StartDate.ConvertToLocalDateTime(),
-                EndDate = result.MissionIdea.EndDate.ConvertToLocalDateTime()
-            };
+            var model = this.MapMissionIdeaEditModelToMissionIdeaViewModel(result);
 
             return model;
+        }
+
+        private MissionIdeaViewModel MapMissionIdeaToMissionIdeaViewModel(MissionIdea missionIdea)
+        {
+            if (missionIdea == null)
+            {
+                return null;
+            }
+
+            return new MissionIdeaViewModel()
+            {
+                Id = missionIdea.Id,
+                Slug = missionIdea.Slug,
+                MissionIdea = missionIdea,
+                ImageSrc = this.imageService.GetMissionIdeaImageSource(missionIdea)
+            };
+        }
+
+        private MissionIdeaViewModel MapMissionIdeaEditModelToMissionIdeaViewModel(MissionIdeaEditModel missionIdeEditModel)
+        {
+            if (missionIdeEditModel == null)
+            {
+                return null;
+            }
+
+            return new MissionIdeaViewModel()
+            {
+                Id = missionIdeEditModel.MissionIdea.Id,
+                Slug = missionIdeEditModel.MissionIdea.Slug,
+                ImageSrc = missionIdeEditModel.ImageSrc,
+                ImageFilename = missionIdeEditModel.ImageFilename,
+                MissionIdea = missionIdeEditModel.MissionIdea,
+                StartDate = missionIdeEditModel.MissionIdea.StartDate.ConvertToLocalDateTime(),
+                EndDate = missionIdeEditModel.MissionIdea.EndDate.ConvertToLocalDateTime()
+            };
+        }
+
+        private StoryViewModel MapStoryToStoryViewModel(Story story)
+        {
+            if (story == null)
+            {
+                return null;
+            }
+
+            var imageSources = this.imageService.GetStoryImageSources(story);
+            var missionImageSource = this.imageService.GetMissionImageSource(story.Mission);
+            var heroImageFilename = story.StoryImages != null && story.StoryImages.Any() ? 
+                story.StoryImages.FirstOrDefault().Image.Filename : 
+                story.Mission.MissionImages.FirstOrDefault().Image.Filename;
+
+            string heroImageSrc;
+            if (imageSources != null && imageSources.Any())
+            {
+                heroImageSrc = imageSources.FirstOrDefault();
+            }
+            else
+            {
+                heroImageSrc = missionImageSource;
+            }
+
+            return new StoryViewModel()
+            {
+                Id = story.Id,
+                Content = story.Content,
+                ImageSources = imageSources,
+                HeroImageSource = heroImageSrc,
+                HeroImageFilename = heroImageFilename,
+                Mission = new MissionViewModel()
+                {
+                    Id = story.Mission.Id,
+                    Title = story.Mission.Title,
+                    Slug = story.Mission.Slug,
+                    Club = story.Mission.Club,
+                    ImageSrc = missionImageSource,
+                    StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
+                    EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
+                }
+            };
+        }
+
+        private MissionViewModel MapMissionEditModelToMissionViewModel(MissionEditModel missionEditModel)
+        {
+            if (missionEditModel == null)
+            {
+                return null;
+            }
+
+            return new MissionViewModel()
+            {
+                Id = missionEditModel.Mission.Id,
+                Title = missionEditModel.Mission.Title,
+                Slug = missionEditModel.Mission.Slug,
+                ImageSrc = missionEditModel.ImageSrc,
+                ImageFilename = missionEditModel.ImageFilename,
+                Mission = missionEditModel.Mission,
+                Club = missionEditModel.Mission.Club,
+                StartDate = missionEditModel.Mission.StartDate.ConvertToLocalDateTime(),
+                EndDate = missionEditModel.Mission.EndDate.ConvertToLocalDateTime(),
+                Story = new StoryViewModel()
+                {
+                    Content = missionEditModel.Mission.Story != null ? missionEditModel.Mission.Story.Content : null,
+                    ImageSources = this.imageService.GetStoryImageSources(missionEditModel.Mission.Story)
+                }
+            };
+        }
+
+        private MissionViewModel MapMissionToMissionViewModel(Mission mission)
+        {
+            if (mission == null)
+            {
+                return null;
+            }
+
+            return new MissionViewModel()
+            {
+                Id = mission.Id,
+                Title = mission.Title,
+                Slug = mission.Slug,
+                Club = mission.Club,
+                ImageSrc = this.imageService.GetMissionImageSource(mission),
+                StartDate = mission.StartDate.ConvertToLocalDateTime(),
+                EndDate = mission.EndDate.ConvertToLocalDateTime(),
+                Story = new StoryViewModel()
+                {
+                    Content = mission.Story != null ? mission.Story.Content : null,
+                    ImageSources = this.imageService.GetStoryImageSources(mission.Story)
+                }
+            };
         }
     }
 }
