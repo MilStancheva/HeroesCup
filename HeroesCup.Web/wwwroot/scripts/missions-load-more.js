@@ -2,7 +2,9 @@
     $(document).ready(function () {
         $("#load-missions").click(function () {
             $("#missions-with-banner-partial").load("missions/load-missions", { loadRequest: true });
-            $("#load-missions-container").hide();
+            $(window).on('load', function () {
+                $("#load-missions-container").hide();
+            });           
         });
 
         $("#load-missionideas").click(function () {

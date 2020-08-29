@@ -104,6 +104,7 @@ namespace ClubsModule.Services
 
             missionIdea.Title = model.MissionIdea.Title;
             missionIdea.Slug = model.MissionIdea.Title.ToSlug();
+            missionIdea.Slug = missionIdea.Slug.Unidecode();
             missionIdea.Organization = model.MissionIdea.Organization;
             missionIdea.Location = model.MissionIdea.Location;
             missionIdea.Content = model.MissionIdea.Content;

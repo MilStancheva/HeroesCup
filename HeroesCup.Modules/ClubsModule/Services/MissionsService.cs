@@ -118,6 +118,7 @@ namespace ClubsModule.Services
 
             mission.Title = model.Mission.Title;
             mission.Slug = model.Mission.Title.ToSlug();
+            mission.Slug = mission.Slug.Unidecode();
             mission.Location = model.Mission.Location;
             if (model.Mission.Stars != 0)
             {
