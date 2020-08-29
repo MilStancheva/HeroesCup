@@ -21,5 +21,7 @@ namespace ClubsModule.Models
         public string OrganizationNumber { get; set; }
 
         public int HeroesCount { get; set; }
+
+        public string LastUpdateOn { get; set; }
     }
 }

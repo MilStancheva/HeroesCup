@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 
 namespace ClubsModule.Common
 {
@@ -6,6 +7,7 @@ namespace ClubsModule.Common
     {
         public static readonly DateTime UnixTimeStartUtc
             = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+
         public static long ToUnixMilliseconds(
             this DateTime source)
         {

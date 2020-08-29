@@ -138,6 +138,9 @@
   <data name="Internal server error" xml:space="preserve">
     <value>Възникна грешка :(</value>
   </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Дата на промяна</value>
+  </data>
   <data name="Mandatory field" xml:space="preserve">
     <value>Задължително поле</value>
   </data>

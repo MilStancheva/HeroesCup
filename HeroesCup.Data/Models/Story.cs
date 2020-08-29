@@ -18,5 +18,9 @@ namespace HeroesCup.Data.Models
 
         public bool IsPublished { get; set; }
 
+        public long CreatedOn { get; set; }
+
+        public long UpdatedOn { get; set; }
+
     }
 }

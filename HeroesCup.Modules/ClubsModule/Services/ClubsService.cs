@@ -4,6 +4,7 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,17 @@ namespace ClubsModule.Services
         private readonly HeroesCupDbContext dbContext;
         private readonly IImagesService imagesService;
         private readonly IHeroesService heroesService;
+        private readonly IConfiguration configuration;
 
-        public ClubsService(HeroesCupDbContext dbContext, IImagesService imagesService, IHeroesService heroesService)
+        private string dateTimeFormat;
+
+        public ClubsService(HeroesCupDbContext dbContext, IImagesService imagesService, IHeroesService heroesService, IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
             this.heroesService = heroesService;
+            this.configuration = configuration;
+            this.dateTimeFormat = this.configuration["DateТimeFormat"];
         }
 
         public async Task<ClubEditModel> CreateClubEditModelAsync(Guid? ownerId)
@@ -95,6 +101,7 @@ namespace ClubsModule.Services
             var clubs = new List<Club>();
             clubs = await this.dbContext.Clubs
                     .Include(c => c.Heroes)
+                    .OrderByDescending(c => c.UpdatedOn)
                     .ToListAsync();
 
             if (ownerId.HasValue)
@@ -104,16 +111,16 @@ namespace ClubsModule.Services
 
             var model = new ClubListModel()
             {
-                Clubs = clubs.OrderBy(h => h.Name)
-                                .Select(c => new ClubListItem()
+                Clubs = clubs.Select(c => new ClubListItem()
                                 {
                                     Id = c.Id,
                                     Name = c.Name,
                                     OrganizationType = c.OrganizationType,
                                     OrganizationName = c.OrganizationName,
                                     OrganizationNumber = c.OrganizationNumber,
-                                    HeroesCount = c.Heroes != null ? c.Heroes.Count() : 0
-                                })
+                                    HeroesCount = c.Heroes != null ? c.Heroes.Count() : 0,
+                                    LastUpdateOn = c.UpdatedOn.ToUniversalDateTime().ToLocalTime().ToString(this.dateTimeFormat)
+        })
 
             };
 
@@ -133,6 +140,7 @@ namespace ClubsModule.Services
                 club = new Club();
                 club.Id = model.Club.Id != Guid.Empty ? model.Club.Id : Guid.NewGuid();
                 club.OwnerId = model.Club.OwnerId;
+                club.CreatedOn = DateTime.Now.ToUnixMilliseconds();
                 this.dbContext.Clubs.Add(club);
             }
 
@@ -178,6 +186,8 @@ namespace ClubsModule.Services
                 var image = this.imagesService.MapFormFileToImage(model.UploadedLogo);
                 await this.imagesService.CreateClubImageAsync(image, club);
             }
+
+            club.UpdatedOn = DateTime.Now.ToUnixMilliseconds();
 
             await dbContext.SaveChangesAsync();
             return club.Id;

@@ -99,6 +99,7 @@ namespace ClubsModule.Services
             {
                 missionIdea = new MissionIdea();
                 missionIdea.Id = model.MissionIdea.Id != Guid.Empty ? model.MissionIdea.Id : Guid.NewGuid();
+                missionIdea.CreatedOn = DateTime.Now.ToUnixMilliseconds();
                 this.dbContext.MissionIdeas.Add(missionIdea);
             }
 
@@ -121,6 +122,8 @@ namespace ClubsModule.Services
                 var image = this.imagesService.MapFormFileToImage(model.Image);
                 await this.imagesService.CreateMissionIdeaImageAsync(image, missionIdea);
             }
+
+            missionIdea.UpdatedOn = DateTime.Now.ToUnixMilliseconds();
 
             await dbContext.SaveChangesAsync();
             return missionIdea.Id;

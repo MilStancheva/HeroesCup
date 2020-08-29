@@ -1,4 +1,5 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Common;
+using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
@@ -183,6 +184,7 @@ namespace ClubsModule.Services
             {
                 story = new Story();
                 story.Id = model.Story.Id != Guid.Empty ? model.Story.Id : Guid.NewGuid();
+                story.CreatedOn = DateTime.Now.ToUnixMilliseconds();
                 this.dbContext.Stories.Add(story);
             }
 
@@ -207,6 +209,8 @@ namespace ClubsModule.Services
 
                 await this.imagesService.CreateStoryImagesAsync(images, story);
             }
+
+            story.UpdatedOn = DateTime.Now.ToUnixMilliseconds();
 
             await dbContext.SaveChangesAsync();
             return story.Id;

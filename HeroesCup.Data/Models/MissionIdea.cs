@@ -26,5 +26,9 @@ namespace HeroesCup.Data.Models
         public string TimeheroesUrl { get; set; }
 
         public bool IsPublished { get; set; }
+
+        public long CreatedOn { get; set; }
+
+        public long UpdatedOn { get; set; }
     }
 }

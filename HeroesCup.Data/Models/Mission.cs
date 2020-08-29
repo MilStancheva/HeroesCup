@@ -39,5 +39,9 @@ namespace HeroesCup.Data.Models
         public bool IsPinned { get; set; }
 
         public Story Story { get; set; }
+
+        public long CreatedOn { get; set; }
+
+        public long UpdatedOn { get; set; }
     }
 }

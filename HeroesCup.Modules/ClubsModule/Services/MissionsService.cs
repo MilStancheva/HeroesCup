@@ -113,6 +113,7 @@ namespace ClubsModule.Services
                 mission.Id = model.Mission.Id != Guid.Empty ? model.Mission.Id : Guid.NewGuid();
                 var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == model.ClubId);
                 mission.OwnerId = club.OwnerId;
+                mission.CreatedOn = DateTime.Now.ToUnixMilliseconds();
                 this.dbContext.Missions.Add(mission);
             }
 
@@ -150,6 +151,8 @@ namespace ClubsModule.Services
                 var image = this.imagesService.MapFormFileToImage(model.Image);
                 await this.imagesService.CreateMissionImageAsync(image, mission);
             }
+
+            mission.UpdatedOn = DateTime.Now.ToUnixMilliseconds();
 
             await dbContext.SaveChangesAsync();
             return mission.Id;

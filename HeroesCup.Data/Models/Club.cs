@@ -31,5 +31,9 @@ namespace HeroesCup.Data.Models
         public ICollection<ClubImage> ClubImages { get; set; }
 
         public Guid OwnerId { get; set; }
+
+        public long CreatedOn { get; set; }
+
+        public long UpdatedOn { get; set; }
     }
 }

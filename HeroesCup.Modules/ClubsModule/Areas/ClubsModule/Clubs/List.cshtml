@@ -46,45 +46,49 @@
                 <th>@HeroesCupLocalizer.Club["Name"]</th>
                 <th>@HeroesCupLocalizer.Club["Organization"]</th>
                 <th>@HeroesCupLocalizer.Club["Heroes"]</th>
+                <th>@HeroesCupLocalizer.General["LastUpdate"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var club in Model.Clubs)
             {
-                <tr>
-                    <td>
-                        @if (userHasEditClubPermissions)
-                        {
-                            <a href="@Url.Action("Edit", new {id = club.Id})">@club.Name</a>
-                        }
-                        else
-                        {
-                            <span class="title">@club.Name</span>
-                        }
-                    </td>
-                    <td>
-                        @if (userHasEditClubPermissions)
-                        {
+            <tr>
+                <td>
+                    @if (userHasEditClubPermissions)
+                    {
+                        <a href="@Url.Action("Edit", new {id = club.Id})">@club.Name</a>
+                    }
+                    else
+                    {
+                        <span class="title">@club.Name</span>
+                    }
+                </td>
+                <td>
+                    @if (userHasEditClubPermissions)
+                    {
                         <a href="@Url.Action("Edit", new {id = club.Id})">@club.OrganizationNumber @club.OrganizationType @club.OrganizationName</a>
-                        }
-                        else
-                        {
+                    }
+                    else
+                    {
                         <span class="title">@club.OrganizationNumber @club.OrganizationType @club.OrganizationName</span>
-                        }
-                    </td>
-                    <td>
-                        <span class="title">@club.HeroesCount</span>
-                    </td>
-                    <td class="actions one">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsDelete)).Succeeded)
-                        {
-                            <a class="danger" href="@Url.Action("Delete", new {id = club.Id})">
-                                <span class="fas fa-trash"></span>
-                            </a>
-                        }
-                    </td>
-                </tr>
+                    }
+                </td>
+                <td>
+                    <span class="title">@club.HeroesCount</span>
+                </td>
+                <td>
+                    <span class="title">@club.LastUpdateOn</span>
+                </td>
+                <td class="actions one">
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsDelete)).Succeeded)
+                    {
+                        <a class="danger" href="@Url.Action("Delete", new {id = club.Id})">
+                            <span class="fas fa-trash"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>
