@@ -3,7 +3,6 @@
 @inject IConfiguration Configuration;
 
 @{
-    //ViewBag.Title = Model.Title;
     ViewBag.TypeId = Model.TypeId;
 
     var selectLocations = new List<SelectListItem>();
@@ -87,7 +86,7 @@
 
                         if (Model.Missions.Count() == missionsCountPerPage)
                         {
-                            <div class="row justify-content-center mt-4 mb-5 pb-4">
+                            <div id="load-missions-container" class="row justify-content-center mt-4">
                                 <button id="load-missions" class="btn btn-default btn-heroes">Покажи още</button>
                             </div>
                         }
@@ -98,6 +97,7 @@
                     {
                         var missionsWithBanner = new HeroesCup.Web.Models.Missions.MissionsWithBannerViewModel()
                         {
+                            ShownMissionsCount = Model.Missions.Count(),
                             Missions = Model.Missions,
                             MissionsCountPerPage = missionsCountPerPage
                         };
@@ -118,7 +118,7 @@
                     <div id="missionideas-partial">
                         <partial name="~/Views/Missions/_MissionIdeasList.cshtml" for="@Model.MissionIdeas" />
                     </div>
-                    <div class="row justify-content-center mt-4 mb-5 pb-4">
+                    <div id="load-missionideas-container" class="row justify-content-center mt-4">
                         <button id="load-missionideas" class="btn btn-default btn-heroes">Покажи още</button>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                     <div id="stories-partial">
                         <partial name="~/Views/Missions/_StoriesList.cshtml" for="@Model.Stories" />
                     </div>
-                    <div class="row justify-content-center mt-4 mb-5 pb-4">
+                    <div id="load-stories-container" class="row justify-content-center mt-4">
                         <button id="load-stories" class="btn btn-default btn-heroes">Покажи още</button>
                     </div>
                 </div>

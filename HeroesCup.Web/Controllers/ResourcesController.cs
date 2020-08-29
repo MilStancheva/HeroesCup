@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Controllers;
+using HeroesCup.Web.Common;
 using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Resources;
 using Microsoft.AspNetCore.Identity;
@@ -14,15 +15,17 @@ namespace HeroesCup.Web.Controllers
 {
     public class ResourcesController : Controller
     {
-        private readonly IApi _api;
-        private readonly IModelLoader _loader;
-        private readonly IConfiguration _configuration;
+        private readonly IApi api;
+        private readonly IModelLoader loader;
+        private readonly IConfiguration configuration;
+        private readonly IWebUtils webUtils;
 
-        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration)
+        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils)
         {
-            _api = api;
-            _loader = loader;
-            _configuration = configuration;
+            this.api = api;
+            this.loader = loader;
+            this.configuration = configuration;
+            this.webUtils = webUtils;
         }
 
         // <summary>
@@ -39,8 +42,8 @@ namespace HeroesCup.Web.Controllers
         public async Task<IActionResult> ResourcesArchive(Guid id, int? year = null, int? month = null, int? page = null,
             Guid? category = null, Guid? tag = null, bool draft = false)
         {
-            var model = await _loader.GetPageAsync<ResourcesArchive>(id, HttpContext.User, draft);
-            model.Archive = await _api.Archives.GetByIdAsync<ResourcePost>(id, page, category, tag, year, month);
+            var model = await loader.GetPageAsync<ResourcesArchive>(id, HttpContext.User, draft);
+            model.Archive = await api.Archives.GetByIdAsync<ResourcePost>(id, page, category, tag, year, month);
 
             return View(model);
         }
@@ -53,17 +56,20 @@ namespace HeroesCup.Web.Controllers
         [Route("resource")]
         public async Task<IActionResult> ResourcePost(Guid id, bool draft = false)
         {
-            var model = await _loader.GetPostAsync<ResourcePost>(id, HttpContext.User, draft);
-            var pages = await _api.Pages.GetAllAsync();
+            var model = await loader.GetPostAsync<ResourcePost>(id, HttpContext.User, draft);
+            var pages = await api.Pages.GetAllAsync();
             var resourcesArchive = pages.FirstOrDefault(p => p.TypeId == "ResourcesArchive");
             if (resourcesArchive != null)
             {
                 var resourcesArchiveId = resourcesArchive.Id;
-                var resourcesPosts = await _api.Posts.GetAllAsync<ResourcePost>(resourcesArchiveId);
+                var resourcesPosts = await api.Posts.GetAllAsync<ResourcePost>(resourcesArchiveId);
                 int othersCount = 0;
-                int.TryParse(_configuration["ResourcesDetailsOthersCount"], out othersCount);
-                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
+                int.TryParse(configuration["ResourcesDetailsOthersCount"], out othersCount);
+                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();               
             }
+
+            model.CurrentUrlBase = webUtils.GetUrlBase(HttpContext);
+            model.SiteCulture = await webUtils.GetCulture(this.api);
 
             return View(model);
         }

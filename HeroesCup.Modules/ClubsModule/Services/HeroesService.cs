@@ -219,7 +219,7 @@ namespace ClubsModule.Services
                 heroes = heroes.Where(h => h.Club.OwnerId == ownerId.Value);
             }
 
-            return await heroes.ToListAsync();
+            return await heroes.OrderBy(h => h.Name).ToListAsync();
         }
 
         public async Task<Hero> GetHeroById(Guid id)

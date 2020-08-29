@@ -1,4 +1,5 @@
 ﻿using HeroesCup.Models;
+using HeroesCup.Web.Common;
 using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +23,7 @@ namespace HeroesCup.Controllers
         private readonly IMissionsService missionsService;
         private readonly ISessionService sessionService;
         private readonly IConfiguration _configuration;
+        private readonly IWebUtils webUtils;
         private int _missionsCount;
 
         /// <summary>
@@ -33,7 +35,8 @@ namespace HeroesCup.Controllers
             IModelLoader loader,
             IMissionsService missionsService,
             ISessionService sessionService,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebUtils webUtils)
         {
             this.api = api;
             this.loader = loader;
@@ -41,6 +44,7 @@ namespace HeroesCup.Controllers
             this.sessionService = sessionService;
             _configuration = configuration;
             int.TryParse(_configuration["MissionsCount"], out _missionsCount);
+            this.webUtils = webUtils;
         }
 
         /// <summary>
@@ -100,6 +104,8 @@ namespace HeroesCup.Controllers
             var model = new MissionPost()
             {
                 Mission = mission,
+                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                SiteCulture = await webUtils.GetCulture(this.api),
                 Title = mission.Mission.Title,
                 Slug = mission.Mission.Slug,
                 Category = "mission",
@@ -120,6 +126,8 @@ namespace HeroesCup.Controllers
             var model = new MissionIdeaPost()
             {
                 MissionIdea = missionIdea,
+                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                SiteCulture = await webUtils.GetCulture(this.api),
                 Title = missionIdea.MissionIdea.Title,
                 Slug = missionIdea.MissionIdea.Slug,
                 Category = "mission-idea",
@@ -140,6 +148,8 @@ namespace HeroesCup.Controllers
             var model = new StoryPost()
             {
                 Story = story,
+                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                SiteCulture = await webUtils.GetCulture(this.api),
                 Title = story.Mission.Title,
                 Slug = story.Mission.Slug,
                 Category = "story",
@@ -158,6 +168,7 @@ namespace HeroesCup.Controllers
 
             var missionsWithBanner = new MissionsWithBannerViewModel()
             {
+                ShownMissionsCount = _missionsCount,
                 Missions = missions,
                 MissionsCountPerPage = _missionsCount
             };

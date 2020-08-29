@@ -1,9 +1,12 @@
 ﻿@model StartPage
 @inject IApi Api
 @{
-    //ViewBag.Title = Model.Title;
     ViewBag.TypeId = Model.TypeId;
     var hoursCount = Model.HoursCount <= 1000 ? Model.HoursCount.ToString() : $"{Model.HoursCount / 1000:#,##k}";
+}
+
+@section script{ 
+    <script src="~/scripts/carousel.js" type="text/javascript"></script>
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4" id="home-main">

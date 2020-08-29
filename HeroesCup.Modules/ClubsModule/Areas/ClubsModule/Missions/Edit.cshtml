@@ -345,10 +345,10 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Equipment"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["EquipmentSubtitle"]</p>
-                            @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small editor", @id = "equipment", required = "" })
-                            <div class="invalid-tooltip">
+                            @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small editor optional", @id = "equipment" })
+                            @*<div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -358,7 +358,7 @@
                         <div class="form-group">
                             <label>@HeroesCupLocalizer.Mission["Why"]</label>
                             <p class="small">@HeroesCupLocalizer.Mission["WhySubtitle"]</p>
-                            @Html.TextAreaFor(m => m.Mission.Content.Why, new { @class = "form-control small editor", @id = "why", required = "" })
+                            @Html.TextAreaFor(m => m.Mission.Content.Why, new { @class = "form-group small editor", @id = "why", required = "" })
                             <div class="invalid-tooltip">
                                 @HeroesCupLocalizer.General["Mandatory field"]
                             </div>
