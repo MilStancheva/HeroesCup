@@ -26,7 +26,7 @@
         {
             var embeddedVideoBlock = videoBlock as HeroesCup.Web.Models.Blocks.EmbeddedVideoBlock;
             var videoSrc = embeddedVideoBlock.Source.Value;
-            <meta property="og:video" content="@videoSrc">
+            <meta property="og:video" content="@videoSrc" is_preferred="true">
         }
         else
         {
