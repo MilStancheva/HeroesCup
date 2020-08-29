@@ -39,61 +39,65 @@
                 {
                     <th>@HeroesCupLocalizer.Mission["Pinned"]</th>
                 }
+                <th>@HeroesCupLocalizer.General["LastUpdate"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var mission in Model.Missions)
             {
-                <tr>
-                    <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsEdit)).Succeeded)
-                        {
-                            <a href="@Url.Action("Edit", new {id = mission.Id})">@mission.Title</a>
-                        }
-                        else
-                        {
-                            <span class="title">@mission.Title</span>
-                        }
-                    </td>
-                    <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
-                        {
-                            <a href="@Url.Action("Edit", "Clubs", new {id = mission.ClubId })">@mission.ClubName</a>
-                        }
-                        else
-                        {
-                            <span class="title">@mission.ClubName</span>
-                        }
-                    </td>
-                    <td>
-                        <span class="title">@mission.HeroesCount</span>
-                    </td>
-                    <td>
-                        @if (@mission.IsPublished)
-                        {
-                            <span class="title"><i class="fas fa-check text-success"></i></span>
-                        }
-
-                    </td>
-                    @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
-                    {
+            <tr>
                 <td>
-                    @if (@mission.IsPinned)
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", new {id = mission.Id})">@mission.Title</a>
+                    }
+                    else
+                    {
+                        <span class="title">@mission.Title</span>
+                    }
+                </td>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", "Clubs", new {id = mission.ClubId })">@mission.ClubName</a>
+                    }
+                    else
+                    {
+                        <span class="title">@mission.ClubName</span>
+                    }
+                </td>
+                <td>
+                    <span class="title">@mission.HeroesCount</span>
+                </td>
+                <td>
+                    @if (@mission.IsPublished)
                     {
                         <span class="title"><i class="fas fa-check text-success"></i></span>
                     }
+
                 </td>
-                    }
-                    <td class="actions one">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsDelete)).Succeeded)
+                @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                {
+                    <td>
+                        @if (@mission.IsPinned)
                         {
-                            <a class="danger" href="@Url.Action("Delete", new {id = mission.Id})">
-                                <span class="fas fa-trash"></span>
-                            </a>
+                            <span class="title"><i class="fas fa-check text-success"></i></span>
                         }
                     </td>
-                </tr>
+                }
+                <td>
+                    <span class="title">@mission.LastUpdateOn</span>
+                </td>
+                <td class="actions one">
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsDelete)).Succeeded)
+                    {
+                        <a class="danger" href="@Url.Action("Delete", new {id = mission.Id})">
+                            <span class="fas fa-trash"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

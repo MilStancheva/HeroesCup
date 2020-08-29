@@ -15,5 +15,7 @@ namespace ClubsModule.Models
         public string Title { get; set; }
 
         public bool IsPublished { get; set; }
+
+        public string LastUpdateOn { get; set; }
     }
 }

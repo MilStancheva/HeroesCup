@@ -19,11 +19,14 @@ namespace ClubsModule.Services
         private readonly IConfiguration configuration;
         private readonly IImagesService imagesService;
 
+        private string dateTimeFormat;
+
         public MissionIdeasService(HeroesCupDbContext dbContext, IImagesService imagesService, IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
             this.configuration = configuration;
+            this.dateTimeFormat = this.configuration["DateТimeFormat"];
         }
 
         public async Task<MissionIdeaListModel> GetMissionIdeasListModelAsync()
@@ -33,12 +36,15 @@ namespace ClubsModule.Services
 
             var model = new MissionIdeaListModel()
             {
-                MissionIdeas = missionIdeas.OrderBy(m => m.IsPublished)
+                MissionIdeas = missionIdeas
+                                .OrderBy(m => m.IsPublished)
+                                .ThenByDescending(m => m.UpdatedOn)
                                 .Select(m => new MissionIdeaListItem()
                                 {
                                     Id = m.Id,
                                     Title = m.Title,
-                                    IsPublished = m.IsPublished
+                                    IsPublished = m.IsPublished,
+                                    LastUpdateOn = m.UpdatedOn.ToUniversalDateTime().ToLocalTime().ToString(this.dateTimeFormat)
                                 })
 
             };

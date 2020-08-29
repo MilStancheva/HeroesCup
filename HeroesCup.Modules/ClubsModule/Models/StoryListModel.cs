@@ -18,5 +18,7 @@ namespace ClubsModule.Models
         public Mission Mission { get; set; }
 
         public bool IsPublished { get; set; }
+
+        public string LastUpdateOn { get; set; }
     }
 }

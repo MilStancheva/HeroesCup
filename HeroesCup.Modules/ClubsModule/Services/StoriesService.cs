@@ -4,6 +4,7 @@ using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
 using HeroesCup.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,22 @@ namespace ClubsModule.Services
         private readonly IImagesService imagesService;
         private readonly IMissionsService missionsService;
         private readonly IHeroesService heroesService;
+        private readonly IConfiguration configuration;
+
+        private string dateTimeFormat;
 
         public StoriesService(HeroesCupDbContext dbContext,
             IImagesService imagesService,
             IMissionsService missionsService,
-            IHeroesService heroesService)
+            IHeroesService heroesService,
+            IConfiguration configuration)
         {
             this.dbContext = dbContext;
             this.imagesService = imagesService;
             this.missionsService = missionsService;
             this.heroesService = heroesService;
+            this.configuration = configuration;
+            this.dateTimeFormat = this.configuration["DateТimeFormat"];
         }
 
         public async Task<StoryListModel> GetStoryListModelAsync(Guid? ownerId)
@@ -45,13 +52,16 @@ namespace ClubsModule.Services
 
             var model = new StoryListModel()
             {
-                Stories = stories.OrderBy(s => s.IsPublished)
+                Stories = stories
+                                .OrderBy(s => s.IsPublished)
+                                .ThenByDescending(s => s.UpdatedOn)
                                 .Select(s => new StoryListItem()
                                 {
                                     Id = s.Id,
                                     StartText = GetShortIntroText(s.Content, 50),
                                     Mission = s.Mission,
-                                    IsPublished = s.IsPublished
+                                    IsPublished = s.IsPublished,
+                                    LastUpdateOn = s.UpdatedOn.ToUniversalDateTime().ToLocalTime().ToString(this.dateTimeFormat)
                                 })
 
             };

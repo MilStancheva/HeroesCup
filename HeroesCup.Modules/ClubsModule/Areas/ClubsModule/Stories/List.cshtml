@@ -38,64 +38,68 @@
                     <th>@HeroesCupLocalizer.Club["Club"]</th>
                 }
                 <th>@HeroesCupLocalizer.General["Published"]</th>
+                <th>@HeroesCupLocalizer.General["LastUpdate"]</th>
                 <th class="actions one"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var story in Model.Stories)
             {
-                <tr>
-                    <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesEdit)).Succeeded)
-                        {
-                            <a href="@Url.Action("Edit", new {id = story.Id})">@story.StartText</a>
-                        }
-                        else
-                        {
-                            <span class="title">@story.StartText</span>
-                        }
-                    </td>
-                    <td>
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsEdit)).Succeeded)
-                        {
-                            <a href="@Url.Action("Edit", "Missions", new {id = story.Mission.Id })">@story.Mission.Title</a>
-                        }
-                        else
-                        {
-                            <span class="title">@story.Mission.Title</span>
-                        }
-                    </td>
-
-                    @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+            <tr>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesEdit)).Succeeded)
                     {
-                        <td>
-                            @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
-                            {
-                                <a href="@Url.Action("Edit", "Clubs", new {id = story.Mission.Club.Id })">@story.Mission.Club.Name</a>
-                            }
-                            else
-                            {
-                                <span class="title">@story.Mission.Club.Name</span>
-                            }
-                        </td>
+                        <a href="@Url.Action("Edit", new {id = story.Id})">@story.StartText</a>
+                    }
+                    else
+                    {
+                        <span class="title">@story.StartText</span>
+                    }
+                </td>
+                <td>
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.MissionsEdit)).Succeeded)
+                    {
+                        <a href="@Url.Action("Edit", "Missions", new {id = story.Mission.Id })">@story.Mission.Title</a>
+                    }
+                    else
+                    {
+                        <span class="title">@story.Mission.Title</span>
+                    }
+                </td>
+
+                @if (User.IsInRole("SysAdmin") || User.IsInRole("Timeheroes"))
+                {
+                    <td>
+                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.ClubsEdit)).Succeeded)
+                        {
+                            <a href="@Url.Action("Edit", "Clubs", new {id = story.Mission.Club.Id })">@story.Mission.Club.Name</a>
+                        }
+                        else
+                        {
+                            <span class="title">@story.Mission.Club.Name</span>
+                        }
+                    </td>
+                }
+
+                <td>
+                    @if (story.IsPublished)
+                    {
+                        <span class="title"><i class="fas fa-check text-success"></i></span>
                     }
 
-                    <td>
-                        @if (story.IsPublished)
-                        {
-                            <span class="title"><i class="fas fa-check text-success"></i></span>
-                        }
-
-                    </td>
-                    <td class="actions one">
-                        @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesDelete)).Succeeded)
-                        {
-                            <a class="danger" href="@Url.Action("Delete", new {id = story.Id})">
-                                <span class="fas fa-trash"></span>
-                            </a>
-                        }
-                    </td>
-                </tr>
+                </td>
+                <td>
+                    <span class="title">@story.LastUpdateOn</span>
+                </td>
+                <td class="actions one">
+                    @if ((await Auth.AuthorizeAsync(User, ClubsModule.Permissions.StoriesDelete)).Succeeded)
+                    {
+                        <a class="danger" href="@Url.Action("Delete", new {id = story.Id})">
+                            <span class="fas fa-trash"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

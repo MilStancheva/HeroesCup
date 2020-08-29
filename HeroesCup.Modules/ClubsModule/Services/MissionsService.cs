@@ -22,6 +22,8 @@ namespace ClubsModule.Services
         private readonly IConfiguration configuration;
         private readonly IMissionContentsService missionContentsService;
 
+        private string dateTimeFormat;
+
         public MissionsService(HeroesCupDbContext dbContext,
             IImagesService imagesService,
             ISchoolYearService schoolYearService,
@@ -33,6 +35,7 @@ namespace ClubsModule.Services
             this.schoolYearService = schoolYearService;
             this.configuration = configuration;
             this.missionContentsService = missionContentsService;
+            this.dateTimeFormat = this.configuration["DateТimeFormat"];
         }
 
         public async Task<MissionListModel> GetMissionListModelAsync(Guid? ownerId)
@@ -51,7 +54,9 @@ namespace ClubsModule.Services
 
             var model = new MissionListModel()
             {
-                Missions = missions.OrderBy(m => m.IsPublished)
+                Missions = missions
+                                .OrderBy(m => m.IsPublished)
+                                .ThenByDescending(m => m.UpdatedOn)
                                 .Select(m => new MissionListItem()
                                 {
                                     Id = m.Id,
@@ -60,7 +65,8 @@ namespace ClubsModule.Services
                                     ClubName = m.Club.Name,
                                     HeroesCount = m.HeroMissions != null ? m.HeroMissions.Where(hm => hm.MissionId == m.Id).Count() : 0,
                                     IsPublished = m.IsPublished,
-                                    IsPinned = m.IsPinned
+                                    IsPinned = m.IsPinned,
+                                    LastUpdateOn = m.UpdatedOn.ToUniversalDateTime().ToLocalTime().ToString(this.dateTimeFormat)
                                 })
 
             };
