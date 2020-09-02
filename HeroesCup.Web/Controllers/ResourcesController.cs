@@ -1,7 +1,9 @@
 ﻿using HeroesCup.Controllers;
 using HeroesCup.Web.Common;
 using HeroesCup.Web.Models;
+using HeroesCup.Web.Models.Blocks;
 using HeroesCup.Web.Models.Resources;
+using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,13 +21,15 @@ namespace HeroesCup.Web.Controllers
         private readonly IModelLoader loader;
         private readonly IConfiguration configuration;
         private readonly IWebUtils webUtils;
+        private readonly IVideoThumbnailParser videoThumbnailParser;
 
-        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils)
+        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils, IVideoThumbnailParser videoThumbnailParser)
         {
             this.api = api;
             this.loader = loader;
             this.configuration = configuration;
             this.webUtils = webUtils;
+            this.videoThumbnailParser = videoThumbnailParser;
         }
 
         // <summary>
@@ -65,7 +69,18 @@ namespace HeroesCup.Web.Controllers
                 var resourcesPosts = await api.Posts.GetAllAsync<ResourcePost>(resourcesArchiveId);
                 int othersCount = 0;
                 int.TryParse(configuration["ResourcesDetailsOthersCount"], out othersCount);
-                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();               
+                model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
+
+                if (model.Type.Value == ResourcePostType.VIDEO)
+                {
+                    var firstEmbedVideoBlock = model.Blocks.Where(b => b.Type == "HeroesCup.Web.Models.Blocks.EmbeddedVideoBlock").FirstOrDefault() as EmbeddedVideoBlock;
+                    if (firstEmbedVideoBlock != null)
+                    {
+                        var videoUrl = firstEmbedVideoBlock.Source;
+                        model.VideoThumbnail = videoThumbnailParser.ParseDefaultThubnailUrl(videoUrl);
+                        model.VideoUrl = videoUrl;
+                    }                    
+                }
             }
 
             model.CurrentUrlBase = webUtils.GetUrlBase(HttpContext);

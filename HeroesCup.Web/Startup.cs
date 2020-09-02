@@ -77,6 +77,7 @@ namespace HeroesCup
             services.AddScoped<IMissionsService, MissionsService>();
             services.AddTransient<ISessionService, SessionService>();
             services.AddTransient<IWebUtils, WebUtils>();
+            services.AddTransient<IVideoThumbnailParser, YouTubeVideoThumbnailParser>();
             services.AddControllersWithViews();
 
             Services = services;

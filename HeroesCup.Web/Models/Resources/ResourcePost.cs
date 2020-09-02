@@ -31,6 +31,10 @@ namespace HeroesCup.Web.Models.Resources
 
         public CultureInfo SiteCulture { get; set; }
 
+        public string VideoThumbnail { get; set; }
+
+        public string VideoUrl { get; set; }
+
         public ResourcePost()
         {
             OtherResources = new List<ResourcePost>();
