@@ -5,8 +5,13 @@
     var hoursCount = Model.HoursCount <= 1000 ? Model.HoursCount.ToString() : $"{Model.HoursCount / 1000:#,##k}";
 }
 
-@section script{ 
+@section script{
     <script src="~/scripts/carousel.js" type="text/javascript"></script>
+}
+
+@section head{
+    <partial name="~/Views/Shared/Partial/_TwitterMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+    <partial name="~/Views/Shared/Partial/_FacebookMeta.cshtml" for="@Model.SocialNetworksMetaData" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4" id="home-main">
@@ -142,86 +147,86 @@
                 {
                     selectItems.Add(new SelectListItem(year, year));
                 }
-            <div class="row justify-content-between">
-                <div class="col-md-9 col-12">
-                    <h2 class="mb-5 heading2 d-none d-md-block d-sm-none d-xs-none">Класация</h2>
-                    <h3 class="heading3 d-sm-block d-md-none">Класация</h3>
-                </div>
-                <div class="col-md-3 col-12 mt-3 mt-md-0">
-                    <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
-                        <div class="custom-select-wrapper">
-                            <div class="btn school-years-button custom-select">
-                                <div class="custom-select__trigger">
-                                    <span>@Model.SelectedSchoolYear</span>
-                                    @*<div class="arrow"></div>*@
-                                </div>
-                                <div class="custom-options">
-                                    @foreach (var year in selectItems)
-                                    {
-                                        if (Model.SelectedSchoolYear == year.Value)
+                <div class="row justify-content-between">
+                    <div class="col-md-9 col-12">
+                        <h2 class="mb-5 heading2 d-none d-md-block d-sm-none d-xs-none">Класация</h2>
+                        <h3 class="heading3 d-sm-block d-md-none">Класация</h3>
+                    </div>
+                    <div class="col-md-3 col-12 mt-3 mt-md-0">
+                        <form asp-controller="Cms" asp-action="Start" method="post" asp-for="SelectedSchoolYear">
+                            <div class="custom-select-wrapper">
+                                <div class="btn school-years-button custom-select">
+                                    <div class="custom-select__trigger">
+                                        <span>@Model.SelectedSchoolYear</span>
+                                        @*<div class="arrow"></div>*@
+                                    </div>
+                                    <div class="custom-options">
+                                        @foreach (var year in selectItems)
                                         {
-                                            <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                            if (Model.SelectedSchoolYear == year.Value)
+                                            {
+                                                <input type="submit" class="custom-option selected" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                            }
+                                            else
+                                            {
+                                                <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
+                                            }
                                         }
-                                        else
-                                        {
-                                            <input type="submit" class="custom-option" id="selectedSchoolYear" name="selectedSchoolYear" value="@year.Value" />
-                                        }
-                                    }
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row leaderboard-clubs mt-4 pt-4 pt-md-0 mt-md-0">
-                @{
-                    var index = 0;
-                }
+                <div class="row leaderboard-clubs mt-4 pt-4 pt-md-0 mt-md-0">
+                    @{
+                        var index = 0;
+                    }
 
-                @foreach (var club in Model.Clubs.Clubs)
-                {
-                    index += 1;
+                    @foreach (var club in Model.Clubs.Clubs)
+                    {
+                        index += 1;
 
-                    <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-md-2 p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
-                        <div class="row vertical-center">
-                            <div class="col-1 align-self-start mt-3">
-                                <div class="text-center">
-                                    <span class="body1-bold align-top">@index</span>
-                                </div>                                
+                        <a href="#@club.Id.ToString()" class="col-12 leaderboard-club p-md-2 p-3" data-toggle="modal" data-target="#@club.Id.ToString()">
+                            <div class="row vertical-center">
+                                <div class="col-1 align-self-start mt-3">
+                                    <div class="text-center">
+                                        <span class="body1-bold align-top">@index</span>
+                                    </div>
+                                </div>
+                                <div class="row col-11 vertical-center pl-md-0 pl-3">
+                                    <div class="col-md-1 col-sm-12 text-md-center">
+                                        <span class="body1-bold" data-letters="@club.ClubInitials"></span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-12 body1 pt-3 pb-3">
+                                        <span>@club.Name</span>,
+                                        <span>@club.Location</span>
+                                    </div>
+                                    <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
+                                        <div class="col-5 text-left body1 pr-0">
+                                            <span>@club.Points точки</span>
+                                        </div>
+                                        <div class="col-1 text-center">
+                                            <span class="points-heroes-separator"></span>
+                                        </div>
+                                        <div class="col-5 text-right body1 pl-2">
+                                            <span>@club.HeroesCount герои</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="row col-11 vertical-center pl-md-0 pl-3">
-                                <div class="col-md-1 col-sm-12 text-md-center">
-                                    <span class="body1-bold" data-letters="@club.ClubInitials"></span>
-                                </div>
-                                <div class="col-md-8 col-sm-12 body1 pt-3 pb-3">
-                                    <span>@club.Name</span>,
-                                    <span>@club.Location</span>
-                                </div>
-                                <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
-                                    <div class="col-5 text-left body1 pr-0">
-                                        <span>@club.Points точки</span>
-                                    </div>
-                                    <div class="col-1 text-center">
-                                        <span class="points-heroes-separator"></span>
-                                    </div>
-                                    <div class="col-5 text-right body1 pl-2">
-                                        <span>@club.HeroesCount герои</span>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </a>
+                        </a>
 
-                    <hr />
+                        <hr />
 
-                    <!-- Club Modal -->
-                    @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
-                }
-            </div>
-                }
-            </div>
+                        <!-- Club Modal -->
+                        @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
+                    }
+                </div>
+            }
+        </div>
 
 
         @* Missions *@

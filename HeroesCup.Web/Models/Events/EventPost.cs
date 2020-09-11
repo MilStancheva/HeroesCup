@@ -10,7 +10,7 @@ namespace HeroesCup.Web.Models.Events
 {
     [PostType(Title = "Events post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/event")]
-    public class EventPost : Post<EventPost>, IHeroesCupPost
+    public class EventPost : Post<EventPost>, IHeroesCupPost, ISocialNetworkPost
     {
 
         /// <summary>
@@ -30,6 +30,8 @@ namespace HeroesCup.Web.Models.Events
         public string CurrentUrlBase { get; set; }
 
         public CultureInfo SiteCulture { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
 
         public EventPost()
         {

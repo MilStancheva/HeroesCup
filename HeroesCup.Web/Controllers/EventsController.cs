@@ -1,5 +1,7 @@
 ﻿using HeroesCup.Web.Common;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Events;
+using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,14 +21,16 @@ namespace HeroesCup.Web.Controllers
         private readonly IConfiguration configuration;
         private readonly IWebUtils webUtils;
         private int eventsCount;
+        private IMetaDataProvider metaDataProvider;
 
-        public EventsController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils)
+        public EventsController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils, IMetaDataProvider metaDataProvider)
         {
             this.api = api;
             this.loader = loader;
             this.configuration = configuration;
             int.TryParse(this.configuration["EventsCount"], out eventsCount);
             this.webUtils = webUtils;
+            this.metaDataProvider = metaDataProvider;
         }
 
         // <summary>
@@ -93,8 +97,12 @@ namespace HeroesCup.Web.Controllers
                 int othersCount = 0;
                 int.TryParse(configuration["EventsDetailsOthersCount"], out othersCount);
                 model.OtherEvents = eventsPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
-                model.CurrentUrlBase = webUtils.GetUrlBase(HttpContext);
+                var currentUrlBase = webUtils.GetUrlBase(HttpContext);
+                model.CurrentUrlBase = currentUrlBase;
                 model.SiteCulture = await webUtils.GetCulture(this.api);
+                var image = model.Hero != null && model.Hero.PrimaryImage.HasValue ? $"{currentUrlBase}{model.Hero.PrimaryImage.Media.PublicUrl.TrimStart(new char[] { '~' })}" : $"{currentUrlBase}/{this.configuration["FacebookDefaultImageUrl"]}";
+                var url = $"{currentUrlBase}/{model.Category.Title}/{model.Slug}";
+                model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Title, model.Title, url, image);
             }
 
             return View(model);

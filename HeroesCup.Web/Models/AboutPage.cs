@@ -7,7 +7,7 @@ namespace HeroesCup.Web.Models
 {
     [PageType(Title = "About page", UsePrimaryImage = false, UseExcerpt = false)]
     [PageTypeRoute(Title = "About", Route = "/about")]
-    public class AboutPage: Page<AboutPage>
+    public class AboutPage: Page<AboutPage>, ISocialNetworkPost
     {
         [Region(Title="Indroduction")]
         public AboutRegion Introduction { get; set; }
@@ -17,5 +17,7 @@ namespace HeroesCup.Web.Models
 
         [Region(Title = "Second Content")]
         public AboutRegion SecondContent { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace HeroesCup.Web.Models.Resources
 {
     [PostType(Title = "Resource post", UsePrimaryImage = false, UseExcerpt = false)]
     [PostTypeRoute(Title = "Default", Route = "/resource")]
-    public class ResourcePost : Post<ResourcePost>, IHeroesCupPost
+    public class ResourcePost : Post<ResourcePost>, IHeroesCupPost, ISocialNetworkPost
     {
         /// <summary>
         /// Gets/sets the post hero.
@@ -34,6 +34,8 @@ namespace HeroesCup.Web.Models.Resources
         public string VideoThumbnail { get; set; }
 
         public string VideoUrl { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
 
         public ResourcePost()
         {

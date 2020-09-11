@@ -2,6 +2,12 @@
 @inject IApi Api
 @{
     ViewBag.TypeId = Model.TypeId;
+    var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
+}
+
+@section head{
+    <partial name="~/Views/Shared/Partial/_TwitterMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+    <partial name="~/Views/Shared/Partial/_FacebookMeta.cshtml" for="@Model.SocialNetworksMetaData" />
 }
 
 <div class="main" id="landing-main">
@@ -75,4 +81,4 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
