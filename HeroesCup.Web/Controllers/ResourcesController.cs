@@ -55,6 +55,7 @@ namespace HeroesCup.Web.Controllers
         {
             var model = await loader.GetPageAsync<ResourcesArchive>(id, HttpContext.User, draft);
             model.Archive = await api.Archives.GetByIdAsync<ResourcePost>(id, page, category, tag, year, month);
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
 
             return View(model);
         }

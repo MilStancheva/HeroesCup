@@ -75,6 +75,7 @@ namespace HeroesCup.Web.Controllers
 
             model.Archive = eventsArchive;
             model.Archive.Posts = posts;
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
 
             return View(model);
         }
