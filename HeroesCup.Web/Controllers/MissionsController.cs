@@ -93,6 +93,8 @@ namespace HeroesCup.Controllers
             model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
             model.MissionsCount = this.missionsService.GetAllMissionsCount();
 
+            model.SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
+
             return View(model);
         }
 
