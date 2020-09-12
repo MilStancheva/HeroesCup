@@ -1,5 +1,6 @@
 ﻿using HeroesCup.Models;
 using HeroesCup.Web.Common;
+using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,7 @@ namespace HeroesCup.Controllers
         private readonly ISessionService sessionService;
         private readonly IConfiguration _configuration;
         private readonly IWebUtils webUtils;
+        private readonly IMetaDataProvider medaDataProvider;
         private int _missionsCount;
 
         /// <summary>
@@ -36,7 +38,8 @@ namespace HeroesCup.Controllers
             IMissionsService missionsService,
             ISessionService sessionService,
             IConfiguration configuration,
-            IWebUtils webUtils)
+            IWebUtils webUtils,
+            IMetaDataProvider medaDataProvider)
         {
             this.api = api;
             this.loader = loader;
@@ -45,6 +48,7 @@ namespace HeroesCup.Controllers
             _configuration = configuration;
             int.TryParse(_configuration["MissionsCount"], out _missionsCount);
             this.webUtils = webUtils;
+            this.medaDataProvider = medaDataProvider;
         }
 
         /// <summary>
@@ -89,6 +93,8 @@ namespace HeroesCup.Controllers
             model.MissionsPerLocation = this.missionsService.GetMissionsPerLocation();
             model.MissionsCount = this.missionsService.GetAllMissionsCount();
 
+            model.SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
+
             return View(model);
         }
 
@@ -101,14 +107,18 @@ namespace HeroesCup.Controllers
                 return NotFound();
             }
 
+            var currentUrlBase = webUtils.GetUrlBase(HttpContext);
+            var url = $"{currentUrlBase}/mission/{mission.Mission.Slug}";
+            var imageUrl = $"{currentUrlBase}/img/{mission.ImageFilename}";
             var model = new MissionPost()
             {
                 Mission = mission,
-                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                CurrentUrlBase = currentUrlBase,
                 SiteCulture = await webUtils.GetCulture(this.api),
                 Title = mission.Mission.Title,
                 Slug = mission.Mission.Slug,
                 Category = "mission",
+                SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, mission.Mission.Title, mission.Mission.Title, url, imageUrl)
             };
 
             return View(model);
@@ -123,14 +133,18 @@ namespace HeroesCup.Controllers
                 return NotFound();
             }
 
+            var currentUrlBase = webUtils.GetUrlBase(HttpContext);
+            var url = $"{currentUrlBase}/mission-idea/{missionIdea.Slug}";
+            var imageUrl = $"{currentUrlBase}/img/{missionIdea.ImageFilename}";
             var model = new MissionIdeaPost()
             {
                 MissionIdea = missionIdea,
-                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                CurrentUrlBase = currentUrlBase,
                 SiteCulture = await webUtils.GetCulture(this.api),
                 Title = missionIdea.MissionIdea.Title,
                 Slug = missionIdea.MissionIdea.Slug,
                 Category = "mission-idea",
+                SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, missionIdea.MissionIdea.Title, missionIdea.MissionIdea.Title, url, imageUrl)
             };
 
             return View(model);
@@ -145,14 +159,18 @@ namespace HeroesCup.Controllers
                 return NotFound();
             }
 
+            var currentUrlBase = webUtils.GetUrlBase(HttpContext);
+            var url = $"{currentUrlBase}/story/{story.Mission.Slug}";
+            var imageUrl = $"{currentUrlBase}/img/{story.HeroImageFilename}";
             var model = new StoryPost()
             {
                 Story = story,
-                CurrentUrlBase = webUtils.GetUrlBase(HttpContext),
+                CurrentUrlBase = currentUrlBase,
                 SiteCulture = await webUtils.GetCulture(this.api),
                 Title = story.Mission.Title,
                 Slug = story.Mission.Slug,
                 Category = "story",
+                SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, story.Mission.Title, story.Mission.Title, url, imageUrl)
             };
 
             return View(model);

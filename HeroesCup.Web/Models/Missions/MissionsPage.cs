@@ -7,7 +7,7 @@ namespace HeroesCup.Models
 {
     [PageType(Title = "Missions page", UseBlocks = false)]
     [PageTypeRoute(Title = "Missions", Route = "/missions")]
-    public class MissionsPage : Page<MissionsPage>
+    public class MissionsPage : Page<MissionsPage>, ISocialNetworkPost
     {
         public IEnumerable<MissionViewModel> Missions { get; set; }
 
@@ -22,6 +22,8 @@ namespace HeroesCup.Models
         public IEnumerable<StoryViewModel> Stories { get; set; }
 
         public bool IsLoadMoreMissionsRequest { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
 
         public MissionsPage()
         {

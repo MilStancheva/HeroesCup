@@ -10,7 +10,7 @@ namespace HeroesCup.Models
 {
     [PageType(Title = "Start page")]
     [PageTypeRoute(Title = "Start", Route = "/")]
-    public class StartPage : Page<StartPage>
+    public class StartPage : Page<StartPage>, ISocialNetworkPost
     {
         [Region(ListTitle = "Carousel")]
         public IList<HeroRegion> Carousel { get; set; }
@@ -33,6 +33,8 @@ namespace HeroesCup.Models
         public IEnumerable<string> SchoolYears { get; set; }
 
         public string SelectedSchoolYear { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
 
         /// <summary>
         /// Default constructor.

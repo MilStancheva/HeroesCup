@@ -7,7 +7,7 @@ namespace HeroesCup.Web.Models.Events
 {
     [PageType(Title = "Events archive", UseBlocks = false, IsArchive = true)]
     [PageTypeRoute(Title = "Default", Route = "/events")]
-    public class EventsArchive : Page<EventsArchive>
+    public class EventsArchive : Page<EventsArchive>, ISocialNetworkPost
     {
         /// <summary>
         /// Gets/sets the archive hero.
@@ -19,5 +19,7 @@ namespace HeroesCup.Web.Models.Events
         /// Gets/sets the resource post archive.
         /// </summary>
         public PostArchive<EventPost> Archive { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
     }
 }

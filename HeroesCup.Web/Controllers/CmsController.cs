@@ -17,6 +17,7 @@ namespace HeroesCup.Controllers
         private readonly ILeaderboardService leaderboardService;
         private readonly IStatisticsService statisticsService;
         private readonly IMissionsService missionsService;
+        private readonly IMetaDataProvider metaDataProvider;        
 
         /// <summary>
         /// Default constructor.
@@ -27,13 +28,15 @@ namespace HeroesCup.Controllers
             IModelLoader loader, 
             ILeaderboardService leaderboardService, 
             IStatisticsService statisticsService,
-            IMissionsService missionsService)
+            IMissionsService missionsService,
+            IMetaDataProvider metaDataProvider)
         {
             this.api = api;
             this.loader = loader;
             this.leaderboardService = leaderboardService;
             this.statisticsService = statisticsService;
             this.missionsService = missionsService;
+            this.metaDataProvider = metaDataProvider;
         }
 
         /// <summary>
@@ -113,6 +116,7 @@ namespace HeroesCup.Controllers
             model.HoursCount = this.statisticsService.GetAllHoursCount();
 
             model.Missions = await this.missionsService.GetPinnedMissionViewModels();
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);            
 
             return View(model);
         }
@@ -126,6 +130,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> LandingPage(Guid id, bool draft = false)
         {
             var model = await this.loader.GetPageAsync<LandingPage>(id, HttpContext.User, draft);
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
 
             return View(model);
         }
@@ -139,6 +144,7 @@ namespace HeroesCup.Controllers
         public async Task<IActionResult> AboutPage(Guid id, bool draft = false)
         {
             var model = await this.loader.GetPageAsync<AboutPage>(id, HttpContext.User, draft);
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
 
             return View(model);
         }

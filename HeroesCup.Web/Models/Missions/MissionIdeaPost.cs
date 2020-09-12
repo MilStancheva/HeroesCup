@@ -6,12 +6,14 @@ namespace HeroesCup.Web.Models.Missions
 {
     [PostType(Title = "Mission idea post")]
     [PostTypeRoute(Title = "Default", Route = "/mission-idea")]
-    public class MissionIdeaPost : Post<MissionIdeaPost>, IHeroesCupPost
+    public class MissionIdeaPost : Post<MissionIdeaPost>, IHeroesCupPost, ISocialNetworkPost
     {
         public MissionIdeaViewModel MissionIdea { get; set; }
 
         public string CurrentUrlBase { get; set; }
 
         public CultureInfo SiteCulture { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
     }
 }

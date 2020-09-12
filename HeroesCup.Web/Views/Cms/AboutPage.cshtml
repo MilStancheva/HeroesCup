@@ -2,6 +2,12 @@
 
 @{
     ViewBag.TypeId = Model.TypeId;
+    var currentUrlBase = $"{HttpAccess.HttpContext.Request.Scheme}://{HttpAccess.HttpContext.Request.Host}";
+}
+
+@section head{
+    <partial name="~/Views/Shared/Partial/_TwitterMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+    <partial name="~/Views/Shared/Partial/_FacebookMeta.cshtml" for="@Model.SocialNetworksMetaData" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -32,19 +38,19 @@
                 @Html.Raw(Model.SecondContent.Body)
             </div>
             <div class="col-md-6 col-sm-12 pb-5 pb-md-0 order-1 order-md-2">
-                <img  class="img-fluid about-image" src="~/images/about/about-2.svg" width="496" />
+                <img class="img-fluid about-image" src="~/images/about/about-2.svg" width="496" />
             </div>
         </div>
         <div class="separator"></div>
         @*@if (Model.Blocks.Count > 0)
-        {
-            <div class="row">
-                <div class="col-sm-12">
-                    @Html.DisplayFor(m => m.Blocks)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.DisplayFor(m => m.Blocks)
+                    </div>
                 </div>
-            </div>
-            <div class="separator"></div>
-        }*@
+                <div class="separator"></div>
+            }*@
 
         <partial name="~/Views/Shared/Partial/_Challenge.cshtml" for="@Model.Title" />
     </div>

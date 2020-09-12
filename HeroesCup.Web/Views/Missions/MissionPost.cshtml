@@ -1,8 +1,6 @@
 ﻿@model HeroesCup.Web.Models.Missions.MissionPost
 @{
     System.Globalization.CultureInfo culture = Model.SiteCulture;
-    var currentUrlBase = Model.CurrentUrlBase;
-
     var startDateAsLocalString = Model.Mission.StartDate.ToString("d MMMM yyyy", culture);
     var endDateAsLocalString = Model.Mission.EndDate.ToString("d MMMM yyyy", culture);
 
@@ -29,18 +27,8 @@
 }
 
 @section head {
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@currentUrlBase" />
-    <meta name="twitter:creator" content="@currentUrlBase" />
-
-    <meta property="og:url" content="@currentUrlBase/mission/@Model.Mission.Slug" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="@Model.Title" />
-    <meta property="og:description" content="@Model.Title" />
-    <meta property="fb:app_id" content="@Configuration["FacebookAppId"]">
-    <meta property="og:image" content="@currentUrlBase/img/@Model.Mission.ImageFilename" />
-    <meta property="og:image:width" content="672" />
-    <meta property="og:image:height" content="416" />
+    <partial name="~/Views/Shared/Partial/_TwitterMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+    <partial name="~/Views/Shared/Partial/_FacebookMeta.cshtml" for="@Model.SocialNetworksMetaData" />
 }
 
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
@@ -170,7 +158,7 @@
 
                         <div class="col-5 body2">
                             <a class="btn btn-share" id="twitter-share-button"
-                               href="https://twitter.com/intent/tweet?url=@currentUrlBase/mission/@Model.Mission.Slug&text=@Model.Title">
+                               href="https://twitter.com/intent/tweet?url=@Model.SocialNetworksMetaData.Url&text=@Model.Title">
                                 <span class="m-1">Tweet</span>
                                 <i class="fa fa-twitter"></i>
                             </a>

@@ -1,5 +1,4 @@
 ﻿using HeroesCup.Models.Regions;
-using HeroesCup.Web.Models.Resources;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Models;
@@ -8,7 +7,7 @@ namespace HeroesCup.Web.Models.Resources
 {
     [PageType(Title = "Resources archive", UseBlocks = false, IsArchive = true)]
     [PageTypeRoute(Title = "Default", Route = "/resources")]
-    public class ResourcesArchive : Page<ResourcesArchive>
+    public class ResourcesArchive : Page<ResourcesArchive>, ISocialNetworkPost
     {
         /// <summary>
         /// Gets/sets the archive hero.
@@ -20,5 +19,7 @@ namespace HeroesCup.Web.Models.Resources
         /// Gets/sets the resource post archive.
         /// </summary>
         public PostArchive<ResourcePost> Archive { get; set; }
+
+        public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
     }
 }

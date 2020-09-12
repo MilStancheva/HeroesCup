@@ -17,6 +17,11 @@
     var missionsCountPerPage = int.Parse(Configuration["MissionsCount"]);
 }
 
+@section head {
+    <partial name="~/Views/Shared/Partial/_TwitterMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+    <partial name="~/Views/Shared/Partial/_FacebookMeta.cshtml" for="@Model.SocialNetworksMetaData" />
+}
+
 <div class="main mt-md-5 pt-md-4 mt-5 pt-4">
     <div class="container pl-4 pr-4">
 

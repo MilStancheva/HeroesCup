@@ -22,14 +22,21 @@ namespace HeroesCup.Web.Controllers
         private readonly IConfiguration configuration;
         private readonly IWebUtils webUtils;
         private readonly IVideoThumbnailParser videoThumbnailParser;
+        private readonly IMetaDataProvider metaDataProvider;
 
-        public ResourcesController(IApi api, IModelLoader loader, IConfiguration configuration, IWebUtils webUtils, IVideoThumbnailParser videoThumbnailParser)
+        public ResourcesController(IApi api, 
+            IModelLoader loader, 
+            IConfiguration configuration, 
+            IWebUtils webUtils, 
+            IVideoThumbnailParser videoThumbnailParser,
+            IMetaDataProvider metaDataProvider)
         {
             this.api = api;
             this.loader = loader;
             this.configuration = configuration;
             this.webUtils = webUtils;
             this.videoThumbnailParser = videoThumbnailParser;
+            this.metaDataProvider = metaDataProvider;
         }
 
         // <summary>
@@ -48,6 +55,7 @@ namespace HeroesCup.Web.Controllers
         {
             var model = await loader.GetPageAsync<ResourcesArchive>(id, HttpContext.User, draft);
             model.Archive = await api.Archives.GetByIdAsync<ResourcePost>(id, page, category, tag, year, month);
+            model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Slug, model.Title);
 
             return View(model);
         }
@@ -62,6 +70,9 @@ namespace HeroesCup.Web.Controllers
         {
             var model = await loader.GetPostAsync<ResourcePost>(id, HttpContext.User, draft);
             var pages = await api.Pages.GetAllAsync();
+            var currentUrlBase = webUtils.GetUrlBase(HttpContext);
+            model.CurrentUrlBase = currentUrlBase;
+            model.SiteCulture = await webUtils.GetCulture(this.api);
             var resourcesArchive = pages.FirstOrDefault(p => p.TypeId == "ResourcesArchive");
             if (resourcesArchive != null)
             {
@@ -70,6 +81,10 @@ namespace HeroesCup.Web.Controllers
                 int othersCount = 0;
                 int.TryParse(configuration["ResourcesDetailsOthersCount"], out othersCount);
                 model.OtherResources = resourcesPosts.Where(r => r.Id != model.Id).Take(othersCount).ToList();
+                
+                var image = model.Hero != null && model.Hero.PrimaryImage.HasValue ? $"{currentUrlBase}{model.Hero.PrimaryImage.Media.PublicUrl.TrimStart(new char[] { '~'})}" : $"{currentUrlBase}/{this.configuration["FacebookDefaultImageUrl"]}";
+                var url = $"{currentUrlBase}/{model.Category.Title}/{model.Slug}";
+                model.SocialNetworksMetaData = this.metaDataProvider.getMetaData(HttpContext, model.Title, model.Title, url, image);
 
                 if (model.Type.Value == ResourcePostType.VIDEO)
                 {
@@ -79,12 +94,12 @@ namespace HeroesCup.Web.Controllers
                         var videoUrl = firstEmbedVideoBlock.Source;
                         model.VideoThumbnail = videoThumbnailParser.ParseDefaultThubnailUrl(videoUrl);
                         model.VideoUrl = videoUrl;
-                    }                    
+                        model.SocialNetworksMetaData.VideoUrl = videoUrl;
+                        model.SocialNetworksMetaData.VideoType = this.configuration["FacebookDefaultVideoType"];
+                        model.SocialNetworksMetaData.Image = model.VideoThumbnail;
+                    }                 
                 }
-            }
-
-            model.CurrentUrlBase = webUtils.GetUrlBase(HttpContext);
-            model.SiteCulture = await webUtils.GetCulture(this.api);
+            }       
 
             return View(model);
         }

@@ -67,7 +67,8 @@ namespace ClubsModule.Services
             var missionIdeas = this.dbContext.MissionIdeas
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.MissionIdeaImages)
-                .ThenInclude(mi => mi.Image);
+                .ThenInclude(mi => mi.Image)
+                .OrderByDescending(mi => mi.StartDate != long.MinValue ? mi.StartDate : mi.CreatedOn);
 
             return missionIdeas;
         }
