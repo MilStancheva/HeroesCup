@@ -12,7 +12,7 @@ namespace ClubsModule.Models
         public Mission Mission { get; set; }
 
         [MaxSizeFile(2 * 1024 * 1024, ErrorMessage = "MaxSizeErrorMessage")]
-        [AllowedExtensions(new string[] { ".jpg", ".jpеg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
+        [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile Image { get; set; }
 
         [Required]
