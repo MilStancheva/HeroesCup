@@ -31,33 +31,33 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: /tmp/heroescup-web-test
         name: uat-self-contained-package
-  deploy:
-    needs: publish
-    # runs-on: [self-hosted, uat-test]
-    runs-on: [self-hosted, uat-test]
-    steps:
+  # deploy:
+  #   needs: publish
+  #   # runs-on: [self-hosted, uat-test]
+  #   runs-on: [self-hosted, uat-test]
+  #   steps:
     
-    - uses: actions/download-artifact@v2
-      with:
-        name: uat-self-contained-package
-        path: uat
-    - name: Stop service 
-      run: sudo /bin/systemctl stop heroescup.service
-    - name: Wait service shutdown time 
-      run: sleep 90 
-    - name: Remove www
-      run: sudo /bin/rm -rf /var/www/heroes-cup
-    - name: create www
-      run: mkdir -p /var/www/heroes-cup
-    - name: Move distro
-      run: mv uat/* /var/www/heroes-cup
-    - name: Change permissions
-      run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
-    - name: Update database
-      run: |
-        cd /var/heroescup/
-        source ./updateDb.sh        
-    - name: Start kestrel
-      run: sudo /bin/systemctl start heroescup.service
+  #   - uses: actions/download-artifact@v2
+  #     with:
+  #       name: uat-self-contained-package
+  #       path: uat
+  #   - name: Stop service 
+  #     run: sudo /bin/systemctl stop heroescup.service
+  #   - name: Wait service shutdown time 
+  #     run: sleep 90 
+  #   - name: Remove www
+  #     run: sudo /bin/rm -rf /var/www/heroes-cup
+  #   - name: create www
+  #     run: mkdir -p /var/www/heroes-cup
+  #   - name: Move distro
+  #     run: mv uat/* /var/www/heroes-cup
+  #   - name: Change permissions
+  #     run: chmod 770 -R /var/www/heroes-cup/ && chown actions-runner:www-data -R /var/www/heroes-cup
+  #   - name: Update database
+  #     run: |
+  #       cd /var/heroescup/
+  #       source ./updateDb.sh        
+  #   - name: Start kestrel
+  #     run: sudo /bin/systemctl start heroescup.service
 
       
