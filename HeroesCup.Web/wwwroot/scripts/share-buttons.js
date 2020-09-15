@@ -1,6 +1,7 @@
 $(function () {
     $(document).scroll(function () {
         var $shareButtons = $(".share-buttons");
+        var $nav = $('.nav');
         $shareButtons.toggleClass('sticky', $(this).scrollTop() > $nav.height());
     });
 
