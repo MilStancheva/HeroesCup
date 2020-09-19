@@ -47,7 +47,7 @@ namespace HeroesCup.Web.Services
                         Id = m.Id,
                         Title = m.Title,
                         Club = m.Club,
-                        ImageSrc = GetMissionImageSource(m),
+                        ImageFilename = GetMissionImageFilename(m),
                         Slug = m.Slug
                     });
 
@@ -64,7 +64,7 @@ namespace HeroesCup.Web.Services
                         Name = GetClubName(c.Club),
                         Location = c.Club.Location,
                         ClubInitials = GetClubInitials(c.Club.Name),
-                        ClubImageSrc = GetClubImageSource(c.Club),
+                        ClubImageFilename = GetClubImageFilename(c.Club),
                         HeroesCount = GetHeroesCount(c.Club),
                         Points = getClubPoints(c.Missions),
                         Club = c.Club,
@@ -83,23 +83,23 @@ namespace HeroesCup.Web.Services
             return model;
         }
 
-        private string GetMissionImageSource(Mission mission)
+        private string GetMissionImageFilename(Mission mission)
         {
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
                 var missionImage = this.imagesService.GetMissionImage(mission.Id).Result;
-                return this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+                return this.imagesService.GetImageFilename(missionImage.Image);
             }
 
             return null;
         }
 
-        private string GetClubImageSource(Club club)
+        private string GetClubImageFilename(Club club)
         {
             if (club.ClubImages != null && club.ClubImages.Count > 0)
             {
                 var clubImage = this.imagesService.GetClubImage(club.Id).Result;
-                return this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
+                return this.imagesService.GetImageFilename(clubImage.Image);
             }
 
             return null;

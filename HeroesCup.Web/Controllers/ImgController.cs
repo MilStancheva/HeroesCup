@@ -20,7 +20,12 @@ namespace HeroesCup.Web.Controllers
         public async Task<IActionResult> GetImageByFileName(string filename)
         {
             var image = await this.imagesService.GetImageByFileName(filename);
-
+            if (image == null)
+            {
+                return NotFound();
+            }
+            
+            Response.Headers.Add("Cache-Control", "max-age=31536000");
             return File(image.Bytes, image.ContentType);
         }
     }

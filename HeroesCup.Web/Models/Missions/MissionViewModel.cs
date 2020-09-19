@@ -13,9 +13,13 @@ namespace HeroesCup.Web.Models
 
         public Club Club { get; set; }
 
-        public Mission Mission { get; set; }
+        public string ClubName { get; set; }
 
-        public string ImageSrc { get; set; }
+        public string PostClubName { get; set; }
+
+        public string ClubLocation { get; set; }
+
+        public MissionContent Content { get; set; }
 
         public string ImageFilename { get; set; }
 
@@ -24,5 +28,9 @@ namespace HeroesCup.Web.Models
         public DateTime EndDate { get; set; }
 
         public StoryViewModel Story { get; set; }
+
+        public bool IsExpired { get; set; }
+
+        public bool IsSeveralDays { get; set; }
     }
 }

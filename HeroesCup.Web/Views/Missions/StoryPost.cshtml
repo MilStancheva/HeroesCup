@@ -1,25 +1,4 @@
 ﻿@model HeroesCup.Web.Models.Missions.StoryPost
-@{
-    System.Globalization.CultureInfo culture = Model.SiteCulture;
-    var startDateAsLocalString = Model.Story.Mission.StartDate.ToString("d MMMM yyyy", culture);
-    var endDateAsLocalString = Model.Story.Mission.EndDate.ToString("d MMMM yyyy", culture);
-
-    var today = DateTime.Now.Date;
-    var expiredMission = false;
-    if (today > Model.Story.Mission.EndDate.Date)
-    {
-        expiredMission = true;
-    }
-
-    var missionIsSeveralDays = true;
-    if (Model.Story.Mission.EndDate.Date == Model.Story.Mission.StartDate.Date)
-    {
-        missionIsSeveralDays = false;
-    }
-
-    var clubNumber = Model.Story.Mission.Club.OrganizationNumber != null && Model.Story.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Story.Mission.Club.OrganizationNumber} " : string.Empty;
-    var clubName = $"\"{Model.Story.Mission.Club.Name}\", {clubNumber} {Model.Story.Mission.Club.OrganizationType} \"{Model.Story.Mission.Club.OrganizationName}\"";
-}
 
 @section script{
     <script src="~/scripts/share-buttons.js" type="text/javascript"></script>
@@ -38,29 +17,21 @@
                 <div class="col-12 pt-md-4 pt-3 pb-md-4 pb-3">
                     <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
                     <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
-                    <div class="body2"><span>Клуб @clubName, @Model.Story.Mission.Club.Location </span></div>
-                    @if (missionIsSeveralDays)
+                    <div class="body2"><span>Клуб @Model.Story.Mission.PostClubName, @Model.Story.Mission.ClubLocation </span></div>
+                    @if (Model.Story.Mission.IsSeveralDays)
                     {
-                        <div class="body2"><span>Мисията е от @startDateAsLocalString до @endDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията е от @Model.StartDateAsLocalString до @Model.EndDateAsLocalString</span></div>
                     }
                     else
                     {
-                        if (expiredMission)
-                        {
-                            <div class="body2"><span>Мисията се осъществи на @startDateAsLocalString</span></div>
-                        }
-                        else
-                        {
-                            <div class="body2"><span>Мисията e на @startDateAsLocalString</span></div>
-                        }
-
+                        <div class="body2"><span>Мисията e на @Model.StartDateAsLocalString</span></div>
                     }
                 </div>
 
                 <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
-                            <img class="img-fluid center-cropped mission-image" src="@Url.Content(Model.Story.HeroImageSource)">
+                            <img class="img-fluid center-cropped mission-image" src="/img/@Model.Story.HeroImageFilename">
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
@@ -75,14 +46,14 @@
                                 </div>
                             </div>
                             <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                                @foreach (var imageSource in Model.Story.ImageSources)
+                                @foreach (var imageFilename in Model.Story.ImageFilenames)
                                 {
                                     <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
                                         <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                           data-image="@Url.Content(imageSource)"
+                                           data-image="/img/@imageFilename"
                                            data-target="#image-gallery">
                                             <img class="img-fluid img-thumbnail center-cropped story-image"
-                                                 src="@Url.Content(imageSource)"
+                                                 src="/img/@imageFilename"
                                                  alt="Another alt text">
                                         </a>
                                     </div>

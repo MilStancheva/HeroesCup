@@ -8,11 +8,11 @@
         <div class="modal-content">
             <div class="row">
                 <div class="col-md-5 col-sm-12 club-image pr-md-0">
-                    @if (@club.ClubImageSrc != null)
+                    @if (@club.ClubImageFilename != null)
                     {
                         <div class="img-container text-left">
                             <figure class="figure mb-0">
-                                <img src="@club.ClubImageSrc" class="figure-img img-fluid club-img mb-0" alt="@club.Name">
+                                <img src="/img/@club.ClubImageFilename" class="figure-img img-fluid club-img mb-0" alt="@club.Name">
                             </figure>
                             <div class="col-12 text-right d-sm-block d-md-none modal-close-div pr-0">
                                 <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
@@ -131,14 +131,14 @@
                                                             @if (expiredMission)
                                                             {
                                                                 <div class="img-container text-left">
-                                                                    <img class="img-fluid expired-img club-mission-img-list" src="@mission.ImageSrc" />
+                                                                    <img class="img-fluid expired-img club-mission-img-list" src="/img/@mission.ImageFilename" />
                                                                     <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                                                                 </div>
                                                             }
                                                             else
                                                             {
                                                                 <div class="img-container text-left">
-                                                                    <img class="img-fluid club-mission-img-list" src="@mission.ImageSrc" />
+                                                                    <img class="img-fluid club-mission-img-list" src="/img/@mission.ImageFilename" />
                                                                 </div>
                                                             }
 

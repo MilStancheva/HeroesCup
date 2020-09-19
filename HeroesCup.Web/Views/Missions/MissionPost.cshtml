@@ -1,25 +1,4 @@
 ﻿@model HeroesCup.Web.Models.Missions.MissionPost
-@{
-    System.Globalization.CultureInfo culture = Model.SiteCulture;
-    var startDateAsLocalString = Model.Mission.StartDate.ToString("d MMMM yyyy", culture);
-    var endDateAsLocalString = Model.Mission.EndDate.ToString("d MMMM yyyy", culture);
-
-    var today = DateTime.Now.Date;
-    var expiredMission = false;
-    if (today > Model.Mission.EndDate.Date)
-    {
-        expiredMission = true;
-    }
-
-    var missionIsSeveralDays = true;
-    if (Model.Mission.EndDate.Date == Model.Mission.StartDate.Date)
-    {
-        missionIsSeveralDays = false;
-    }
-
-    var clubNumber = Model.Mission.Club.OrganizationNumber != null && Model.Mission.Club.OrganizationNumber != string.Empty ? $" {Model.Mission.Club.OrganizationNumber} " : string.Empty;
-    var clubName = $"\"{Model.Mission.Club.Name}\", {clubNumber} {Model.Mission.Club.OrganizationType} \"{Model.Mission.Club.OrganizationName}\"";
-}
 
 @section script{
     <script src="~/scripts/share-buttons.js" type="text/javascript"></script>
@@ -38,28 +17,28 @@
                 <div class="col-12 pt-md-4 pt-3 pb-md-4 pb-3">
                     <h2 class="heading2 d-none d-md-block d-sm-none d-xs-none">@Model.Title</h2>
                     <h3 class="heading3 d-sm-block d-md-none">@Model.Title</h3>
-                    <div class="body2"><span>Клуб @clubName, @Model.Mission.Club.Location </span></div>
-                    @if (missionIsSeveralDays)
+                    <div class="body2"><span>Клуб @Model.Mission.PostClubName, @Model.Mission.ClubLocation </span></div>
+                    @if (Model.Mission.IsSeveralDays)
                     {
-                        <div class="body2"><span>Мисията е от @startDateAsLocalString до @endDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията е от @Model.StartDateAsLocalString до @Model.EndDateAsLocalString</span></div>
                     }
                     else
                     {
-                        <div class="body2"><span>Мисията е на @startDateAsLocalString</span></div>
+                        <div class="body2"><span>Мисията е на @Model.StartDateAsLocalString</span></div>
                     }
                 </div>
 
                 <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
-                            @if (expiredMission)
+                            @if (Model.Mission.IsExpired)
                             {
-                                <img class="img-fluid expired-img center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
+                                <img class="img-fluid expired-img center-cropped mission-image" src="/img/@Model.Mission.ImageFilename">
                                 <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                             }
                             else
                             {
-                                <img class="img-fluid center-cropped mission-image" src="@Url.Content(Model.Mission.ImageSrc)">
+                                <img class="img-fluid center-cropped mission-image" src="/img/@Model.Mission.ImageFilename">
                             }
                         </div>
                     </div>
@@ -75,14 +54,14 @@
                                 </div>
                             </div>
                             <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                                @foreach (var imageSource in Model.Mission.Story.ImageSources)
+                                @foreach (var imageFilename in Model.Mission.Story.ImageFilenames)
                                 {
                                     <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
                                         <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                           data-image="@Url.Content(imageSource)"
+                                           data-image="/img/@imageFilename"
                                            data-target="#image-gallery">
                                             <img class="img-fluid img-thumbnail center-cropped story-image"
-                                                 src="@Url.Content(imageSource)"
+                                                 src="/img/@imageFilename"
                                                  alt="Another alt text">
                                         </a>
                                     </div>
@@ -91,51 +70,51 @@
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
                         <div class="col-12 mt-md-3 pt-3 pl-0 pr-0 pr-md-2">
-                            @if (Model.Mission.Mission.Content.What != null)
+                            @if (Model.Mission.Content.What != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Какво?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.What)
+                                    @Html.Raw(Model.Mission.Content.What)
                                 </div>
                             }
 
-                            @if (Model.Mission.Mission.Content.When != null)
+                            @if (Model.Mission.Content.When != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Кога?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.When)
+                                    @Html.Raw(Model.Mission.Content.When)
                                 </div>
                             }
 
-                            @if (Model.Mission.Mission.Content.Where != null)
+                            @if (Model.Mission.Content.Where != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Къде?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.Where)
+                                    @Html.Raw(Model.Mission.Content.Where)
                                 </div>
                             }
 
-                            @if (Model.Mission.Mission.Content.Equipment != null)
+                            @if (Model.Mission.Content.Equipment != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Нужна екипировка?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.Equipment)
+                                    @Html.Raw(Model.Mission.Content.Equipment)
                                 </div>
                             }
 
-                            @if (Model.Mission.Mission.Content.Why != null)
+                            @if (Model.Mission.Content.Why != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Защо?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.Why)
+                                    @Html.Raw(Model.Mission.Content.Why)
                                 </div>
                             }
 
-                            @if (Model.Mission.Mission.Content.Contact != null)
+                            @if (Model.Mission.Content.Contact != null)
                             {
                                 <div class="col-12 mt-2 pt-2 body2">
                                     <p class="body2-bold">Как да се включат герои, които не са част от клуба?</p>
-                                    @Html.Raw(Model.Mission.Mission.Content.Contact)
+                                    @Html.Raw(Model.Mission.Content.Contact)
                                 </div>
                             }
 

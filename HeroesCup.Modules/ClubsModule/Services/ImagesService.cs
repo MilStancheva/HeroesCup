@@ -215,43 +215,26 @@ namespace ClubsModule.Services
                 .FirstOrDefaultAsync();
         }
 
-        public string GetMissionImageSource(Mission mission)
+        public IEnumerable<string> GetImageFilenames(IEnumerable<Image> images)
         {
-            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
-            {
-                var missionImage = mission.MissionImages.FirstOrDefault();
-                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-
-                return imageSrc;
-            }
-
-            return String.Empty;
-        }
-
-        public IEnumerable<string> GetStoryImageSources(Story story)
-        {
-            if (story == null)
+            if (images == null)
             {
                 return null;
             }
 
-            var storyImages = story.StoryImages;
-            var imageSources = storyImages.Select(si => this.GetImageSource(si.Image.ContentType, si.Image.Bytes)).ToList();
+            var imageFilenames = images.Select(i => i.Filename).ToList();
 
-            return imageSources;
+            return imageFilenames;
         }
 
-        public string GetMissionIdeaImageSource(MissionIdea missionIdea)
+        public string GetImageFilename(Image image)
         {
-            if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
+            if (image == null)
             {
-                var missionImage = missionIdea.MissionIdeaImages.FirstOrDefault();
-                string imageSrc = this.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
-
-                return imageSrc;
+                return null;
             }
 
-            return String.Empty;
+            return image.Filename;
         }
 
         public async Task<Image> GetImageByFileName(string filename)

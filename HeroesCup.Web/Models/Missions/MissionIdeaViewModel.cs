@@ -11,12 +11,16 @@ namespace HeroesCup.Web.Models
 
         public MissionIdea MissionIdea { get; set; }
 
-        public string ImageSrc { get; set; }
-
         public string ImageFilename { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public bool IsExpired { get; set; }
+
+        public bool IsSeveralDays { get; set; }
+
+        public string Organization { get; set; }
     }
 }

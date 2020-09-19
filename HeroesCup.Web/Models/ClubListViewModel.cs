@@ -15,7 +15,7 @@ namespace HeroesCup.Web.Models
 
         public string ClubInitials { get; set; }
 
-        public string ClubImageSrc { get; set; }
+        public string ClubImageFilename { get; set; }
 
         public string Name { get; set; }
 

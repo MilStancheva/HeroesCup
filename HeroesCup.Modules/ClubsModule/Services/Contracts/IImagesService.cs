@@ -1,6 +1,7 @@
 ﻿using HeroesCup.Data.Models;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ClubsModule.Services.Contracts
@@ -20,5 +21,9 @@ namespace ClubsModule.Services.Contracts
         string GetFileContentType(IFormFile file);
 
         Image MapFormFileToImage(IFormFile file);
+
+        string GetImageFilename(Image image);
+
+        IEnumerable<string> GetImageFilenames(IEnumerable<Image> images);
     }
 }
