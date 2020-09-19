@@ -67,7 +67,6 @@ namespace ClubsModule.Services
             var missionIdeas = this.dbContext.MissionIdeas
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.MissionIdeaImages)
-                .ThenInclude(mi => mi.Image)
                 .OrderByDescending(mi => mi.StartDate != long.MinValue ? mi.StartDate : mi.CreatedOn);
 
             return missionIdeas;
@@ -193,7 +192,7 @@ namespace ClubsModule.Services
             if (missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Count > 0)
             {
                 var missionIdeaImage = await this.imagesService.GetMissionIdeaImageAsync(missionIdea.Id);
-                model.ImageSrc = this.imagesService.GetImageSource(missionIdeaImage.Image.ContentType, missionIdeaImage.Image.Bytes);
+                model.ImageId = missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Any() ? missionIdea.MissionIdeaImages.FirstOrDefault().ImageId.ToString() : null;
                 model.ImageFilename = missionIdeaImage.Image.Filename;
             }
 

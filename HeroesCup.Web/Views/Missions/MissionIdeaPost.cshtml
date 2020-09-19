@@ -32,12 +32,12 @@
                         <div class="col-sm-12 pl-0 pr-0">
                             @if (Model.MissionIdea.IsExpired)
                             {
-                                <img class="img-fluid expired-img center-cropped mission-image" src="/img/@Model.MissionIdea.ImageFilename">
+                                <img class="img-fluid expired-img center-cropped mission-image" src="/img/@Model.MissionIdea.ImageId">
                                 <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                             }
                             else
                             {
-                                <img class="img-fluid center-cropped mission-image" src="/img/@Model.MissionIdea.ImageFilename">
+                                <img class="img-fluid center-cropped mission-image" src="/img/@Model.MissionIdea.ImageId">
                             }
                         </div>
                     </div>

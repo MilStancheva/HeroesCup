@@ -69,32 +69,6 @@ namespace HeroesCup.Web.Services
                 .Select(m => this.MapMissionToMissionViewModel(m));
         }
 
-        public async Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id)
-        {
-            var result = await this.missionsService.GetMissionEditModelByIdAsync(id, null);
-            if (result == null)
-            {
-                return null;
-            }
-
-            var model = this.MapMissionEditModelToMissionViewModel(result);
-
-            return model;
-        }
-
-        public async Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id)
-        {
-            var result = await this.missionIdeasService.GetMissionIdeaEditModelByIdAsync(id);
-            if (result == null)
-            {
-                return null;
-            }
-
-            var model = this.MapMissionIdeaEditModelToMissionIdeaViewModel(result);
-
-            return model;
-        }
-
         public IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels()
         {
             return this.storiesService.GetAllPublishedStories().Select(s => this.MapStoryToStoryViewModel(s));
@@ -151,7 +125,7 @@ namespace HeroesCup.Web.Services
                 Id = missionIdea.Id,
                 Slug = missionIdea.Slug,
                 MissionIdea = missionIdea,
-                ImageFilename = this.imageService.GetImageFilename(missionIdea.MissionIdeaImages.FirstOrDefault() != null ? missionIdea.MissionIdeaImages.FirstOrDefault().Image : null),
+                ImageId = missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Any() ? missionIdea.MissionIdeaImages.FirstOrDefault().ImageId.ToString() : null,
                 IsExpired = IsExpired(missionIdea.EndDate),
                 IsSeveralDays = IsSeveralDays(missionIdea.StartDate, missionIdea.EndDate),
                 Organization = missionIdea.Organization != null && missionIdea.Organization != String.Empty ? missionIdea.Organization : this.configuration["DefaultOrganization"]
@@ -169,6 +143,7 @@ namespace HeroesCup.Web.Services
             {
                 Id = missionIdeEditModel.MissionIdea.Id,
                 Slug = missionIdeEditModel.MissionIdea.Slug,
+                ImageId = missionIdeEditModel.ImageId,
                 ImageFilename = missionIdeEditModel.ImageFilename,
                 MissionIdea = missionIdeEditModel.MissionIdea,
                 StartDate = missionIdeEditModel.MissionIdea.StartDate.ConvertToLocalDateTime(),

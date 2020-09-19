@@ -19,11 +19,7 @@ namespace HeroesCup.Web.Services
 
         IEnumerable<MissionViewModel> GetMissionViewModelsByLocation(string location);
 
-        Task<MissionViewModel> GetMissionViewModelByIdAsync(Guid id);
-
         Task<MissionViewModel> GetMissionViewModelBySlugAsync(string slug);
-
-        Task<MissionIdeaViewModel> GetMissionIdeaViewModelByIdAsync(Guid id);
 
         Task<MissionIdeaViewModel> GetMissionIdeaViewModelBySlugAsync(string slug);
 

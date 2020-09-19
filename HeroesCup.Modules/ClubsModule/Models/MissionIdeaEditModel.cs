@@ -13,7 +13,9 @@ namespace ClubsModule.Models
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile Image { get; set; }
 
-        public string ImageSrc { get; set; }
+        public string ImageId { get; set; }
+
+        //public string ImageSrc { get; set; }
 
         public string ImageFilename { get; set; }
 
