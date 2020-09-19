@@ -19,7 +19,7 @@ namespace HeroesCup.Web.Models
 
         public string ClubLocation { get; set; }
 
-        public Mission Mission { get; set; }
+        public MissionContent Content { get; set; }
 
         public string ImageFilename { get; set; }
 

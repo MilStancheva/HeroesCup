@@ -107,7 +107,7 @@ namespace HeroesCup.Controllers
             }
 
             var currentUrlBase = webUtils.GetUrlBase(HttpContext);
-            var url = $"{currentUrlBase}/mission/{mission.Mission.Slug}";
+            var url = $"{currentUrlBase}/mission/{mission.Slug}";
             var imageUrl = $"{currentUrlBase}/img/{mission.ImageFilename}";
             var siteCulture = await webUtils.GetCulture(this.api);
             var dateFormat = this._configuration["PostDateFormat"];
@@ -118,10 +118,10 @@ namespace HeroesCup.Controllers
                 EndDateAsLocalString = mission.EndDate.ToString(dateFormat, siteCulture),
                 CurrentUrlBase = currentUrlBase,
                 SiteCulture = siteCulture,
-                Title = mission.Mission.Title,
-                Slug = mission.Mission.Slug,
+                Title = mission.Title,
+                Slug = mission.Slug,
                 Category = "mission",
-                SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, mission.Mission.Title, mission.Mission.Title, url, imageUrl)
+                SocialNetworksMetaData = this.medaDataProvider.getMetaData(HttpContext, mission.Title, mission.Title, url, imageUrl)
             };
 
             return View(model);
