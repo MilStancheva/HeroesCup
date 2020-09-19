@@ -234,10 +234,9 @@ namespace ClubsModule.Services
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
                 .ThenInclude(c => c.Missions)
-                .ThenInclude(m => m.MissionImages)
                 .Include(m => m.Club)
-                .ThenInclude(c => c.ClubImages)
-                .Include(m => m.MissionImages)
+                // .ThenInclude(c => c.ClubImages)
+                // .Include(m => m.MissionImages)
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
@@ -262,9 +261,9 @@ namespace ClubsModule.Services
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
-                .Include(m => m.MissionImages)
+                // .Include(m => m.MissionImages)
                 .Include(m => m.Story)
-                .ThenInclude(m => m.StoryImages)
+                // .ThenInclude(m => m.StoryImages)
                 .OrderByDescending(m => m.StartDate);
 
             return missions;
