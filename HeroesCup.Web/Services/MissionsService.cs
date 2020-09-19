@@ -47,7 +47,7 @@ namespace HeroesCup.Web.Services
         public async Task<IEnumerable<MissionViewModel>> GetPinnedMissionViewModels()
         {
             var pinnedMissions = await this.missionsService.GetPinnedMissions();
-            return pinnedMissions.Select(m => this.MapMissionToMissionViewModel(m));
+            return pinnedMissions.Select(m => this.MapMissionToMissionViewModel(m, this.missionsService.GetMissionImagesIds(m.Id)));
         }
 
         public int GetAllMissionsCount()
@@ -66,7 +66,7 @@ namespace HeroesCup.Web.Services
         {
             return this.missionsService.GetAllPublishedMissions()
                 .Where(m => m.Location.Contains(location) || location.Contains(m.Location))
-                .Select(m => this.MapMissionToMissionViewModel(m));
+                .Select(m => this.MapMissionToMissionViewModel(m, this.missionsService.GetMissionImagesIds(m.Id)));
         }
 
         public IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels()
@@ -231,10 +231,7 @@ namespace HeroesCup.Web.Services
                 } : null
             };
         }
-        private MissionViewModel MapMissionToMissionViewModel(Mission mission)
-        {
-            return MapMissionToMissionViewModel(mission, null);
-        }
+      
         private MissionViewModel MapMissionToMissionViewModel(Mission mission, IEnumerable<Tuple<string, string>> missionImages)
         {
             if (mission == null)
