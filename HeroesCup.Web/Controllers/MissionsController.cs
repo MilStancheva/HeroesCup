@@ -1,6 +1,5 @@
 ﻿using HeroesCup.Models;
 using HeroesCup.Web.Common;
-using HeroesCup.Web.Models;
 using HeroesCup.Web.Models.Missions;
 using HeroesCup.Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -110,11 +109,15 @@ namespace HeroesCup.Controllers
             var currentUrlBase = webUtils.GetUrlBase(HttpContext);
             var url = $"{currentUrlBase}/mission/{mission.Mission.Slug}";
             var imageUrl = $"{currentUrlBase}/img/{mission.ImageFilename}";
+            var siteCulture = await webUtils.GetCulture(this.api);
+            var dateFormat = this._configuration["PostDateFormat"];
             var model = new MissionPost()
             {
                 Mission = mission,
+                StartDateAsLocalString = mission.StartDate.ToString(dateFormat, siteCulture),
+                EndDateAsLocalString = mission.EndDate.ToString(dateFormat, siteCulture),
                 CurrentUrlBase = currentUrlBase,
-                SiteCulture = await webUtils.GetCulture(this.api),
+                SiteCulture = siteCulture,
                 Title = mission.Mission.Title,
                 Slug = mission.Mission.Slug,
                 Category = "mission",
@@ -136,11 +139,14 @@ namespace HeroesCup.Controllers
             var currentUrlBase = webUtils.GetUrlBase(HttpContext);
             var url = $"{currentUrlBase}/mission-idea/{missionIdea.Slug}";
             var imageUrl = $"{currentUrlBase}/img/{missionIdea.ImageFilename}";
+            var siteCulture = await webUtils.GetCulture(this.api);
+            var dateFormat = this._configuration["PostDateFormat"];
             var model = new MissionIdeaPost()
             {
                 MissionIdea = missionIdea,
                 CurrentUrlBase = currentUrlBase,
-                SiteCulture = await webUtils.GetCulture(this.api),
+                StartDateAsLocalString = missionIdea.StartDate != null ? missionIdea.StartDate.ToString(dateFormat, siteCulture) : null,
+                EndDateAsLocalString = missionIdea.EndDate != null ? missionIdea.EndDate.ToString(dateFormat, siteCulture): null,
                 Title = missionIdea.MissionIdea.Title,
                 Slug = missionIdea.MissionIdea.Slug,
                 Category = "mission-idea",
@@ -162,11 +168,15 @@ namespace HeroesCup.Controllers
             var currentUrlBase = webUtils.GetUrlBase(HttpContext);
             var url = $"{currentUrlBase}/story/{story.Mission.Slug}";
             var imageUrl = $"{currentUrlBase}/img/{story.HeroImageFilename}";
+            var siteCulture = await webUtils.GetCulture(this.api);
+            var dateFormat = this._configuration["PostDateFormat"];
             var model = new StoryPost()
             {
                 Story = story,
+                StartDateAsLocalString = story.Mission.StartDate != null ? story.Mission.StartDate.ToString(dateFormat, siteCulture) : null,
+                EndDateAsLocalString = story.Mission.EndDate != null ? story.Mission.EndDate.ToString(dateFormat, siteCulture) : null,
                 CurrentUrlBase = currentUrlBase,
-                SiteCulture = await webUtils.GetCulture(this.api),
+                SiteCulture = siteCulture,
                 Title = story.Mission.Title,
                 Slug = story.Mission.Slug,
                 Category = "story",

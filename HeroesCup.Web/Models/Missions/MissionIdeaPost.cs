@@ -15,5 +15,9 @@ namespace HeroesCup.Web.Models.Missions
         public CultureInfo SiteCulture { get; set; }
 
         public SocialNetworksMetaData SocialNetworksMetaData { get; set; }
+
+        public string StartDateAsLocalString { get; set; }
+
+        public string EndDateAsLocalString { get; set; }
     }
 }

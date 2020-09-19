@@ -9,31 +9,24 @@
     <div class="row">
         @foreach (var mission in missions)
         {
-            var today = DateTime.Now.ToLocalTime().Date;
-            var expiredMission = false;
-            if (today > mission.EndDate.Date)
-            {
-                expiredMission = true;
-            }
-
-            <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
+             <div class="col-sm-6 col-md-4 mt-md-4 pt-md-4 pt-3 mt-3">
                 <div class="mission-body">
                     <a href="/mission/@mission.Slug">
-                        @if (expiredMission)
+                        @if (mission.IsExpired)
                         {
                         <div class="img-container text-left">
-                            <img class="img-fluid expired-img mission-img-list" src="@Url.Content(mission.ImageSrc)"  />
+                            <img class="img-fluid expired-img mission-img-list" src="/img/@mission.ImageFilename"  />
                             <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                         </div>
                         }
                         else
                         {
                         <div class="img-container text-left">
-                            <img class="img-fluid mission-img-list" src="@Url.Content(mission.ImageSrc)" />
+                            <img class="img-fluid mission-img-list" src="/img/@mission.ImageFilename" />
                         </div>
                         }
                         <p class="mission-title body1-bold pr-md-4 pr-1 mt-4">@mission.Title</p>
-                        <p class="body2 pr-md-5 pr-2">от Клуб "@mission.Club.Name"</p>
+                        <p class="body2 pr-md-5 pr-2">от Клуб "@mission.ClubName"</p>
                     </a>
                 </div>
             </div>
