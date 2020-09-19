@@ -31,7 +31,7 @@
                 <div class="col-md-8 col-sm-12 mt-md-5 mt-4 pl-0 pr-0">
                     <div class="col-12 pr-0">
                         <div class="col-sm-12 pl-0 pr-0">
-                            <img class="img-fluid center-cropped mission-image" src="/img/@Model.Story.HeroImageFilename">
+                            <img class="img-fluid center-cropped mission-image" src="/img/@Model.Story.HeroImageId">
                         </div>
                     </div>
                     <div class="col-12 justify-content-start pl-0 pr-0 pr-md-5">
@@ -46,14 +46,14 @@
                                 </div>
                             </div>
                             <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                                @foreach (var imageFilename in Model.Story.ImageFilenames)
+                                @foreach (var imageId in Model.Story.ImageIds)
                                 {
                                     <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
                                         <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                           data-image="/img/@imageFilename"
+                                           data-image="/img/@imageId"
                                            data-target="#image-gallery">
                                             <img class="img-fluid img-thumbnail center-cropped story-image"
-                                                 src="/img/@imageFilename"
+                                                 src="/img/@imageId"
                                                  alt="Another alt text">
                                         </a>
                                     </div>

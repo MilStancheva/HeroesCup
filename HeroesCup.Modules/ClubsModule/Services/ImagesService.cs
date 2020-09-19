@@ -215,24 +215,24 @@ namespace ClubsModule.Services
                 .FirstOrDefaultAsync();
         }
 
-        public IEnumerable<string> GetImageFilenames(IEnumerable<Image> images)
-        {
-            if (images == null)
-            {
-                return null;
-            }
-
-            var imageFilenames = images.Select(i => i.Filename).ToList();
-
-            return imageFilenames;
-        }
-
         public string GetImageFilename(Image image)
         {
             if (image == null)
             {
                 return null;
             }
+
+            return image.Filename;
+        }
+
+        public async Task<string> GetImageFilename(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return null;
+            }
+
+            var image = await this.GetImage(id);
 
             return image.Filename;
         }

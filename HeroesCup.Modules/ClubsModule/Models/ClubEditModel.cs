@@ -18,7 +18,7 @@ namespace ClubsModule.Models
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public IFormFile UploadedLogo { get; set; }
 
-        public string LogoSrc { get; set; }
+        public string ClubImageId { get; set; }
 
         public IEnumerable<Hero> Heroes { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using ClubsModule.Services.Contracts;
-using HeroesCup.Data.Models;
+﻿using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -13,14 +12,10 @@ namespace HeroesCup.Web.Services
     {
         private const string SchoolYearIsNullOrEmptyExceptionMessage = "schoolYear is null or empty.";
         private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
-        private readonly ISchoolYearService schoolYearService;
-        private readonly IImagesService imagesService;
 
-        public LeaderboardService(ClubsModule.Services.Contracts.IMissionsService missionsService, ISchoolYearService schoolYearService, IImagesService imageService)
+        public LeaderboardService(ClubsModule.Services.Contracts.IMissionsService missionsService)
         {
             this.missionsService = missionsService;
-            this.schoolYearService = schoolYearService;
-            this.imagesService = imageService;
         }
 
         public async Task<ClubListViewModel> GetClubsBySchoolYearAsync(string schoolYear)
@@ -47,7 +42,7 @@ namespace HeroesCup.Web.Services
                         Id = m.Id,
                         Title = m.Title,
                         Club = m.Club,
-                        ImageFilename = GetMissionImageFilename(m),
+                        ImageId = m.MissionImages != null && m.MissionImages.Any() ? m.MissionImages.FirstOrDefault().ImageId.ToString() : null,
                         Slug = m.Slug
                     });
 
@@ -64,7 +59,7 @@ namespace HeroesCup.Web.Services
                         Name = GetClubName(c.Club),
                         Location = c.Club.Location,
                         ClubInitials = GetClubInitials(c.Club.Name),
-                        ClubImageFilename = GetClubImageFilename(c.Club),
+                        ClubImageId = c.Club.ClubImages != null && c.Club.ClubImages.Any() ? c.Club.ClubImages.FirstOrDefault().ImageId.ToString(): null,                       
                         HeroesCount = GetHeroesCount(c.Club),
                         Points = getClubPoints(c.Missions),
                         Club = c.Club,
@@ -81,28 +76,6 @@ namespace HeroesCup.Web.Services
             };
 
             return model;
-        }
-
-        private string GetMissionImageFilename(Mission mission)
-        {
-            if (mission.MissionImages != null && mission.MissionImages.Count > 0)
-            {
-                var missionImage = this.imagesService.GetMissionImage(mission.Id).Result;
-                return this.imagesService.GetImageFilename(missionImage.Image);
-            }
-
-            return null;
-        }
-
-        private string GetClubImageFilename(Club club)
-        {
-            if (club.ClubImages != null && club.ClubImages.Count > 0)
-            {
-                var clubImage = this.imagesService.GetClubImage(club.Id).Result;
-                return this.imagesService.GetImageFilename(clubImage.Image);
-            }
-
-            return null;
         }
 
         private string GetClubName(Club club)

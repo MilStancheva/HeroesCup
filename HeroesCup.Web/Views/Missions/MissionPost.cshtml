@@ -33,12 +33,12 @@
                         <div class="col-sm-12 pl-0 pr-0">
                             @if (Model.Mission.IsExpired)
                             {
-                                <img class="img-fluid expired-img center-cropped mission-image" src="/img/@Model.Mission.ImageFilename">
+                                <img class="img-fluid expired-img center-cropped mission-image" src="/img/@Model.Mission.ImageId">
                                 <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                             }
                             else
                             {
-                                <img class="img-fluid center-cropped mission-image" src="/img/@Model.Mission.ImageFilename">
+                                <img class="img-fluid center-cropped mission-image" src="/img/@Model.Mission.ImageId">
                             }
                         </div>
                     </div>
@@ -53,20 +53,24 @@
                                     @Html.Raw(Model.Mission.Story.Content)
                                 </div>
                             </div>
-                            <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
-                                @foreach (var imageFilename in Model.Mission.Story.ImageFilenames)
-                                {
-                                    <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
-                                        <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
-                                           data-image="/img/@imageFilename"
-                                           data-target="#image-gallery">
-                                            <img class="img-fluid img-thumbnail center-cropped story-image"
-                                                 src="/img/@imageFilename"
-                                                 alt="Another alt text">
-                                        </a>
-                                    </div>
-                                }
-                            </div>
+                            @if (Model.Mission.Story.ImageIds != null && Model.Mission.Story.ImageIds.Any())
+                            {
+                                <div class="row pt-md-4 pt-2 mt-md-4 mt-2 pr-md-2 pl-3 pr-3">
+                                    @foreach (var imageId in Model.Mission.Story.ImageIds)
+                                    {
+                                        <div class="col-md-6 col-sm-12 thumb pr-0 mb-3">
+                                            <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                                               data-image="/img/@imageId"
+                                               data-target="#image-gallery">
+                                                <img class="img-fluid img-thumbnail center-cropped story-image"
+                                                     src="/img/@imageId"
+                                                     alt="Another alt text">
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
                             <div class="col-12 separator ml-2 mr-2 mt-5"></div>
                         }
                         <div class="col-12 mt-md-3 pt-3 pl-0 pr-0 pr-md-2">

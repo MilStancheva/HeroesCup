@@ -24,8 +24,6 @@ namespace ClubsModule.Services.Contracts
 
         IEnumerable<Story> GetAllPublishedStories();
 
-        Task<Story> GetStoryByIdAsync(Guid id);
-
         Task<Story> GetStoryByMissionSlugAsync(String missionSlug);
     }
 }

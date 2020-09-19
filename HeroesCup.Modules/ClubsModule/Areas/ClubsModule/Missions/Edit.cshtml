@@ -57,7 +57,7 @@
 {
     @Html.HiddenFor(m => m.Mission.Id)
     @Html.HiddenFor(m => m.Mission.OwnerId)
-    @Html.HiddenFor(m => m.ImageSrc)
+    @Html.HiddenFor(m => m.ImageId)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -258,9 +258,9 @@
                             <label>@HeroesCupLocalizer.General["Image"]</label>
                             <div class="row col-12">
                                 <div class="col-6">
-                                    @if (Model.ImageSrc != null)
+                                    @if (Model.ImageId != null)
                                     {
-                                        <img src="@Model.ImageSrc" alt="Mission Image">
+                                        <img src="@Model.ImageId" alt="Mission Image">
                                     }
                                     else
                                     {
@@ -270,7 +270,7 @@
                                 </div>
                                 <div class="col-6">
                                 
-                                    @if (Model.ImageSrc != null)
+                                    @if (Model.ImageId != null)
                                     {
                                         <input type="file" asp-for="Image" class="form-control-file" />
                                         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })

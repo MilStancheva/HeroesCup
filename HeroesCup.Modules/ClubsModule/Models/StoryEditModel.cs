@@ -16,7 +16,7 @@ namespace ClubsModule.Models
         [AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".svg" }, ErrorMessage = "AllowedFileExtensionsErrorMessage")]
         public ICollection<IFormFile> UploadedImages { get; set; }
 
-        public ICollection<string> ImageSources { get; set; }
+        public ICollection<string> ImageIds { get; set; }
 
         public ICollection<Hero> Heroes { get; set; }
 

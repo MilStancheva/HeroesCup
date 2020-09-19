@@ -202,10 +202,8 @@ namespace ClubsModule.Services
                     .Include(c => c.HeroMissions)
                     .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)
-                    .ThenInclude(ci => ci.Image)
                     .Include(m => m.Story)
                     .ThenInclude(s => s.StoryImages)
-                    .ThenInclude(s => s.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
 
             return await MapMissionToMissionEditModel(mission);
@@ -239,7 +237,6 @@ namespace ClubsModule.Services
                 .ThenInclude(m => m.MissionImages)
                 .Include(m => m.Club)
                 .ThenInclude(c => c.ClubImages)
-                .ThenInclude(ci => ci.Image)
                 .Include(m => m.MissionImages)
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
@@ -266,10 +263,8 @@ namespace ClubsModule.Services
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
                 .Include(m => m.MissionImages)
-                .ThenInclude(mi => mi.Image)
                 .Include(m => m.Story)
                 .ThenInclude(m => m.StoryImages)
-                .ThenInclude(m => m.Image)
                 .OrderByDescending(m => m.StartDate);
 
             return missions;
@@ -309,10 +304,8 @@ namespace ClubsModule.Services
                 .Where(m => m.IsPinned == true && m.IsPublished == true)
                 .Include(m => m.Club)
                 .Include(m => m.MissionImages)
-                .ThenInclude(mi => mi.Image)
                 .Include(m => m.Story)
                 .ThenInclude(s => s.StoryImages)
-                .ThenInclude(si => si.Image)
                 .ToListAsync();
 
             int countOfPinnedMissionsOnHomePage;
@@ -327,10 +320,8 @@ namespace ClubsModule.Services
                     .Take(countOfMissionsToAdd)
                     .Include(m => m.Club)
                     .Include(m => m.MissionImages)
-                    .ThenInclude(mi => mi.Image)
                     .Include(m => m.Story)
                     .ThenInclude(s => s.StoryImages)
-                    .ThenInclude(si => si.Image)
                     .ToListAsync();
 
                 var selectedIds = missions.Select(x => x.Id).ToList();
@@ -414,10 +405,10 @@ namespace ClubsModule.Services
                     .Include(c => c.HeroMissions)
                     .ThenInclude(m => m.Hero)
                     .Include(c => c.MissionImages)
-                    .ThenInclude(ci => ci.Image)
+                    .ThenInclude(mi => mi.Image)
                     .Include(m => m.Story)
                     .ThenInclude(s => s.StoryImages)
-                    .ThenInclude(s => s.Image)
+                    .ThenInclude(si => si.Image)
                     .FirstOrDefaultAsync(c => c.Slug == slug);
 
             return await MapMissionToMissionEditModel(mission);
@@ -442,7 +433,7 @@ namespace ClubsModule.Services
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {
                 var missionImage = await this.imagesService.GetMissionImage(mission.Id);
-                model.ImageSrc = this.imagesService.GetImageSource(missionImage.Image.ContentType, missionImage.Image.Bytes);
+                model.ImageId = missionImage.ImageId.ToString();
                 model.ImageFilename = missionImage.Image.Filename;
             }
 
