@@ -2,6 +2,7 @@
 using ClubsModule.Models;
 using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +16,20 @@ namespace HeroesCup.Web.Services
         private readonly ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService;
         private readonly ClubsModule.Services.Contracts.IStoriesService storiesService;
         private readonly ClubsModule.Services.Contracts.IImagesService imageService;
+        private readonly IConfiguration configuration;
 
         public MissionsService(
             ClubsModule.Services.Contracts.IMissionsService missionsService,
             ClubsModule.Services.Contracts.IMissionIdeasService missionIdeasService,
             ClubsModule.Services.Contracts.IStoriesService storiesService,
-            ClubsModule.Services.Contracts.IImagesService imageService)
+            ClubsModule.Services.Contracts.IImagesService imageService,
+            IConfiguration configuration)
         {
             this.missionsService = missionsService;
             this.missionIdeasService = missionIdeasService;
             this.storiesService = storiesService;
             this.imageService = imageService;
+            this.configuration = configuration;
         }
 
         public IEnumerable<MissionIdeaViewModel> GetMissionIdeaViewModels()
@@ -162,7 +166,8 @@ namespace HeroesCup.Web.Services
                 MissionIdea = missionIdea,
                 ImageFilename = this.imageService.GetImageFilename(missionIdea.MissionIdeaImages.FirstOrDefault() != null ? missionIdea.MissionIdeaImages.FirstOrDefault().Image : null),
                 IsExpired = IsExpired(missionIdea.EndDate),
-                IsSeveralDays = IsSeveralDays(missionIdea.StartDate, missionIdea.EndDate)
+                IsSeveralDays = IsSeveralDays(missionIdea.StartDate, missionIdea.EndDate),
+                Organization = missionIdea.Organization != null && missionIdea.Organization != String.Empty ? missionIdea.Organization : this.configuration["DefaultOrganization"]
             };
         }
 
@@ -182,7 +187,8 @@ namespace HeroesCup.Web.Services
                 StartDate = missionIdeEditModel.MissionIdea.StartDate.ConvertToLocalDateTime(),
                 EndDate = missionIdeEditModel.MissionIdea.EndDate.ConvertToLocalDateTime(),
                 IsExpired = IsExpired(missionIdeEditModel.MissionIdea.EndDate),
-                IsSeveralDays = IsSeveralDays(missionIdeEditModel.MissionIdea.StartDate, missionIdeEditModel.MissionIdea.EndDate)
+                IsSeveralDays = IsSeveralDays(missionIdeEditModel.MissionIdea.StartDate, missionIdeEditModel.MissionIdea.EndDate),
+                Organization = missionIdeEditModel.MissionIdea.Organization != null && missionIdeEditModel.MissionIdea.Organization != String.Empty ? missionIdeEditModel.MissionIdea.Organization : this.configuration["DefaultOrganization"]
             };
         }
 
@@ -212,7 +218,7 @@ namespace HeroesCup.Web.Services
                     Slug = story.Mission.Slug,
                     //Club = story.Mission.Club,
                     ClubName = story.Mission.Club.Name,
-                    PostClubName = GetClubName(story.Mission.Club),
+                    PostClubName = GetPostClubName(story.Mission.Club),
                     ClubLocation = story.Mission.Club.Location,
                     IsExpired = IsExpired(story.Mission.EndDate),
                     IsSeveralDays = IsSeveralDays(story.Mission.StartDate, story.Mission.EndDate),
@@ -239,7 +245,7 @@ namespace HeroesCup.Web.Services
                 Mission = missionEditModel.Mission,
                 //Club = missionEditModel.Mission.Club,
                 ClubName = missionEditModel.Mission.Club.Name,
-                PostClubName = GetClubName(missionEditModel.Mission.Club),
+                PostClubName = GetPostClubName(missionEditModel.Mission.Club),
                 ClubLocation = missionEditModel.Mission.Club.Location,
                 StartDate = missionEditModel.Mission.StartDate.ConvertToLocalDateTime(),
                 EndDate = missionEditModel.Mission.EndDate.ConvertToLocalDateTime(),
@@ -268,7 +274,7 @@ namespace HeroesCup.Web.Services
                 Slug = mission.Slug,
                 //Club = mission.Club,
                 ClubName = mission.Club.Name,
-                PostClubName = GetClubName(mission.Club),
+                PostClubName = GetPostClubName(mission.Club),
                 ClubLocation = mission.Club.Location,
                 ImageFilename = this.imageService.GetImageFilename(mission.MissionImages.FirstOrDefault() != null ? mission.MissionImages.FirstOrDefault().Image : null),
                 StartDate = mission.StartDate.ConvertToLocalDateTime(),
@@ -301,7 +307,7 @@ namespace HeroesCup.Web.Services
             return endDate.ConvertToLocalDateTime().Date != startDate.ConvertToLocalDateTime().Date;
         }
 
-        private string GetClubName(Club club)
+        private string GetPostClubName(Club club)
         {
             var clubNumber = club.OrganizationNumber != null && club.OrganizationNumber != string.Empty ? $" {club.OrganizationNumber} " : string.Empty;
             var clubName = $"\"{club.Name}\", {clubNumber} {club.OrganizationType} \"{club.OrganizationName}\"";

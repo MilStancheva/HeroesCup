@@ -20,5 +20,7 @@ namespace HeroesCup.Web.Models
         public bool IsExpired { get; set; }
 
         public bool IsSeveralDays { get; set; }
+
+        public string Organization { get; set; }
     }
 }
