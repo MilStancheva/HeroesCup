@@ -110,7 +110,7 @@ namespace ClubsModule.Services
                    .ThenInclude(m => m.HeroMissions)
                    .ThenInclude(m => m.Hero)
                    .Include(c => c.StoryImages)
-                   .ThenInclude(ci => ci.Image)
+                   //.ThenInclude(ci => ci.Image)
                    .FirstOrDefaultAsync(c => c.Id == id);
 
             if (story == null)
@@ -129,19 +129,7 @@ namespace ClubsModule.Services
             model.Missions = new List<Mission>() { story.Mission };
             model.Heroes = await this.heroesService.GetHeroes(story.Mission.Club.Id, ownerId);
             model.HeroesIds = new List<Guid>();
-
-            if (story.StoryImages != null && story.StoryImages.Count > 0)
-            {
-                var storyImages = await this.imagesService.GetStoryImages(story.Id);
-                if (model.ImageSources == null)
-                {
-                    model.ImageSources = new List<string>();
-                }
-                foreach (var storyImage in storyImages)
-                {
-                    model.ImageSources.Add(this.imagesService.GetImageSource(storyImage.Image.ContentType, storyImage.Image.Bytes));
-                }
-            }
+            model.ImageIds = story.StoryImages != null && story.StoryImages.Any() ? story.StoryImages.Select(si => si.ImageId.ToString()).ToList() : new List<string>();
 
             if (story.Mission.HeroMissions != null && story.Mission.HeroMissions.Count > 0)
             {
@@ -262,26 +250,11 @@ namespace ClubsModule.Services
             return this.dbContext.Stories
                 .Include(s => s.Mission)
                 .ThenInclude(m => m.MissionImages)
-                .ThenInclude(mi => mi.Image)
                 .Include(s => s.Mission)
                 .ThenInclude(m => m.Club)
                 .Include(s => s.StoryImages)
-                .ThenInclude(si => si.Image)
                 .Where(s => s.IsPublished == true)
                 .OrderByDescending(s => s.Mission.StartDate);
-        }
-
-        public async Task<Story> GetStoryByIdAsync(Guid id)
-        {
-            return await this.dbContext.Stories
-                .Include(s => s.Mission)
-                .ThenInclude(m => m.MissionImages)
-                .ThenInclude(mi => mi.Image)
-                .Include(s => s.Mission)
-                .ThenInclude(m => m.Club)
-                .Include(s => s.StoryImages)
-                .ThenInclude(si => si.Image)
-                .FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<Story> GetStoryByMissionSlugAsync(string missionSlug)

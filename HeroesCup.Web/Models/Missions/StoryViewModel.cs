@@ -13,7 +13,9 @@ namespace HeroesCup.Web.Models
 
         public string HeroImageFilename { get; set; }
 
-        public IEnumerable<string> ImageFilenames { get; set; }
+        public string HeroImageId { get; set; }
+
+        public IEnumerable<string> ImageIds { get; set; }
 
         public string ClubName { get; set; }
     }

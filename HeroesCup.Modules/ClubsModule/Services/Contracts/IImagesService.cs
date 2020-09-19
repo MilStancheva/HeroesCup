@@ -24,6 +24,6 @@ namespace ClubsModule.Services.Contracts
 
         string GetImageFilename(Image image);
 
-        IEnumerable<string> GetImageFilenames(IEnumerable<Image> images);
+        Task<string> GetImageFilename(Guid id);
     }
 }

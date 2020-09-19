@@ -60,7 +60,6 @@ namespace ClubsModule.Services
         {
             var club = await this.dbContext.Clubs
                     .Include(c => c.ClubImages)
-                    .ThenInclude(ci => ci.Image)
                     .FirstOrDefaultAsync(c => c.Id == id);
 
             if (club == null)
@@ -87,7 +86,7 @@ namespace ClubsModule.Services
             if (club.ClubImages != null && club.ClubImages.Count > 0)
             {
                 var clubImage = await this.imagesService.GetClubImage(club.Id);
-                model.LogoSrc = this.imagesService.GetImageSource(clubImage.Image.ContentType, clubImage.Image.Bytes);
+                model.ClubImageId = Guid.Empty != clubImage.ImageId ? clubImage.ImageId.ToString() : null;
             }
 
             model.Missions = club.Missions;

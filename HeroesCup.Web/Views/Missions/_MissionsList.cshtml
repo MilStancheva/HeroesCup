@@ -15,14 +15,14 @@
                         @if (mission.IsExpired)
                         {
                         <div class="img-container text-left">
-                            <img class="img-fluid expired-img mission-img-list" src="/img/@mission.ImageFilename"  />
+                            <img class="img-fluid expired-img mission-img-list" src="/img/@mission.ImageId"  />
                             <div class="top-left body3-bold">ПРИКЛЮЧИЛА</div>
                         </div>
                         }
                         else
                         {
                         <div class="img-container text-left">
-                            <img class="img-fluid mission-img-list" src="/img/@mission.ImageFilename" />
+                            <img class="img-fluid mission-img-list" src="/img/@mission.ImageId" />
                         </div>
                         }
                         <p class="mission-title body1-bold pr-md-4 pr-1 mt-4">@mission.Title</p>

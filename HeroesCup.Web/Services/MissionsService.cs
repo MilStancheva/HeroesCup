@@ -100,19 +100,6 @@ namespace HeroesCup.Web.Services
             return this.storiesService.GetAllPublishedStories().Select(s => this.MapStoryToStoryViewModel(s));
         }
 
-        public async Task<StoryViewModel> GetStoryViewModelByIdAsync(Guid id)
-        {
-            var story = await this.storiesService.GetStoryByIdAsync(id);
-            if (story == null)
-            {
-                return null;
-            }
-
-            var model = this.MapStoryToStoryViewModel(story);
-
-            return model;
-        }
-
         public async Task<MissionViewModel> GetMissionViewModelBySlugAsync(string slug)
         {
             var result = await this.missionsService.GetMissionEditModelBySlugAsync(slug);
@@ -134,7 +121,7 @@ namespace HeroesCup.Web.Services
                 return null;
             }
 
-            var model = this.MapStoryToStoryViewModel(story);
+            var model = this.MapStoryToStoryViewModel(story, true);
 
             return model;
         }
@@ -192,25 +179,35 @@ namespace HeroesCup.Web.Services
             };
         }
 
-        private StoryViewModel MapStoryToStoryViewModel(Story story)
+        private StoryViewModel MapStoryToStoryViewModel(Story story, bool includeImages = false)
         {
             if (story == null)
             {
                 return null;
             }
 
-            var storyImageFilenames = this.imageService.GetImageFilenames(story.StoryImages.Select(s => s.Image));
-            var heroImageFilename = story.StoryImages != null && story.StoryImages.Any() ? 
-                story.StoryImages.FirstOrDefault().Image.Filename : 
-                story.Mission.MissionImages.FirstOrDefault().Image.Filename;            
+            var storyImageIds = story.StoryImages.Select(s => s.ImageId.ToString());
+            string heroImageId = story.StoryImages != null && story.StoryImages.Any() ?
+                story.StoryImages.FirstOrDefault().ImageId.ToString() :
+                story.Mission.MissionImages.FirstOrDefault().ImageId.ToString();
+            string heroImageFilename = null;
+
+            if (includeImages)
+            {
+                heroImageFilename = story.StoryImages != null && story.StoryImages.Any() ?
+                    story.StoryImages.FirstOrDefault().Image.Filename :
+                    story.Mission.MissionImages.FirstOrDefault().Image.Filename;
+            }
+
 
             return new StoryViewModel()
             {
                 Id = story.Id,
                 Content = story.Content,
                 ClubName = story.Mission.Club.Name,
-                ImageFilenames = storyImageFilenames,
                 HeroImageFilename = heroImageFilename,
+                ImageIds = storyImageIds,
+                HeroImageId = heroImageId,
                 Mission = new MissionViewModel()
                 {
                     Id = story.Mission.Id,
@@ -222,6 +219,7 @@ namespace HeroesCup.Web.Services
                     IsExpired = IsExpired(story.Mission.EndDate),
                     IsSeveralDays = IsSeveralDays(story.Mission.StartDate, story.Mission.EndDate),
                     ImageFilename = this.imageService.GetImageFilename(story.Mission.MissionImages.FirstOrDefault() != null ? story.Mission.MissionImages.FirstOrDefault().Image : null),
+                    ImageId = story.Mission.MissionImages != null && story.Mission.MissionImages.Any() ? story.Mission.MissionImages.FirstOrDefault().ImageId.ToString() : null,
                     StartDate = story.Mission.StartDate.ConvertToLocalDateTime(),
                     EndDate = story.Mission.EndDate.ConvertToLocalDateTime(),
                 }
@@ -241,6 +239,7 @@ namespace HeroesCup.Web.Services
                 Title = missionEditModel.Mission.Title,
                 Slug = missionEditModel.Mission.Slug,
                 ImageFilename = missionEditModel.ImageFilename,
+                ImageId = missionEditModel.ImageId,
                 Content = missionEditModel.Mission.Content,
                 ClubName = missionEditModel.Mission.Club.Name,
                 PostClubName = GetPostClubName(missionEditModel.Mission.Club),
@@ -253,7 +252,7 @@ namespace HeroesCup.Web.Services
                 {
                     Content = missionEditModel.Mission.Story != null ? missionEditModel.Mission.Story.Content : null,
                     ClubName = missionEditModel.Mission.Club.Name,
-                    ImageFilenames = this.imageService.GetImageFilenames(missionEditModel.Mission.Story.StoryImages.Select(s => s.Image))
+                    ImageIds = missionEditModel.Mission.Story.StoryImages != null && missionEditModel.Mission.Story.StoryImages.Any() ? missionEditModel.Mission.Story.StoryImages.Select(s => s.ImageId.ToString()) : null,
                 } : null
             };
         }
@@ -274,6 +273,7 @@ namespace HeroesCup.Web.Services
                 PostClubName = GetPostClubName(mission.Club),
                 ClubLocation = mission.Club.Location,
                 ImageFilename = this.imageService.GetImageFilename(mission.MissionImages.FirstOrDefault() != null ? mission.MissionImages.FirstOrDefault().Image : null),
+                ImageId = mission.MissionImages != null && mission.MissionImages.Any() ? mission.MissionImages.FirstOrDefault().ImageId.ToString() : null,
                 StartDate = mission.StartDate.ConvertToLocalDateTime(),
                 EndDate = mission.EndDate.ConvertToLocalDateTime(),
                 IsExpired = IsExpired(mission.EndDate),
@@ -282,7 +282,7 @@ namespace HeroesCup.Web.Services
                 {
                     Content = mission.Story.Content,
                     ClubName = mission.Club.Name,
-                    ImageFilenames = this.imageService.GetImageFilenames(mission.Story.StoryImages != null ? mission.Story.StoryImages.Select(s => s.Image) : null)
+                    ImageIds = mission.Story.StoryImages != null && mission.Story.StoryImages.Any() ? mission.Story.StoryImages.Select(s => s.ImageId.ToString()) : null,
                 } : null                
             };
         }

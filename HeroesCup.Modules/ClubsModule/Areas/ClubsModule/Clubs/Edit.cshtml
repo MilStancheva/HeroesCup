@@ -117,9 +117,9 @@
                             <p class="small"> @HeroesCupLocalizer.Club["Image Suggestion"]</p>
                             <div class="row col-12">
                                 <div class="col-6">
-                                    @if (Model.LogoSrc != null)
+                                    @if (Model.ClubImageId != null)
                                     {
-                                        <img src="@Model.LogoSrc" alt="Club Logo">
+                                        <img src="/images/@Model.ClubImageId" alt="Club Logo">
                                     }
                                     else
                                     {

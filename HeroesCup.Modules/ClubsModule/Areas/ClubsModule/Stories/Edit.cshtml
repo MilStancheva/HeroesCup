@@ -49,7 +49,7 @@
 @using (var form = Html.BeginForm("Save", "Stories", FormMethod.Post, new { @class = "form validate", role = "form", novalidate = "", enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(m => m.Story.Id)
-    @Html.HiddenFor(m => m.ImageSources)
+    @Html.HiddenFor(m => m.ImageIds)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -161,13 +161,13 @@
                             <label>@HeroesCupLocalizer.General["Images"]</label>
                             <div class="row col-12">
 
-                                @if (Model.ImageSources != null)
+                                @if (Model.ImageIds != null)
                                 {
-                                    foreach (var source in Model.ImageSources)
+                                    foreach (var imageId in Model.ImageIds)
                                     {
 
                                         <div class="col-6 mb-1">
-                                            <img src="@source" alt="Story Image" width="200">
+                                            <img src="/images/@imageId" alt="Story Image" width="200">
                                         </div>
                                     }
                                 }
