@@ -40,8 +40,8 @@ namespace HeroesCup.Web.Services
 
         public IEnumerable<MissionViewModel> GetMissionViewModels()
         {
-            var missions = this.missionsService.GetAllPublishedMissions();
-            return missions.Select(m => this.MapMissionToMissionViewModel(m));
+            var missions = this.missionsService.GetAllPublishedMissions().ToList();
+            return missions.Select(m => this.MapMissionToMissionViewModel(m, this.missionsService.GetMissionImagesIds(m.Id)));
         }
 
         public async Task<IEnumerable<MissionViewModel>> GetPinnedMissionViewModels()
@@ -231,8 +231,11 @@ namespace HeroesCup.Web.Services
                 } : null
             };
         }
-
         private MissionViewModel MapMissionToMissionViewModel(Mission mission)
+        {
+            return MapMissionToMissionViewModel(mission, null);
+        }
+        private MissionViewModel MapMissionToMissionViewModel(Mission mission, IEnumerable<Tuple<string, string>> missionImages)
         {
             if (mission == null)
             {
@@ -247,8 +250,8 @@ namespace HeroesCup.Web.Services
                 ClubName = mission.Club.Name,
                 PostClubName = GetPostClubName(mission.Club),
                 ClubLocation = mission.Club.Location,
-                ImageFilename = this.imageService.GetImageFilename(mission.MissionImages.FirstOrDefault() != null ? mission.MissionImages.FirstOrDefault().Image : null),
-                ImageId = mission.MissionImages != null && mission.MissionImages.Any() ? mission.MissionImages.FirstOrDefault().ImageId.ToString() : null,
+                ImageFilename = missionImages.FirstOrDefault().Item2,
+                ImageId = missionImages.FirstOrDefault().Item1,
                 StartDate = mission.StartDate.ConvertToLocalDateTime(),
                 EndDate = mission.EndDate.ConvertToLocalDateTime(),
                 IsExpired = IsExpired(mission.EndDate),

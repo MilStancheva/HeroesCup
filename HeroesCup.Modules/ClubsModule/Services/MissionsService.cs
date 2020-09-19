@@ -443,5 +443,14 @@ namespace ClubsModule.Services
 
             return model;
         }
+
+        public IEnumerable<Tuple<string, string>> GetMissionImagesIds(Guid missionId)
+        {
+
+            return this.dbContext.MissionImages
+            .Include(mi=>mi.Image)
+            .Where(m=>m.MissionId == missionId)
+            .Select(mi=> new Tuple<string, string> (mi.ImageId.ToString(),mi.Image.Filename));
+        }
     }
 }

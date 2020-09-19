@@ -15,7 +15,7 @@ namespace ClubsModule.Services.Contracts
         Task<Guid> SaveMissionEditModelAsync(MissionEditModel model);
 
         Task<bool> PublishMissionEditModelAsync(Guid missionId);
-
+        
         Task<bool> UnpublishMissionEditModelAsync(Guid missionId);
 
         Task<MissionEditModel> GetMissionEditModelByIdAsync(Guid id, Guid? ownerId = null);
@@ -31,7 +31,7 @@ namespace ClubsModule.Services.Contracts
         IEnumerable<string> GetMissionSchoolYears();
 
         IEnumerable<Mission> GetAllPublishedMissions();
-
+        IEnumerable<Tuple<String, String>> GetMissionImagesIds(Guid missionId);
         Task<bool> PinMissionEditModelAsync(Guid id);
 
         Task<bool> UnpinMissionEditModelAsync(Guid id);
