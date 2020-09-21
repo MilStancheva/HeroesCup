@@ -73,8 +73,9 @@ namespace HeroesCup.Controllers
 
             if (selectedLocation != null)
             {
-                model.SelectedLocation = selectedLocation.Trim();
-                model.Missions = this.missionsService.GetMissionViewModelsByLocation(selectedLocation); 
+                var parsedLocation = this.missionsService.ParseLocation(selectedLocation);
+                model.SelectedLocation = parsedLocation;
+                model.Missions = this.missionsService.GetMissionViewModelsByLocation(parsedLocation); 
             }
             else if (loadRequest)
             {

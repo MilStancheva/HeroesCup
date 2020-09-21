@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HeroesCup.Web.Services
@@ -285,6 +286,17 @@ namespace HeroesCup.Web.Services
             var clubName = $"\"{club.Name}\", {clubNumber} {club.OrganizationType} \"{club.OrganizationName}\"";
 
             return clubName;
+        }
+
+        public string ParseLocation(string location)
+        {
+            if (location == null)
+            {
+                return null;
+            }
+
+            var parsedResult = Regex.Replace(location, @"(\(\d\))", "");
+            return parsedResult.Trim();
         }
     }
 }

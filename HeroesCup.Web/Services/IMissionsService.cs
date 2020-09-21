@@ -26,5 +26,7 @@ namespace HeroesCup.Web.Services
         IEnumerable<StoryViewModel> GetAllPublishedStoryViewModels();
 
         Task<StoryViewModel> GetStoryViewModelByMissionSlugAsync(string missionSlug);
+
+        string ParseLocation(string location);
     }
 }
