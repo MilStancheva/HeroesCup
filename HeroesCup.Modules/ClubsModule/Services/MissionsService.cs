@@ -266,7 +266,7 @@ namespace ClubsModule.Services
                 // .ThenInclude(m => m.StoryImages)
                 .OrderByDescending(m => m.StartDate);
 
-            return missions;
+            return missions.ToList();
         }
 
         public async Task<bool> PinMissionEditModelAsync(Guid id)

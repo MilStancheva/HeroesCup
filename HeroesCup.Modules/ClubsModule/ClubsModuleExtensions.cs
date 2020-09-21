@@ -32,15 +32,15 @@ namespace HeroesCup.Modules.ClubsModule
             services.AddLocalization(options =>
                 options.ResourcesPath = "Resources"
             );
-            services.AddTransient<IHeroesService, HeroesService>();
-            services.AddTransient<IClubsService, ClubsService>();
-            services.AddTransient<IImagesService, ImagesService>();
-            services.AddTransient<IUserManager, UserManager>();
+            services.AddScoped<IHeroesService, HeroesService>();
+            services.AddScoped<IClubsService, ClubsService>();
+            services.AddScoped<IImagesService, ImagesService>();
+            services.AddScoped<IUserManager, UserManager>();
             services.AddScoped<IMissionsService, MissionsService>();
-            services.AddTransient<IStoriesService, StoriesService>();
+            services.AddScoped<IStoriesService, StoriesService>();
             services.AddTransient<ISchoolYearService, SchoolYearService>();
             services.AddScoped<IMissionIdeasService, MissionIdeasService>();
-            services.AddTransient<IMissionContentsService, MissionContentsService>();
+            services.AddScoped<IMissionContentsService, MissionContentsService>();
 
             // Add localization service
             services.AddScoped<HeroesCup.Localization.ManagerLocalizer>();

@@ -42,7 +42,7 @@ namespace HeroesCup.Web.Services
                         Id = m.Id,
                         Title = m.Title,
                         Club = m.Club,
-                        ImageId = m.MissionImages != null && m.MissionImages.Any() ? m.MissionImages.FirstOrDefault().ImageId.ToString() : null,
+                        ImageId = this.GetMissionImageId(m),
                         Slug = m.Slug
                     });
 
@@ -76,6 +76,17 @@ namespace HeroesCup.Web.Services
             };
 
             return model;
+        }
+
+        private string GetMissionImageId(Mission mission)
+        {
+            var missionImagesIds = this.missionsService.GetMissionImagesIds(mission.Id);
+            if (missionImagesIds != null && missionImagesIds.Any())
+            {
+                return missionImagesIds.FirstOrDefault().Item1;
+            }
+
+            return null;
         }
 
         private string GetClubName(Club club)

@@ -40,7 +40,7 @@ namespace HeroesCup.Web.Services
 
         public IEnumerable<MissionViewModel> GetMissionViewModels()
         {
-            var missions = this.missionsService.GetAllPublishedMissions().ToList();
+            var missions = this.missionsService.GetAllPublishedMissions();
             return missions.Select(m => this.MapMissionToMissionViewModel(m, this.missionsService.GetMissionImagesIds(m.Id)));
         }
 
