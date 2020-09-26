@@ -36,7 +36,7 @@ namespace HeroesCup.ClubsModule.UnitTests.SchoolYear
         public void Return_A_Valid_School_Year_When_Passed_Date_Is_In_The_Start_Of_The_SchoolYear()
         {
             var schoolYearService = new SchoolYearService();
-            var schoolYear = schoolYearService.CalculateSchoolYear(new System.DateTime(2020, 8, 27));
+            var schoolYear = schoolYearService.CalculateSchoolYear(new System.DateTime(2020, 9, 27));
 
             Assert.Equal("2020 / 2021", schoolYear);
         }
