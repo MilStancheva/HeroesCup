@@ -28,6 +28,17 @@ namespace ClubsModule.Attributes
                     }
                 }
             }
+            else
+            {
+                var file = value as IFormFile;
+                if (file != null)
+                {
+                    if (file.Length > this.maxSize)
+                    {
+                        return new ValidationResult(string.Format(this.GetErrorMessage(validationContext), this.maxSize * 0.000001));
+                    }
+                }
+            }
 
             return ValidationResult.Success;
         }

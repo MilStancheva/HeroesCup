@@ -21,13 +21,13 @@ namespace ClubsModule.Services
         private string getStartSchoolYear(DateTime? startDate)
         {
             var month = startDate.Value.Month;
-            if (month >= 8 && month <= 12)
+            if (month >= 9 && month <= 12)
             {
                 var startYear = startDate.Value.Year;
                 return startYear.ToString();
             }
 
-            if (month >= 1 && month <= 7)
+            if (month >= 1 && month < 9)
             {
                 var startYear = startDate.Value.Year - 1;
                 return startYear.ToString();

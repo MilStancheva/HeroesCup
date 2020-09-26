@@ -96,9 +96,13 @@ namespace HeroesCup.Web.Services
 
         private string GetClubInitials(string organizationName)
         {
-            Regex initials = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
-            organizationName = organizationName.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
-            return initials.Replace(organizationName, "$1");
+            var name = organizationName;
+            Regex initialsReg = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
+            name = name.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
+            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 2).ToList();
+            var result = string.Join(' ', words);
+            var initialsResult = initialsReg.Replace(result, "$1");
+            return initialsResult.Length > 3 ? initialsResult.Substring(0, 3) : initialsResult;
         }
 
         private int GetHeroesCount(Club club)

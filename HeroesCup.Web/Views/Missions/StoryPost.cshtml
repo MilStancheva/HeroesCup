@@ -77,22 +77,7 @@
                         <div class="col-12">
                             <span class="text-regular">Супер история? Сподели я.</span>
                         </div>
-
-                        <div class="col-5 body2">
-                            <div class="btn btn-share fb-share-button" id="fb-share-button">
-                                <span class="m-1">Share</span>
-                                <i class="fa fa-facebook-f"></i>
-                            </div>
-                        </div>
-
-                        <div class="col-5 body2">
-                            <a class="btn btn-share" id="twitter-share-button"
-                               href="@Model.SocialNetworksMetaData.TwitterUrl">
-                                <span class="m-1">Tweet</span>
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </div>
-
+                        <partial name="~/Views/Shared/Partial/_ShareButtons.cshtml" for="@Model.SocialNetworksMetaData.TwitterUrl" />
                     </div>
                 </div>
             </div>
