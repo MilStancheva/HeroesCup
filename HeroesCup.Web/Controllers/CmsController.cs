@@ -91,6 +91,7 @@ namespace HeroesCup.Controllers
         /// <param name="id">The unique page id</param>
         /// <param name="draft">If a draft is requested</param>
         [Route("/")]
+        [Route("/home")]
         public async Task<IActionResult> Start(Guid id, String selectedSchoolYear = null, bool draft = false)
         {
             var model = await this.loader.GetPageAsync<StartPage>(id, HttpContext.User, draft);
