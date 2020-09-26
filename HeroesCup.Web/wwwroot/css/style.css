@@ -662,6 +662,10 @@ a.leaderboard-club {
     overflow-y: auto;
 }
 
+.club-container {
+    max-height: 484px;
+}
+
 .tabpanel, .tabbable {
     background-color: none;
 }
@@ -1093,6 +1097,11 @@ a:hover .resource-icon-article {
         overflow-y: auto;
     }
 
+
+    .club-container {
+        max-height: 484px;
+    }
+
     .modal-close {
         display: block;
         width: 32px;
@@ -1252,6 +1261,11 @@ a:hover .resource-icon-article {
     .club {
         height: 100%;
         overflow-y: auto;
+    }
+
+
+    .club-container {
+        max-height: 100%;
     }
 
     .modal-close-div {
