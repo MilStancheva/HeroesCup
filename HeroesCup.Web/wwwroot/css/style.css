@@ -148,6 +148,18 @@ header {
     color: #1C1E21;
 }
 
+.body2-small {
+    /* Body 2 Regular */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Dark */
+    color: #1C1E21;
+}
+
 .body2-bold {
     /* Body 2 Bold */
     font-family: Montserrat;
