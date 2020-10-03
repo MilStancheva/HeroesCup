@@ -30,35 +30,35 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         }
 
         [Fact]
-        public async Task Throw_When_Passed_School_Year_Is_Null()
+        public async Task Return_Null_When_Passed_School_Year_Is_Null()
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
-
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
             string schoolYear = null;
+            missionsServiceMock.Setup(m => m.GetMissionsBySchoolYear(schoolYear)).Returns(Task.FromResult((IEnumerable<Mission>)null));
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+          
+            // Act
+            var result = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
 
-            // Act & Assert
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
-            });
+            // Assert
+            Assert.Null(result);
         }
 
         [Fact]
-        public async Task Throw_When_Passed_School_Year_Is_Empty()
+        public async Task Return_Null_When_Passed_School_Year_Is_Empty()
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
-
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
             string schoolYear = string.Empty;
+            missionsServiceMock.Setup(m => m.GetMissionsBySchoolYear(schoolYear)).Returns(Task.FromResult((IEnumerable<Mission>)null));
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
 
-            // Act & Assert
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
-            });
+            // Act
+            var result = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
+
+            // Assert
+            Assert.Null(result);
         }
 
         [Fact]

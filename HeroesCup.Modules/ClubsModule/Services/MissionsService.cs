@@ -229,12 +229,12 @@ namespace ClubsModule.Services
 
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
         {
-            if (schoolYear == null)
+            if (string.IsNullOrEmpty(schoolYear) || string.IsNullOrWhiteSpace(schoolYear))
             {
                 return null;
             }
 
-            return await this.dbContext.Missions
+            var result = await this.dbContext.Missions
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
                 .Include(m => m.HeroMissions)
@@ -243,6 +243,8 @@ namespace ClubsModule.Services
                 .Where(m => m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
                 .OrderByDescending(c => c.StartDate)
                 .ToListAsync();
+
+            return result;
         }
 
         public IEnumerable<string> GetMissionSchoolYears()
