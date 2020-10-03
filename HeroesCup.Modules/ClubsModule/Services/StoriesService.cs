@@ -222,6 +222,11 @@ namespace ClubsModule.Services
                 return false;
             }
 
+            var mission = this.dbContext.Missions
+                .Include(m => m.HeroMissions)
+                .FirstOrDefault(m => m.Story.Id == id);
+            mission.HeroMissions = new List<HeroMission>();
+
             this.dbContext.Stories.Remove(story);
             await this.dbContext.SaveChangesAsync();
             return true;

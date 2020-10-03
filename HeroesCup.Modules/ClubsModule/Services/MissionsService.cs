@@ -229,6 +229,11 @@ namespace ClubsModule.Services
 
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
         {
+            if (schoolYear == null)
+            {
+                return null;
+            }
+
             var now = DateTime.UtcNow.ToUnixMilliseconds();
             return await this.dbContext.Missions
                 .Where(m => m.IsPublished)
@@ -252,7 +257,7 @@ namespace ClubsModule.Services
                .GroupBy(m => m.SchoolYear)
                .Select(sy => sy.Key);
 
-            return schoolYears.ToArray();
+            return schoolYears;
         }
 
         public IEnumerable<Mission> GetAllPublishedMissions()
