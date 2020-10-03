@@ -234,14 +234,9 @@ namespace ClubsModule.Services
                 return null;
             }
 
-            var now = DateTime.UtcNow.ToUnixMilliseconds();
             return await this.dbContext.Missions
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
-                .ThenInclude(c => c.Missions)
-                .Include(m => m.Club)
-                // .ThenInclude(c => c.ClubImages)
-                // .Include(m => m.MissionImages)
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
