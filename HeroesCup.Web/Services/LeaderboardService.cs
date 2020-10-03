@@ -20,12 +20,12 @@ namespace HeroesCup.Web.Services
 
         public async Task<ClubListViewModel> GetClubsBySchoolYearAsync(string schoolYear)
         {
-            if (string.IsNullOrEmpty(schoolYear) || string.IsNullOrWhiteSpace(schoolYear))
+            var missions = await this.missionsService.GetMissionsBySchoolYear(schoolYear);
+            if (missions == null)
             {
-                throw new ArgumentException(SchoolYearIsNullOrEmptyExceptionMessage);
+                return null;
             }
 
-            var missions = await this.missionsService.GetMissionsBySchoolYear(schoolYear);
             var clubs = missions
                 .GroupBy(m => m.Club)
                 .Select(g => new

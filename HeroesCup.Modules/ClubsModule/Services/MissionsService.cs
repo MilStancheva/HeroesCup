@@ -229,20 +229,22 @@ namespace ClubsModule.Services
 
         public async Task<IEnumerable<Mission>> GetMissionsBySchoolYear(string schoolYear)
         {
-            var now = DateTime.UtcNow.ToUnixMilliseconds();
-            return await this.dbContext.Missions
+            if (string.IsNullOrEmpty(schoolYear) || string.IsNullOrWhiteSpace(schoolYear))
+            {
+                return null;
+            }
+
+            var result = await this.dbContext.Missions
                 .Where(m => m.IsPublished)
                 .Include(c => c.Club)
-                .ThenInclude(c => c.Missions)
-                .Include(m => m.Club)
-                // .ThenInclude(c => c.ClubImages)
-                // .Include(m => m.MissionImages)
                 .Include(m => m.HeroMissions)
                 .ThenInclude(hm => hm.Hero)
                 .Where(m => m.SchoolYear == schoolYear)
                 .Where(m => m.Stars != 0 && m.HeroMissions != null && m.HeroMissions.Count > 0)
                 .OrderByDescending(c => c.StartDate)
                 .ToListAsync();
+
+            return result;
         }
 
         public IEnumerable<string> GetMissionSchoolYears()
@@ -252,7 +254,7 @@ namespace ClubsModule.Services
                .GroupBy(m => m.SchoolYear)
                .Select(sy => sy.Key);
 
-            return schoolYears.ToArray();
+            return schoolYears;
         }
 
         public IEnumerable<Mission> GetAllPublishedMissions()
@@ -261,9 +263,7 @@ namespace ClubsModule.Services
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
-                // .Include(m => m.MissionImages)
                 .Include(m => m.Story)
-                // .ThenInclude(m => m.StoryImages)
                 .OrderByDescending(m => m.StartDate);
 
             return missions.ToList();

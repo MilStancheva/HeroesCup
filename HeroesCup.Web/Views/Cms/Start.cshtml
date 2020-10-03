@@ -141,7 +141,7 @@
 
         @* Leaderboard *@
         <div class="pt-5 pb-5 pl-md-3 pr-md-3 pl-0 pr-0">
-            @if (Model.Clubs.Clubs.Count() > 0 || Model.SchoolYears.Count() > 0)
+            @if (Model.Clubs != null && (Model.Clubs.Clubs.Count() > 0 || Model.SchoolYears.Count() > 0) && Model.SelectedSchoolYear != null)
             {
                 var selectItems = new List<SelectListItem>();
                 @foreach (var year in Model.SchoolYears)
@@ -159,7 +159,6 @@
                                 <div class="btn school-years-button custom-select">
                                     <div class="custom-select__trigger">
                                         <span>@Model.SelectedSchoolYear</span>
-                                        @*<div class="arrow"></div>*@
                                     </div>
                                     <div class="custom-options">
                                         @foreach (var year in selectItems)
@@ -223,7 +222,7 @@
                         <hr />
 
                         <!-- Club Modal -->
-                        @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
+                        <partial name="~/Views/Shared/Partial/_ClubDetails.cshtml" for="@club" />
                     }
                 </div>
             }
