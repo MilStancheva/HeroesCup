@@ -261,9 +261,7 @@ namespace ClubsModule.Services
                 .Where(m => m.IsPublished == true)
                 .Include(m => m.HeroMissions)
                 .Include(m => m.Club)
-                // .Include(m => m.MissionImages)
                 .Include(m => m.Story)
-                // .ThenInclude(m => m.StoryImages)
                 .OrderByDescending(m => m.StartDate);
 
             return missions.ToList();

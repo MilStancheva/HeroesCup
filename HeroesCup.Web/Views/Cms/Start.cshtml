@@ -222,7 +222,7 @@
                         <hr />
 
                         <!-- Club Modal -->
-                        @await Html.PartialAsync("~/Views/Shared/Partial/_ClubDetails.cshtml", club)
+                        <partial name="~/Views/Shared/Partial/_ClubDetails.cshtml" for="@club" />
                     }
                 </div>
             }
