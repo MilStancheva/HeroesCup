@@ -255,5 +255,16 @@ namespace ClubsModule.Services
 
             return image;
         }
+
+        public string getClubImageId(Guid clubId)
+        {
+            var clubImage = this.dbContext.ClubImages.Where(ci => ci.ClubId == clubId).FirstOrDefault();
+            if (clubImage == null)
+            {
+                return null;
+            }
+
+            return clubImage.ImageId.ToString();
+        }
     }
 }

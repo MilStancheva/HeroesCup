@@ -3,7 +3,7 @@
     var club = Model;
 }
 
-<div class="modal fading" id="@club.Id.ToString()">
+<div class="modal fade" id="@club.Id.ToString()" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg club-modal" role="document">
         <div class="modal-content">
             <div class="row">
@@ -39,7 +39,7 @@
                                 <span data-letters="@club.ClubInitials"></span>
                             </div>
                             <div class="col-10 pl-md-1 pl-2">
-                                @if (club.Name.Length >= 70)
+                                @if (club.Name.Length + club.Location.Length >= 70)
                                 {
 
                                     <p class="body1-bold d-none d-md-block d-sm-none d-xs-none">
@@ -194,3 +194,11 @@
         </div>
     </div>
 </div>
+
+@section script{ 
+    <script>
+    $('#@club.Id.ToString()').on('shown.bs.modal', function () {
+        $('#@club.Id.ToString()').trigger('focus')
+    })
+    </script>
+}
