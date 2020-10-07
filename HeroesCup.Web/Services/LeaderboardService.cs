@@ -10,12 +10,14 @@ namespace HeroesCup.Web.Services
 {
     public class LeaderboardService : ILeaderboardService
     {
-        private const string SchoolYearIsNullOrEmptyExceptionMessage = "schoolYear is null or empty.";
         private readonly ClubsModule.Services.Contracts.IMissionsService missionsService;
+        private readonly ClubsModule.Services.Contracts.IImagesService imagesService;
 
-        public LeaderboardService(ClubsModule.Services.Contracts.IMissionsService missionsService)
+        public LeaderboardService(ClubsModule.Services.Contracts.IMissionsService missionsService,
+            ClubsModule.Services.Contracts.IImagesService imagesService)
         {
             this.missionsService = missionsService;
+            this.imagesService = imagesService;
         }
 
         public async Task<ClubListViewModel> GetClubsBySchoolYearAsync(string schoolYear)
@@ -58,9 +60,9 @@ namespace HeroesCup.Web.Services
                         Id = c.Club.Id,
                         Name = GetClubName(c.Club),
                         Location = c.Club.Location,
-                        ClubInitials = GetClubInitials(c.Club.Name),
-                        ClubImageId = c.Club.ClubImages != null && c.Club.ClubImages.Any() ? c.Club.ClubImages.FirstOrDefault().ImageId.ToString(): null,                       
+                        ClubInitials = GetClubInitials(c.Club.Name),                      
                         HeroesCount = GetHeroesCount(c.Club),
+                        ClubImageId = this.imagesService.getClubImageId(c.Club.Id),
                         Points = getClubPoints(c.Missions),
                         Club = c.Club,
                         Missions = clubMissions,
@@ -68,7 +70,8 @@ namespace HeroesCup.Web.Services
                         Coordinators = clubHeroes.Where(h => h.IsCoordinator)
                     };
                 })
-                .OrderByDescending(c => c.Points);
+                .OrderByDescending(c => c.Points)
+                .ThenBy(c => c.Club.Name);
 
             var model = new ClubListViewModel()
             {

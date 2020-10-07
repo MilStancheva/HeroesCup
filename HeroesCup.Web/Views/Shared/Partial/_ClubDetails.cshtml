@@ -3,7 +3,7 @@
     var club = Model;
 }
 
-<div class="modal fading" id="@club.Id.ToString()">
+<div class="modal fade" id="@club.Id.ToString()" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg club-modal" role="document">
         <div class="modal-content">
             <div class="row">
@@ -30,7 +30,7 @@
                     }
                 </div>
                 <div class="col-md-7 col-sm-12 pl-md-0 pl-1 club-container">
-                    <div class="modal-header no-border mt-3 pt-3 pr-0 pr-md-3 mr-0 pb-1 mb-0">
+                    <div class="modal-header no-border mt-3 pt-3 pr-0 pr-md-3 mr-0 pb-0 mb-0 pl-md-0">
                         <div class="row pl-md-0 pl-4 pr-0 pr-md-3">
                             <div class="col-12 text-right d-none d-md-block d-sm-none d-xs-none">
                                 <a href="/" type="button" class="close modal-close" data-dismiss="modal" aria-label="Close"></a>
@@ -39,7 +39,7 @@
                                 <span data-letters="@club.ClubInitials"></span>
                             </div>
                             <div class="col-10 pl-md-1 pl-2">
-                                @if (club.Name.Length >= 70)
+                                @if (club.Name.Length + club.Location.Length >= 70)
                                 {
 
                                     <p class="body1-bold d-none d-md-block d-sm-none d-xs-none">
@@ -110,7 +110,7 @@
                                         <div class="col-12">
                                             <p class="body2">Координатори:</p>
                                         </div>
-                                        <div class="row col-12 mt-3 align-top">
+                                        <div class="row col-12 align-top">
                                             @foreach (var coordinator in club.Coordinators)
                                             {
                                                 <div class="row col-sm-6 vertical-center p-1">
@@ -127,7 +127,7 @@
 
                             @* Club Missions *@
                             <div role="tabpanel" class="tab-pane pl-3 pt-3 pr-3 pb-0" id="club_missions_@club.Id.ToString()">
-                                <div class="club row mt-3">
+                                <div class="club row mt-2">
                                     @foreach (var mission in club.Missions)
                                     {
                                         var today = DateTime.Now.ToLocalTime().Date;

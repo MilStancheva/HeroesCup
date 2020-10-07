@@ -18,8 +18,9 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
+            var imagesServiceMock = new Mock<ClubsModule.Services.Contracts.IImagesService>();
 
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object, imagesServiceMock.Object);
             var schoolYear = "2019 / 2020";
 
             // Act
@@ -34,9 +35,10 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
+            var imagesServiceMock = new Mock<ClubsModule.Services.Contracts.IImagesService>();
             string schoolYear = null;
             missionsServiceMock.Setup(m => m.GetMissionsBySchoolYear(schoolYear)).Returns(Task.FromResult((IEnumerable<Mission>)null));
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object, imagesServiceMock.Object);
           
             // Act
             var result = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
@@ -50,9 +52,10 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
+            var imagesServiceMock = new Mock<ClubsModule.Services.Contracts.IImagesService>();
             string schoolYear = string.Empty;
             missionsServiceMock.Setup(m => m.GetMissionsBySchoolYear(schoolYear)).Returns(Task.FromResult((IEnumerable<Mission>)null));
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object, imagesServiceMock.Object);
 
             // Act
             var result = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
@@ -66,6 +69,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
+            var imagesServiceMock = new Mock<ClubsModule.Services.Contracts.IImagesService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";
@@ -122,7 +126,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 mission
             });
 
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object, imageServiceMock.Object);
 
             // Act
             var model = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
@@ -136,6 +140,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
         {
             // Arrange
             var missionsServiceMock = new Mock<ClubsModule.Services.Contracts.IMissionsService>();
+            var imagesServiceMock = new Mock<ClubsModule.Services.Contracts.IImagesService>();
             var schoolYearsServiceMock = new Mock<ISchoolYearService>();
             var imageServiceMock = new Mock<IImagesService>();
             var schoolYear = "2019 / 2020";
@@ -245,7 +250,7 @@ namespace HeroesCup.Web.UnitTests.Leaderboard
                 secondMission
             });
 
-            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object);
+            var leaderBoardService = new LeaderboardService(missionsServiceMock.Object, imageServiceMock.Object);
 
             // Act
             var model = await leaderBoardService.GetClubsBySchoolYearAsync(schoolYear);
