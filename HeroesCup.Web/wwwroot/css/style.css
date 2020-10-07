@@ -523,15 +523,6 @@ header {
     align-content: center;
 }
 
-
-/*.club-image img {
-    margin: 0;
-    padding: 0;
-    min-width: 384px;
-    max-width: 384px;
-    height: 100%;
-}*/
-
 .center-cropped {
     object-fit: cover; /* Do not scale the image */
     /*object-position: center;*/ /* Center the image within the element */
@@ -633,6 +624,7 @@ a.leaderboard-club {
 .leaderboard-club:hover {
     background: #FFE89E;
     border-bottom: none;
+    cursor: pointer;
 }
 
     .leaderboard-club:hover [data-letters]:before {
@@ -670,7 +662,7 @@ a.leaderboard-club {
 }
 
 .club {
-    height: 264px;
+    height: 250px;
     overflow-y: auto;
 }
 

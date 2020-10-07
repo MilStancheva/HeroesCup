@@ -70,7 +70,8 @@ namespace HeroesCup.Web.Services
                         Coordinators = clubHeroes.Where(h => h.IsCoordinator)
                     };
                 })
-                .OrderByDescending(c => c.Points);
+                .OrderByDescending(c => c.Points)
+                .ThenBy(c => c.Club.Name);
 
             var model = new ClubListViewModel()
             {
