@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Missions page", UseBlocks = false)]
-    [PageTypeRoute(Title = "Missions", Route = "/missions")]
+    [ContentTypeRoute(Title = "Missions", Route = "/missions")]
     public class MissionsPage : Page<MissionsPage>, ISocialNetworkPost
     {
         public IEnumerable<MissionViewModel> Missions { get; set; }

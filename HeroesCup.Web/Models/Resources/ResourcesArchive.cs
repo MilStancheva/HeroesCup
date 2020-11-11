@@ -6,7 +6,7 @@ using Piranha.Models;
 namespace HeroesCup.Web.Models.Resources
 {
     [PageType(Title = "Resources archive", UseBlocks = false, IsArchive = true)]
-    [PageTypeRoute(Title = "Default", Route = "/resources")]
+    [ContentTypeRoute(Title = "Default", Route = "/resources")]
     public class ResourcesArchive : Page<ResourcesArchive>, ISocialNetworkPost
     {
         /// <summary>

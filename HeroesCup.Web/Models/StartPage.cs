@@ -1,4 +1,3 @@
-using HeroesCup.Data.Models;
 using HeroesCup.Models.Regions;
 using HeroesCup.Web.Models;
 using Piranha.AttributeBuilder;
@@ -9,7 +8,7 @@ using System.Collections.Generic;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Start page")]
-    [PageTypeRoute(Title = "Start", Route = "/")]
+    [ContentTypeRoute(Title = "Start", Route = "/")]
     public class StartPage : Page<StartPage>, ISocialNetworkPost
     {
         [Region(ListTitle = "Carousel")]

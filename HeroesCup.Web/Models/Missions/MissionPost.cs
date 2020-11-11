@@ -5,7 +5,7 @@ using System.Globalization;
 namespace HeroesCup.Web.Models.Missions
 {
     [PostType(Title = "Mission post")]
-    [PostTypeRoute(Title = "Default", Route = "/mission")]
+    [ContentTypeRoute(Title = "Default", Route = "/mission")]
     public class MissionPost : Post<MissionPost>, IHeroesCupPost, ISocialNetworkPost
     {
         public MissionViewModel Mission { get; set; }

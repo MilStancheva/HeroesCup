@@ -9,7 +9,7 @@ using System.Globalization;
 namespace HeroesCup.Web.Models.Events
 {
     [PostType(Title = "Events post", UsePrimaryImage = false, UseExcerpt = false)]
-    [PostTypeRoute(Title = "Default", Route = "/event")]
+    [ContentTypeRoute(Title = "Default", Route = "/event")]
     public class EventPost : Post<EventPost>, IHeroesCupPost, ISocialNetworkPost
     {
 
