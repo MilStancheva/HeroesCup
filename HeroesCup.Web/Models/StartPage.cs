@@ -1,4 +1,3 @@
-using HeroesCup.Data.Models;
 using HeroesCup.Models.Regions;
 using HeroesCup.Web.Models;
 using Piranha.AttributeBuilder;

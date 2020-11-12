@@ -188,8 +188,8 @@
                     {
                         index += 1;
 
-                        <a onclick='$("#@club.Id.ToString()").modal("show");' class="col-12 leaderboard-club p-md-2 p-3">
-                            <div class="row vertical-center">
+                        <a onclick='$("#@club.Id.ToString()").modal("show");' class="col-12 leaderboard-club p-md-2 pr-0">
+                            <div class="row vertical-center pt-md-1 pb-md-1 pt-3 pb-3">
                                 <div class="col-1 align-self-start mt-3">
                                     <div class="text-center">
                                         <span class="body1-bold align-top">@index</span>
@@ -199,18 +199,18 @@
                                     <div class="col-md-1 col-sm-12 text-md-center">
                                         <span class="body1-bold" data-letters="@club.ClubInitials"></span>
                                     </div>
-                                    <div class="col-md-8 col-sm-12 body1 pt-3 pb-3">
+                                    <div class="col-md-7 col-sm-12 body1 pt-3 pb-3">
                                         <span>@club.Name</span>,
                                         <span>@club.Location</span>
                                     </div>
-                                    <div class="row col-md-3 col-sm-12 mr-0 ml-0 pl-0 pr-0 vertical-center">
-                                        <div class="col-5 text-left body1 pr-0">
+                                    <div class="row body1 col-md-4 col-sm-12 mr-0 ml-0 pl-2 pl-md-0 pr-0 vertical-center">
+                                        <div class="col-5 text-left text-md-right pl-2 pl-md-0 pr-0">
                                             <span>@club.Points точки</span>
                                         </div>
-                                        <div class="col-1 text-center">
+                                        <div class="col-1 text-center justify-content-around">
                                             <span class="points-heroes-separator"></span>
                                         </div>
-                                        <div class="col-5 text-right body1 pl-2">
+                                        <div class="col-5 text-right text-md-left pl-2 pr-0">
                                             <span>@club.HeroesCount герои</span>
                                         </div>
                                     </div>

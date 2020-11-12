@@ -141,7 +141,6 @@ namespace HeroesCup
                 options.UseTinyMCE();
                 options.UseIdentity();
             });
-            app.UsePiranhaStartPage();
             app.UseClubsModule();
             Piranha.App.MediaTypes.Images.Add(".svg", "image/svg+xml", false);
 

@@ -1,7 +1,6 @@
 ﻿using HeroesCup.Models.Regions;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
-using Piranha.Extend.Fields;
 using Piranha.Models;
 
 namespace HeroesCup.Models
