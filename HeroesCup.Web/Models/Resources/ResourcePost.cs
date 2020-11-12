@@ -10,7 +10,7 @@ using System.Globalization;
 namespace HeroesCup.Web.Models.Resources
 {
     [PostType(Title = "Resource post", UsePrimaryImage = false, UseExcerpt = false)]
-    [ContentTypeRoute(Title = "Default", Route = "/resource")]
+    [PostTypeRoute(Title = "Default", Route = "/resource")]
     public class ResourcePost : Post<ResourcePost>, IHeroesCupPost, ISocialNetworkPost
     {
         /// <summary>

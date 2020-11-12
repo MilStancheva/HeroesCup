@@ -6,7 +6,7 @@ using Piranha.Models;
 namespace HeroesCup.Web.Models
 {
     [PageType(Title = "About page", UsePrimaryImage = false, UseExcerpt = false)]
-    [ContentTypeRoute(Title = "About", Route = "/about")]
+    [PageTypeRoute(Title = "About", Route = "/about")]
     public class AboutPage: Page<AboutPage>, ISocialNetworkPost
     {
         [Region(Title="Indroduction")]

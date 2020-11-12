@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace HeroesCup.Models
 {
     [PageType(Title = "Start page")]
-    [ContentTypeRoute(Title = "Start", Route = "/")]
+    [PageTypeRoute(Title = "Start", Route = "/")]
     public class StartPage : Page<StartPage>, ISocialNetworkPost
     {
         [Region(ListTitle = "Carousel")]

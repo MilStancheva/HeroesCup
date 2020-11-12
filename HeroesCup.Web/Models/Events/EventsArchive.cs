@@ -6,7 +6,7 @@ using Piranha.Models;
 namespace HeroesCup.Web.Models.Events
 {
     [PageType(Title = "Events archive", UseBlocks = false, IsArchive = true)]
-    [ContentTypeRoute(Title = "Default", Route = "/events")]
+    [PageTypeRoute(Title = "Default", Route = "/events")]
     public class EventsArchive : Page<EventsArchive>, ISocialNetworkPost
     {
         /// <summary>
