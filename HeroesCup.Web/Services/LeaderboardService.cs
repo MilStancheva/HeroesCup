@@ -1,4 +1,5 @@
-﻿using HeroesCup.Data.Models;
+﻿using ClubsModule.Common;
+using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,10 @@ namespace HeroesCup.Web.Services
                         Title = m.Title,
                         Club = m.Club,
                         ImageId = this.GetMissionImageId(m),
-                        Slug = m.Slug
+                        Slug = m.Slug,
+                        EndDate = m.EndDate.ConvertToLocalDateTime(),
+                        StartDate = m.StartDate.ConvertToLocalDateTime(),
+                        IsExpired = IsExpired(m.EndDate)
                     });
 
                     IEnumerable<HeroViewModel> clubHeroes = c.Club.Heroes.Select(h => new HeroViewModel()
@@ -127,6 +131,18 @@ namespace HeroesCup.Web.Services
         {
             var latestSchoolYear = this.GetSchoolYears().OrderByDescending(x => x).FirstOrDefault();
             return latestSchoolYear;
+        }
+
+        private bool IsExpired(long endDate)
+        {
+            var today = DateTime.Now.Date;
+            var expiredMission = false;
+            if (today > endDate.ConvertToLocalDateTime().Date)
+            {
+                expiredMission = true;
+            }
+
+            return expiredMission;
         }
     }
 }

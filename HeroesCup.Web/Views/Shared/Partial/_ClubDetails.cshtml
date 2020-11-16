@@ -131,16 +131,11 @@
                                     @foreach (var mission in club.Missions)
                                     {
                                         var today = DateTime.Now.ToLocalTime().Date;
-                                        var expiredMission = false;
-                                        if (today > mission.EndDate.Date)
-                                        {
-                                            expiredMission = true;
-                                        }
 
                                         <div class="col-sm-12 col-md-6 mt-3">
                                             <div class="club-mission-body">
                                                 <a href="/mission/@mission.Slug">
-                                                    @if (expiredMission)
+                                                    @if (mission.IsExpired)
                                                     {
                                                         <div class="img-container text-left">
                                                             <img class="img-fluid expired-img club-mission-img-list" src="/img/@mission.ImageId" />
