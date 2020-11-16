@@ -106,7 +106,10 @@ namespace HeroesCup.Web.Services
             var name = organizationName;
             Regex initialsReg = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
             name = name.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
-            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 2).ToList();
+            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Where(w => w.Length > 2)
+                .Select(w => w.Trim('\"'))
+                .ToList();
             var result = string.Join(' ', words);
             var initialsResult = initialsReg.Replace(result, "$1");
             return initialsResult.Length > 3 ? initialsResult.Substring(0, 3) : initialsResult;
