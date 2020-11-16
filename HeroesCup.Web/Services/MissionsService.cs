@@ -2,12 +2,14 @@
 using ClubsModule.Models;
 using HeroesCup.Data.Models;
 using HeroesCup.Web.Models;
+using HeroesCup.Web.Common;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HeroesCup.Web.Common.Extensions;
 
 namespace HeroesCup.Web.Services
 {
@@ -127,7 +129,7 @@ namespace HeroesCup.Web.Services
                 Slug = missionIdea.Slug,
                 MissionIdea = missionIdea,
                 ImageId = missionIdea.MissionIdeaImages != null && missionIdea.MissionIdeaImages.Any() ? missionIdea.MissionIdeaImages.FirstOrDefault().ImageId.ToString() : null,
-                IsExpired = IsExpired(missionIdea.EndDate),
+                IsExpired = missionIdea.EndDate.IsExpired(),
                 IsSeveralDays = IsSeveralDays(missionIdea.StartDate, missionIdea.EndDate),
                 Organization = missionIdea.Organization != null && missionIdea.Organization != String.Empty ? missionIdea.Organization : this.configuration["DefaultOrganization"]
             };
@@ -149,7 +151,7 @@ namespace HeroesCup.Web.Services
                 MissionIdea = missionIdeEditModel.MissionIdea,
                 StartDate = missionIdeEditModel.MissionIdea.StartDate.ConvertToLocalDateTime(),
                 EndDate = missionIdeEditModel.MissionIdea.EndDate.ConvertToLocalDateTime(),
-                IsExpired = IsExpired(missionIdeEditModel.MissionIdea.EndDate),
+                IsExpired = missionIdeEditModel.MissionIdea.EndDate.IsExpired(),
                 IsSeveralDays = IsSeveralDays(missionIdeEditModel.MissionIdea.StartDate, missionIdeEditModel.MissionIdea.EndDate),
                 Organization = missionIdeEditModel.MissionIdea.Organization != null && missionIdeEditModel.MissionIdea.Organization != String.Empty ? missionIdeEditModel.MissionIdea.Organization : this.configuration["DefaultOrganization"]
             };
@@ -192,7 +194,7 @@ namespace HeroesCup.Web.Services
                     ClubName = story.Mission.Club.Name,
                     PostClubName = GetPostClubName(story.Mission.Club),
                     ClubLocation = story.Mission.Club.Location,
-                    IsExpired = IsExpired(story.Mission.EndDate),
+                    IsExpired = story.Mission.EndDate.IsExpired(),
                     IsSeveralDays = IsSeveralDays(story.Mission.StartDate, story.Mission.EndDate),
                     ImageFilename = this.imageService.GetImageFilename(story.Mission.MissionImages.FirstOrDefault() != null ? story.Mission.MissionImages.FirstOrDefault().Image : null),
                     ImageId = story.Mission.MissionImages != null && story.Mission.MissionImages.Any() ? story.Mission.MissionImages.FirstOrDefault().ImageId.ToString() : null,
@@ -222,7 +224,7 @@ namespace HeroesCup.Web.Services
                 ClubLocation = missionEditModel.Mission.Club.Location,
                 StartDate = missionEditModel.Mission.StartDate.ConvertToLocalDateTime(),
                 EndDate = missionEditModel.Mission.EndDate.ConvertToLocalDateTime(),
-                IsExpired = IsExpired(missionEditModel.Mission.EndDate),
+                IsExpired = missionEditModel.Mission.EndDate.IsExpired(),
                 IsSeveralDays = IsSeveralDays(missionEditModel.Mission.StartDate, missionEditModel.Mission.EndDate),
                 Story = missionEditModel.Mission.Story != null ? new StoryViewModel()
                 {
@@ -252,7 +254,7 @@ namespace HeroesCup.Web.Services
                 ImageId = missionImages.FirstOrDefault().Item1,
                 StartDate = mission.StartDate.ConvertToLocalDateTime(),
                 EndDate = mission.EndDate.ConvertToLocalDateTime(),
-                IsExpired = IsExpired(mission.EndDate),
+                IsExpired = mission.EndDate.IsExpired(),
                 IsSeveralDays = IsSeveralDays(mission.StartDate, mission.EndDate),
                 Story = mission.Story != null ? new StoryViewModel()
                 {
@@ -261,18 +263,6 @@ namespace HeroesCup.Web.Services
                     ImageIds = mission.Story.StoryImages != null && mission.Story.StoryImages.Any() ? mission.Story.StoryImages.Select(s => s.ImageId.ToString()) : null,
                 } : null                
             };
-        }
-
-        private bool IsExpired(long endDate)
-        {
-            var today = DateTime.Now.Date;
-            var expiredMission = false;
-            if (today > endDate.ConvertToLocalDateTime().Date)
-            {
-                expiredMission = true;
-            }
-
-            return expiredMission;
         }
 
         private bool IsSeveralDays(long startDate, long endDate)
