@@ -105,11 +105,12 @@ namespace HeroesCup.Web.Services
         private string GetClubInitials(string organizationName)
         {
             var name = organizationName;
+            var charactersToTrim = new Char[] { ' ', '*', '.', '"', '\'', '”', '“' };
             Regex initialsReg = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
-            name = name.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
+            name = name.Trim(charactersToTrim).ToUpper();
             var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Where(w => w.Length > 2)
-                .Select(w => w.Trim('\"'))
+                .Select(w => w.Trim(charactersToTrim))
                 .ToList();
             var result = string.Join(' ', words);
             var initialsResult = initialsReg.Replace(result, "$1");
