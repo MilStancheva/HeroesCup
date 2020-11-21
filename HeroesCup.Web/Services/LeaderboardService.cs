@@ -1,4 +1,6 @@
-﻿using HeroesCup.Data.Models;
+﻿using ClubsModule.Common;
+using HeroesCup.Data.Models;
+using HeroesCup.Web.Common.Extensions;
 using HeroesCup.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -45,7 +47,10 @@ namespace HeroesCup.Web.Services
                         Title = m.Title,
                         Club = m.Club,
                         ImageId = this.GetMissionImageId(m),
-                        Slug = m.Slug
+                        Slug = m.Slug,
+                        EndDate = m.EndDate.ConvertToLocalDateTime(),
+                        StartDate = m.StartDate.ConvertToLocalDateTime(),
+                        IsExpired = m.EndDate.IsExpired()
                     });
 
                     IEnumerable<HeroViewModel> clubHeroes = c.Club.Heroes.Select(h => new HeroViewModel()
@@ -100,9 +105,13 @@ namespace HeroesCup.Web.Services
         private string GetClubInitials(string organizationName)
         {
             var name = organizationName;
+            var charactersToTrim = new Char[] { ' ', '*', '.', '"', '\'', '”', '“' };
             Regex initialsReg = new Regex(@"(\b[a-zA-Z-а-яА-Я])[a-zA-Z-а-яА-Я]* ?");
-            name = name.Trim(new Char[] { ' ', '*', '.', '"', '\'', '”', '“' }).ToUpper();
-            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries).Where(w => w.Length > 2).ToList();
+            name = name.Trim(charactersToTrim).ToUpper();
+            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Where(w => w.Length > 2)
+                .Select(w => w.Trim(charactersToTrim))
+                .ToList();
             var result = string.Join(' ', words);
             var initialsResult = initialsReg.Replace(result, "$1");
             return initialsResult.Length > 3 ? initialsResult.Substring(0, 3) : initialsResult;
