@@ -1,4 +1,5 @@
-﻿using ClubsModule.Models;
+﻿using ClubsModule.Exceptions;
+using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Localization;
 using Microsoft.AspNetCore.Authorization;
@@ -62,13 +63,21 @@ namespace ClubsModule.Controllers
             {
                 ErrorMessage(this.heroesCupLocalizer.Mission["The mission idea could not be saved."], false);
                 return View("Edit", model);
-            }
+            }            
 
-            var missionId = await this.missionIdeasService.SaveMissionIdeaEditModelAsync(model);
-            if (missionId != null && missionId != Guid.Empty)
+            try
             {
-                SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been saved."]);
-                return RedirectToAction("Edit", new { id = missionId });
+                var missionId = await this.missionIdeasService.SaveMissionIdeaEditModelAsync(model);
+                if (missionId != null && missionId != Guid.Empty)
+                {
+                    SuccessMessage(this.heroesCupLocalizer.MissionIdea["The mission idea has been saved."]);
+                    return RedirectToAction("Edit", new { id = missionId });
+                }
+            }
+            catch (ExistingItemException)
+            {
+                ErrorMessage(this.heroesCupLocalizer.MissionIdea["There is already a mission idea with the same title."]);
+                return View("Edit", model);
             }
 
             ErrorMessage(this.heroesCupLocalizer.MissionIdea["The mission idea could not be saved."], false);

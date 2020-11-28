@@ -153,4 +153,7 @@
   <data name="The mission idea has been unpublished." xml:space="preserve">
     <value>Идеята за мисия не е публична. </value>
   </data>
+  <data name="There is already a mission idea with the same title." xml:space="preserve">
+    <value>Вече съществува идeя за мисия с това заглавие.</value>
+  </data>
 </root>
