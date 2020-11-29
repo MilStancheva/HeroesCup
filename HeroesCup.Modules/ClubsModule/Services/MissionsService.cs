@@ -107,7 +107,13 @@ namespace ClubsModule.Services
                 .Include(m => m.Content)
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
-            var missionWithSameTitle = await this.dbContext.Missions.Where(m => m.Title == model.Mission.Title && m.Id != model.Mission.Id).FirstOrDefaultAsync();
+            var slug = model.Mission.Title.ToSlug();
+            slug = slug.Unidecode();
+
+            var missionWithSameTitle = await this.dbContext.Missions
+                .Where(m => (m.Title == model.Mission.Title || m.Slug == slug) && 
+                m.Id != model.Mission.Id).FirstOrDefaultAsync();
+
             if (missionWithSameTitle != null)
             {
                 throw new ExistingItemException();
@@ -124,8 +130,7 @@ namespace ClubsModule.Services
             }
 
             mission.Title = model.Mission.Title;
-            mission.Slug = model.Mission.Title.ToSlug();
-            mission.Slug = mission.Slug.Unidecode();
+            mission.Slug = slug;
             mission.Location = model.Mission.Location;
             if (model.Mission.Stars != 0)
             {
