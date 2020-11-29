@@ -107,7 +107,7 @@ namespace ClubsModule.Services
                 .Include(m => m.Content)
                 .FirstOrDefaultAsync(m => m.Id == model.Mission.Id && m.OwnerId == model.Mission.OwnerId);
 
-            var slug = model.Mission.Title.ToSlug();
+            var slug = model.Mission.Title.Trim().ToSlug();
             slug = slug.Unidecode();
 
             var missionWithSameTitle = await this.dbContext.Missions
@@ -129,7 +129,7 @@ namespace ClubsModule.Services
                 this.dbContext.Missions.Add(mission);
             }
 
-            mission.Title = model.Mission.Title;
+            mission.Title = model.Mission.Title.Trim();
             mission.Slug = slug;
             mission.Location = model.Mission.Location;
             if (model.Mission.Stars != 0)

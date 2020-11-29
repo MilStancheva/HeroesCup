@@ -9,29 +9,10 @@
     var clubs = Model.Clubs != null && Model.Clubs.Count() > 0 ? Model.Clubs.ToList() : new List<HeroesCup.Data.Models.Club>();
     var clubsSelectList = new SelectList(clubs, "Id", "Name");
 
-    //var heroes = Model.Heroes != null && Model.Heroes.Count() > 0 ? Model.Heroes.ToList() : new List<HeroesCup.Data.Models.Hero>();
-    //var heroesMultipleSelectList = new MultiSelectList(heroes, "Id", "Name");
-    //foreach (var heroSelectItem in heroesMultipleSelectList)
-    //{
-    //    if (Model.HeroesIds.Contains(Guid.Parse(heroSelectItem.Value)))
-    //    {
-    //        heroSelectItem.Selected = true;
-    //    }
-    //}
-
-    //var heroesSelectList = new SelectList(heroes, "Id", "Name");
-
     if (Model.Mission.Club == null)
     {
         Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
     }
-
-    //var today = DateTime.Now.Date;
-    //var expiredMission = false;
-    //if (Model.Mission.EndDate != 0 && today > Model.Mission.EndDate.ToUniversalDateTime())
-    //{
-    //    expiredMission = true;
-    //}
 
     var daysString = @HeroesCupLocalizer.Mission["Days"];
     if (Math.Round(Model.Duration.TotalDays) == 1)
@@ -58,6 +39,9 @@
     @Html.HiddenFor(m => m.Mission.Id)
     @Html.HiddenFor(m => m.Mission.OwnerId)
     @Html.HiddenFor(m => m.ImageId)
+    @Html.HiddenFor(m => m.ClubId)
+    @Html.HiddenFor(m => m.Mission.ClubId)
+    @Html.HiddenFor(m => m.Mission.Club.Name)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -269,7 +253,7 @@
 
                                 </div>
                                 <div class="col-6">
-                                
+
                                     @if (Model.ImageId != null)
                                     {
                                         <input type="file" asp-for="Image" class="form-control-file" />
@@ -347,8 +331,8 @@
                             <p class="small">@HeroesCupLocalizer.Mission["EquipmentSubtitle"]</p>
                             @Html.TextAreaFor(m => m.Mission.Content.Equipment, new { @class = "form-control small editor optional", @id = "equipment" })
                             @*<div class="invalid-tooltip">
-                                @HeroesCupLocalizer.General["Mandatory field"]
-                            </div>*@
+                                    @HeroesCupLocalizer.General["Mandatory field"]
+                                </div>*@
                         </div>
                     </div>
                 </div>

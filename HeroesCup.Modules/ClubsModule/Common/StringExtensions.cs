@@ -78,6 +78,11 @@ namespace ClubsModule.Common
 
         public static string ToSlug(this string title)
         {
+            if (string.IsNullOrEmpty(title) || string.IsNullOrWhiteSpace(title))
+            {
+                return title;
+            }
+
             var slug = title;
             Regex regex = new Regex(@"[^a-zA-Zа-яА-Я0-9-\s]", (RegexOptions)0);
             slug = regex.Replace(slug, "");

@@ -61,7 +61,7 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ErrorMessage(this.heroesCupLocalizer.Mission["The mission idea could not be saved."], false);
+                ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
                 return View("Edit", model);
             }            
 
@@ -77,6 +77,11 @@ namespace ClubsModule.Controllers
             catch (ExistingItemException)
             {
                 ErrorMessage(this.heroesCupLocalizer.MissionIdea["There is already a mission idea with the same title."]);
+                return View("Edit", model);
+            } 
+            catch (Exception)
+            {
+                ErrorMessage(this.heroesCupLocalizer.General["Sorry, an error occurred while executing your request."]);
                 return View("Edit", model);
             }
 

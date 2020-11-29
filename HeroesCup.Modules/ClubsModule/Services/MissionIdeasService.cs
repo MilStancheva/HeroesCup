@@ -102,7 +102,7 @@ namespace ClubsModule.Services
                 .ThenInclude(m => m.Image)
                 .FirstOrDefaultAsync(m => m.Id == model.MissionIdea.Id);
 
-            var slug = model.MissionIdea.Title.ToSlug();
+            var slug = model.MissionIdea.Title.Trim().ToSlug();
             slug = slug.Unidecode();
 
             var missionIdeaWithSameTitle = await this.dbContext.MissionIdeas

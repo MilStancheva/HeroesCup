@@ -54,6 +54,7 @@ namespace ClubsModule.Controllers
                 if(model.Clubs == null)
                 {
                     var validModel = await this.missionsService.GetMissionEditModelByIdAsync(model.Mission.Id);
+                    ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
                     return View("Edit", validModel);
                 }
 
@@ -75,7 +76,11 @@ namespace ClubsModule.Controllers
                 ErrorMessage(this.heroesCupLocalizer.Mission["There is already a mission with the same title."]);
                 return View("Edit", model);
             }
-           
+            catch (Exception)
+            {
+                ErrorMessage(this.heroesCupLocalizer.General["Sorry, an error occurred while executing your request."]);
+                return View("Edit", model);
+            }
 
             ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."]);
             return View("Edit", model);
