@@ -11,7 +11,8 @@
 
     if (Model.Mission.Club == null)
     {
-        Model.Mission.Club = clubs.FirstOrDefault(c => c.Id == Model.ClubId);
+        Model.Mission.Club = Model.ClubId != Guid.Empty ? clubs.FirstOrDefault(c => c.Id == Model.ClubId) : clubs.FirstOrDefault();
+        //Model.ClubId = Model.Mission.Club != null ? Model.Mission.Club.Id : Guid.Empty;
     }
 
     var daysString = @HeroesCupLocalizer.Mission["Days"];
@@ -39,9 +40,8 @@
     @Html.HiddenFor(m => m.Mission.Id)
     @Html.HiddenFor(m => m.Mission.OwnerId)
     @Html.HiddenFor(m => m.ImageId)
-    @Html.HiddenFor(m => m.ClubId)
-    @Html.HiddenFor(m => m.Mission.ClubId)
     @Html.HiddenFor(m => m.Mission.Club.Name)
+    @Html.HiddenFor(m => m.ClubId)
 
     <div class="top">
         <nav aria-label="breadcrumb">
@@ -122,23 +122,22 @@
                             <label>@HeroesCupLocalizer.Mission["Club Organizer"]</label>
                             @if (User.IsInRole("Timeheroes") || User.IsInRole("SysAdmin"))
                             {
-                                if (Model.ClubId != Guid.Empty && Model.Mission.ClubId != Guid.Empty)
+                                if (Model.ClubId != Guid.Empty)
                                 {
                                     @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
                                     @Html.HiddenFor(m => m.Mission.Club.Name)
                                 }
                                 else
                                 {
-                                    @Html.DropDownListFor(m => m.ClubId, clubsSelectList, new { @class = "form-control small", required = "required" })
-                                    @Html.HiddenFor(m => m.ClubId)
+                                    <select asp-for="Mission.Club.Id" class="form-control small" asp-items="clubsSelectList" required></select>
                                 }
                             }
                             else
                             {
-                                if (Model.ClubId != Guid.Empty && Model.Mission.Club != null)
+                                if (Model.ClubId != Guid.Empty)
                                 {
                                     @Html.TextBoxFor(m => m.Mission.Club.Name, new { @class = "form-control small", disabled = true })
-                                    @Html.HiddenFor(m => m.ClubId)
+                                    @Html.HiddenFor(m => m.Mission.Club.Id)
                                     @Html.HiddenFor(m => m.Mission.Club.Name)
                                 }
                                 else

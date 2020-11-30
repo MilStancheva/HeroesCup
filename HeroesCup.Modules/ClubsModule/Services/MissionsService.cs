@@ -92,7 +92,7 @@ namespace ClubsModule.Services
             {
                 Mission = newMission,
                 Clubs = clubs,
-                ClubId = clubs.Count > 0 ? clubs.FirstOrDefault().Id : Guid.NewGuid()
+                ClubId = clubs.Count > 0 && newMission.OwnerId != Guid.Empty ? clubs.FirstOrDefault().Id : Guid.Empty
             };
 
             return model;
@@ -111,8 +111,8 @@ namespace ClubsModule.Services
             slug = slug.Unidecode();
 
             var missionWithSameTitle = await this.dbContext.Missions
-                .Where(m => (m.Title == model.Mission.Title || m.Slug == slug) && 
-                m.Id != model.Mission.Id).FirstOrDefaultAsync();
+                .Where(m => (m.Title == model.Mission.Title || m.Slug == slug) && m.Id != model.Mission.Id)
+                .FirstOrDefaultAsync();
 
             if (missionWithSameTitle != null)
             {
@@ -123,7 +123,7 @@ namespace ClubsModule.Services
             {
                 mission = new Mission();
                 mission.Id = model.Mission.Id != Guid.Empty ? model.Mission.Id : Guid.NewGuid();
-                var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == model.ClubId);
+                var club = await this.dbContext.Clubs.FirstOrDefaultAsync(c => c.Id == model.Mission.Club.Id);
                 mission.OwnerId = club.OwnerId;
                 mission.CreatedOn = DateTime.Now.ToUnixMilliseconds();
                 this.dbContext.Missions.Add(mission);
@@ -150,9 +150,9 @@ namespace ClubsModule.Services
             await this.missionContentsService.SaveOrUpdateMissionContent(model.Mission.Content, mission);
 
             // set mission organizer
-            if (model.ClubId != null && model.ClubId != Guid.Empty)
+            if (model.Mission.Club.Id != null && model.Mission.Club.Id != Guid.Empty)
             {
-                var newOrganizator = this.dbContext.Clubs.FirstOrDefault(h => h.Id == model.ClubId);
+                var newOrganizator = this.dbContext.Clubs.FirstOrDefault(h => h.Id == model.Mission.Club.Id);
                 mission.Club = newOrganizator;
             }
 
@@ -432,7 +432,7 @@ namespace ClubsModule.Services
 
             var model = await CreateMissionEditModelAsync(null);
             model.Mission = mission;
-            model.ClubId = mission.Club.Id;
+            model.ClubId = mission.Club != null && mission.Club.Id != Guid.Empty ? mission.Club.Id : Guid.Empty;
 
             if (mission.MissionImages != null && mission.MissionImages.Count > 0)
             {

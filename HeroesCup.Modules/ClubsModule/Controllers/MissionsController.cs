@@ -49,16 +49,15 @@ namespace ClubsModule.Controllers
         [Authorize(Policy = Permissions.MissionsSave)]
         public async Task<IActionResult> SaveAsync(MissionEditModel model)
         {
+            if (model.Mission.ClubId == Guid.Empty && model.Clubs == null)
+            {
+                var newMissionModel = await this.missionsService.CreateMissionEditModelAsync();
+                model.Clubs = newMissionModel.Clubs;
+            }
+
             if (!ModelState.IsValid)
             {
-                if(model.Clubs == null)
-                {
-                    var validModel = await this.missionsService.GetMissionEditModelByIdAsync(model.Mission.Id);
-                    ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
-                    return View("Edit", validModel);
-                }
-
-                ErrorMessage(this.heroesCupLocalizer.Mission["The mission could not be saved."]);
+                ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
                 return View("Edit", model);
             }
 

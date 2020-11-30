@@ -65,6 +65,7 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
                 return View("Edit", model);
             }
 
