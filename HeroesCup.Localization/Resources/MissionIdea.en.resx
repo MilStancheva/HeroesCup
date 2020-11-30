@@ -153,4 +153,7 @@
   <data name="The mission idea has been unpublished." xml:space="preserve">
     <value>The mission idea has been unpublished.</value>
   </data>
+  <data name="There is already a mission idea with the same title." xml:space="preserve">
+    <value>There is already a mission idea with the same title.</value>
+  </data>
 </root>

@@ -65,15 +65,24 @@ namespace ClubsModule.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ErrorMessage(this.heroesCupLocalizer.General["ValidationModalTitle"]);
                 return View("Edit", model);
             }
 
-            var clubId = await this.clubsService.SaveClubEditModelAsync(model);
-            if (clubId != null && clubId != Guid.Empty)
+            try
             {
-                SuccessMessage(this.heroesCupLocalizer.Club["The club has been saved."]);
-                return RedirectToAction("Edit", new { id = clubId });
+                var clubId = await this.clubsService.SaveClubEditModelAsync(model);
+                if (clubId != null && clubId != Guid.Empty)
+                {
+                    SuccessMessage(this.heroesCupLocalizer.Club["The club has been saved."]);
+                    return RedirectToAction("Edit", new { id = clubId });
+                }
             }
+            catch (Exception)
+            {
+                ErrorMessage(this.heroesCupLocalizer.General["Sorry, an error occurred while executing your request."]);
+                return View("Edit", model);
+            }                       
 
             ErrorMessage(this.heroesCupLocalizer.Club["The club could not be saved."], false);
             return View("Edit", model);

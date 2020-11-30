@@ -1,4 +1,5 @@
 ﻿using ClubsModule.Common;
+using ClubsModule.Exceptions;
 using ClubsModule.Models;
 using ClubsModule.Services.Contracts;
 using HeroesCup.Data;
@@ -101,6 +102,19 @@ namespace ClubsModule.Services
                 .ThenInclude(m => m.Image)
                 .FirstOrDefaultAsync(m => m.Id == model.MissionIdea.Id);
 
+            var slug = model.MissionIdea.Title.Trim().ToSlug();
+            slug = slug.Unidecode();
+
+            var missionIdeaWithSameTitle = await this.dbContext.MissionIdeas
+                .Where(m => (m.Title == model.MissionIdea.Title || m.Slug == slug) && 
+                m.Id != model.MissionIdea.Id)
+                .FirstOrDefaultAsync();
+
+            if (missionIdeaWithSameTitle != null)
+            {
+                throw new ExistingItemException();
+            }
+
             if (missionIdea == null)
             {
                 missionIdea = new MissionIdea();
@@ -110,8 +124,7 @@ namespace ClubsModule.Services
             }
 
             missionIdea.Title = model.MissionIdea.Title;
-            missionIdea.Slug = model.MissionIdea.Title.ToSlug();
-            missionIdea.Slug = missionIdea.Slug.Unidecode();
+            missionIdea.Slug = slug;
             missionIdea.Organization = model.MissionIdea.Organization;
             missionIdea.Location = model.MissionIdea.Location;
             missionIdea.Content = model.MissionIdea.Content;

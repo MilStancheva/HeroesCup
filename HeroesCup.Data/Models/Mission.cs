@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HeroesCup.Data.Models
 {
@@ -7,6 +8,7 @@ namespace HeroesCup.Data.Models
     {
         public Guid Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
         public string Slug { get; set; }

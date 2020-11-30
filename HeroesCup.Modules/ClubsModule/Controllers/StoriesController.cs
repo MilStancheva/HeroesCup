@@ -55,12 +55,20 @@ namespace ClubsModule.Controllers
                 return View("Edit", validModel);
             }
 
-            var storyId = await this.storiesService.SaveStoryEditModelAsync(model);
-            if (storyId != null && storyId != Guid.Empty)
+            try
             {
-                SuccessMessage(this.heroesCupLocalizer.Story["The story has been saved."]);
-                return RedirectToAction("Edit", new { id = storyId });
+                var storyId = await this.storiesService.SaveStoryEditModelAsync(model);
+                if (storyId != null && storyId != Guid.Empty)
+                {
+                    SuccessMessage(this.heroesCupLocalizer.Story["The story has been saved."]);
+                    return RedirectToAction("Edit", new { id = storyId });
+                }
             }
+            catch (Exception)
+            {
+                ErrorMessage(this.heroesCupLocalizer.General["Sorry, an error occurred while executing your request."]);
+                return View("Edit", model);
+            }            
 
             ErrorMessage(this.heroesCupLocalizer.Story["The story could not be saved."]);
             return RedirectToAction("Edit", new { id = model.Story.Id });
