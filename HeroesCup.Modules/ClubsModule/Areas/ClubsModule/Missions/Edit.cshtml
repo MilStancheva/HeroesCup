@@ -12,7 +12,6 @@
     if (Model.Mission.Club == null)
     {
         Model.Mission.Club = Model.ClubId != Guid.Empty ? clubs.FirstOrDefault(c => c.Id == Model.ClubId) : clubs.FirstOrDefault();
-        //Model.ClubId = Model.Mission.Club != null ? Model.Mission.Club.Id : Guid.Empty;
     }
 
     var daysString = @HeroesCupLocalizer.Mission["Days"];

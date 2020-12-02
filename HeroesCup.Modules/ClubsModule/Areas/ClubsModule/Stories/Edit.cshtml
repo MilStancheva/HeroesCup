@@ -22,6 +22,11 @@
     var heroesSelectList = new SelectList(heroes, "Id", "Name");
 
     var noMissionWithoutStory = Model.Missions == null || !Model.Missions.Any();
+
+    if (Model.Story.Mission == null)
+    {
+        Model.Story.Mission = Model.Story.MissionId != Guid.Empty ? missions.FirstOrDefault(m => m.Id == Model.Story.MissionId) : missions.FirstOrDefault();
+    }
 }
 
 @section script{
@@ -50,6 +55,7 @@
 {
     @Html.HiddenFor(m => m.Story.Id)
     @Html.HiddenFor(m => m.ImageIds)
+    @Html.HiddenFor(m => m.Story.Mission.Title)
 
     <div class="top">
         <nav aria-label="breadcrumb">

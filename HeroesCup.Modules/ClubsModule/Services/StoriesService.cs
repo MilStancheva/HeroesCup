@@ -110,7 +110,6 @@ namespace ClubsModule.Services
                    .ThenInclude(m => m.HeroMissions)
                    .ThenInclude(m => m.Hero)
                    .Include(c => c.StoryImages)
-                   //.ThenInclude(ci => ci.Image)
                    .FirstOrDefaultAsync(c => c.Id == id);
 
             if (story == null)
