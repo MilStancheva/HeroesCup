@@ -24,6 +24,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesCup.Web.UnitTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeroesCup.Localization", "HeroesCup.Localization\HeroesCup.Localization.csproj", "{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piranha.AspNetCore.Identity", "HeroesCup.Libs\piranha.core\identity\Piranha.AspNetCore.Identity\Piranha.AspNetCore.Identity.csproj", "{DF535D4E-5E8C-4948-A1B9-DA84440D48C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piranha.AspNetCore.Identity.MySQL", "HeroesCup.Libs\piranha.core\identity\Piranha.AspNetCore.Identity.MySQL\Piranha.AspNetCore.Identity.MySQL.csproj", "{F2384592-2420-4122-BD39-E478ECF83BEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,14 @@ Global
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDAB3736-058A-48C4-BB9B-EF5E9DDB15E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF535D4E-5E8C-4948-A1B9-DA84440D48C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF535D4E-5E8C-4948-A1B9-DA84440D48C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF535D4E-5E8C-4948-A1B9-DA84440D48C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF535D4E-5E8C-4948-A1B9-DA84440D48C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2384592-2420-4122-BD39-E478ECF83BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2384592-2420-4122-BD39-E478ECF83BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2384592-2420-4122-BD39-E478ECF83BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2384592-2420-4122-BD39-E478ECF83BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

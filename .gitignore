@@ -271,7 +271,7 @@ FakesAssemblies/
 
 # GhostDoc plugin setting file
 *.GhostDoc.xml
-
+.idea
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
@@ -352,3 +352,4 @@ MigrationBackup/
 Properties/launchSettings.json
 HeroesCup.Web/wwwroot/uploads
 
+/HeroesCup.Libs/piranha.core.mysql/
